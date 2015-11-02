@@ -54,6 +54,10 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             }
     }
 
-    @IBOutlet weak var onAddButtonPressed: UIBarButtonItem!
 
+    @IBAction func onAddButtonPressed(sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func onNotificationsButtonPressed(sender: UIBarButtonItem) {
+    }
 }

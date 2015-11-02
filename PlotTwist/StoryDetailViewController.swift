@@ -17,6 +17,9 @@ class StoryDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBOutlet weak var onAddButtonPressed: UIBarButtonItem!
-    @IBOutlet weak var onSettingsButtonPressed: UIBarButtonItem!
+    @IBAction func onSettingsButtonPressed(sender: UIBarButtonItem) {
+    }
+
+    @IBAction func onAddButtonPressed(sender: UIBarButtonItem) {
+    }
 }
