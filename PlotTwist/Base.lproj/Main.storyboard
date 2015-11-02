@@ -43,7 +43,7 @@
                                     <rect key="frame" x="0.0" y="64" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="P_letterSM" translatesAutoresizingMaskIntoConstraints="NO" id="Wdm-ra-cqu">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="P_letterSM" translatesAutoresizingMaskIntoConstraints="NO" id="Wdm-ra-cqu">
                                             <rect key="frame" x="250" y="10" width="100" height="100"/>
                                         </imageView>
                                     </subviews>
