@@ -34,13 +34,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="eGZ-pT-IIl" kind="show" id="tzW-Ec-ie4"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="X7W-uL-4De">
                                     <rect key="frame" x="0.0" y="64" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="P_letterSM" translatesAutoresizingMaskIntoConstraints="NO" id="Wdm-ra-cqu">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="P_letterSM" translatesAutoresizingMaskIntoConstraints="NO" id="Wdm-ra-cqu">
                                             <rect key="frame" x="250" y="10" width="100" height="100"/>
                                         </imageView>
                                     </subviews>
@@ -59,6 +62,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Stories" id="QUi-dS-5NX">
+                        <barButtonItem key="leftBarButtonItem" title="Notifications" id="Vsn-nM-Bd5"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CKp-hO-K7C">
                             <connections>
                                 <segue destination="LK7-AD-Qib" kind="show" id="sbn-jq-FHZ"/>
@@ -73,6 +77,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2092" y="298"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="gdw-Mq-8sa">
+            <objects>
+                <viewController id="eGZ-pT-IIl" customClass="StoryDetailViewController" customModule="PlotTwist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h5f-i8-FAG"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jkx-Ma-19H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W6x-gJ-SkR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Lf-TA-xOs">
+                                <rect key="frame" x="150" y="178" width="310" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="ycO-ko-Ugc">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="hKe-E1-ULe"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add Twist" id="5sa-HE-Ihn">
+                            <connections>
+                                <segue destination="pfC-sm-wbF" kind="show" id="A85-KK-gQE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentTextField" destination="9Lf-TA-xOs" id="qla-lL-JQC"/>
+                        <outlet property="onAddButtonPressed" destination="5sa-HE-Ihn" id="ogn-Wc-ZRx"/>
+                        <outlet property="onSettingsButtonPressed" destination="hKe-E1-ULe" id="C08-fL-kMj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n0Y-2e-PFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2092" y="1021"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="UxK-jH-gnV">
+            <objects>
+                <viewController id="pfC-sm-wbF" customClass="AddPageViewController" customModule="PlotTwist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nEY-xz-q2X"/>
+                        <viewControllerLayoutGuide type="bottom" id="rNK-pt-ESw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h5M-IX-jvW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vqJ-MB-dEh">
+                                <rect key="frame" x="171" y="164" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="Inr-ku-xDB">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="lnn-IZ-6et"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="UT7-DH-072"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentTextField" destination="vqJ-MB-dEh" id="zwy-C3-5S6"/>
+                        <outlet property="onCancelButtonPressed" destination="lnn-IZ-6et" id="Cbj-Ck-EDi"/>
+                        <outlet property="onSaveButtonPressed" destination="UT7-DH-072" id="TJ3-fQ-CTd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xxe-pe-Q9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2738" y="1021"/>
         </scene>
         <!--Add Story View Controller-->
         <scene sceneID="2Uy-p1-HVW">
@@ -180,6 +260,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="ppS-0F-p75" kind="show" id="A9c-2J-ix0"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -197,7 +280,67 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3HW-q9-abC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2092" y="1021"/>
+            <point key="canvasLocation" x="1427" y="1750"/>
+        </scene>
+        <!--Library View Controller-->
+        <scene sceneID="d8P-Dg-LQZ">
+            <objects>
+                <viewController id="ppS-0F-p75" customClass="LibraryViewController" customModule="PlotTwist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aER-tw-dl7"/>
+                        <viewControllerLayoutGuide type="bottom" id="uGW-FB-WPu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mM6-ZB-90r">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="237" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="37n-Ku-De3">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="237" id="LLp-i3-LxQ">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="237"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LLp-i3-LxQ" id="Hyz-5t-ce7">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="237"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WF9-Mq-ldo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T5P-c0-9LU">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jBO-aw-hfZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="WF9-Mq-ldo" id="5tt-N6-s7U"/>
+                        <outlet property="tableView" destination="37n-Ku-De3" id="Neo-0M-ME5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fg3-Z4-3GJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2092" y="1750"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FMM-H5-xca">
