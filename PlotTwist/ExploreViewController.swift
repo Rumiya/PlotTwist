@@ -1,5 +1,5 @@
 //
-//  MyStoriesViewController.swift
+//  ExploreViewController.swift
 //  PlotTwist
 //
 //  Created by Rumiya Murtazina on 11/2/15.
@@ -8,10 +8,9 @@
 
 import UIKit
 
-class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+class ExploreViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,28 +31,5 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         // Configure the cell
         return cell
     }
-
-    func collectionView(collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath)
-        -> UICollectionReusableView {
-
-            switch kind {
-                //2
-            case UICollectionElementKindSectionHeader:
-                //3
-                let headerView =
-                collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-                    withReuseIdentifier: "Header",
-                    forIndexPath: indexPath)
-                    
-                return headerView
-            default:
-                //4
-                assert(false, "Unexpected element kind")
-            }
-    }
-
-    @IBOutlet weak var onAddButtonPressed: UIBarButtonItem!
 
 }

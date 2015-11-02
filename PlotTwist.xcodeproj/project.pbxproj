@@ -13,6 +13,7 @@
 		E0E250641BE7C3D900E51659 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E250621BE7C3D900E51659 /* LaunchScreen.storyboard */; };
 		E0E250701BE7CAC500E51659 /* MyStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */; };
 		E0E250721BE7CAE900E51659 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */; };
+		E0E250741BE7DE4900E51659 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250731BE7DE4900E51659 /* ExploreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E0E250651BE7C3D900E51659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesViewController.swift; sourceTree = "<group>"; };
 		E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
+		E0E250731BE7DE4900E51659 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,
+				E0E250731BE7DE4900E51659 /* ExploreViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E250741BE7DE4900E51659 /* ExploreViewController.swift in Sources */,
 				E0E250721BE7CAE900E51659 /* AddStoryViewController.swift in Sources */,
 				E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */,
 				E0E250701BE7CAC500E51659 /* MyStoriesViewController.swift in Sources */,
