@@ -41,6 +41,8 @@
 		E0E250761BE7F37E00E51659 /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250751BE7F37E00E51659 /* StoryDetailViewController.swift */; };
 		E0E250781BE7F48100E51659 /* AddPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250771BE7F48100E51659 /* AddPageViewController.swift */; };
 		E0E2507A1BE7F5A100E51659 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250791BE7F5A100E51659 /* LibraryViewController.swift */; };
+		E0E2507C1BE804AC00E51659 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2507B1BE804AC00E51659 /* ActivityViewController.swift */; };
+		E0E2507E1BE80CE100E51659 /* StorySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2507D1BE80CE100E51659 /* StorySettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		E0E250751BE7F37E00E51659 /* StoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryDetailViewController.swift; sourceTree = "<group>"; };
 		E0E250771BE7F48100E51659 /* AddPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPageViewController.swift; sourceTree = "<group>"; };
 		E0E250791BE7F5A100E51659 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		E0E2507B1BE804AC00E51659 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		E0E2507D1BE80CE100E51659 /* StorySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorySettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +180,9 @@
 				E0E250731BE7DE4900E51659 /* ExploreViewController.swift */,
 				E0E250751BE7F37E00E51659 /* StoryDetailViewController.swift */,
 				E0E250771BE7F48100E51659 /* AddPageViewController.swift */,
+				E0E2507D1BE80CE100E51659 /* StorySettingsViewController.swift */,
 				E0E250791BE7F5A100E51659 /* LibraryViewController.swift */,
+				E0E2507B1BE804AC00E51659 /* ActivityViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -282,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0E250741BE7DE4900E51659 /* ExploreViewController.swift in Sources */,
+				E0E2507E1BE80CE100E51659 /* StorySettingsViewController.swift in Sources */,
 				E0E250761BE7F37E00E51659 /* StoryDetailViewController.swift in Sources */,
 				E0E250721BE7CAE900E51659 /* AddStoryViewController.swift in Sources */,
 				E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */,
@@ -289,6 +296,7 @@
 				3AF245781BE7DFC900832B30 /* User.swift in Sources */,
 				E0E250701BE7CAC500E51659 /* MyStoriesViewController.swift in Sources */,
 				3AF2457C1BE7E0FB00832B30 /* PTConstants.swift in Sources */,
+				E0E2507C1BE804AC00E51659 /* ActivityViewController.swift in Sources */,
 				3AF245741BE7DCF300832B30 /* Story.swift in Sources */,
 				3AF245761BE7DEAC00832B30 /* Page.swift in Sources */,
 				E0E2507A1BE7F5A100E51659 /* LibraryViewController.swift in Sources */,

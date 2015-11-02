@@ -16,8 +16,9 @@ class AddPageViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    @IBOutlet weak var onCancelButtonPressed: UIBarButtonItem!
+    @IBAction func onCancelButtonPressed(sender: UIBarButtonItem) {
+    }
 
-    @IBOutlet weak var onSaveButtonPressed: UIBarButtonItem!
-
+    @IBAction func onSaveButtonPressed(sender: UIBarButtonItem) {
+    }
 }

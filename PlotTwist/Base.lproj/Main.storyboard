@@ -5,6 +5,45 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
+        <!--Activity-->
+        <scene sceneID="vvI-Ag-eY2">
+            <objects>
+                <viewController id="VeH-AN-3iR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uf2-iI-dZf"/>
+                        <viewControllerLayoutGuide type="bottom" id="3AZ-N4-BaQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9iR-Z2-kVc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-Ap-ssc">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="yHa-wN-5i6">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHa-wN-5i6" id="Err-9X-XRT">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="VeH-AN-3iR" id="LYV-T9-9z1"/>
+                                    <outlet property="delegate" destination="VeH-AN-3iR" id="TKo-32-RpG"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Activity" id="Egi-pi-7K0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQY-6Q-51L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2092" y="-375"/>
+        </scene>
         <!--My Stories-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -43,15 +82,11 @@
                                     <rect key="frame" x="0.0" y="64" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="P_letterSM" translatesAutoresizingMaskIntoConstraints="NO" id="Wdm-ra-cqu">
-                                            <rect key="frame" x="250" y="10" width="100" height="100"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="P_letterSM" translatesAutoresizingMaskIntoConstraints="NO" id="Wdm-ra-cqu">
+                                            <rect key="frame" x="24" y="10" width="100" height="100"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.97254901959999995" green="0.91631909069999995" blue="0.39679608459999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="Wdm-ra-cqu" firstAttribute="centerX" secondItem="X7W-uL-4De" secondAttribute="centerX" id="06l-XV-cZM"/>
-                                        <constraint firstItem="Wdm-ra-cqu" firstAttribute="centerY" secondItem="X7W-uL-4De" secondAttribute="centerY" id="Thh-gq-1M1"/>
-                                    </constraints>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="B2S-Zo-lMA"/>
@@ -62,21 +97,45 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Stories" id="QUi-dS-5NX">
-                        <barButtonItem key="leftBarButtonItem" title="Notifications" id="Vsn-nM-Bd5"/>
+                        <barButtonItem key="leftBarButtonItem" title="Notifications" id="Vsn-nM-Bd5">
+                            <connections>
+                                <action selector="onNotificationsButtonPressed:" destination="BYZ-38-t0r" id="Ezh-4d-dov"/>
+                                <segue destination="VeH-AN-3iR" kind="show" id="Egf-Re-Tgh"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CKp-hO-K7C">
                             <connections>
+                                <action selector="onAddButtonPressed:" destination="BYZ-38-t0r" id="yhk-9c-wrp"/>
                                 <segue destination="LK7-AD-Qib" kind="show" id="sbn-jq-FHZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="oBf-vA-Ec1" id="UGM-Gj-wPZ"/>
-                        <outlet property="onAddButtonPressed" destination="CKp-hO-K7C" id="RpF-t0-XcP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2092" y="298"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="eOB-Aj-tNU">
+            <objects>
+                <viewController id="n5l-T7-I0M" customClass="StorySettingsViewController" customModule="PlotTwist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MTV-it-4de"/>
+                        <viewControllerLayoutGuide type="bottom" id="K7b-1P-uY7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bi2-1R-IDQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="Dad-KN-dMa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Epk-xU-4tK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1427" y="1021"/>
         </scene>
         <!--Title-->
         <scene sceneID="gdw-Mq-8sa">
@@ -101,17 +160,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="ycO-ko-Ugc">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="hKe-E1-ULe"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="hKe-E1-ULe">
+                            <connections>
+                                <action selector="onSettingsButtonPressed:" destination="eGZ-pT-IIl" id="DS3-ie-zQ3"/>
+                                <segue destination="n5l-T7-I0M" kind="show" id="mJ6-zE-MO2"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add Twist" id="5sa-HE-Ihn">
                             <connections>
+                                <action selector="onAddButtonPressed:" destination="eGZ-pT-IIl" id="9B3-vp-E93"/>
                                 <segue destination="pfC-sm-wbF" kind="show" id="A85-KK-gQE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="contentTextField" destination="9Lf-TA-xOs" id="qla-lL-JQC"/>
-                        <outlet property="onAddButtonPressed" destination="5sa-HE-Ihn" id="ogn-Wc-ZRx"/>
-                        <outlet property="onSettingsButtonPressed" destination="hKe-E1-ULe" id="C08-fL-kMj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0Y-2e-PFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -141,13 +204,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Inr-ku-xDB">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="lnn-IZ-6et"/>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="UT7-DH-072"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="lnn-IZ-6et">
+                            <connections>
+                                <action selector="onCancelButtonPressed:" destination="pfC-sm-wbF" id="9m0-ja-5Rc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="UT7-DH-072">
+                            <connections>
+                                <action selector="onSaveButtonPressed:" destination="pfC-sm-wbF" id="CGy-Hx-9KT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="contentTextField" destination="vqJ-MB-dEh" id="zwy-C3-5S6"/>
-                        <outlet property="onCancelButtonPressed" destination="lnn-IZ-6et" id="Cbj-Ck-EDi"/>
-                        <outlet property="onSaveButtonPressed" destination="UT7-DH-072" id="TJ3-fQ-CTd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xxe-pe-Q9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,14 +264,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nhc-ng-1nS">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EoQ-Qo-nGA"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rec-up-1R3"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EoQ-Qo-nGA">
+                            <connections>
+                                <action selector="onCancelButtonPressed:" destination="LK7-AD-Qib" id="Obq-ac-mBe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rec-up-1R3">
+                            <connections>
+                                <action selector="onSaveButtonPressed:" destination="LK7-AD-Qib" id="K4f-kR-Bbr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="contentLabel" destination="flH-Bv-cZf" id="zYP-NZ-EBn"/>
                         <outlet property="contentTextField" destination="CtO-2m-LmP" id="kOA-wn-ABX"/>
-                        <outlet property="onCancelButtonPressed" destination="EoQ-Qo-nGA" id="gZu-p4-ymQ"/>
-                        <outlet property="onSaveButtonPressed" destination="rec-up-1R3" id="OUi-do-KMz"/>
                         <outlet property="starterPickerView" destination="EnX-u3-Dhn" id="gX5-TR-zAT"/>
                         <outlet property="storyNameLabel" destination="6hJ-i8-lOW" id="Bhj-aR-5TW"/>
                         <outlet property="storyNameTextField" destination="j7X-qG-4HI" id="Eb5-5r-3pb"/>
@@ -280,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3HW-q9-abC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1427" y="1750"/>
+            <point key="canvasLocation" x="757" y="1750"/>
         </scene>
         <!--Library View Controller-->
         <scene sceneID="d8P-Dg-LQZ">
@@ -334,7 +409,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="WF9-Mq-ldo" id="5tt-N6-s7U"/>
                         <outlet property="tableView" destination="37n-Ku-De3" id="Neo-0M-ME5"/>
                     </connections>
                 </viewController>
@@ -377,7 +451,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Bh-P9-NgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1427" y="1021"/>
+            <point key="canvasLocation" x="757" y="1062"/>
         </scene>
     </scenes>
     <resources>
