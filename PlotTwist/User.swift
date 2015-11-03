@@ -29,5 +29,38 @@ class User: PFUser {
             self.registerSubclass()
         }
     }
+    
+    
+    //Signing Up
+    class func myMethod() {
+        let user = User()
+        user.username = "myUsername"
+        user.password = "myPassword"
+        user.email = "email@example.com"
+        // other fields can be set just like with PFObject
+        
+        
+        user.signUpInBackgroundWithBlock {
+            (succeeded: Bool, error: NSError?) -> Void in
+            if error != nil {
+                
+            // Show the errorString somewhere and let the user try again.
+            } else {
+                
+                // Hooray! Let them use the app now.
+                PFUser.logInWithUsernameInBackground("myUsername", password:"myPassword") {
+                    (user: PFUser?, error: NSError?) -> Void in
+                    if user != nil {
+                        // Do stuff after successful login.
+                    } else {
+                        // The login failed. Check error to see why.
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    
 
 }

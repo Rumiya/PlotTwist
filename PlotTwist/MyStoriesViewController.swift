@@ -18,14 +18,21 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        User.myMethod()
 
         // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(animated: Bool) {
-        getAllMyStories()
+        
+        
     }
 
+    @IBAction func notificationButton(sender: UIButton) {
+        PFPush.sendPushMessageToChannelInBackground("global", withMessage: "tesing push notifications a")
+        
+    }
     func getAllMyStories() {
         // First check local datastore
 
