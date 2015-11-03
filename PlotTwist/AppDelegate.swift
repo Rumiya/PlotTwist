@@ -95,6 +95,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+//    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+//        application.registerForRemoteNotifications()
+//    }
+
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 
         // WARNING: need to add "user" property to PFInstallation upon login
@@ -102,7 +106,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.channels = ["global"]
-        currentInstallation.saveInBackground()
+        currentInstallation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                print("successful PFInstallation")
+            } else {
+                print("unable to save PFInstallation")
+            }
+        }
+    }
+
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
     }
 
     func applicationWillResignActive(application: UIApplication) {

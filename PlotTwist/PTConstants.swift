@@ -22,6 +22,7 @@ struct Constants {
         static let voteCount = "voteCount"
         static let viewCount = "viewCount"
         static let pageCount = "pageCount"
+        static let objectId = "objectId"
     }
 
     struct Page {

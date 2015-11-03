@@ -49,6 +49,18 @@ class AddPageViewController: UIViewController {
             presentEmptyFieldAlertController()
         } else {
 
+            let relation: PFRelation = author.coAuthoredStories
+            let query = relation.query()
+            query?.whereKey(Constants.Story.objectId, equalTo:currentStory.objectId!)
+            query?.countObjectsInBackgroundWithBlock({ (count: integer_t, error: NSError?) -> Void in
+                // add story to author's library if not in there already
+                if count == 0 {
+                    self.author.coAuthoredStories.addObject(self.currentStory)
+                    self.author.saveInBackground()
+                }
+            })
+
+
             // Initialize Page Object
             newPage.author = author
             newPage.story = currentStory
@@ -65,6 +77,8 @@ class AddPageViewController: UIViewController {
             // Edit Story Properties
             currentStory.incrementKey(Constants.Story.pageCount)
             currentStory.pages.append(newPage)
+            // work on local data storage later
+            // currentStory.pinInBackground()
             currentStory.saveInBackground()
 
             if (newPage.pageNum == 10) {
@@ -83,6 +97,7 @@ class AddPageViewController: UIViewController {
 
                 let data = [
                     "alert" : "\(author.username) has started a story and invited to you contribute next!",
+                    "badge" : "Increment",
                     "s" : "\(currentStory.objectId)", // Story's object id
                 ]
 
@@ -97,6 +112,8 @@ class AddPageViewController: UIViewController {
     func publishStory(story: Story) -> Void {
         story.isPublished = true
 
+        story.saveInBackground()
+
         // TODO: delegation here to add story to main feed?
         
         let innerQuery = User.query()
@@ -105,8 +122,10 @@ class AddPageViewController: UIViewController {
         let query = PFInstallation.query()
         query?.whereKey("user", matchesQuery:innerQuery!)
 
+
         let data = [
             "alert" : "A story you contibuted to has been published!",
+            "badge" : "Increment",
             "s" : "\(currentStory.objectId)", // Story's object id
         ]
 

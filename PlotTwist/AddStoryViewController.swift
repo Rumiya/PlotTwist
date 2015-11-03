@@ -37,6 +37,10 @@ class AddStoryViewController: UIViewController {
         if (storyNameTextField.text == nil || contentTextField.text == nil){
             presentEmptyFieldAlertController()
         } else {
+
+            mainAuthor.authoredStories.addObject(myStory)
+            mainAuthor.saveInBackground()
+
             // Initialize first page of story
             firstPage.author = mainAuthor
             firstPage.story = myStory
@@ -61,6 +65,8 @@ class AddStoryViewController: UIViewController {
             myStory.voteCount = 0
             myStory.pageCount = 1
 
+            // Add local storage later
+            // myStory.pinInBackground()
             myStory.saveInBackground()
 
             // Assign value to invited User based on user interaction with view
@@ -77,6 +83,7 @@ class AddStoryViewController: UIViewController {
 
             let data = [
                 "alert" : "\(mainAuthor.username) has started a story and invited to you contribute next!",
+                "badge" : "Increment",
                 "s" : "\(myStory.objectId)", // Story's object id
             ]
 
