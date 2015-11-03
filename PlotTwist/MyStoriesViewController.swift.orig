@@ -7,21 +7,18 @@
 //
 
 import UIKit
+<<<<<<< HEAD
 import Parse
+=======
 import FBSDKLoginKit
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
+>>>>>>> storyboard
 
 class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
-
-    @IBOutlet weak var storyCount: UILabel!
-    @IBOutlet weak var voteCount: UILabel!
-    
     var stories: [Story] = []
     var totalVotes: Int = 0
     
@@ -39,6 +36,22 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
 
         } else {
             print("Logged in")
+            if (FBSDKAccessToken.currentAccessToken() != nil) {
+                FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, friends"]).startWithCompletionHandler({ (connection, result, error) in
+                    if (error != nil) { return }
+                    if let fbUser = result as? NSDictionary {
+                        let email = fbUser.objectForKey("email") as? String
+                        let username = fbUser.objectForKey("name") as? String
+                       // let facebookID:String = (fbUser.objectForKey("id") as? String)!
+
+                        let user = User.currentUser()
+                        user!.email = email
+                        user!.username = username
+                        user!.saveInBackground()
+
+                    }
+                })
+            }
 
         }
 
@@ -212,9 +225,8 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell:MyStoriesCell = self.collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! MyStoriesCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
         cell.backgroundColor = UIColor.blackColor()
-
         // Configure the cell
         return cell
     }
@@ -228,29 +240,10 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                 //2
             case UICollectionElementKindSectionHeader:
                 //3
-                let headerView:MyStoriesHeader =
+                let headerView =
                 collectionView.dequeueReusableSupplementaryViewOfKind(kind,
                     withReuseIdentifier: "Header",
-                    forIndexPath: indexPath) as! MyStoriesHeader
-
-                if User.currentUser() != nil {
-                    let userName = User.currentUser()?.username
-
-                    let index = userName?.startIndex.advancedBy(1)
-
-                    var firstChar = userName?.substringToIndex(index!)
-
-                    firstChar = firstChar!.uppercaseString
-                    print(firstChar)
-                    headerView.userImage.hidden = false
-                    
-                    if ((UIImage(named:firstChar! + "_letterSM.png")) != nil){
-                        headerView.userImage.image = UIImage(named:firstChar! + "_letterSM.png")
-                    }
-                } else {
-                    headerView.userImage.hidden = true
-                }
-                
+                    forIndexPath: indexPath)
                     
                 return headerView
             default:
@@ -264,9 +257,5 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @IBAction func onNotificationsButtonPressed(sender: UIBarButtonItem) {
-    }
-
-    @IBAction func unwindToMyStories(sender: UIStoryboardSegue){
-
     }
 }

@@ -17,9 +17,15 @@ class StoryDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func onSettingsButtonPressed(sender: UIBarButtonItem) {
+
+    @IBOutlet weak var onSettingsButtonPressed: UIButton!
+
+    @IBAction func onSettingsButtonPressed(sender: UIButton) {
+    }
+    @IBAction func onAddButtonPressed(sender: UIBarButtonItem) {
     }
 
-    @IBAction func onAddButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func unwindToStoryDetail(sender:UIStoryboardSegue) {
+        
     }
 }

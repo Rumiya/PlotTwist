@@ -49,8 +49,6 @@
 		E0E250881BE8279D00E51659 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250871BE8279D00E51659 /* LoginViewController.swift */; };
 		E0E2508A1BE827E400E51659 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250891BE827E400E51659 /* SignUpViewController.swift */; };
 		E0E2508C1BE8281200E51659 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2508B1BE8281200E51659 /* ResetPasswordViewController.swift */; };
-		E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */; };
-		E0E250941BE9678C00E51659 /* MyStoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250931BE9678C00E51659 /* MyStoriesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,8 +97,6 @@
 		E0E250871BE8279D00E51659 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E0E250891BE827E400E51659 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E0E2508B1BE8281200E51659 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesHeader.swift; sourceTree = "<group>"; };
-		E0E250931BE9678C00E51659 /* MyStoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,10 +135,13 @@
 		3AF2454C1BE7DA9D00832B30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */,
 				3AF2457E1BE8824600832B30 /* libstdc++.6.0.9.tbd */,
+=======
 				E0E250811BE81BF500E51659 /* FBSDKLoginKit.framework */,
 				E0E2507F1BE8177200E51659 /* FBSDKCoreKit.framework */,
+>>>>>>> storyboard
 				3AF245711BE7DB5C00832B30 /* Social.framework */,
 				3AF2456F1BE7DB5700832B30 /* Accounts.framework */,
 				3AF2456D1BE7DB5100832B30 /* libsqlite3.tbd */,
@@ -198,8 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
-				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
-				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,
 				E0E250771BE7F48100E51659 /* AddPageViewController.swift */,
 				E0E250731BE7DE4900E51659 /* ExploreViewController.swift */,
@@ -279,7 +276,7 @@
 				TargetAttributes = {
 					E0E250551BE7C3D900E51659 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = RYF7YHAMY5;
+						DevelopmentTeam = G8M9P5X24R;
 					};
 				};
 			};
@@ -348,7 +345,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */,
 				E0E250741BE7DE4900E51659 /* ExploreViewController.swift in Sources */,
 				E0E2507E1BE80CE100E51659 /* StorySettingsViewController.swift in Sources */,
 				E0E2508C1BE8281200E51659 /* ResetPasswordViewController.swift in Sources */,
@@ -363,7 +359,6 @@
 				E0E2508A1BE827E400E51659 /* SignUpViewController.swift in Sources */,
 				E0E2507C1BE804AC00E51659 /* ActivityViewController.swift in Sources */,
 				3AF245741BE7DCF300832B30 /* Story.swift in Sources */,
-				E0E250941BE9678C00E51659 /* MyStoriesCell.swift in Sources */,
 				3AF245761BE7DEAC00832B30 /* Page.swift in Sources */,
 				E0E2507A1BE7F5A100E51659 /* LibraryViewController.swift in Sources */,
 				E0E250781BE7F48100E51659 /* AddPageViewController.swift in Sources */,
@@ -409,8 +404,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Henson (M6Z6XZATVT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Henson (M6Z6XZATVT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -432,8 +427,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+<<<<<<< HEAD
+				PROVISIONING_PROFILE = "f7d64409-21c2-4706-a918-e02459118ed5";
+=======
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "71a3b590-f02b-49d4-b945-bebdf613c340";
+>>>>>>> storyboard
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -456,8 +454,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Henson (M6Z6XZATVT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Henson (M6Z6XZATVT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -472,8 +470,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+<<<<<<< HEAD
+				PROVISIONING_PROFILE = "f7d64409-21c2-4706-a918-e02459118ed5";
+=======
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "71a3b590-f02b-49d4-b945-bebdf613c340";
+>>>>>>> storyboard
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -483,8 +484,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Henson (M6Z6XZATVT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Henson (M6Z6XZATVT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -493,9 +494,14 @@
 				INFOPLIST_FILE = PlotTwist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.MMFinalProject.PlotTwist;
+=======
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.abearablecode.PlotTwist;
+>>>>>>> storyboard
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71a3b590-f02b-49d4-b945-bebdf613c340";
+				PROVISIONING_PROFILE = "f7d64409-21c2-4706-a918-e02459118ed5";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlotTwist/PlotTwist-Bridging-Header.h";
 			};
 			name = Debug;
@@ -504,8 +510,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Henson (M6Z6XZATVT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Henson (M6Z6XZATVT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlotTwist",
@@ -513,9 +519,14 @@
 				INFOPLIST_FILE = PlotTwist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.MMFinalProject.PlotTwist;
+=======
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.abearablecode.PlotTwist;
+>>>>>>> storyboard
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71a3b590-f02b-49d4-b945-bebdf613c340";
+				PROVISIONING_PROFILE = "f7d64409-21c2-4706-a918-e02459118ed5";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlotTwist/PlotTwist-Bridging-Header.h";
 			};
 			name = Release;

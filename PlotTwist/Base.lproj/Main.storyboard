@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DG8-ak-0rc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
@@ -149,7 +149,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHa-wN-5i6" id="Err-9X-XRT">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
@@ -193,22 +193,31 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="XaP-a1-SgA">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="XaP-a1-SgA" customClass="MyStoriesCell" customModule="PlotTwist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="184" width="132" height="109"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="132" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bnx-GB-gEu">
+                                                    <rect key="frame" x="34" y="44" width="64" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <animations/>
                                         <connections>
+                                            <outlet property="pageCount" destination="Bnx-GB-gEu" id="C9d-fM-4sO"/>
                                             <segue destination="eGZ-pT-IIl" kind="show" id="tzW-Ec-ie4"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="X7W-uL-4De">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="X7W-uL-4De" customClass="MyStoriesHeader" customModule="PlotTwist" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="64" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -216,9 +225,33 @@
                                             <rect key="frame" x="24" y="10" width="100" height="100"/>
                                             <animations/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQT-qK-HcN">
+                                            <rect key="frame" x="132" y="82" width="85" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VoteCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqA-Yx-fdF">
+                                            <rect key="frame" x="316" y="65" width="91" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="StoryCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4g-dS-6Qc">
+                                            <rect key="frame" x="316" y="24" width="129" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" red="0.97254901959999995" green="0.91631909069999995" blue="0.39679608459999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <outlet property="storyCountLabel" destination="V4g-dS-6Qc" id="kdP-V9-cdY"/>
+                                        <outlet property="userImage" destination="Wdm-ra-cqu" id="5PT-ZF-mbD"/>
+                                        <outlet property="usernameLabel" destination="JQT-qK-HcN" id="gW5-qi-UzC"/>
+                                        <outlet property="voteCountLabel" destination="bqA-Yx-fdF" id="PqN-NL-UgC"/>
+                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="B2S-Zo-lMA"/>
@@ -291,15 +324,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTY-Vw-dvB">
+                                <rect key="frame" x="264" y="481" width="68" height="30"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <action selector="onSettingsButtonPressed:" destination="eGZ-pT-IIl" eventType="touchUpInside" id="Kzs-oK-vM6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="ycO-ko-Ugc">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="hKe-E1-ULe">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hKe-E1-ULe">
                             <connections>
-                                <action selector="onSettingsButtonPressed:" destination="eGZ-pT-IIl" id="DS3-ie-zQ3"/>
-                                <segue destination="n5l-T7-I0M" kind="show" id="mJ6-zE-MO2"/>
+                                <segue destination="5gx-te-umn" kind="unwind" unwindAction="unwindToMyStories:" id="faW-3A-S3n"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add Twist" id="5sa-HE-Ihn">
@@ -311,9 +350,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentTextField" destination="9Lf-TA-xOs" id="qla-lL-JQC"/>
+                        <outlet property="onSettingsButtonPressed" destination="WTY-Vw-dvB" id="dGe-gG-PkW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0Y-2e-PFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5gx-te-umn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2092" y="1021"/>
         </scene>
@@ -344,7 +385,7 @@
                     <navigationItem key="navigationItem" title="Title" id="Inr-ku-xDB">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="lnn-IZ-6et">
                             <connections>
-                                <action selector="onCancelButtonPressed:" destination="pfC-sm-wbF" id="9m0-ja-5Rc"/>
+                                <segue destination="8CA-ZK-E36" kind="unwind" unwindAction="unwindToStoryDetail:" id="wgA-g0-oG2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="UT7-DH-072">
@@ -358,6 +399,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xxe-pe-Q9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8CA-ZK-E36" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2738" y="1021"/>
         </scene>
@@ -410,7 +452,7 @@
                     <navigationItem key="navigationItem" id="Nhc-ng-1nS">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EoQ-Qo-nGA">
                             <connections>
-                                <action selector="onCancelButtonPressed:" destination="LK7-AD-Qib" id="Obq-ac-mBe"/>
+                                <segue destination="f24-hd-VZi" kind="unwind" unwindAction="unwindToMyStories:" id="eNT-u7-AFc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="rec-up-1R3">
@@ -428,6 +470,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQl-5a-y2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="f24-hd-VZi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2793" y="298"/>
         </scene>
@@ -527,7 +570,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="237"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LLp-i3-LxQ" id="Hyz-5t-ce7">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="236"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="237"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WF9-Mq-ldo">
