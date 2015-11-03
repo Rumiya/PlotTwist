@@ -31,6 +31,8 @@
 		3AF245781BE7DFC900832B30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF245771BE7DFC900832B30 /* User.swift */; };
 		3AF2457A1BE7E09B00832B30 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF245791BE7E09B00832B30 /* Activity.swift */; };
 		3AF2457C1BE7E0FB00832B30 /* PTConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF2457B1BE7E0FB00832B30 /* PTConstants.swift */; };
+		3AF2457F1BE8824600832B30 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF2457E1BE8824600832B30 /* libstdc++.6.0.9.tbd */; };
+		3AF245811BE8827A00832B30 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */; };
 		E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250591BE7C3D900E51659 /* AppDelegate.swift */; };
 		E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E2505D1BE7C3D900E51659 /* Main.storyboard */; };
 		E0E250611BE7C3D900E51659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E250601BE7C3D900E51659 /* Assets.xcassets */; };
@@ -70,6 +72,8 @@
 		3AF245771BE7DFC900832B30 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AF245791BE7E09B00832B30 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		3AF2457B1BE7E0FB00832B30 /* PTConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTConstants.swift; sourceTree = "<group>"; };
+		3AF2457E1BE8824600832B30 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E0E250561BE7C3D900E51659 /* PlotTwist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlotTwist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E250591BE7C3D900E51659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0E2505E1BE7C3D900E51659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AF245811BE8827A00832B30 /* libsqlite3.0.tbd in Frameworks */,
+				3AF2457F1BE8824600832B30 /* libstdc++.6.0.9.tbd in Frameworks */,
 				3AF245721BE7DB5C00832B30 /* Social.framework in Frameworks */,
 				3AF245701BE7DB5700832B30 /* Accounts.framework in Frameworks */,
 				3AF2456E1BE7DB5100832B30 /* libsqlite3.tbd in Frameworks */,
@@ -119,6 +125,8 @@
 		3AF2454C1BE7DA9D00832B30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */,
+				3AF2457E1BE8824600832B30 /* libstdc++.6.0.9.tbd */,
 				3AF245711BE7DB5C00832B30 /* Social.framework */,
 				3AF2456F1BE7DB5700832B30 /* Accounts.framework */,
 				3AF2456D1BE7DB5100832B30 /* libsqlite3.tbd */,
@@ -177,9 +185,9 @@
 			children = (
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,
+				E0E250771BE7F48100E51659 /* AddPageViewController.swift */,
 				E0E250731BE7DE4900E51659 /* ExploreViewController.swift */,
 				E0E250751BE7F37E00E51659 /* StoryDetailViewController.swift */,
-				E0E250771BE7F48100E51659 /* AddPageViewController.swift */,
 				E0E2507D1BE80CE100E51659 /* StorySettingsViewController.swift */,
 				E0E250791BE7F5A100E51659 /* LibraryViewController.swift */,
 				E0E2507B1BE804AC00E51659 /* ActivityViewController.swift */,
@@ -226,6 +234,8 @@
 				E0E250521BE7C3D900E51659 /* Sources */,
 				E0E250531BE7C3D900E51659 /* Frameworks */,
 				E0E250541BE7C3D900E51659 /* Resources */,
+				3AF2457D1BE8813800832B30 /* ShellScript */,
+				3AF245821BE8ACAB00832B30 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -281,6 +291,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AF2457D1BE8813800832B30 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Parse Crash Reporting\"\nexport PATH=/usr/local/bin:$PATH\nCLOUD_CODE_DIR=${PROJECT_DIR}/cloudcode\n\nif [ -d ${CLOUD_CODE_DIR} ]; then\ncd ${CLOUD_CODE_DIR}\nparse symbols PlotTwist --path=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\necho \"Finished uploading symbol\"\nelse\necho \"Unable to upload symbols\"\nfi";
+		};
+		3AF245821BE8ACAB00832B30 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E0E250521BE7C3D900E51659 /* Sources */ = {
@@ -343,7 +382,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -387,7 +427,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -411,6 +452,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlotTwist",
@@ -426,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlotTwist",

@@ -7,18 +7,122 @@
 //
 
 import UIKit
+import Parse
 
 class AddPageViewController: UIViewController {
 
     @IBOutlet weak var contentTextField: UITextView!
+
+    let author = User.currentUser()!
+    var currentStory: Story!
+    var newPage = Page()
+    let invitedUser = User()
+
+    init(story: Story?) {
+        currentStory = story
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Make sure this stuff only gets called once
+        currentStory.currentAuthor = author
+        currentStory.allAuthorIds.append(author.objectId!)
+        currentStory.allAuthors.addObject(author)
+
+        // TODO: check current page number and adjust UI as a result
+
     }
+
     @IBAction func onCancelButtonPressed(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func onSaveButtonPressed(sender: UIBarButtonItem) {
+
+        if (contentTextField.text == nil) { // Need to check if invited user has been selected as well
+            presentEmptyFieldAlertController()
+        } else {
+
+            // Initialize Page Object
+            newPage.author = author
+            newPage.story = currentStory
+            newPage.pageNum = currentStory.pageCount + 1
+            if let data = self.contentTextField.text?.dataUsingEncoding(NSUTF8StringEncoding) {
+                let file = PFFile(name:"content.txt", data:data)
+                file!.saveInBackground()
+                newPage.content = file!
+            } else {
+                // TODO: handle error in data encoding here
+            }
+            newPage.saveInBackground()
+
+            // Edit Story Properties
+            currentStory.incrementKey(Constants.Story.pageCount)
+            currentStory.pages.append(newPage)
+            currentStory.saveInBackground()
+
+            if (newPage.pageNum == 10) {
+                publishStory(currentStory)
+
+            } else {
+
+                // Assign value to invited User based on user interaction with view
+                // invitedUser = _________
+
+                let innerQuery = User.query()
+                innerQuery!.whereKey(Constants.User.objectId, equalTo: invitedUser.objectId!)
+
+                let query = PFInstallation.query()
+                query?.whereKey("user", matchesQuery:innerQuery!)
+
+                let data = [
+                    "alert" : "\(author.username) has started a story and invited to you contribute next!",
+                    "s" : "\(currentStory.objectId)", // Story's object id
+                ]
+
+                let push = PFPush()
+                push.setQuery(query)
+                push.setData(data)
+                push.sendPushInBackground()
+            }
+        }
+    }
+
+    func publishStory(story: Story) -> Void {
+        story.isPublished = true
+
+        // TODO: delegation here to add story to main feed?
+        
+        let innerQuery = User.query()
+        innerQuery?.whereKey(Constants.User.objectId, containedIn: currentStory.allAuthorIds)
+
+        let query = PFInstallation.query()
+        query?.whereKey("user", matchesQuery:innerQuery!)
+
+        let data = [
+            "alert" : "A story you contibuted to has been published!",
+            "s" : "\(currentStory.objectId)", // Story's object id
+        ]
+
+        let push = PFPush()
+        push.setQuery(query)
+        push.setData(data)
+        push.sendPushInBackground()
+
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func presentEmptyFieldAlertController() -> Void {
+        // Remind user to enter content before saving
+        let alertController = UIAlertController(title: "Incomplete", message: "Make sure you add to the story and select the next author.", preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }

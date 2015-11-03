@@ -31,5 +31,4 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Configure the cell
         return cell
     }
-
 }

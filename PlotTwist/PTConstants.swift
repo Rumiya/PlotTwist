@@ -15,6 +15,7 @@ struct Constants {
         static let mainAuthor = "mainAuthor"
         static let allAuthors = "allAuthors"
         static let currentAuthor = "currentAuthor"
+        static let allAuthorIds = "allAuthorIds"
         static let pages = "pages"
         static let isLiked = "isLiked"
         static let isPublished = "isPublished"
@@ -43,6 +44,7 @@ struct Constants {
     }
 
     struct User {
+        static let objectId = "objectId"
         static let fullName = "fullName"
         static let profilePicture = "profilePicture"
         static let friends = "friends"

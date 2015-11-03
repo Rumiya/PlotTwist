@@ -8,17 +8,26 @@
 
 import UIKit
 import Parse
+import ParseCrashReporting
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func crash(){
+        // Test Crash
+        NSException(name: NSGenericException, reason: "Everything is ok. This is just a test crash.", userInfo: nil).raise()
+
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         // Allow local storage
         Parse.enableLocalDatastore()
+
+        // Enable Crash Reporting
+        ParseCrashReporting.enable()
 
         // Initialize Parse
         Parse.setApplicationId("4oB2SxIWEp5ZpyN1J9CqG2K2fzCPHAHL434m5Fel", clientKey: "PZBIaNyNTpEqYwWv8bmqjNi6Aev98qrRX0vwkpab")
@@ -26,7 +35,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Track statistics
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
 
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+
+        // Crash Testing
+        /*
+        dispatch_after(
+            dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC))),
+            dispatch_get_main_queue(),
+            { () -> Void in
+                self.crash()
+        });
+*/
+
+
+        // Extract the notification data
+        if let notificationPayload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+
+            // Create a pointer to the Photo object
+            let storyId = notificationPayload["s"] as? String
+            let targetStory = Story(withoutDataWithObjectId: storyId)
+
+            // Fetch photo object
+            targetStory.fetchIfNeededInBackgroundWithBlock {
+                (object: PFObject?, error:NSError?) -> Void in
+                if error == nil {
+
+                    let navigationController = application.windows[0].rootViewController as! UINavigationController
+
+                    let currentStory = object as! Story
+
+                    var viewController: UIViewController
+
+                    if (!targetStory.isPublished) {
+                        viewController = AddPageViewController(story: currentStory)
+                    } else {
+                        viewController = ExploreViewController()
+                    }
+
+                    navigationController.pushViewController(viewController, animated: true)
+
+//                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//
+//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//                    // TODO: Add Storyboard ID to AddPageViewController
+//                    let initialViewController = storyboard.instantiateViewControllerWithIdentifier("AddPageVC") as! AddPageViewController
+//
+//                    self.window?.rootViewController = initialViewController
+//                    self.window?.makeKeyAndVisible()
+
+                }
+            }
+        }
+
         return true
+    }
+
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+
+        // WARNING: need to add "user" property to PFInstallation upon login
+        // Store the deviceToken in the current installation and save it to Parse.
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.channels = ["global"]
+        currentInstallation.saveInBackground()
     }
 
     func applicationWillResignActive(application: UIApplication) {

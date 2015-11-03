@@ -20,6 +20,24 @@ class StorySettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    func removeAuthorFromStory(author: User, story: Story) -> Void {
+        let alertController = UIAlertController(title: "Remove Author", message: "Are you sure you want to discard this story? All authors will be notified.", preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        presentViewController(alertController, animated: true, completion: nil)
+        author.coAuthoredStories.removeObject(story)
+
+
+    }
+
+    func discardStory(story: Story) {
+        let alertController = UIAlertController(title: "Incomplete", message: "Are you sure you want to discard this story? All authors will be notified.", preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    }
     
 
     /*

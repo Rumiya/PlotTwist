@@ -14,13 +14,14 @@ class Story: PFObject, PFSubclassing {
     @NSManaged var storyTitle: String
     @NSManaged var mainAuthor: User
     @NSManaged var allAuthors: PFRelation
+    @NSManaged var allAuthorIds: Array<String>
     @NSManaged var currentAuthor: User
     @NSManaged var pages: Array<Page>
     @NSManaged var isLiked: Bool
     @NSManaged var isPublished: Bool
-    @NSManaged var voteCount: String
-    @NSManaged var viewCount: String
-    @NSManaged var pageCount: String
+    @NSManaged var voteCount: Int
+    @NSManaged var viewCount: Int
+    @NSManaged var pageCount: Int
 
     override class func initialize() {
         struct Static {

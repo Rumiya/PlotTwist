@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class LibraryViewController: UIViewController {
 
@@ -17,6 +18,18 @@ class LibraryViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let query = Story.query()
+        query?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
+        query?.whereKey(Constants.Story.isPublished, equalTo: true)
+        query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            if error != nil {
+                // There was an error
+            } else {
+                // TODO:Assign objects to data variable
+
+
+            }
+        })
     }
 
 
