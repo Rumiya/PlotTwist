@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
+import ParseFacebookUtilsV4
 
 class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -14,6 +17,37 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if User.currentUser() == nil
+        {
+            print("Not logged in..")
+
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+                self.presentViewController(viewController, animated: true, completion: nil)
+            })
+
+        } else {
+            print("Logged in")
+            if (FBSDKAccessToken.currentAccessToken() != nil) {
+                FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, friends, picture"]).startWithCompletionHandler({ (connection, result, error) in
+                    if (error != nil) { return }
+                    if let fbUser = result as? NSDictionary {
+                        let email = fbUser.objectForKey("email") as? String
+                        let username = fbUser.objectForKey("name") as? String
+                       // let facebookID:String = (fbUser.objectForKey("id") as? String)!
+
+                        let user = User.currentUser()
+                        user!.email = email
+                        user!.username = username
+                        user!.saveInBackground()
+
+                    }
+                })
+            }
+
+        }
+
 
         // Do any additional setup after loading the view.
     }
