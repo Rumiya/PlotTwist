@@ -20,8 +20,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Atv-Tp-5d9">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PlotTwist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zot-fB-xSU">
-                                        <rect key="frame" x="80" y="20" width="112" height="58"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plot Twist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zot-fB-xSU">
+                                        <rect key="frame" x="82" y="20" width="109" height="58"/>
                                         <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -62,6 +62,9 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onSignupButtonPressed:" destination="IQV-WF-Gmr" eventType="touchUpInside" id="JQc-Kk-TgM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -102,6 +105,9 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="oCA-8O-yi1" kind="unwind" unwindAction="unwindToLogInScreen:" id="lKN-bc-5xd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.91631909069999995" blue="0.39679608459999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,8 +118,14 @@
                             <constraint firstItem="Atv-Tp-5d9" firstAttribute="centerY" secondItem="Jpe-kx-qf4" secondAttribute="centerY" id="mcW-Ap-LTo"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="li9-mt-F7P" id="g6L-Oq-g9r"/>
+                        <outlet property="passwordTextField" destination="fTd-zo-Lgt" id="jTU-SR-I3Y"/>
+                        <outlet property="usernameTextField" destination="O0q-Hz-D5Q" id="KGo-ab-hTX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSR-B5-Ebd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oCA-8O-yi1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1384" y="-494"/>
         </scene>
@@ -543,7 +555,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixo-Mh-sB3">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ParseDemo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shu-lc-Q7u">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plot Twist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shu-lc-Q7u">
                                         <rect key="frame" x="80" y="20" width="112" height="58"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="112" id="7Hb-7d-kd6"/>
@@ -573,6 +585,9 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onResetPasswordButtonPressed:" destination="dMG-ju-QRC" eventType="touchUpInside" id="y6c-hB-0KR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -611,6 +626,9 @@
                                         <exclude reference="lLB-5I-5OV"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <segue destination="HEb-DB-gsJ" kind="unwind" unwindAction="unwindToLogInScreen:" id="SMb-0g-l7T"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.27450980390000002" green="0.74509803919999995" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -621,8 +639,12 @@
                             <constraint firstItem="ixo-Mh-sB3" firstAttribute="centerX" secondItem="Qhr-GZ-BBy" secondAttribute="centerX" id="zHs-Co-j5L"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="x9L-fk-9g0" id="LTl-xD-6Mn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IV6-4S-AmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="HEb-DB-gsJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="52" y="-494"/>
         </scene>
@@ -641,12 +663,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCg-hh-Ea2">
                                 <rect key="frame" x="165" y="100" width="270" height="400"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlotTwist" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IM3-fR-ina">
-                                        <rect key="frame" x="86" y="77" width="101" height="58"/>
-                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eic-in-fgH">
                                         <rect key="frame" x="13" y="189" width="245" height="30"/>
                                         <constraints>
@@ -735,6 +751,12 @@
                                             <action selector="onFBloginButtonPressed:" destination="I7J-hf-129" eventType="touchUpInside" id="8TN-M9-7Gw"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plot Twist" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IM3-fR-ina">
+                                        <rect key="frame" x="81" y="77" width="109" height="58"/>
+                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>

@@ -71,6 +71,44 @@ class LoginViewController: UIViewController {
      }
 
     @IBAction func onLoginButtonPressed(sender: UIButton) {
+        let username = self.usernameTextField.text
+        let password = passwordTextField.text
+
+        if (username?.characters.count < 5) {
+            let alert = UIAlertController(title: "Invalid", message: "Username must be greater than 5 characters", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+
+        } else if (password?.characters.count < 8)
+        {
+            let alert = UIAlertController(title: "Invalid", message: "Password must be greater than 8 characters", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+           self.presentViewController(alert, animated: true, completion: nil)
+
+        } else {
+            // Run a spinner to show a task in progress
+            let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
+            spinner.startAnimating()
+
+            // Send a request to login
+            PFUser.logInWithUsernameInBackground(username!, password: password!, block: { (user, error) -> Void in
+
+                // Stop the spinner
+                spinner.stopAnimating()
+
+                if ((user) != nil) {
+                    let alert = UIAlertController(title: "Success", message: "Logged In", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+
+                    self.showMyStories()
+                } else {
+                    let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            })
+        }
 
     }
 
@@ -85,7 +123,7 @@ class LoginViewController: UIViewController {
 
     func updatePFUserDetail() {
         if (FBSDKAccessToken.currentAccessToken() != nil) {
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, friends, picture"]).startWithCompletionHandler({ (connection, result, error) in
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, friends"]).startWithCompletionHandler({ (connection, result, error) in
                 if (error != nil) { return }
                 if let fbUser = result as? NSDictionary {
                     let email = fbUser.objectForKey("email") as? String

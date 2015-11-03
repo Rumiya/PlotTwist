@@ -30,7 +30,7 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         } else {
             print("Logged in")
             if (FBSDKAccessToken.currentAccessToken() != nil) {
-                FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, friends, picture"]).startWithCompletionHandler({ (connection, result, error) in
+                FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, friends"]).startWithCompletionHandler({ (connection, result, error) in
                     if (error != nil) { return }
                     if let fbUser = result as? NSDictionary {
                         let email = fbUser.objectForKey("email") as? String
