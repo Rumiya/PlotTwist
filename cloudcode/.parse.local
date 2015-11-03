@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "PlotTwist": {
+      "applicationId": "4oB2SxIWEp5ZpyN1J9CqG2K2fzCPHAHL434m5Fel"
+    },
+    "_default": {
+      "link": "PlotTwist"
+    }
+  }
+}
