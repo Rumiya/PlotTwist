@@ -92,6 +92,8 @@ class AddStoryViewController: UIViewController {
             push.setData(data)
             push.sendPushInBackground()
 
+            
+
 //            PFPush.sendPushMessageToQueryInBackground(query!, withMessage: "\(mainAuthor.username) has started a story and invited to you contribute next!")
         }
     }

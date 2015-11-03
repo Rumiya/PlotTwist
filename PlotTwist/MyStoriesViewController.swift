@@ -22,6 +22,8 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //PFPush.sendPushMessageToChannelInBackground("global", withMessage: "tesing push notifications")
+
         if User.currentUser() == nil
         {
             print("Not logged in..")

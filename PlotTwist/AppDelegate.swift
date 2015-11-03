@@ -71,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (object: PFObject?, error:NSError?) -> Void in
                 if error == nil {
 
+                    /*
                     let navigationController = application.windows[0].rootViewController as! UINavigationController
 
                     let currentStory = object as! Story
@@ -83,7 +84,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         viewController = ExploreViewController()
                     }
 
+
                     navigationController.pushViewController(viewController, animated: true)
+
+*/
+
 
 //                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //
