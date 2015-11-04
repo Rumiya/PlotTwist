@@ -92,7 +92,6 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
 
                                 let query = PFInstallation.query()
                                 query?.whereKey("user", matchesQuery:innerQuery!)
-
                                 let data = [
                                     "alert" : "\(self.mainAuthor.username!) has started a story named \"\(self.myStory.storyTitle)\" and invited to you contribute next!",
                                     "badge" : "Increment",
@@ -105,7 +104,8 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
                                 push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                                     if success {
                                         print("successful push")
-                                        self.delegate?.didAddNewStory()
+                                        self.sendPushToMainAuthor()
+                                        self.delegate?.didAddNewStory(self.myStory, nextAuthor: self.invitedUser)
                                         self.navigationController?.popViewControllerAnimated(true)
                                     } else {
                                         print("push failed")
@@ -120,6 +120,23 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             }
 
         }
+    }
+
+    func sendPushToMainAuthor() {
+        let innerQuery = User.query()
+        innerQuery!.whereKey(Constants.User.objectId, equalTo:self.myStory.mainAuthor.objectId!)
+
+        let query = PFInstallation.query()
+        query?.whereKey("user", matchesQuery:innerQuery!)
+        let data = [
+            "alert" : "Your story has been updated!",
+            "s" : "\(self.myStory.objectId)" // Story's object id
+        ]
+
+        let push = PFPush()
+        push.setQuery(query)
+        push.setData(data)
+        push.sendPushInBackground()
     }
 
     func presentEmptyFieldAlertController() -> Void {

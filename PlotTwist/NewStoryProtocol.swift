@@ -9,5 +9,5 @@
 import Foundation
 
 protocol NewStoryDelegate {
-    func didAddNewStory()
+    func didAddNewStory(newStory: Story, nextAuthor: User)
 }

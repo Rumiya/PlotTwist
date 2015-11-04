@@ -74,18 +74,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (object: PFObject?, error:NSError?) -> Void in
                 if error == nil {
 
-
-                    // WARNING - fix this so it segues to the correct VC
-
-                    let navigationController = application.windows[0].rootViewController as! UINavigationController
-                    let currentStory = object as! Story
-                    var viewController: UIViewController
-                    if (!targetStory.isPublished) {
-                        viewController = AddPageViewController(story: currentStory)
-                    } else {
-                        viewController = ExploreViewController()
-                    }
-                    navigationController.pushViewController(viewController, animated: true)
+                    let tabBarController = self.window?.rootViewController as! UITabBarController
+                    let navigationController = tabBarController.viewControllers![0] as! UINavigationController
+                    let firstVC = navigationController.viewControllers[0] as! MyStoriesViewController
+                    firstVC.getAllMyStories()
+                    navigationController.pushViewController(firstVC, animated: true)
 
 //                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //
@@ -109,14 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
 
-//    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-//        application.registerForRemoteNotifications()
-//    }
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 
-        // WARNING: need to add "user" property to PFInstallation upon login
-        // Store the deviceToken in the current installation and save it to Parse.
         let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.channels = ["global"]
@@ -130,6 +118,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        let tabBarController = window?.rootViewController as! UITabBarController
+        let navigationController = tabBarController.viewControllers![0] as! UINavigationController
+        let firstVC = navigationController.viewControllers[0] as! MyStoriesViewController
+        firstVC.getAllMyStories()
+        //navigationController.presentViewController(firstVC, animated: true, completion: nil)
+        //navigationController.pushViewController(firstVC, animated: true)
+
         PFPush.handlePush(userInfo)
     }
 
@@ -139,6 +134,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
+
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        if currentInstallation.badge != 0 {
+            currentInstallation.badge = 0
+            currentInstallation.saveEventually()
+        }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }

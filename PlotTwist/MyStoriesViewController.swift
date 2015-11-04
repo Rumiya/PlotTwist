@@ -16,12 +16,6 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
-
-    @IBOutlet weak var storyCount: UILabel!
-    @IBOutlet weak var voteCount: UILabel!
-
     var stories: [Story] = []
     var totalVotes: Int = 0
 
@@ -33,7 +27,7 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             print("Not logged in..")
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login") as! LoginViewController
                 self.presentViewController(viewController, animated: true, completion: nil)
             })
 
@@ -48,7 +42,6 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             if currentInstallation.badge > 0 {
                 tabItem.badgeValue = "\(currentInstallation.badge)"
             }
-
             getAllMyStories()
         }
     }
@@ -57,15 +50,16 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         //getAllMyStories()
     }
 
-    func didAddNewStory() {
+    func didAddNewStory(newStory: Story, nextAuthor: User) {
+        newStory.currentAuthor = nextAuthor
+        newStory.saveInBackground()
         getAllMyStories()
     }
 
     func didDeleteStory() {
         getAllMyStories()
     }
-
-
+    
     // MARK - Parse Queries
     func getAllMyStories() {
 
@@ -83,9 +77,6 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                 dispatch_async(dispatch_get_main_queue()) {
                     self.collectionView.reloadData()
                 }
-                // TODO: Fix this
-                //self.voteCount.text = "Upvotes: \(self.totalVotes)"
-                //self.storyCount.text = "Stories: \(self.stories.count)"
             }
         })
     }
@@ -127,7 +118,7 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                     forIndexPath: indexPath) as! MyStoriesHeader
 
                 if User.currentUser() != nil {
-                    let userName = User.currentUser()?.username
+                    let userName = User.currentUser()!.username
 
                     let index = userName?.startIndex.advancedBy(1)
 
@@ -140,8 +131,12 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                     if ((UIImage(named:firstChar! + "_letterSM.png")) != nil){
                         headerView.userImage.image = UIImage(named:firstChar! + "_letterSM.png")
                     }
+                    headerView.storyCountLabel.text = "Stories: \(self.stories.count)"
+                    headerView.voteCountLabel.text = "Upvotes: \(self.totalVotes)"
+                    headerView.usernameLabel.text = String(userName!.characters.dropFirst())
                 } else {
                     headerView.userImage.hidden = true
+                    headerView.usernameLabel.text = User.currentUser()!.username
                 }
 
                 return headerView

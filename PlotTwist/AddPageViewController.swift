@@ -13,6 +13,7 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var contentTextField: UITextView!
 
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
 
     let author = User.currentUser()!
@@ -21,6 +22,9 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     var invitedUser = User()
     var users: [User] = []
     var selectedIndex: Int = 0
+
+    var delegate: NewPageDelegate?
+
 
     init(story: Story?) {
         currentStory = story
@@ -31,13 +35,40 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.init(coder: aDecoder)
     }
 
+    override func viewWillAppear(animated: Bool) {
+
+        let query = Story.query()
+        query?.includeKey(Constants.Story.pages)
+        query?.whereKey(Constants.Story.objectId, equalTo: currentStory.objectId!)
+        query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
+            let myStory = objects?.first as! Story
+
+            let pageQuery = Page.query()
+            pageQuery?.whereKey(Constants.Page.story, equalTo: myStory)
+            pageQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
+                let pages = objects as! [Page]
+                if pages.count > 0 {
+                    let firstPage: Page = pages[0]
+                    let pageContent = firstPage.content
+                    pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
+                        self.contentTextField.text = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
+                    })
+                } else {
+                    self.contentTextField.text = ""
+                    print("no pages in the story")
+                }
+
+
+            })
+            
+        })
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Make sure this stuff only gets called once
-        currentStory.currentAuthor = author
-        currentStory.allAuthorIds.append(author.objectId!)
-        currentStory.allAuthors.addObject(author)
 
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: author.objectId!)
@@ -59,27 +90,23 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
             label.text = "You have the last page! End the story the way you see fit, and hit \"Save\" to publish!"
             view.addSubview(label)
         }
-
         // TODO: check current page number and adjust UI as a result
-
     }
 
     @IBAction func onCancelButtonPressed(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+        self.delegate?.didCancelNewPage()
     }
 
     @IBAction func onSaveButtonPressed(sender: UIBarButtonItem) {
 
-        if (contentTextField.text == nil) { // Need to check if invited user has been selected as well
+        if (textField.text == nil) { // Need to check if invited user has been selected as well
             presentEmptyFieldAlertController()
         } else {
-
-
             // Initialize Page Object
             newPage.author = author
             newPage.story = currentStory
             newPage.pageNum = currentStory.pageCount + 1
-            if let data = self.contentTextField.text?.dataUsingEncoding(NSUTF8StringEncoding) {
+            if let data = self.textField.text?.dataUsingEncoding(NSUTF8StringEncoding) {
                 let file = PFFile(name:"content.txt", data:data)
                 file!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                     self.newPage.content = file!
@@ -87,6 +114,9 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
                         // Edit Story Properties
                         self.currentStory.incrementKey(Constants.Story.pageCount)
                         self.currentStory.pages.append(self.newPage)
+                        // Make sure this stuff only gets called once
+                        self.currentStory.allAuthorIds.append(self.author.objectId!)
+                        self.currentStory.allAuthors.addObject(self.author)
                         // work on local data storage later
                         // currentStory.pinInBackground()
                         self.currentStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
@@ -97,42 +127,43 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 // add story to author's library if not in there already
                                 if count == 0 {
                                     self.author.coAuthoredStories.addObject(self.currentStory)
-                                    self.author.saveInBackground()
+                                    self.author.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                        if (self.newPage.pageNum == 10) {
+                                            self.publishStory(self.currentStory)
+                                        } else {
+
+                                            // Assign value to invited User based on user interaction with view
+                                            self.invitedUser = self.users[self.selectedIndex]
+                                            let innerQuery = User.query()
+                                            innerQuery!.whereKey(Constants.User.objectId, equalTo: self.invitedUser.objectId!)
+
+                                            let query = PFInstallation.query()
+                                            query?.whereKey("user", matchesQuery:innerQuery!)
+
+                                            let data = [
+                                                "alert" : "\(self.author.username!) wants you to add to a story!",
+                                                "badge" : "Increment",
+                                                "s" : "\(self.currentStory.objectId!)", // Story's object id
+                                            ]
+
+                                            let push = PFPush()
+                                            push.setQuery(query)
+                                            push.setData(data)
+                                            push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                                if success {
+                                                    print("successful push")
+                                                    self.delegate?.didAddNewPage(self.currentStory, nextAuthor: self.invitedUser)
+                                                } else {
+                                                    print("push failed")
+                                                }
+                                            })
+                                        }
+                                    })
                                 }
                             })
                         })
 
-                        if (self.newPage.pageNum == 10) {
-                            self.publishStory(self.currentStory)
 
-                        } else {
-
-                            // Assign value to invited User based on user interaction with view
-                            self.invitedUser = self.users[self.selectedIndex]
-                            let innerQuery = User.query()
-                            innerQuery!.whereKey(Constants.User.objectId, equalTo: self.invitedUser.objectId!)
-
-                            let query = PFInstallation.query()
-                            query?.whereKey("user", matchesQuery:innerQuery!)
-
-                            let data = [
-                                "alert" : "\(self.author.username!) has started a story and invited to you contribute next!",
-                                "badge" : "Increment",
-                                "s" : "\(self.currentStory.objectId!)", // Story's object id
-                            ]
-
-                            let push = PFPush()
-                            push.setQuery(query)
-                            push.setData(data)
-                            push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                                if success {
-                                    print("successful push")
-                                    self.navigationController?.popViewControllerAnimated(true)
-                                } else {
-                                    print("push failed")
-                                }
-                            })
-                        }
                     })
 
                 })
@@ -164,7 +195,7 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
             push.setQuery(query)
             push.setData(data)
             push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                self.navigationController?.popViewControllerAnimated(true)
+                self.delegate?.didEndStory(self.currentStory)
             })
         }
     }
@@ -178,7 +209,7 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        contentTextField.resignFirstResponder()
+        textField.resignFirstResponder()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

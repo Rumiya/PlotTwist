@@ -9,6 +9,7 @@
 import Foundation
 
 protocol NewPageDelegate {
-    func didAddNewPage()
-    func didEndStory()
+    func didAddNewPage(editedStory: Story, nextAuthor: User)
+    func didEndStory(endedStory: Story)
+    func didCancelNewPage()
 }
