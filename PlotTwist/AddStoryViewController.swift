@@ -9,13 +9,14 @@
 import UIKit
 import Parse
 
-class AddStoryViewController: UIViewController {
+class AddStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var storyNameLabel: UILabel!
     @IBOutlet weak var storyNameTextField: UITextField!
     @IBOutlet weak var starterPickerView: UIPickerView!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
 
 
     // Need UI Element to select friend to pass the story on to
@@ -110,6 +111,15 @@ class AddStoryViewController: UIViewController {
 
     @IBAction func onCancelButtonPressed(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return  1
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        return cell
     }
 
 }

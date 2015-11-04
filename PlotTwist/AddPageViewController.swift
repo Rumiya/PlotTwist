@@ -9,9 +9,11 @@
 import UIKit
 import Parse
 
-class AddPageViewController: UIViewController {
+class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var contentTextField: UITextView!
+
+    @IBOutlet weak var tableView: UITableView!
 
     let author = User.currentUser()!
     var currentStory: Story!
@@ -143,5 +145,14 @@ class AddPageViewController: UIViewController {
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
         presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        return cell
     }
 }
