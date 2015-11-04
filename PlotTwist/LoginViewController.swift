@@ -99,9 +99,11 @@ class LoginViewController: UIViewController {
                 if ((user) != nil) {
                     let alert = UIAlertController(title: "Success", message: "Logged In", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.presentViewController(alert, animated: true, completion: { () -> Void in
+                        self.showMyStories()
+                        
+                    })
 
-                    self.showMyStories()
                 } else {
                     let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))

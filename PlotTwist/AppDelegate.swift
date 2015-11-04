@@ -70,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             targetStory.fetchIfNeededInBackgroundWithBlock {
                 (object: PFObject?, error:NSError?) -> Void in
                 if error == nil {
+                    /*
 
                     let navigationController = application.windows[0].rootViewController as! UINavigationController
 
@@ -83,7 +84,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         viewController = ExploreViewController()
                     }
 
+
                     navigationController.pushViewController(viewController, animated: true)
+
+*/
 
 //                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //
