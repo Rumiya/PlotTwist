@@ -39,6 +39,12 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
 
         } else {
             print("Logged in")
+                    let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+                    currentInstallation.setObject(User.currentUser()!, forKey: "user")
+                    currentInstallation.saveInBackground()
+
+
+
 
         }
 
@@ -133,7 +139,7 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         queryStories?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
 
         queryStories?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-            if error != nil {
+            if error == nil {
                 self.stories = objects as! [Story]
                 for story in self.stories {
                     self.totalVotes = self.totalVotes + story.voteCount

@@ -51,16 +51,7 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
             presentEmptyFieldAlertController()
         } else {
 
-            let relation: PFRelation = author.coAuthoredStories
-            let query = relation.query()
-            query?.whereKey(Constants.Story.objectId, equalTo:currentStory.objectId!)
-            query?.countObjectsInBackgroundWithBlock({ (count: integer_t, error: NSError?) -> Void in
-                // add story to author's library if not in there already
-                if count == 0 {
-                    self.author.coAuthoredStories.addObject(self.currentStory)
-                    self.author.saveInBackground()
-                }
-            })
+
 
 
             // Initialize Page Object
@@ -81,7 +72,18 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
             currentStory.pages.append(newPage)
             // work on local data storage later
             // currentStory.pinInBackground()
-            currentStory.saveInBackground()
+            currentStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                let relation: PFRelation = self.author.coAuthoredStories
+                let query = relation.query()
+                query?.whereKey(Constants.Story.objectId, equalTo:self.currentStory.objectId!)
+                query?.countObjectsInBackgroundWithBlock({ (count: integer_t, error: NSError?) -> Void in
+                    // add story to author's library if not in there already
+                    if count == 0 {
+                        self.author.coAuthoredStories.addObject(self.currentStory)
+                        self.author.saveInBackground()
+                    }
+                })
+            })
 
             if (newPage.pageNum == 10) {
                 publishStory(currentStory)

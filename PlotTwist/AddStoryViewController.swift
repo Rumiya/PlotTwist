@@ -38,10 +38,6 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         if (storyNameTextField.text == nil || contentTextField.text == nil){
             presentEmptyFieldAlertController()
         } else {
-
-            mainAuthor.authoredStories.addObject(myStory)
-            mainAuthor.saveInBackground()
-
             // Initialize first page of story
             firstPage.author = mainAuthor
             firstPage.story = myStory
@@ -56,6 +52,7 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             firstPage.saveInBackground()
 
             // Initialize story
+            myStory.storyTitle = storyNameTextField.text!
             myStory.mainAuthor = mainAuthor
             myStory.allAuthors.addObject(mainAuthor)
             myStory.allAuthorIds = [mainAuthor.objectId!]
@@ -68,22 +65,25 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
 
             // Add local storage later
             // myStory.pinInBackground()
-            myStory.saveInBackground()
+            myStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                self.mainAuthor.authoredStories.addObject(self.myStory)
+                self.mainAuthor.saveInBackground()
+            })
 
             // Assign value to invited User based on user interaction with view
-            // invitedUser = _________
+            //invitedUser = _________
 
             // TODO: Add Push Notifications to Parse and add certificate
             // Maybe need to keep track of the Story's objectId behind the scenes so co-authors can access it easliy
             // Also not sure if we should send notifications to all invited, or just the first on the list
             let innerQuery = User.query()
-            innerQuery!.whereKey(Constants.User.objectId, equalTo: invitedUser.objectId!)
+            innerQuery!.whereKey(Constants.User.objectId, equalTo:"0mi0U3S5Ew") // WARNING: add invitedUser.objectId later
 
             let query = PFInstallation.query()
             query?.whereKey("user", matchesQuery:innerQuery!)
 
             let data = [
-                "alert" : "\(mainAuthor.username) has started a story and invited to you contribute next!",
+                "alert" : "\(mainAuthor.username) has started a story named \"\(myStory.storyTitle)\" and invited to you contribute next!",
                 "badge" : "Increment",
                 "s" : "\(myStory.objectId)", // Story's object id
             ]
