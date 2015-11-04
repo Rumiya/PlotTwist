@@ -13,7 +13,7 @@ import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
 class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, NewStoryDelegate, DeleteStoryDelegate {
-
+ 
     @IBOutlet weak var collectionView: UICollectionView!
 
     var stories: [Story] = []
@@ -136,7 +136,8 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                     headerView.usernameLabel.text = String(userName!.characters.dropFirst())
                 } else {
                     headerView.userImage.hidden = true
-                    headerView.usernameLabel.text = User.currentUser()!.username
+                    headerView.usernameLabel.hidden = true
+                    
                 }
 
                 return headerView
