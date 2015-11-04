@@ -9,7 +9,9 @@
 import UIKit
 import Parse
 
-class AddStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+
+class AddStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var storyNameLabel: UILabel!
     @IBOutlet weak var storyNameTextField: UITextField!
@@ -19,30 +21,24 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
 
 
-    // Need UI Element to select friend to pass the story on to
-
-
     let mainAuthor = User.currentUser()!
     var firstPage = Page()
     var myStory = Story()
     var invitedUser = User()
     var users: [User] = []
-    var checked = [Bool]()
     var selectedIndex: Int = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: mainAuthor.objectId!)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-            self.users = objects as! [User]
-               print(" no error  ")
+                self.users = objects as! [User]
+                print(" no error  ")
                 self.tableView.reloadData()
-                
-            }else {
-                
+            } else {
                 print("error retrieving")
             }
         })
@@ -61,55 +57,64 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             firstPage.pageNum = 1
             if let data = self.contentTextField.text?.dataUsingEncoding(NSUTF8StringEncoding) {
                 let file = PFFile(name:"content.txt", data:data)
-                file!.saveInBackground()
-                firstPage.content = file!
+                file!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    self.firstPage.content = file!
+                    self.firstPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                        self.myStory.pages.append(self.firstPage)
+
+                        // Initialize story
+                        self.myStory.storyTitle = self.storyNameTextField.text!
+                        self.myStory.mainAuthor = self.mainAuthor
+                        self.myStory.allAuthorIds = [self.mainAuthor.objectId!]
+                        self.myStory.currentAuthor = self.mainAuthor
+                        self.myStory.isLiked = false
+                        self.myStory.isPublished = false
+                        self.myStory.voteCount = 0
+                        self.myStory.pageCount = 1
+
+                        // TODO: find a spot for this relation later
+                        /*
+                        self.myStory.allAuthors.addObject(self.mainAuthor)
+                        */
+
+                        // Add local storage later
+                        // myStory.pinInBackground()
+                        self.myStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                            self.mainAuthor.authoredStories.addObject(self.myStory)
+                            self.mainAuthor.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+
+                                self.invitedUser = self.users[self.selectedIndex]
+                                let innerQuery = User.query()
+                                innerQuery!.whereKey(Constants.User.objectId, equalTo:self.invitedUser.objectId!)
+
+                                let query = PFInstallation.query()
+                                query?.whereKey("user", matchesQuery:innerQuery!)
+
+                                let data = [
+                                    "alert" : "\(self.mainAuthor.username!) has started a story named \"\(self.myStory.storyTitle)\" and invited to you contribute next!",
+                                    "badge" : "Increment",
+                                    "s" : "\(self.myStory.objectId)", // Story's object id
+                                ]
+
+                                let push = PFPush()
+                                push.setQuery(query)
+                                push.setData(data)
+                                push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                    if success {
+                                        print("successful push")
+                                        self.navigationController?.popViewControllerAnimated(true)
+                                    } else {
+                                        print("push failed")
+                                    }
+                                })
+                            })
+                        })
+                    })
+                })
             } else {
                 // TODO: handle error in data encoding here
             }
-            firstPage.saveInBackground()
 
-            // Initialize story
-            myStory.storyTitle = storyNameTextField.text!
-            myStory.mainAuthor = mainAuthor
-            myStory.allAuthors.addObject(mainAuthor)
-            myStory.allAuthorIds = [mainAuthor.objectId!]
-            myStory.currentAuthor = mainAuthor
-            myStory.pages.append(firstPage)
-            myStory.isLiked = false
-            myStory.isPublished = false
-            myStory.voteCount = 0
-            myStory.pageCount = 1
-
-            // Add local storage later
-            // myStory.pinInBackground()
-            myStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                self.mainAuthor.authoredStories.addObject(self.myStory)
-                self.mainAuthor.saveInBackground()
-            })
-
-            // Assign value to invited User based on user interaction with view
-             invitedUser = users[selectedIndex]
-            // TODO: Add Push Notifications to Parse and add certificate
-            // Maybe need to keep track of the Story's objectId behind the scenes so co-authors can access it easliy
-            // Also not sure if we should send notifications to all invited, or just the first on the list
-            let innerQuery = User.query()
-            innerQuery!.whereKey(Constants.User.objectId, equalTo:"0mi0U3S5Ew") // WARNING: add invitedUser.objectId later
-
-            let query = PFInstallation.query()
-            query?.whereKey("user", matchesQuery:innerQuery!)
-
-            let data = [
-                "alert" : "\(mainAuthor.username) has started a story named \"\(myStory.storyTitle)\" and invited to you contribute next!",
-                "badge" : "Increment",
-                "s" : "\(myStory.objectId)", // Story's object id
-            ]
-
-            let push = PFPush()
-            push.setQuery(query)
-            push.setData(data)
-            push.sendPushInBackground()
-
-//            PFPush.sendPushMessageToQueryInBackground(query!, withMessage: "\(mainAuthor.username) has started a story and invited to you contribute next!")
         }
     }
 
@@ -121,27 +126,26 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         presentViewController(alertController, animated: true, completion: nil)
     }
 
-    @IBAction func onSaveButtonPressed(sender: UIBarButtonItem) {
-        setupStory()
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        storyNameTextField.resignFirstResponder()
+        contentTextField.resignFirstResponder()
     }
 
-    @IBAction func onCancelButtonPressed(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func onSaveButtonPressed(sender: UIBarButtonItem) {
+        setupStory()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  self.users.count
     }
 
-    
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
+
         cell.textLabel?.text = self.users[indexPath.row].username
-       
+
         if self.selectedIndex == indexPath.row  {
-            
+
             cell.accessoryType = .Checkmark
         }
         else {
@@ -156,6 +160,4 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         selectedIndex = indexPath.row
         tableView.reloadData()
     }
-    
-
 }

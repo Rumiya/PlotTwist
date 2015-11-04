@@ -116,7 +116,7 @@ class LoginViewController: UIViewController {
     func showMyStories()
     {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MyStories")
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootVC")
             self.presentViewController(viewController, animated: true, completion: nil)
         })
 

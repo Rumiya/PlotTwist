@@ -40,6 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
 
+        Story.registerSubclass()
+        Page.registerSubclass()
+        User.registerSubclass()
+
         //return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         if application.respondsToSelector("registerUserNotificationSettings:") {
@@ -56,8 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             { () -> Void in
                 self.crash()
         });
-*/
-
+        */
 
         // Extract the notification data
         if let notificationPayload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
@@ -70,24 +73,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             targetStory.fetchIfNeededInBackgroundWithBlock {
                 (object: PFObject?, error:NSError?) -> Void in
                 if error == nil {
-                    /*
+
+
+                    // WARNING - fix this so it segues to the correct VC
 
                     let navigationController = application.windows[0].rootViewController as! UINavigationController
-
                     let currentStory = object as! Story
-
                     var viewController: UIViewController
-
                     if (!targetStory.isPublished) {
                         viewController = AddPageViewController(story: currentStory)
                     } else {
                         viewController = ExploreViewController()
                     }
-
-
                     navigationController.pushViewController(viewController, animated: true)
 
-*/
+
 
 //                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //
