@@ -279,7 +279,7 @@
 				TargetAttributes = {
 					E0E250551BE7C3D900E51659 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = RYF7YHAMY5;
+						DevelopmentTeam = G8M9P5X24R;
 					};
 				};
 			};
@@ -409,8 +409,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
+				CODE_SIGN_IDENTITY = "iPhone Developer: philip.d.henson@gmail.com (45R45MT5KZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: philip.d.henson@gmail.com (45R45MT5KZ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -433,7 +433,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "71a3b590-f02b-49d4-b945-bebdf613c340";
+				PROVISIONING_PROFILE = "2593ef70-a273-48b0-a279-a1e98fac4a00";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -456,8 +456,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.MMFinalProject.PlotTwist";
+				CODE_SIGN_IDENTITY = "iPhone Developer: philip.d.henson@gmail.com (45R45MT5KZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: philip.d.henson@gmail.com (45R45MT5KZ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -473,7 +473,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "71a3b590-f02b-49d4-b945-bebdf613c340";
+				PROVISIONING_PROFILE = "2593ef70-a273-48b0-a279-a1e98fac4a00";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -495,7 +495,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MMFinalProject.PlotTwist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71a3b590-f02b-49d4-b945-bebdf613c340";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlotTwist/PlotTwist-Bridging-Header.h";
 			};
 			name = Debug;
@@ -515,7 +515,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MMFinalProject.PlotTwist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71a3b590-f02b-49d4-b945-bebdf613c340";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlotTwist/PlotTwist-Bridging-Header.h";
 			};
 			name = Release;
