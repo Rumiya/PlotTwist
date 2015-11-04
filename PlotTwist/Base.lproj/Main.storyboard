@@ -251,7 +251,7 @@
                                             <rect key="frame" x="132" y="90" width="43" height="20"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hjz-2I-CgE">
@@ -261,14 +261,14 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="87" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VoteCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqA-Yx-fdF">
                                                     <rect key="frame" x="0.0" y="41" width="82" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -317,7 +317,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CKp-hO-K7C">
                             <connections>
                                 <action selector="onAddButtonPressed:" destination="BYZ-38-t0r" id="yhk-9c-wrp"/>
-                                <segue destination="LK7-AD-Qib" kind="show" id="sbn-jq-FHZ"/>
+                                <segue destination="LK7-AD-Qib" kind="show" identifier="ToAddStorySegue" id="sbn-jq-FHZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -327,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2092" y="298"/>
+            <point key="canvasLocation" x="2904" y="298"/>
         </scene>
         <!--Settings-->
         <scene sceneID="eOB-Aj-tNU">
@@ -347,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Epk-xU-4tK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1427" y="1021"/>
+            <point key="canvasLocation" x="2239" y="1021"/>
         </scene>
         <!--Title-->
         <scene sceneID="gdw-Mq-8sa">
@@ -429,7 +429,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0Y-2e-PFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5gx-te-umn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2092" y="1021"/>
+            <point key="canvasLocation" x="2904" y="1021"/>
         </scene>
         <!--Title-->
         <scene sceneID="UxK-jH-gnV">
@@ -508,7 +508,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xxe-pe-Q9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8CA-ZK-E36" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2738" y="1021"/>
+            <point key="canvasLocation" x="3550" y="1021"/>
         </scene>
         <!--Add Story View Controller-->
         <scene sceneID="2Uy-p1-HVW">
@@ -529,7 +529,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Story Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j7X-qG-4HI">
@@ -579,7 +579,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your story here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CtO-2m-LmP">
@@ -635,7 +635,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQl-5a-y2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="f24-hd-VZi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2793" y="298"/>
+            <point key="canvasLocation" x="3605" y="298"/>
         </scene>
         <!--My Stories-->
         <scene sceneID="1nE-Xe-fo0">
@@ -655,7 +655,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdy-ZS-6Dr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1427" y="298"/>
+            <point key="canvasLocation" x="2239" y="298"/>
         </scene>
         <!--Explore View Controller-->
         <scene sceneID="Uhv-lC-Egu">
@@ -989,7 +989,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmj-WA-r0o">
                                         <rect key="frame" x="115" y="8" width="40" height="40"/>
                                         <animations/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="YBg-1E-w3N"/>
                                             <constraint firstAttribute="width" constant="40" id="nQU-jG-8hE"/>
@@ -1090,11 +1090,32 @@
                     <connections>
                         <segue destination="Aik-yr-6Gp" kind="relationship" relationship="viewControllers" id="ttV-XN-eNY"/>
                         <segue destination="bmg-fN-Hgt" kind="relationship" relationship="viewControllers" id="Xhp-bj-DMm"/>
+                        <segue destination="jJx-3w-mQr" kind="relationship" relationship="viewControllers" id="Xz9-hM-iVQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xP0-Mf-fgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="298"/>
+            <point key="canvasLocation" x="1569" y="298"/>
+        </scene>
+        <!--Notifications View Controller-->
+        <scene sceneID="3yT-Aa-eFY">
+            <objects>
+                <viewController id="mAT-UN-Ku0" customClass="NotificationsViewController" customModule="PlotTwist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bV7-K5-fVV"/>
+                        <viewControllerLayoutGuide type="bottom" id="6TJ-jC-ygO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ra4-97-loJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YFL-CS-Fpb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tDt-kP-scc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="22" y="1774"/>
         </scene>
         <!--Explore-->
         <scene sceneID="ijt-a5-tP1">
@@ -1114,7 +1135,27 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Bh-P9-NgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="1062"/>
+            <point key="canvasLocation" x="1569" y="1062"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="ZeT-5d-IoR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJx-3w-mQr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="6K7-p0-zaW"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DGX-TE-5LR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mAT-UN-Ku0" kind="relationship" relationship="rootViewController" id="vXd-OJ-ZKP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bwS-ZJ-F7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764" y="950"/>
         </scene>
     </scenes>
     <resources>

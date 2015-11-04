@@ -12,8 +12,12 @@ class StoryDetailViewController: UIViewController {
 
     @IBOutlet weak var contentTextField: UITextView!
     var story: Story = Story()
+    var delegate: DeleteStoryDelegate?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
 
         let query = Story.query()
         query?.includeKey(Constants.Story.pages)
@@ -62,7 +66,7 @@ class StoryDetailViewController: UIViewController {
                 page.deleteInBackground()
             }
             self.story.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-
+                self.delegate?.didDeleteStory()
                 self.navigationController?.popViewControllerAnimated(true)
 
                 // WARNING: need to figure out how much to delete with pointers to the story

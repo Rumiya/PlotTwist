@@ -87,8 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                     navigationController.pushViewController(viewController, animated: true)
 
-
-
 //                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //
 //                    let storyboard = UIStoryboard(name: "Main", bundle: nil)

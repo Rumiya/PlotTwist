@@ -20,6 +20,7 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
 
+    var delegate: NewStoryDelegate?
 
     let mainAuthor = User.currentUser()!
     var firstPage = Page()
@@ -30,6 +31,8 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
 
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: mainAuthor.objectId!)
@@ -102,6 +105,7 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
                                 push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                                     if success {
                                         print("successful push")
+                                        self.delegate?.didAddNewStory()
                                         self.navigationController?.popViewControllerAnimated(true)
                                     } else {
                                         print("push failed")

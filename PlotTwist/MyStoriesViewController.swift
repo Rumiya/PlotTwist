@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
-class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, NewStoryDelegate, DeleteStoryDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -43,12 +43,25 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             currentInstallation.setObject(User.currentUser()!, forKey: "user")
             currentInstallation.saveInBackground()
 
+            let tabArray = self.tabBarController?.tabBar.items as NSArray!
+            let tabItem = tabArray.objectAtIndex(2) as! UITabBarItem
+            if currentInstallation.badge > 0 {
+                tabItem.badgeValue = "\(currentInstallation.badge)"
+            }
+
             getAllMyStories()
         }
-
     }
 
     override func viewWillAppear(animated: Bool) {
+        //getAllMyStories()
+    }
+
+    func didAddNewStory() {
+        getAllMyStories()
+    }
+
+    func didDeleteStory() {
         getAllMyStories()
     }
 
@@ -59,6 +72,7 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         totalVotes = 0;
         let queryStories = Story.query()
         queryStories?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
+        queryStories?.whereKeyExists(Constants.Story.objectId)
 
         queryStories?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -66,7 +80,10 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                 for story in self.stories {
                     self.totalVotes = self.totalVotes + story.voteCount
                 }
-                self.collectionView.reloadData()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.collectionView.reloadData()
+                }
+                // TODO: Fix this
                 //self.voteCount.text = "Upvotes: \(self.totalVotes)"
                 //self.storyCount.text = "Stories: \(self.stories.count)"
             }
@@ -127,7 +144,6 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                     headerView.userImage.hidden = true
                 }
 
-
                 return headerView
             default:
                 //4
@@ -141,10 +157,12 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             let selectedCell = sender as! MyStoriesCell
             let indexPath = collectionView.indexPathForCell(selectedCell)
             vc.story = stories[(indexPath?.item)!]
+            vc.delegate = self
+        } else if segue.identifier == "ToAddStorySegue" {
+            let vc = segue.destinationViewController as! AddStoryViewController
+            vc.delegate = self
         }
-        
     }
-
 
     @IBAction func onAddButtonPressed(sender: UIBarButtonItem) {
     }
