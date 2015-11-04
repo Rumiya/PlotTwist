@@ -27,8 +27,6 @@ class StorySettingsViewController: UIViewController {
         alertController.addAction(defaultAction)
         presentViewController(alertController, animated: true, completion: nil)
         author.coAuthoredStories.removeObject(story)
-
-
     }
 
     func discardStory(story: Story) {
@@ -36,9 +34,7 @@ class StorySettingsViewController: UIViewController {
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
         presentViewController(alertController, animated: true, completion: nil)
-        
     }
-    
 
     /*
     // MARK: - Navigation

@@ -66,10 +66,11 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.myStory.pages.append(self.firstPage)
 
                         // Initialize story
+                        self.invitedUser = self.users[self.selectedIndex]
                         self.myStory.storyTitle = self.storyNameTextField.text!
                         self.myStory.mainAuthor = self.mainAuthor
+                        self.myStory.currentAuthor = self.invitedUser
                         self.myStory.allAuthorIds = [self.mainAuthor.objectId!]
-                        self.myStory.currentAuthor = self.mainAuthor
                         self.myStory.isLiked = false
                         self.myStory.isPublished = false
                         self.myStory.voteCount = 0
@@ -86,7 +87,6 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
                             self.mainAuthor.authoredStories.addObject(self.myStory)
                             self.mainAuthor.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
 
-                                self.invitedUser = self.users[self.selectedIndex]
                                 let innerQuery = User.query()
                                 innerQuery!.whereKey(Constants.User.objectId, equalTo:self.invitedUser.objectId!)
 
@@ -104,7 +104,6 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
                                 push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                                     if success {
                                         print("successful push")
-                                        self.sendPushToMainAuthor()
                                         self.delegate?.didAddNewStory(self.myStory, nextAuthor: self.invitedUser)
                                         self.navigationController?.popViewControllerAnimated(true)
                                     } else {
@@ -122,22 +121,7 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
 
-    func sendPushToMainAuthor() {
-        let innerQuery = User.query()
-        innerQuery!.whereKey(Constants.User.objectId, equalTo:self.myStory.mainAuthor.objectId!)
 
-        let query = PFInstallation.query()
-        query?.whereKey("user", matchesQuery:innerQuery!)
-        let data = [
-            "alert" : "Your story has been updated!",
-            "s" : "\(self.myStory.objectId)" // Story's object id
-        ]
-
-        let push = PFPush()
-        push.setQuery(query)
-        push.setData(data)
-        push.sendPushInBackground()
-    }
 
     func presentEmptyFieldAlertController() -> Void {
         // Remind user to enter content before saving

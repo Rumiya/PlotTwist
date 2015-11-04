@@ -28,7 +28,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         query?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
         query?.whereKeyExists(Constants.Story.objectId)
         query?.includeKey(Constants.Story.mainAuthor)
-        query?.whereKey(Constants.Story.isPublished, equalTo: true)
+        query?.whereKey(Constants.Story.isPublished, equalTo: false)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             self.activeStories = objects as! [Story]
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -39,6 +39,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
 
     override func viewWillAppear(animated: Bool) {
         queryForActiveStories()
+        updateBadgeNumber()
+    }
+
+    func updateBadgeNumber() {
         if currentInstallation.badge > 0{
             currentInstallation.badge = 0
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -72,7 +76,6 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: - New Page Delegate Methods
     func didAddNewPage(editedStory: Story, nextAuthor: User) {
         dismissViewControllerAnimated(true, completion: nil)
-        editedStory.currentAuthor = nextAuthor
         editedStory.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             self.queryForActiveStories()
         }

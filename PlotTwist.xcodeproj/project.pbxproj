@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A1F8FE81BEA5F98008E9671 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F8FE71BEA5F98008E9671 /* NotificationsViewController.swift */; };
 		3A1F8FEA1BEA63EC008E9671 /* DeleteStoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F8FE91BEA63EC008E9671 /* DeleteStoryDelegate.swift */; };
+		3A1F8FEC1BEAC03F008E9671 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */; };
 		3ADE58B41BE9BA36003D6D74 /* NewStoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE58B31BE9BA36003D6D74 /* NewStoryProtocol.swift */; };
 		3ADE58B61BE9BAE5003D6D74 /* TestCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE58B51BE9BAE5003D6D74 /* TestCode.swift */; };
 		3ADE58B81BE9CF22003D6D74 /* NewPageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE58B71BE9CF22003D6D74 /* NewPageDelegate.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		3A1F8FE71BEA5F98008E9671 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		3A1F8FE91BEA63EC008E9671 /* DeleteStoryDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteStoryDelegate.swift; sourceTree = "<group>"; };
+		3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		3ADE58B31BE9BA36003D6D74 /* NewStoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStoryProtocol.swift; sourceTree = "<group>"; };
 		3ADE58B51BE9BAE5003D6D74 /* TestCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCode.swift; sourceTree = "<group>"; };
 		3ADE58B71BE9CF22003D6D74 /* NewPageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				E0E250751BE7F37E00E51659 /* StoryDetailViewController.swift */,
 				E0E2507D1BE80CE100E51659 /* StorySettingsViewController.swift */,
 				E0E250791BE7F5A100E51659 /* LibraryViewController.swift */,
+				3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */,
 				E0E2507B1BE804AC00E51659 /* ActivityViewController.swift */,
 				E0E250871BE8279D00E51659 /* LoginViewController.swift */,
 				E0E250891BE827E400E51659 /* SignUpViewController.swift */,
@@ -373,6 +376,7 @@
 				E0E250881BE8279D00E51659 /* LoginViewController.swift in Sources */,
 				E0E250721BE7CAE900E51659 /* AddStoryViewController.swift in Sources */,
 				E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */,
+				3A1F8FEC1BEAC03F008E9671 /* LibraryCollectionViewCell.swift in Sources */,
 				3AF2457A1BE7E09B00832B30 /* Activity.swift in Sources */,
 				3A1F8FEA1BEA63EC008E9671 /* DeleteStoryDelegate.swift in Sources */,
 				3AF245781BE7DFC900832B30 /* User.swift in Sources */,

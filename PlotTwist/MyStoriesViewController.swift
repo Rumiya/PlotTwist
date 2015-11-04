@@ -33,21 +33,25 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
 
         } else {
             print("Logged in")
-            let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
-            currentInstallation.setObject(User.currentUser()!, forKey: "user")
-            currentInstallation.saveInBackground()
-
-            let tabArray = self.tabBarController?.tabBar.items as NSArray!
-            let tabItem = tabArray.objectAtIndex(2) as! UITabBarItem
-            if currentInstallation.badge > 0 {
-                tabItem.badgeValue = "\(currentInstallation.badge)"
-            }
+            updateBadges()
             getAllMyStories()
         }
     }
 
     override func viewWillAppear(animated: Bool) {
         //getAllMyStories()
+    }
+
+    func updateBadges() {
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setObject(User.currentUser()!, forKey: "user")
+        currentInstallation.saveInBackground()
+
+        let tabArray = self.tabBarController?.tabBar.items as NSArray!
+        let tabItem = tabArray.objectAtIndex(2) as! UITabBarItem
+        if currentInstallation.badge > 0 {
+            tabItem.badgeValue = "\(currentInstallation.badge)"
+        }
     }
 
     func didAddNewStory(newStory: Story, nextAuthor: User) {

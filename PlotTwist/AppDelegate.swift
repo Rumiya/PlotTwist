@@ -77,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let tabBarController = self.window?.rootViewController as! UITabBarController
                     let navigationController = tabBarController.viewControllers![0] as! UINavigationController
                     let firstVC = navigationController.viewControllers[0] as! MyStoriesViewController
+                    firstVC.updateBadges()
                     firstVC.getAllMyStories()
                     navigationController.pushViewController(firstVC, animated: true)
 
@@ -121,7 +122,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = window?.rootViewController as! UITabBarController
         let navigationController = tabBarController.viewControllers![0] as! UINavigationController
         let firstVC = navigationController.viewControllers[0] as! MyStoriesViewController
+        let secondVC = navigationController.viewControllers[1] as! ExploreViewController
+        let thirdVC = navigationController.viewControllers[2] as! NotificationsViewController
+        firstVC.updateBadges()
         firstVC.getAllMyStories()
+        secondVC.updateWithNewStory()
+        thirdVC.queryForActiveStories()
+        thirdVC.updateBadgeNumber()
         //navigationController.presentViewController(firstVC, animated: true, completion: nil)
         //navigationController.pushViewController(firstVC, animated: true)
 
@@ -138,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
         if currentInstallation.badge != 0 {
             currentInstallation.badge = 0
-            currentInstallation.saveEventually()
+            currentInstallation.saveInBackground()
         }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.

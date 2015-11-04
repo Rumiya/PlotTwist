@@ -9,28 +9,48 @@
 import UIKit
 import Parse
 
-class LibraryViewController: UIViewController {
+class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-   // @IBOutlet weak var collectionView: UICollectionView!
-    
+
+    var stories: [Story] = []
+    var story: Story = Story()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        story = stories.first!
+        tableView.reloadData()
 
-        // Do any additional setup after loading the view.
-        let query = Story.query()
-        query?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
-        query?.whereKey(Constants.Story.isPublished, equalTo: true)
-        query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-            if error != nil {
-                // There was an error
-            } else {
-                // TODO:Assign objects to data variable
-
-
-            }
-        })
     }
 
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let tableCell = tableView.dequeueReusableCellWithIdentifier("TableCell")!
 
+
+        return tableCell
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let collectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionCell", forIndexPath: indexPath) as! LibraryCollectionViewCell
+
+        let pages = story.pages
+
+        let pageContent = pages[indexPath.item].content
+
+        pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
+            collectionCell.textView.text = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
+        })
+
+        return collectionCell
+
+    }
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return story.pageCount
+    }
 }

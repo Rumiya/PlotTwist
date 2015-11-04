@@ -50,8 +50,8 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                 let pages = objects as! [Page]
                 if pages.count > 0 {
-                    let firstPage: Page = pages[0]
-                    let pageContent = firstPage.content
+                    let recentPage: Page = pages.last!
+                    let pageContent = recentPage.content
                     pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
                         self.contentTextField.text = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
                     })
@@ -59,10 +59,7 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.contentTextField.text = ""
                     print("no pages in the story")
                 }
-
-
             })
-            
         })
     }
 
@@ -82,7 +79,7 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         })
 
-        if currentStory.pageCount == 9 {
+        if currentStory.pageCount == 4 {
             self.tableView.hidden = true
             let label = UILabel(frame: CGRectMake(0, 0, 200, 21))
             label.center = CGPointMake(view.frame.size.width/2, view.frame.size.height/2 + 100)
@@ -112,8 +109,12 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.newPage.content = file!
                     self.newPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                         // Edit Story Properties
+                        self.invitedUser = self.users[self.selectedIndex]
+
                         self.currentStory.incrementKey(Constants.Story.pageCount)
+                        print(self.currentStory.pageCount)
                         self.currentStory.pages.append(self.newPage)
+                        self.currentStory.currentAuthor = self.invitedUser
                         // Make sure this stuff only gets called once
                         self.currentStory.allAuthorIds.append(self.author.objectId!)
                         self.currentStory.allAuthors.addObject(self.author)
@@ -123,54 +124,75 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
                             let relation: PFRelation = self.author.coAuthoredStories
                             let query = relation.query()
                             query?.whereKey(Constants.Story.objectId, equalTo:self.currentStory.objectId!)
-                            query?.countObjectsInBackgroundWithBlock({ (count: integer_t, error: NSError?) -> Void in
+
+                            query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
                                 // add story to author's library if not in there already
-                                if count == 0 {
+                                if objects == nil {
                                     self.author.coAuthoredStories.addObject(self.currentStory)
                                     self.author.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                                        if (self.newPage.pageNum == 10) {
-                                            self.publishStory(self.currentStory)
-                                        } else {
 
-                                            // Assign value to invited User based on user interaction with view
-                                            self.invitedUser = self.users[self.selectedIndex]
-                                            let innerQuery = User.query()
-                                            innerQuery!.whereKey(Constants.User.objectId, equalTo: self.invitedUser.objectId!)
-
-                                            let query = PFInstallation.query()
-                                            query?.whereKey("user", matchesQuery:innerQuery!)
-
-                                            let data = [
-                                                "alert" : "\(self.author.username!) wants you to add to a story!",
-                                                "badge" : "Increment",
-                                                "s" : "\(self.currentStory.objectId!)", // Story's object id
-                                            ]
-
-                                            let push = PFPush()
-                                            push.setQuery(query)
-                                            push.setData(data)
-                                            push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                                                if success {
-                                                    print("successful push")
-                                                    self.delegate?.didAddNewPage(self.currentStory, nextAuthor: self.invitedUser)
-                                                } else {
-                                                    print("push failed")
-                                                }
-                                            })
-                                        }
                                     })
+                                } else {
+                                    if (self.newPage.pageNum == 5) {
+                                        print("publish story")
+                                        self.publishStory(self.currentStory)
+                                    } else {
+
+                                        // Assign value to invited User based on user interaction with view
+                                        let innerQuery = User.query()
+                                        innerQuery!.whereKey(Constants.User.objectId, equalTo: self.invitedUser.objectId!)
+
+                                        let query = PFInstallation.query()
+                                        query?.whereKey("user", matchesQuery:innerQuery!)
+
+                                        let data = [
+                                            "alert" : "\(self.author.username!) wants you to add to a story!",
+                                            "badge" : "Increment",
+                                            "s" : "\(self.currentStory.objectId!)", // Story's object id
+                                        ]
+
+                                        let push = PFPush()
+                                        push.setQuery(query)
+                                        push.setData(data)
+                                        push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                            if success {
+                                                print("successful push")
+                                                if self.currentStory.mainAuthor != self.author{
+                                                    //self.sendPushToMainAuthor()
+                                                }
+                                                self.delegate?.didAddNewPage(self.currentStory, nextAuthor: self.invitedUser)
+                                            } else {
+                                                print("push failed")
+                                            }
+                                        })
+                                    }
                                 }
                             })
                         })
-
-
                     })
-
                 })
             } else {
                 // TODO: handle error in data encoding here
             }
         }
+    }
+
+    func sendPushToMainAuthor() {
+        let innerQuery = User.query()
+        innerQuery!.whereKey(Constants.User.objectId, equalTo:self.currentStory.mainAuthor.objectId!)
+
+        let query = PFInstallation.query()
+        query?.whereKey("user", matchesQuery:innerQuery!)
+        let data = [
+            "alert" : "Your story has been updated!",
+            "s" : "\(self.currentStory.objectId)" // Story's object id
+        ]
+
+        let push = PFPush()
+        push.setQuery(query)
+        push.setData(data)
+        push.sendPushInBackground()
     }
 
     func publishStory(story: Story) -> Void {
@@ -187,7 +209,6 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             let data = [
                 "alert" : "A story you contibuted to has been published!",
-                "badge" : "Increment",
                 "s" : "\(self.currentStory.objectId!)", // Story's object id
             ]
 
