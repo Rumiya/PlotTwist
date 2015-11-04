@@ -25,10 +25,27 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     let mainAuthor = User.currentUser()!
     var firstPage = Page()
     var myStory = Story()
-    let invitedUser = User()
-
+    var invitedUser = User()
+    var users: [User] = []
+    var checked = [Bool]()
+    var selectedIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let query = User.query()
+        query?.whereKey(Constants.User.objectId, notEqualTo: mainAuthor.objectId!)
+        query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+            self.users = objects as! [User]
+               print(" no error  ")
+                self.tableView.reloadData()
+                
+            }else {
+                
+                print("error retrieving")
+            }
+        })
     }
 
     func setupStory() -> Void {
@@ -71,8 +88,7 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             })
 
             // Assign value to invited User based on user interaction with view
-            //invitedUser = _________
-
+             invitedUser = users[selectedIndex]
             // TODO: Add Push Notifications to Parse and add certificate
             // Maybe need to keep track of the Story's objectId behind the scenes so co-authors can access it easliy
             // Also not sure if we should send notifications to all invited, or just the first on the list
@@ -114,12 +130,32 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  1
+        return  self.users.count
     }
 
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = self.users[indexPath.row].username
+       
+        if self.selectedIndex == indexPath.row  {
+            
+            cell.accessoryType = .Checkmark
+        }
+        else {
+            
+            cell.accessoryType = .None
+        }
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        selectedIndex = indexPath.row
+        tableView.reloadData()
+    }
+    
 
 }
