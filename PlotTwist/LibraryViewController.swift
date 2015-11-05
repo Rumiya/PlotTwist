@@ -16,7 +16,6 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     var stories: [Story] = []
     var story: Story = Story()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         story = stories.first!
@@ -26,7 +25,6 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCellWithIdentifier("TableCell")!
-
 
         return tableCell
     }

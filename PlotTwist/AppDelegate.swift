@@ -75,11 +75,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if error == nil {
 
                     let tabBarController = self.window?.rootViewController as! UITabBarController
-                    let navigationController = tabBarController.viewControllers![0] as! UINavigationController
-                    let firstVC = navigationController.viewControllers[0] as! MyStoriesViewController
-                    firstVC.updateBadges()
-                    firstVC.getAllMyStories()
-                    navigationController.pushViewController(firstVC, animated: true)
+                    let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
+                    let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
+                    myStoryVC.updateBadges()
+                    myStoryVC.getAllMyStories()
+                    myStoryNC.pushViewController(myStoryVC, animated: true)
 
 //                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //
@@ -145,15 +145,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         let tabBarController = window?.rootViewController as! UITabBarController
-        let navigationController = tabBarController.viewControllers![0] as! UINavigationController
-        let firstVC = navigationController.viewControllers[0] as! MyStoriesViewController
-        let secondVC = navigationController.viewControllers[1] as! ExploreViewController
-        let thirdVC = navigationController.viewControllers[2] as! NotificationsViewController
-        firstVC.updateBadges()
-        firstVC.getAllMyStories()
-        secondVC.updateWithNewStory()
-        thirdVC.queryForActiveStories()
-        thirdVC.updateBadgeNumber()
+        let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
+        let exploreNC = tabBarController.viewControllers![1] as! UINavigationController
+        let notificationNC = tabBarController.viewControllers![2] as! UINavigationController
+        let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
+        let exploreVC = exploreNC.viewControllers[0] as! ExploreViewController
+        let notificationsVC = notificationNC.viewControllers[0] as! NotificationsViewController
+        myStoryVC.updateBadges()
+        myStoryVC.getAllMyStories()
+        exploreVC.updateWithNewStory()
+        notificationsVC.queryForActiveStories()
         //navigationController.presentViewController(firstVC, animated: true, completion: nil)
         //navigationController.pushViewController(firstVC, animated: true)
 
