@@ -19,9 +19,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
     }
-
 
     func queryForActiveStories() {
         let query = Story.query()

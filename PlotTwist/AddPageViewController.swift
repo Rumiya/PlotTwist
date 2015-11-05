@@ -37,30 +37,7 @@ class AddPageViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewWillAppear(animated: Bool) {
 
-        let query = Story.query()
-        query?.includeKey(Constants.Story.pages)
-        query?.whereKey(Constants.Story.objectId, equalTo: currentStory.objectId!)
-        query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-
-            let myStory = objects?.first as! Story
-
-            let pageQuery = Page.query()
-            pageQuery?.whereKey(Constants.Page.story, equalTo: myStory)
-            pageQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-
-                let pages = objects as! [Page]
-                if pages.count > 0 {
-                    let recentPage: Page = pages.last!
-                    let pageContent = recentPage.content
-                    pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
-                        self.contentTextField.text = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
-                    })
-                } else {
-                    self.contentTextField.text = ""
-                    print("no pages in the story")
-                }
-            })
-        })
+        
     }
 
     
