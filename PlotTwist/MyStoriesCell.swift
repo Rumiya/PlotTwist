@@ -11,4 +11,5 @@ import UIKit
 class MyStoriesCell: UICollectionViewCell {
     
     @IBOutlet weak var pageCount: UILabel!
+    @IBOutlet weak var storyTitle: UILabel!
 }

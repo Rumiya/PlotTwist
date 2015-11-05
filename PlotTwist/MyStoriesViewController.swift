@@ -36,6 +36,19 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             updateBadges()
             getAllMyStories()
         }
+
+        // Set up CollectionView 
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSizeMake(view.bounds.width/3 - 10, view.bounds.height/3 - 10)
+        flowLayout.minimumLineSpacing = 10.0
+        flowLayout.minimumInteritemSpacing = 5.0
+        flowLayout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+        flowLayout.headerReferenceSize.height = 120
+        flowLayout.headerReferenceSize.width = 50
+
+        collectionView.collectionViewLayout = flowLayout
+
+
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -101,7 +114,17 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
 
         let story: Story = self.stories[indexPath.item]
 
-        cell.pageCount.text = "\(story.pageCount)"
+        if (story.isPublished){
+            cell.pageCount.hidden = true
+            cell.backgroundColor = UIColor(red:0.77, green:0.94, blue:0.71, alpha:1.0)
+        } else {
+            cell.pageCount.hidden = false
+            cell.pageCount.text = "\(story.pageCount)"
+            cell.backgroundColor = UIColor(red:0.82, green:0.78, blue:0.91, alpha:1.0)
+        }
+        cell.storyTitle.text = story.storyTitle
+        cell.storyTitle.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2));
+
 
         // Configure the cell
         return cell

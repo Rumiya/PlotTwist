@@ -95,6 +95,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
+        // Change navigation bar appearance
+        UINavigationBar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
+
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+
+        if let barFont = UIFont(name: "Noteworthy Light", size: 22.0) {
+            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(), NSFontAttributeName:barFont]
+        }
+
+        // Change status bar style
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    
+
+        // Change toolbar style
+        //    UIBarButtonItem.appearance().tintColor = UIColor(red: 235.0/255.0, green: 73.0/255.0, blue: 27.0/255.0, alpha: 1.0)
+        UIToolbar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
+
+        // Change tabbar style
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
+
+
+        UITabBar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
+
         return true
     }
 
