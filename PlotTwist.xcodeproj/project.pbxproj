@@ -153,6 +153,7 @@
 		3A1F8FF11BEB4956008E9671 /* Unused Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E0E2507B1BE804AC00E51659 /* ActivityViewController.swift */,
 				E0E250771BE7F48100E51659 /* AddPageViewController.swift */,
 				E0E2507D1BE80CE100E51659 /* StorySettingsViewController.swift */,
 				3A1F8FE71BEA5F98008E9671 /* NotificationsViewController.swift */,
@@ -223,15 +224,12 @@
 			isa = PBXGroup;
 			children = (
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
-				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
-				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
 				3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,
 				E0E250731BE7DE4900E51659 /* ExploreViewController.swift */,
 				E0E250751BE7F37E00E51659 /* StoryDetailViewController.swift */,
 				E0E250791BE7F5A100E51659 /* LibraryViewController.swift */,
 				3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */,
-				E0E2507B1BE804AC00E51659 /* ActivityViewController.swift */,
 				E0E250871BE8279D00E51659 /* LoginViewController.swift */,
 				E0E250891BE827E400E51659 /* SignUpViewController.swift */,
 				E0E2508B1BE8281200E51659 /* ResetPasswordViewController.swift */,
@@ -253,6 +251,8 @@
 		E0E2506D1BE7CA4C00E51659 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
+				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
 				E0E2505D1BE7C3D900E51659 /* Main.storyboard */,
 				E0E250601BE7C3D900E51659 /* Assets.xcassets */,
 				E0E250621BE7C3D900E51659 /* LaunchScreen.storyboard */,

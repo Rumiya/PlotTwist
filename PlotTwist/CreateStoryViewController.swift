@@ -97,7 +97,6 @@ class CreateStoryViewController: UIViewController {
             }
         }
 
-
         return true
     }
 
