@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let tabBarController = self.window?.rootViewController as! UITabBarController
                     let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
                     let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
-                    myStoryVC.updateBadges()
+                    
                     myStoryVC.getAllMyStories()
                     myStoryNC.pushViewController(myStoryVC, animated: true)
 
@@ -107,8 +107,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // Change status bar style
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    
+        //UIApplication.sharedApplication().statusBarStyle = .LightContent
+
+        //Remove status bar
+        UIApplication.sharedApplication().statusBarHidden = true
 
         // Change toolbar style
         //    UIBarButtonItem.appearance().tintColor = UIColor(red: 235.0/255.0, green: 73.0/255.0, blue: 27.0/255.0, alpha: 1.0)

@@ -22,20 +22,7 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if User.currentUser() == nil
-        {
-            print("Not logged in..")
-
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login") as! LoginViewController
-                self.presentViewController(viewController, animated: true, completion: nil)
-            })
-
-        } else {
-            print("Logged in")
-            updateBadges()
-            getAllMyStories()
-        }
+        getAllMyStories()
 
         // Set up CollectionView
         let flowLayout = UICollectionViewFlowLayout()
@@ -47,10 +34,6 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         flowLayout.headerReferenceSize.width = 50
         collectionView.collectionViewLayout = flowLayout
 
-
-    }
-
-    func updateBadges() {
 
     }
 

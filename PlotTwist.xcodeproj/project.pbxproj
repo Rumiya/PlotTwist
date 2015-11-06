@@ -59,6 +59,7 @@
 		E0E2508C1BE8281200E51659 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2508B1BE8281200E51659 /* ResetPasswordViewController.swift */; };
 		E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */; };
 		E0E250941BE9678C00E51659 /* MyStoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250931BE9678C00E51659 /* MyStoriesCell.swift */; };
+		E0E250961BEC4F4D00E51659 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250951BEC4F4D00E51659 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		E0E2508B1BE8281200E51659 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesHeader.swift; sourceTree = "<group>"; };
 		E0E250931BE9678C00E51659 /* MyStoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesCell.swift; sourceTree = "<group>"; };
+		E0E250951BEC4F4D00E51659 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 		E0E2506B1BE7C9FD00E51659 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E0E250951BEC4F4D00E51659 /* HomeViewController.swift */,
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
 				3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,
@@ -399,6 +402,7 @@
 				E0E250701BE7CAC500E51659 /* MyStoriesViewController.swift in Sources */,
 				3AF2457C1BE7E0FB00832B30 /* PTConstants.swift in Sources */,
 				E0E2508A1BE827E400E51659 /* SignUpViewController.swift in Sources */,
+				E0E250961BEC4F4D00E51659 /* HomeViewController.swift in Sources */,
 				E0E2507C1BE804AC00E51659 /* ActivityViewController.swift in Sources */,
 				3ADE58B81BE9CF22003D6D74 /* NewPageDelegate.swift in Sources */,
 				3A1F8FE81BEA5F98008E9671 /* NotificationsViewController.swift in Sources */,
