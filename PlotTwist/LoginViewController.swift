@@ -31,6 +31,14 @@ class LoginViewController: UIViewController {
 
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions,  block: {  (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
+
+                if let currentInstallation: PFInstallation = PFInstallation.currentInstallation(){
+                    if currentInstallation.objectForKey("user") == nil {
+                        currentInstallation.setObject(user, forKey: "user")
+                        currentInstallation.saveInBackground()
+                    }
+                }
+
                 if user.isNew {
                     self.updatePFUserDetail()
                     print("User signed up and logged in through Facebook!")
