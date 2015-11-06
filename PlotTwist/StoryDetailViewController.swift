@@ -25,18 +25,16 @@ class StoryDetailViewController: UIViewController {
         let query = Story.query()
         query?.includeKey(Constants.Story.pages)
         query?.whereKey(Constants.Story.objectId, equalTo: story.objectId!)
-        query?.whereKeyExists(Constants.Story.pages)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
 
             let myStory = objects?.first as! Story
             self.navigationController?.navigationItem.title = myStory.storyTitle
-            for page in myStory.pages {
-                let pageContent = page.content
-                pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
-                        self.contentTextField.text = self.contentTextField.text + (NSString(data:data!, encoding:NSUTF8StringEncoding) as! String) + "\n"
 
-                })
+            for page in myStory.pages {
+                self.contentTextField.text = "\(page.pageNum): " + self.contentTextField.text + page.textContent + "\n"
+
             }
+
         })
     }
 

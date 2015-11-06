@@ -120,6 +120,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UITabBar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
 
+        if User.currentUser() == nil{
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
+
+
         return true
     }
 

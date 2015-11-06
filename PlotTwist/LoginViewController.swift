@@ -12,6 +12,7 @@ import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
 class LoginViewController: UIViewController {
+
     @IBOutlet weak var loginWithFBbutton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,7 +22,9 @@ class LoginViewController: UIViewController {
 
         //loginWithFBbutton.readPermissions = ["public_profile", "email", "user_friends"]
        // loginWithFBbutton.delegate = self
+        
     }
+    
     @IBAction func onFBloginButtonPressed(sender: UIButton) {
 
         let permissions = ["public_profile", "email", "user_friends"]
@@ -29,7 +32,7 @@ class LoginViewController: UIViewController {
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions,  block: {  (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
                 if user.isNew {
-
+                    self.updatePFUserDetail()
                     print("User signed up and logged in through Facebook!")
 
 //                    // Create the AlertController
@@ -61,6 +64,7 @@ class LoginViewController: UIViewController {
 
                 } else {
                     print("User logged in through Facebook!")
+                    self.updatePFUserDetail()
                     self.showMyStories()
                 }
             } else {

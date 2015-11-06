@@ -43,12 +43,17 @@ class CreateStoryViewController: UIViewController {
             let myStory = objects?.first as! Story
 
             let recentPage: Page = myStory.pages.last!
-            let pageContent = recentPage.content
-            pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.textView.text = (NSString(data:data!, encoding:NSUTF8StringEncoding) as! String)
-                })
-            })
+
+            self.textView.text = recentPage.textContent
+
+
+//            let pageContent = recentPage.content
+//            pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    self.textView.text = (NSString(data:data!, encoding:NSUTF8StringEncoding) as! String)
+//                })
+//            })
+
 
 //            let pageQuery = Page.query()
 //            pageQuery?.whereKey(Constants.Page.story, equalTo: myStory)

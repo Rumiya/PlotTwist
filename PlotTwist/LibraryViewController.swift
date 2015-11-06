@@ -37,13 +37,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let collectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionCell", forIndexPath: indexPath) as! LibraryCollectionViewCell
 
         let pages = story.pages
-
-        let pageContent = pages[indexPath.item].content
-
-        pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
-            collectionCell.textView.text = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
-        })
-
+        collectionCell.textView.text = pages[indexPath.item].textContent
         return collectionCell
 
     }

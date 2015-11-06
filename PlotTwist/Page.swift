@@ -14,6 +14,7 @@ class Page: PFObject, PFSubclassing {
     @NSManaged var author: User
     @NSManaged var story: Story
     @NSManaged var content: PFFile
+    @NSManaged var textContent: String
     @NSManaged var pageNum: Int
 
     override class func initialize() {

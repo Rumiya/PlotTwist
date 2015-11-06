@@ -66,10 +66,8 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         firstPage.author = mainAuthor
         firstPage.story = myStory
         firstPage.pageNum = 1
-        if let data = storyContent?.dataUsingEncoding(NSUTF8StringEncoding) {
-            let file = PFFile(name:"content.txt", data:data)
-            file!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                self.firstPage.content = file!
+
+                self.firstPage.textContent = storyContent
                 self.firstPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                     self.myStory.pages.append(self.firstPage)
 
@@ -118,10 +116,6 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
                         })
                     })
                 })
-            })
-        } else {
-            // TODO: handle error in data encoding here
-        }
     }
 
     func addPageToStory() {
@@ -130,10 +124,8 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         newPage.author = mainAuthor
         newPage.story = currentStory
         newPage.pageNum = currentStory.pageCount + 1
-        if let data = self.storyContent.dataUsingEncoding(NSUTF8StringEncoding) {
-            let file = PFFile(name:"content.txt", data:data)
-            file!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                self.newPage.content = file!
+
+                self.newPage.textContent = storyContent
                 self.newPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                     // Edit Story Properties
                     self.invitedUser = self.users[self.selectedIndex]
@@ -202,10 +194,6 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
                         })
                     })
                 })
-            })
-        } else {
-            // TODO: handle error in data encoding here
-        }
     }
 
     func publishStory(story: Story) -> Void {

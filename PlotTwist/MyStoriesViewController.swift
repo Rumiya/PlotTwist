@@ -37,7 +37,7 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             getAllMyStories()
         }
 
-        // Set up CollectionView 
+        // Set up CollectionView
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSizeMake(view.bounds.width/3 - 10, view.bounds.height/3 - 10)
         flowLayout.minimumLineSpacing = 10.0
@@ -46,6 +46,8 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         flowLayout.headerReferenceSize.height = 120
         flowLayout.headerReferenceSize.width = 50
         collectionView.collectionViewLayout = flowLayout
+
+
     }
 
     func updateBadges() {
@@ -149,8 +151,14 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                     headerView.voteCountLabel.text = "Upvotes: \(self.totalVotes)"
                     headerView.usernameLabel.text = String(userName!.characters.dropFirst())
                 } else {
+
                     headerView.userImage.hidden = true
                     headerView.usernameLabel.hidden = true
+                    headerView.usernameLabel.text = ""
+                    headerView.storyCountLabel.text = ""
+                    headerView.voteCountLabel.text = ""
+                    headerView.userImage.image = UIImage(named: "A_letterSM")
+
                 }
 
                 return headerView
@@ -169,7 +177,6 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
 
         if segue.identifier == "ToStoryDetailSegue" {
             let vc = segue.destinationViewController as! StoryDetailViewController

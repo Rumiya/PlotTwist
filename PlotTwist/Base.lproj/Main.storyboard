@@ -377,8 +377,8 @@
                                     </mask>
                                 </variation>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNG-Ny-Wmc">
-                                <rect key="frame" x="218" y="502" width="166" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNG-Ny-Wmc">
+                                <rect key="frame" x="217" y="513" width="166" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Remove from my stories"/>
                                 <connections>
@@ -390,9 +390,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Jkx-Ma-19H" firstAttribute="top" secondItem="9Lf-TA-xOs" secondAttribute="bottom" id="9DJ-Bm-9lM"/>
+                            <constraint firstItem="cNG-Ny-Wmc" firstAttribute="centerX" secondItem="W6x-gJ-SkR" secondAttribute="centerX" id="Bqx-xl-0Zc"/>
                             <constraint firstItem="9Lf-TA-xOs" firstAttribute="leading" secondItem="W6x-gJ-SkR" secondAttribute="leadingMargin" constant="-20" id="MHx-0w-g48"/>
                             <constraint firstItem="9Lf-TA-xOs" firstAttribute="centerX" secondItem="W6x-gJ-SkR" secondAttribute="centerX" id="Tsu-Rv-Usj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Lf-TA-xOs" secondAttribute="trailing" constant="-20" id="arZ-mN-QAC"/>
+                            <constraint firstItem="Jkx-Ma-19H" firstAttribute="top" secondItem="cNG-Ny-Wmc" secondAttribute="bottom" constant="8" id="dwg-Kk-H4J"/>
                             <constraint firstItem="9Lf-TA-xOs" firstAttribute="top" secondItem="h5f-i8-FAG" secondAttribute="bottom" id="kLp-bG-13u"/>
                             <constraint firstItem="9Lf-TA-xOs" firstAttribute="centerY" secondItem="W6x-gJ-SkR" secondAttribute="centerY" id="wfe-i3-nvK"/>
                         </constraints>
@@ -1189,7 +1191,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBA-Sm-hgo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2239" y="-386"/>
+            <point key="canvasLocation" x="2239" y="-436"/>
+        </scene>
+        <!--Landing Page View Controller-->
+        <scene sceneID="lIa-ZT-Znv">
+            <objects>
+                <viewController id="GMI-fR-s9D" customClass="LandingPageViewController" customModule="PlotTwist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eoN-aS-3Sn"/>
+                        <viewControllerLayoutGuide type="bottom" id="7hz-UW-GaC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3ki-rX-JBH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U5I-s9-7IJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="537" y="220"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FMM-H5-xca">
