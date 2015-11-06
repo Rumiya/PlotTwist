@@ -62,6 +62,7 @@
 		E0E250961BEC4F4D00E51659 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250951BEC4F4D00E51659 /* HomeViewController.swift */; };
 		E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250971BED1B0300E51659 /* ComposeViewController.swift */; };
 		E0E2509A1BED1E9F00E51659 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250991BED1E9F00E51659 /* SendToViewController.swift */; };
+		E0E2509C1BED352300E51659 /* DecrementNotificationsCountDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +124,7 @@
 		E0E250951BEC4F4D00E51659 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E0E250971BED1B0300E51659 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		E0E250991BED1E9F00E51659 /* SendToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
+		E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecrementNotificationsCountDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +277,7 @@
 		E0E2506E1BE7CA7E00E51659 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */,
 				3ADE58B31BE9BA36003D6D74 /* NewStoryProtocol.swift */,
 				3ADE58B71BE9CF22003D6D74 /* NewPageDelegate.swift */,
 				3A1F8FE91BEA63EC008E9671 /* DeleteStoryDelegate.swift */,
@@ -402,6 +405,7 @@
 				E0E250761BE7F37E00E51659 /* StoryDetailViewController.swift in Sources */,
 				E0E250881BE8279D00E51659 /* LoginViewController.swift in Sources */,
 				E0E250721BE7CAE900E51659 /* AddStoryViewController.swift in Sources */,
+				E0E2509C1BED352300E51659 /* DecrementNotificationsCountDelegate.swift in Sources */,
 				E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */,
 				3A1F8FEC1BEAC03F008E9671 /* LibraryCollectionViewCell.swift in Sources */,
 				3AF2457A1BE7E09B00832B30 /* Activity.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, DecrementNotificationsCountDelegate {
 
     var story: Story?
 
@@ -77,6 +77,9 @@ class HomeViewController: UIViewController {
         })
     }
 
+    func didAddNewPage() {
+        getNotificationCount()
+    }
 
     @IBAction func onNotificationButtonPressed(sender: UIButton) {
 
@@ -117,11 +120,13 @@ class HomeViewController: UIViewController {
         let vc = segue.destinationViewController as! ComposeViewController
         vc.story = story
         vc.isNewStory = false
+        vc.homeVC = self
 
     } else if segue.identifier == "ToNewStorySegue"{
         let vc = segue.destinationViewController as! ComposeViewController
         vc.story = Story()
         vc.isNewStory = true
+        vc.homeVC = self
         }
         
     }
