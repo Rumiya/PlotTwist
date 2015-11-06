@@ -11,8 +11,11 @@ import Parse
 
 class HomeViewController: UIViewController {
 
+    var story: Story?
 
     @IBOutlet weak var userProfileButton: UIButton!
+
+    @IBOutlet weak var notificationButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,8 @@ class HomeViewController: UIViewController {
 
                 userProfileButton.hidden = false
                 print(firstChar! + "_letterSM.png")
+
+                getNotificationCount()
             }
 
         } else {
@@ -49,15 +54,75 @@ class HomeViewController: UIViewController {
 
     }
 
+    func getNotificationCount(){
+
+        let userQuery = User.query()
+        userQuery?.whereKey(Constants.User.objectId, equalTo: (User.currentUser()?.objectId)!)
+
+        let storyQuery = Story.query()
+        storyQuery?.whereKey(Constants.Story.allAuthors, matchesQuery: userQuery!)
+
+        storyQuery?.whereKey(Constants.Story.isPublished, equalTo: false)
+        storyQuery?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
+
+        storyQuery?.countObjectsInBackgroundWithBlock({ (counts: Int32, error: NSError?) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if counts == 0 {
+                    self.notificationButton.hidden = true
+                } else {
+                    self.notificationButton.hidden = false
+                    self.notificationButton.titleLabel?.text = "\(counts)"
+                }
+            })
+        })
+    }
+
+
+    @IBAction func onNotificationButtonPressed(sender: UIButton) {
+
+        let userQuery = User.query()
+        userQuery?.whereKey(Constants.User.objectId, equalTo: (User.currentUser()?.objectId)!)
+
+        let storyQuery = Story.query()
+        storyQuery?.whereKey(Constants.Story.allAuthors, matchesQuery: userQuery!)
+
+        storyQuery?.whereKey(Constants.Story.isPublished, equalTo: false)
+        storyQuery?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
+
+        storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            if objects != nil {
+                self.story = objects!.first as? Story
+                self.performSegueWithIdentifier("ToNewPageSegue", sender: self)
+            }
+
+        })
+        
+    }
+
     @IBAction func checkUserProfile(sender: UIButton) {
     }
 
     @IBAction func addStory(sender: UIButton) {
+        self.performSegueWithIdentifier("ToNewStorySegue", sender: self)
     }
 
     @IBAction func readStories(sender: UIButton) {
     }
 
     @IBAction func checkHistory(sender: UIButton) {
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ToNewPageSegue"{
+        let vc = segue.destinationViewController as! ComposeViewController
+        vc.story = story
+        vc.isNewStory = false
+
+    } else if segue.identifier == "ToNewStorySegue"{
+        let vc = segue.destinationViewController as! ComposeViewController
+        vc.story = Story()
+        vc.isNewStory = true
+        }
+        
     }
  }

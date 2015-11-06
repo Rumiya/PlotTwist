@@ -60,6 +60,8 @@
 		E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */; };
 		E0E250941BE9678C00E51659 /* MyStoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250931BE9678C00E51659 /* MyStoriesCell.swift */; };
 		E0E250961BEC4F4D00E51659 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250951BEC4F4D00E51659 /* HomeViewController.swift */; };
+		E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250971BED1B0300E51659 /* ComposeViewController.swift */; };
+		E0E2509A1BED1E9F00E51659 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250991BED1E9F00E51659 /* SendToViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +121,8 @@
 		E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesHeader.swift; sourceTree = "<group>"; };
 		E0E250931BE9678C00E51659 /* MyStoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesCell.swift; sourceTree = "<group>"; };
 		E0E250951BEC4F4D00E51659 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E0E250971BED1B0300E51659 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		E0E250991BED1E9F00E51659 /* SendToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				E0E250951BEC4F4D00E51659 /* HomeViewController.swift */,
+				E0E250971BED1B0300E51659 /* ComposeViewController.swift */,
+				E0E250991BED1E9F00E51659 /* SendToViewController.swift */,
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
 				3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,
@@ -383,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */,
 				E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */,
 				3ADE58B61BE9BAE5003D6D74 /* TestCode.swift in Sources */,
 				3A1F8FF01BEB1398008E9671 /* CreateStoryViewController.swift in Sources */,
@@ -391,6 +398,7 @@
 				3ADE58B41BE9BA36003D6D74 /* NewStoryProtocol.swift in Sources */,
 				E0E2507E1BE80CE100E51659 /* StorySettingsViewController.swift in Sources */,
 				E0E2508C1BE8281200E51659 /* ResetPasswordViewController.swift in Sources */,
+				E0E2509A1BED1E9F00E51659 /* SendToViewController.swift in Sources */,
 				E0E250761BE7F37E00E51659 /* StoryDetailViewController.swift in Sources */,
 				E0E250881BE8279D00E51659 /* LoginViewController.swift in Sources */,
 				E0E250721BE7CAE900E51659 /* AddStoryViewController.swift in Sources */,
