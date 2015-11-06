@@ -29,6 +29,7 @@ struct Constants {
         static let author = "author"
         static let story = "story"
         static let content = "content"
+        static let textContent = "textContent"
         static let pageNumber = "pageNum"
     }
 

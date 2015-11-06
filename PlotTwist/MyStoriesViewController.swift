@@ -37,7 +37,7 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             getAllMyStories()
         }
 
-        // Set up CollectionView 
+        // Set up CollectionView
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSizeMake(view.bounds.width/3 - 10, view.bounds.height/3 - 10)
         flowLayout.minimumLineSpacing = 10.0
@@ -45,31 +45,16 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         flowLayout.sectionInset = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
         flowLayout.headerReferenceSize.height = 120
         flowLayout.headerReferenceSize.width = 50
-
         collectionView.collectionViewLayout = flowLayout
 
 
     }
 
-    override func viewWillAppear(animated: Bool) {
-        //getAllMyStories()
-    }
-
     func updateBadges() {
-        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
-        currentInstallation.setObject(User.currentUser()!, forKey: "user")
-        currentInstallation.saveInBackground()
 
-        let tabArray = self.tabBarController?.tabBar.items as NSArray!
-        let tabItem = tabArray.objectAtIndex(2) as! UITabBarItem
-        if currentInstallation.badge > 0 {
-            tabItem.badgeValue = "\(currentInstallation.badge)"
-        }
     }
 
     func didAddNewStory(newStory: Story, nextAuthor: User) {
-        newStory.currentAuthor = nextAuthor
-        newStory.saveInBackground()
         getAllMyStories()
     }
 
@@ -81,10 +66,12 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
     func getAllMyStories() {
 
         totalVotes = 0;
-        let queryStories = Story.query()
-        queryStories?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
-        queryStories?.whereKeyExists(Constants.Story.objectId)
 
+        let innerQuery = User.query()
+        innerQuery?.whereKey(Constants.User.objectId, equalTo: (User.currentUser()?.objectId)!)
+
+        let queryStories = Story.query()
+        queryStories?.whereKey(Constants.Story.allAuthors, matchesQuery: innerQuery!)
         queryStories?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 self.stories = objects as! [Story]
@@ -97,7 +84,6 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             }
         })
     }
-
 
     // Mark - Collection View Delegate Methods
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -117,14 +103,17 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
         if (story.isPublished){
             cell.pageCount.hidden = true
             cell.backgroundColor = UIColor(red:0.77, green:0.94, blue:0.71, alpha:1.0)
-        } else {
+        } else if !story.isPublished && story.currentAuthor.isEqual(User.currentUser()){
+            cell.pageCount.hidden = false
+            cell.pageCount.text = "\(story.pageCount)"
+            cell.backgroundColor = UIColor(red:0.82, green:0.18, blue:0.91, alpha:1.0)
+                   } else {
             cell.pageCount.hidden = false
             cell.pageCount.text = "\(story.pageCount)"
             cell.backgroundColor = UIColor(red:0.82, green:0.78, blue:0.91, alpha:1.0)
         }
         cell.storyTitle.text = story.storyTitle
         cell.storyTitle.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2));
-
 
         // Configure the cell
         return cell
@@ -162,9 +151,14 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
                     headerView.voteCountLabel.text = "Upvotes: \(self.totalVotes)"
                     headerView.usernameLabel.text = String(userName!.characters.dropFirst())
                 } else {
+
                     headerView.userImage.hidden = true
                     headerView.usernameLabel.hidden = true
-                    
+                    headerView.usernameLabel.text = ""
+                    headerView.storyCountLabel.text = ""
+                    headerView.voteCountLabel.text = ""
+                    headerView.userImage.image = UIImage(named: "A_letterSM")
+
                 }
 
                 return headerView
@@ -174,7 +168,16 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             }
     }
 
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if stories[indexPath.item].isPublished {
+            performSegueWithIdentifier("ToStoryDetailSegue", sender: collectionView.cellForItemAtIndexPath(indexPath))
+        } else if !stories[indexPath.item].isPublished && (stories[indexPath.item].currentAuthor == User.currentUser()) {
+            performSegueWithIdentifier("ToAddStorySegue", sender: collectionView.cellForItemAtIndexPath(indexPath))
+        }
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
         if segue.identifier == "ToStoryDetailSegue" {
             let vc = segue.destinationViewController as! StoryDetailViewController
             let selectedCell = sender as! MyStoriesCell
@@ -182,9 +185,24 @@ class MyStoriesViewController: UIViewController, UICollectionViewDelegate, UICol
             vc.story = stories[(indexPath?.item)!]
             vc.delegate = self
         } else if segue.identifier == "ToAddStorySegue" {
-            let vc = segue.destinationViewController as! AddStoryViewController
-            vc.delegate = self
+            let vc = segue.destinationViewController as! CreateStoryViewController
+            vc.previousVC = self
+
+            // Determine if we are coming from a "new story" button or from an existing story
+            if sender is UIBarButtonItem {
+                vc.newStory = true
+            } else {
+                vc.newStory = false
+                let selectedCell = sender as! MyStoriesCell
+                let indexPath = collectionView.indexPathForCell(selectedCell)
+                vc.currentStory = stories[(indexPath?.item)!]
+            }
         }
+    }
+
+
+    @IBAction func refreshData(sender: UIBarButtonItem) {
+        getAllMyStories()
     }
 
     @IBAction func onAddButtonPressed(sender: UIBarButtonItem) {

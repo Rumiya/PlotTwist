@@ -75,11 +75,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if error == nil {
 
                     let tabBarController = self.window?.rootViewController as! UITabBarController
-                    let navigationController = tabBarController.viewControllers![0] as! UINavigationController
-                    let firstVC = navigationController.viewControllers[0] as! MyStoriesViewController
-                    firstVC.updateBadges()
-                    firstVC.getAllMyStories()
-                    navigationController.pushViewController(firstVC, animated: true)
+                    let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
+                    let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
+                    myStoryVC.updateBadges()
+                    myStoryVC.getAllMyStories()
+                    myStoryNC.pushViewController(myStoryVC, animated: true)
 
 //                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //
@@ -120,6 +120,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UITabBar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
 
+        if User.currentUser() == nil {
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
+
+
         return true
     }
 
@@ -131,29 +143,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 
-        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
-        currentInstallation.setDeviceTokenFromData(deviceToken)
-        currentInstallation.channels = ["global"]
-        currentInstallation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if success {
-                print("successful PFInstallation")
-            } else {
-                print("unable to save PFInstallation")
+        if let currentInstallation: PFInstallation = PFInstallation.currentInstallation(){
+            currentInstallation.setDeviceTokenFromData(deviceToken)
+            currentInstallation.channels = ["global"]
+            currentInstallation.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+                if success {
+                    print("successful PFInstallation")
+                } else {
+                    print("unable to save PFInstallation")
+                }
             }
         }
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         let tabBarController = window?.rootViewController as! UITabBarController
-        let navigationController = tabBarController.viewControllers![0] as! UINavigationController
-        let firstVC = navigationController.viewControllers[0] as! MyStoriesViewController
-        let secondVC = navigationController.viewControllers[1] as! ExploreViewController
-        let thirdVC = navigationController.viewControllers[2] as! NotificationsViewController
-        firstVC.updateBadges()
-        firstVC.getAllMyStories()
-        secondVC.updateWithNewStory()
-        thirdVC.queryForActiveStories()
-        thirdVC.updateBadgeNumber()
+        let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
+        //let exploreNC = tabBarController.viewControllers![1] as! UINavigationController
+        let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
+        //let exploreVC = exploreNC.viewControllers[0] as! ExploreViewController
+        //myStoryVC.updateBadges()
+        myStoryVC.getAllMyStories()
+        //exploreVC.updateWithNewStory()
         //navigationController.presentViewController(firstVC, animated: true, completion: nil)
         //navigationController.pushViewController(firstVC, animated: true)
 
@@ -167,10 +178,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidEnterBackground(application: UIApplication) {
 
-        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        if let currentInstallation: PFInstallation = PFInstallation.currentInstallation() {
         if currentInstallation.badge != 0 {
             currentInstallation.badge = 0
             currentInstallation.saveInBackground()
+        }
         }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.

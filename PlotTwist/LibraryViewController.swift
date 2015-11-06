@@ -16,7 +16,6 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     var stories: [Story] = []
     var story: Story = Story()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         story = stories.first!
@@ -26,7 +25,6 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCellWithIdentifier("TableCell")!
-
 
         return tableCell
     }
@@ -39,13 +37,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let collectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionCell", forIndexPath: indexPath) as! LibraryCollectionViewCell
 
         let pages = story.pages
-
-        let pageContent = pages[indexPath.item].content
-
-        pageContent.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) -> Void in
-            collectionCell.textView.text = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
-        })
-
+        collectionCell.textView.text = pages[indexPath.item].textContent
         return collectionCell
 
     }

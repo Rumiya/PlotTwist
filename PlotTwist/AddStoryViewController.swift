@@ -13,11 +13,6 @@ import Parse
 
 class AddStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var storyNameLabel: UILabel!
-    @IBOutlet weak var storyNameTextField: UITextField!
-    @IBOutlet weak var starterPickerView: UIPickerView!
-    @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
 
     var delegate: NewStoryDelegate?
@@ -28,11 +23,16 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     var invitedUser = User()
     var users: [User] = []
     var selectedIndex: Int = 0
+    var newStory: Bool!
+    var currentStory: Story!
+    var newPage = Page()
+
+
+    var storyContent: String!
+    var storyTitle: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
 
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: mainAuthor.objectId!)
@@ -45,99 +45,191 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
                 print("error retrieving")
             }
         })
+
+        if newStory == false {
+            if currentStory!.pageCount == 4 {
+                self.tableView.hidden = true
+                let label = UILabel(frame: CGRectMake(0, 0, 200, 21))
+                label.center = CGPointMake(view.frame.size.width/2, view.frame.size.height/2 + 100)
+                label.textAlignment = NSTextAlignment.Center
+                label.text = "You have the last page! End the story the way you see fit, and hit \"Save\" to publish!"
+                view.addSubview(label)
+            }
+        }
+
     }
 
     func setupStory() -> Void {
 
-        // First make sure all fields are entered
         // TODO: Check if user hasn't been selected as well
-        if (storyNameTextField.text == nil || contentTextField.text == nil){
-            presentEmptyFieldAlertController()
-        } else {
-            // Initialize first page of story
-            firstPage.author = mainAuthor
-            firstPage.story = myStory
-            firstPage.pageNum = 1
-            if let data = self.contentTextField.text?.dataUsingEncoding(NSUTF8StringEncoding) {
-                let file = PFFile(name:"content.txt", data:data)
-                file!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                    self.firstPage.content = file!
-                    self.firstPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                        self.myStory.pages.append(self.firstPage)
+        // Initialize first page of story
+        firstPage.author = mainAuthor
+        firstPage.story = myStory
+        firstPage.pageNum = 1
 
-                        // Initialize story
-                        self.invitedUser = self.users[self.selectedIndex]
-                        self.myStory.storyTitle = self.storyNameTextField.text!
-                        self.myStory.mainAuthor = self.mainAuthor
-                        self.myStory.currentAuthor = self.invitedUser
-                        self.myStory.allAuthorIds = [self.mainAuthor.objectId!]
-                        self.myStory.isLiked = false
-                        self.myStory.isPublished = false
-                        self.myStory.voteCount = 0
-                        self.myStory.pageCount = 1
+                self.firstPage.textContent = storyContent
+                self.firstPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    self.myStory.pages.append(self.firstPage)
 
-                        // TODO: find a spot for this relation later
-                        /*
-                        self.myStory.allAuthors.addObject(self.mainAuthor)
-                        */
+                    // Initialize story
+                    self.invitedUser = self.users[self.selectedIndex]
+                    self.myStory.storyTitle = self.storyTitle!
+                    self.myStory.mainAuthor = self.mainAuthor
+                    self.myStory.currentAuthor = self.invitedUser
+                    self.myStory.allAuthorIds = [self.mainAuthor.objectId!, self.invitedUser.objectId!]
+                    self.myStory.allAuthors.addObject(self.mainAuthor)
+                    self.myStory.allAuthors.addObject(self.invitedUser)
+                    self.myStory.isLiked = false
+                    self.myStory.isPublished = false
+                    self.myStory.voteCount = 0
+                    self.myStory.pageCount = 1
 
-                        // Add local storage later
-                        // myStory.pinInBackground()
-                        self.myStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                            self.mainAuthor.authoredStories.addObject(self.myStory)
-                            self.mainAuthor.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    // Add local storage later
+                    // myStory.pinInBackground()
+                    self.myStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                        self.mainAuthor.authoredStories.addObject(self.myStory)
+                        self.mainAuthor.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
 
-                                let innerQuery = User.query()
-                                innerQuery!.whereKey(Constants.User.objectId, equalTo:self.invitedUser.objectId!)
+                            let innerQuery = User.query()
+                            innerQuery!.whereKey(Constants.User.objectId, equalTo:self.invitedUser.objectId!)
 
-                                let query = PFInstallation.query()
-                                query?.whereKey("user", matchesQuery:innerQuery!)
-                                let data = [
-                                    "alert" : "\(self.mainAuthor.username!) has started a story named \"\(self.myStory.storyTitle)\" and invited to you contribute next!",
-                                    "badge" : "Increment",
-                                    "s" : "\(self.myStory.objectId)", // Story's object id
-                                ]
+                            let query = PFInstallation.query()
+                            query?.whereKey("user", matchesQuery:innerQuery!)
+                            let data = [
+                                "alert" : "\(self.mainAuthor.username!) has started a story named \"\(self.myStory.storyTitle)\" and invited to you contribute next!",
+                                "badge" : "Increment",
+                                "s" : "\(self.myStory.objectId)", // Story's object id
+                            ]
 
-                                let push = PFPush()
-                                push.setQuery(query)
-                                push.setData(data)
-                                push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                                    if success {
-                                        print("successful push")
-                                        self.delegate?.didAddNewStory(self.myStory, nextAuthor: self.invitedUser)
-                                        self.navigationController?.popViewControllerAnimated(true)
-                                    } else {
-                                        print("push failed")
-                                    }
-                                })
+                            let push = PFPush()
+                            push.setQuery(query)
+                            push.setData(data)
+                            push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                if success {
+                                    print("successful push")
+                                    self.delegate?.didAddNewStory(self.myStory, nextAuthor: self.invitedUser)
+                                    self.navigationController?.popToRootViewControllerAnimated(true)
+                                } else {
+                                    print("push failed")
+                                }
                             })
                         })
                     })
                 })
-            } else {
-                // TODO: handle error in data encoding here
-            }
+    }
 
+    func addPageToStory() {
+        // Initialize Page Object
+
+        newPage.author = mainAuthor
+        newPage.story = currentStory
+        newPage.pageNum = currentStory.pageCount + 1
+
+                self.newPage.textContent = storyContent
+                self.newPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    // Edit Story Properties
+                    self.invitedUser = self.users[self.selectedIndex]
+
+                    self.currentStory.incrementKey(Constants.Story.pageCount)
+                    print(self.currentStory.pageCount)
+                    self.currentStory.pages.append(self.newPage)
+                    self.currentStory.currentAuthor = self.invitedUser
+                    // Make sure this stuff only gets called once
+                    self.currentStory.allAuthorIds.append(self.invitedUser.objectId!)
+                    self.currentStory.allAuthors.addObject(self.invitedUser)
+                    // work on local data storage later
+                    // currentStory.pinInBackground()
+                    self.currentStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                        let relation: PFRelation = self.mainAuthor.coAuthoredStories
+                        let query = relation.query()
+                        query?.whereKey(Constants.Story.objectId, equalTo:self.currentStory.objectId!)
+
+                        query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
+                            // add story to author's library if not in there already
+                            if objects == nil {
+                                self.mainAuthor.coAuthoredStories.addObject(self.currentStory)
+                                self.mainAuthor.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+
+                                })
+                            } else {
+                                if (self.newPage.pageNum == 5) {
+                                    print("publish story")
+                                    self.publishStory(self.currentStory)
+                                } else {
+
+                                    // Assign value to invited User based on user interaction with view
+                                    let innerQuery = User.query()
+                                    innerQuery!.whereKey(Constants.User.objectId, equalTo: self.invitedUser.objectId!)
+
+                                    let query = PFInstallation.query()
+                                    query?.whereKey("user", matchesQuery:innerQuery!)
+
+                                    let data = [
+                                        "alert" : "\(self.mainAuthor.username!) has added you to a story!",
+                                        "badge" : "Increment",
+                                        "s" : "\(self.currentStory.objectId!)", // Story's object id
+                                    ]
+
+                                    let push = PFPush()
+                                    push.setQuery(query)
+                                    push.setData(data)
+                                    push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                        if success {
+                                            print("successful push")
+                                            if self.currentStory.mainAuthor != self.mainAuthor{
+                                                //self.sendPushToMainAuthor()
+                                            }
+                                            // TODO: delegation
+                                             self.delegate?.didAddNewStory(self.currentStory, nextAuthor: self.invitedUser)
+                                        } else {
+                                            print("push failed")
+
+                                        }
+                                        self.navigationController?.popToRootViewControllerAnimated(true)
+
+                                    })
+                                }
+                            }
+                        })
+                    })
+                })
+    }
+
+    func publishStory(story: Story) -> Void {
+        story.isPublished = true
+
+        story.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            // TODO: delegation here to add story to main feed?
+
+            let innerQuery = User.query()
+            innerQuery?.whereKey(Constants.User.objectId, containedIn: self.currentStory.allAuthorIds)
+
+            let query = PFInstallation.query()
+            query?.whereKey("user", matchesQuery:innerQuery!)
+
+            let data = [
+                "alert" : "A story you contibuted to has been published!",
+                "s" : "\(self.currentStory.objectId!)", // Story's object id
+            ]
+
+            let push = PFPush()
+            push.setQuery(query)
+            push.setData(data)
+            push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                self.delegate?.didAddNewStory(self.myStory, nextAuthor: self.mainAuthor)
+                self.navigationController?.popToRootViewControllerAnimated(true)
+
+            })
         }
     }
 
-
-
-    func presentEmptyFieldAlertController() -> Void {
-        // Remind user to enter content before saving
-        let alertController = UIAlertController(title: "Incomplete", message: "Complete all the fields before starting your story!", preferredStyle: .Alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(defaultAction)
-        presentViewController(alertController, animated: true, completion: nil)
-    }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        storyNameTextField.resignFirstResponder()
-        contentTextField.resignFirstResponder()
-    }
-
     @IBAction func onSaveButtonPressed(sender: UIBarButtonItem) {
-        setupStory()
+        if newStory == true {
+            setupStory()
+        } else {
+            addPageToStory()
+        }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -148,13 +240,10 @@ class AddStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         cell.textLabel?.text = self.users[indexPath.row].username
-
         if self.selectedIndex == indexPath.row  {
-
             cell.accessoryType = .Checkmark
         }
         else {
-            
             cell.accessoryType = .None
         }
         return cell
