@@ -136,9 +136,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                     push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                         if success {
                             print("successful push")
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let vc = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
-                            self.presentViewController(vc, animated: true, completion: nil)
+                            self.goBackHome()
                         } else {
                             print("push failed")
                         }
@@ -223,10 +221,9 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
                                 }
 
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let vc = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
-                                self.presentViewController(vc, animated: true, completion: nil)
-                            })
+                                self.goBackHome()
+
+                    })
                         }
                     }
                 })
@@ -257,14 +254,18 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
             push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 self.delegate?.didAddNewPage()
 
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
-                self.presentViewController(vc, animated: true, completion: nil)
+                self.goBackHome()
+                
             })
         }
     }
 
-    
+    func goBackHome(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+
+    }
 
  }
 
