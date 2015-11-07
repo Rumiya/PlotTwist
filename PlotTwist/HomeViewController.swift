@@ -95,7 +95,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if objects != nil {
                 self.story = objects!.first as? Story
-                self.performSegueWithIdentifier("ToNewPageSegue", sender: self)
+                self.performSegueWithIdentifier("ToNewPageSegue", sender: sender)
             }
 
         })
