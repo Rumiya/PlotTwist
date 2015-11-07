@@ -25,9 +25,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         updateUI()
-
     }
 
     func passCloudsByAnimation(){
@@ -66,7 +64,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
                 userProfileButton.hidden = false
                 print(firstChar! + "_letterSM.png")
 
-                getNotificationCount()
+                // Called from App Delegate didBecomeActive
+               // getNotificationCount()
             }
 
         } else {
@@ -94,7 +93,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
                     self.notificationButton.hidden = true
                 } else {
                     self.notificationButton.hidden = false
-                    self.notificationButton.titleLabel?.text = "\(counts)"
+                    self.notificationButton.setTitle("\(counts)", forState: .Normal)
                 }
             })
         })
