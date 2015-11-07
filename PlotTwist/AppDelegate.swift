@@ -159,16 +159,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        let tabBarController = window?.rootViewController as! UITabBarController
-        let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
-        //let exploreNC = tabBarController.viewControllers![1] as! UINavigationController
-        let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
-        //let exploreVC = exploreNC.viewControllers[0] as! ExploreViewController
-        //myStoryVC.updateBadges()
-        myStoryVC.getAllMyStories()
-        //exploreVC.updateWithNewStory()
-        //navigationController.presentViewController(firstVC, animated: true, completion: nil)
-        //navigationController.pushViewController(firstVC, animated: true)
+        let homeVC = window?.rootViewController as! HomeViewController
+        homeVC.getNotificationCount()
 
         PFPush.handlePush(userInfo)
     }

@@ -12,8 +12,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
     var delegate: DecrementNotificationsCountDelegate?
     var story: Story?
-    var users: Array<User>?
-
+    var users: [User] = []
     var storyTitle: String?
     var storyContent: String!
 
@@ -28,16 +27,16 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    }
-
-    override func viewWillAppear(animated: Bool) {
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                self.users = objects as? [User]
-                print(" no error  ")
-                self.tableView.reloadData()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.users = objects as! [User]
+                    print(" no error  ")
+                    self.tableView.reloadData()
+                })
+
             } else {
                 print("error retrieving")
             }
@@ -50,16 +49,21 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }
 
+
+    }
+
+    override func viewWillAppear(animated: Bool) {
+
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.users?.count)!
+        return self.users.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        cell.textLabel?.text = self.users![indexPath.row].username
+        cell.textLabel?.text = self.users[indexPath.row].username
         if self.selectedIndex == indexPath.row  {
             cell.accessoryType = .Checkmark
         }
@@ -101,7 +105,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
             newStory.pages.append(firstPage)
 
             // Initialize story
-            invitedUser = self.users![self.selectedIndex!]
+            invitedUser = self.users[self.selectedIndex!]
             newStory.storyTitle = self.storyTitle!
             newStory.mainAuthor = mainAuthor
             newStory.currentAuthor = invitedUser
@@ -150,7 +154,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
     func createNewPage(){
         // Initialize Page Object
-        var newPage = Page()
+        let newPage = Page()
         let mainAuthor = User.currentUser()!
         var invitedUser: User!
         let currentStory = story!
@@ -162,7 +166,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
         newPage.textContent = storyContent
         newPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             // Edit Story Properties
-            invitedUser = self.users![self.selectedIndex!]
+            invitedUser = self.users[self.selectedIndex!]
 
             currentStory.incrementKey(Constants.Story.pageCount)
             print(currentStory.pageCount)

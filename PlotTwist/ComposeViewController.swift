@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComposeViewController: UIViewController, UITextFieldDelegate {
+class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     var story: Story?
     var isNewStory: Bool?
@@ -25,10 +25,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
     //MARK - View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
+    
     override func viewWillAppear(animated: Bool) {
-        if ((isNewStory != nil)) {
+        if isNewStory == true {
             previousContentTextView.hidden = true
             titleTextField.hidden = false
 
@@ -69,23 +69,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
-    //MARK - segue
-
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if isNewStory == true {
-            if (titleTextField.text == nil || contentTextView.text == nil) {
-                presentEmptyFieldAlertController()
-                return false
-            }
-        } else {
-            if (contentTextView.text == nil) {
-                presentEmptyFieldAlertController()
-                return false
-            }
-        }
-
-        return true
+    func textViewDidBeginEditing(textView: UITextView) {
+        contentTextView.text = ""
     }
+
+    //MARK - segue
 
     func presentEmptyFieldAlertController() -> Void {
         // Remind user to enter content before saving
@@ -95,21 +83,40 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
 
+    @IBAction func onNextButtonPressed(sender: AnyObject) {
+
+        if isNewStory == true {
+            if (titleTextField.text == nil || contentTextView.text == nil) {
+                presentEmptyFieldAlertController()
+            } else {
+                performSegueWithIdentifier("ToSendSegue", sender: sender)
+            }
+        } else {
+            if (contentTextView.text == nil) {
+                presentEmptyFieldAlertController()
+            } else {
+                performSegueWithIdentifier("ToSendSegue", sender: sender)
+            }
+        }
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let vc = segue.destinationViewController as! SendToViewController
-        vc.story = story
-        vc.isNewStory = isNewStory
-        vc.delegate = homeVC
 
-        if ((isNewStory != nil)) {
+        if segue.identifier == "ToSendSegue" {
+            let vc = segue.destinationViewController as! SendToViewController
+            vc.story = story
+            vc.isNewStory = isNewStory
+            vc.delegate = homeVC
 
-            vc.storyTitle = titleTextField.text
-            vc.storyContent = contentTextView.text
+            if isNewStory == true {
 
-        } else {
-            vc.storyContent = contentTextView.text
+                vc.storyTitle = titleTextField.text
+                vc.storyContent = contentTextView.text
 
+            } else {
+                vc.storyContent = contentTextView.text
+                
+            }
         }
     }
 
