@@ -130,4 +130,9 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
         }
         
     }
+
+    @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
+        
+    }
+
  }

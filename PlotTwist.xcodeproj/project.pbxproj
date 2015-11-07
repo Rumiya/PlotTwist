@@ -63,6 +63,8 @@
 		E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250971BED1B0300E51659 /* ComposeViewController.swift */; };
 		E0E2509A1BED1E9F00E51659 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250991BED1E9F00E51659 /* SendToViewController.swift */; };
 		E0E2509C1BED352300E51659 /* DecrementNotificationsCountDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */; };
+		E0E250A01BED4DDA00E51659 /* UserStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2509F1BED4DDA00E51659 /* UserStatisticsViewController.swift */; };
+		E0E250A21BED578B00E51659 /* UserStatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A11BED578B00E51659 /* UserStatisticsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +127,8 @@
 		E0E250971BED1B0300E51659 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		E0E250991BED1E9F00E51659 /* SendToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
 		E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecrementNotificationsCountDelegate.swift; sourceTree = "<group>"; };
+		E0E2509F1BED4DDA00E51659 /* UserStatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStatisticsViewController.swift; sourceTree = "<group>"; };
+		E0E250A11BED578B00E51659 /* UserStatisticsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStatisticsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +238,8 @@
 		E0E2506B1BE7C9FD00E51659 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E0E250A11BED578B00E51659 /* UserStatisticsTableViewCell.swift */,
+				E0E2509F1BED4DDA00E51659 /* UserStatisticsViewController.swift */,
 				E0E250951BEC4F4D00E51659 /* HomeViewController.swift */,
 				E0E250971BED1B0300E51659 /* ComposeViewController.swift */,
 				E0E250991BED1E9F00E51659 /* SendToViewController.swift */,
@@ -399,6 +405,7 @@
 				E0E250741BE7DE4900E51659 /* ExploreViewController.swift in Sources */,
 				3A0FACCC1BEC23D4004A9DB9 /* LandingPageViewController.swift in Sources */,
 				3ADE58B41BE9BA36003D6D74 /* NewStoryProtocol.swift in Sources */,
+				E0E250A21BED578B00E51659 /* UserStatisticsTableViewCell.swift in Sources */,
 				E0E2507E1BE80CE100E51659 /* StorySettingsViewController.swift in Sources */,
 				E0E2508C1BE8281200E51659 /* ResetPasswordViewController.swift in Sources */,
 				E0E2509A1BED1E9F00E51659 /* SendToViewController.swift in Sources */,
@@ -422,6 +429,7 @@
 				E0E250941BE9678C00E51659 /* MyStoriesCell.swift in Sources */,
 				3AF245761BE7DEAC00832B30 /* Page.swift in Sources */,
 				E0E2507A1BE7F5A100E51659 /* LibraryViewController.swift in Sources */,
+				E0E250A01BED4DDA00E51659 /* UserStatisticsViewController.swift in Sources */,
 				E0E250781BE7F48100E51659 /* AddPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
