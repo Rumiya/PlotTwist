@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
     // update the home page for a curent visitor / user
     func updateUI() {
 
-        self.cloudsImage.layer.position = CGPoint(x:0 - self.view.bounds.width, y:view.bounds.height/3)
+        self.cloudsImage.layer.position = CGPoint(x:0 - self.view.bounds.width/2, y:view.bounds.height/3)
         self.cloudsImage.hidden = false
         self.cloudsStartPoint = self.cloudsImage.layer.position
 

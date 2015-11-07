@@ -296,6 +296,22 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYn-jM-dbK">
+                                <rect key="frame" x="49" y="503" width="93" height="30"/>
+                                <state key="normal" title="Edit Profile"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-9z-JUI">
+                                <rect key="frame" x="162" y="492" width="98" height="30"/>
+                                <state key="normal" title="Find Friends"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LD7-eI-Alf">
+                                <rect key="frame" x="422" y="526" width="136" height="30"/>
+                                <state key="normal" title="Approve Requests"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YxW-jw-jgh">
+                                <rect key="frame" x="321" y="488" width="169" height="30"/>
+                                <state key="normal" title="Invite to Use the App"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.49550020649999998" green="0.24904253160000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -319,6 +335,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAJ-rt-8vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1384" y="2504"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="K7D-Oa-gr7">
+            <objects>
+                <viewController id="bd6-qL-hKu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F5F-aH-fFx"/>
+                        <viewControllerLayoutGuide type="bottom" id="BSX-Kx-66A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FUD-py-4w2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKB-6c-jB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="3234"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="90f-PB-BzN">
@@ -458,6 +492,9 @@
                                 <color key="backgroundColor" red="1" green="0.7624712521" blue="0.59145172680000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Kdd-bo-dbi" id="QYN-XJ-vsv"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0X-pN-QrT">
                                 <rect key="frame" x="260" y="470" width="80" height="80"/>
@@ -468,7 +505,7 @@
                                 </constraints>
                                 <state key="normal" image="arrow"/>
                                 <connections>
-                                    <segue destination="mLg-or-aKC" kind="show" id="6Pm-RR-y3E"/>
+                                    <action selector="onNextButtonPressed:" destination="Kdd-bo-dbi" eventType="touchUpInside" id="Bx6-FN-DNZ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go For It!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsK-rF-PqJ">
@@ -541,6 +578,7 @@
                         <outlet property="headerLabel" destination="MsK-rF-PqJ" id="v8a-Ew-o6h"/>
                         <outlet property="previousContentTextView" destination="qna-WK-efK" id="mFO-hU-JuY"/>
                         <outlet property="titleTextField" destination="rcR-iv-PdL" id="zgG-Qx-C3G"/>
+                        <segue destination="mLg-or-aKC" kind="presentation" identifier="ToSendSegue" id="mMy-C0-wv4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4u-ol-7zU" userLabel="First Responder" sceneMemberID="firstResponder"/>
