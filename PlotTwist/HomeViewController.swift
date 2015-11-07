@@ -12,10 +12,16 @@ import Parse
 class HomeViewController: UIViewController, DecrementNotificationsCountDelegate {
 
     var story: Story?
+    var cloudsStartPoint: CGPoint?
+    var cloudsEndPoint: CGPoint?
 
     @IBOutlet weak var userProfileButton: UIButton!
 
     @IBOutlet weak var notificationButton: UIButton!
+
+    @IBOutlet weak var cloudsImage: UIImageView!
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +30,25 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
 
     }
 
+    func passCloudsByAnimation(){
+
+        UIView.animateWithDuration(6, delay: 0,
+            options: UIViewAnimationOptions.CurveLinear, animations: {
+
+                self.cloudsImage.layer.position.x = self.view.bounds.width
+        }, completion: nil)
+
+    }
+
     // update the home page for a curent visitor / user
     func updateUI() {
+
+        self.cloudsImage.layer.position = CGPoint(x:0 - self.view.bounds.width, y:view.bounds.height/3)
+        self.cloudsImage.hidden = false
+        self.cloudsStartPoint = self.cloudsImage.layer.position
+
+
+        passCloudsByAnimation()
 
         if User.currentUser() != nil {
             let userName = User.currentUser()!.username
@@ -132,7 +155,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
     }
 
     @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
-        
+
     }
 
  }

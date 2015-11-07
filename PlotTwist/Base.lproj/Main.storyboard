@@ -404,6 +404,9 @@
                                     <action selector="onNotificationButtonPressed:" destination="3Iz-Kd-wjI" eventType="touchUpInside" id="ysc-3S-bfy"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clouds" translatesAutoresizingMaskIntoConstraints="NO" id="WxA-eK-nwd">
+                                <rect key="frame" x="400" y="133" width="237" height="182"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.76078431369999999" green="0.91372549020000005" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -422,6 +425,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cloudsImage" destination="WxA-eK-nwd" id="fhD-nK-1qJ"/>
                         <outlet property="notificationButton" destination="9vu-m7-dcg" id="lBo-6l-2qE"/>
                         <outlet property="userProfileButton" destination="HzG-iC-K8P" id="XP0-tK-tAS"/>
                         <segue destination="Kdd-bo-dbi" kind="show" identifier="ToNewPageSegue" id="Lz7-es-5Xf"/>
@@ -2058,6 +2062,7 @@
         <image name="arrowLeft" width="100" height="100"/>
         <image name="bar" width="300" height="20"/>
         <image name="close" width="64" height="64"/>
+        <image name="clouds" width="600" height="461"/>
         <image name="facebook" width="64" height="64"/>
         <image name="glasses" width="100" height="100"/>
         <image name="history" width="100" height="100"/>
