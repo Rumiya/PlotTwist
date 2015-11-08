@@ -12,6 +12,7 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
     //var stories: [Story] = []
 
+    @IBOutlet weak var tableView: UITableView!
     var stories: Array<Story>?
 
     override func viewDidLoad() {
@@ -33,6 +34,16 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
 
+    @IBAction func unwindToListOfCategories(segue:UIStoryboardSegue) {
 
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let index = self.tableView.indexPathForSelectedRow
+
+        let vc = segue.destinationViewController as! ReadStoryViewController
+        vc.story = self.stories![index!.row]
+
+    }
 
 }

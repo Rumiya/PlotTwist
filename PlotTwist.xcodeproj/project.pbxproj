@@ -244,7 +244,6 @@
 		E0E2506B1BE7C9FD00E51659 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */,
 				E0E250A11BED578B00E51659 /* UserStatisticsTableViewCell.swift */,
 				E0E2509F1BED4DDA00E51659 /* UserStatisticsViewController.swift */,
 				E0E250951BEC4F4D00E51659 /* HomeViewController.swift */,
@@ -252,6 +251,7 @@
 				E0E250991BED1E9F00E51659 /* SendToViewController.swift */,
 				E0E250A31BEEC23300E51659 /* CategoriesViewController.swift */,
 				E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */,
+				E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */,
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
 				3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,

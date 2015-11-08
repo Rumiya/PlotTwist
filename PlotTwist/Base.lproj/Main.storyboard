@@ -927,13 +927,24 @@
                                 <state key="normal" title="Button" image="arrowLeft"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="oVH-fS-MrQ"/>
                                         <exclude reference="idI-EX-jck"/>
+                                        <exclude reference="oVH-fS-MrQ"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <segue destination="WE0-sb-L5z" kind="unwind" unwindAction="unwindToListOfCategories:" id="LJa-Wo-O7k"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4UA-cA-jDF">
                                 <rect key="frame" x="133" y="149" width="335" height="301"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yf5-o2-JUi">
+                                        <rect key="frame" x="22" y="33" width="247" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -946,8 +957,12 @@
                             <constraint firstItem="7TO-BO-fw6" firstAttribute="top" secondItem="n7k-zN-ckz" secondAttribute="bottom" constant="25" id="Zqy-WK-gzn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="content" destination="Yf5-o2-JUi" id="qXG-1r-M0E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gC-RK-b0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="WE0-sb-L5z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4210" y="2504"/>
         </scene>
@@ -1045,6 +1060,9 @@
                             <constraint firstItem="3kI-EM-sbr" firstAttribute="top" secondItem="463-c9-43Z" secondAttribute="bottom" constant="25" id="zYx-kk-Oej"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="smh-F2-zp6" id="e3S-ZK-gfW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FMF-Gi-Vpi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="efa-Z4-0mr" userLabel="Exit" sceneMemberID="exit"/>
@@ -1220,7 +1238,7 @@
                                     <rect key="frame" x="0.0" y="64" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Hjz-2I-CgE">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Hjz-2I-CgE">
                                             <rect key="frame" x="485" y="32" width="87" height="56"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StoryCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4g-dS-6Qc">
