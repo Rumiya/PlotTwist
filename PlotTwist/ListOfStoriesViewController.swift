@@ -34,15 +34,19 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
 
-    @IBAction func unwindToListOfCategories(segue:UIStoryboardSegue) {
+    @IBAction func unwindToListOfStories(segue:UIStoryboardSegue) {
 
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let index = self.tableView.indexPathForSelectedRow
 
-        let vc = segue.destinationViewController as! ReadStoryViewController
-        vc.story = self.stories![index!.row]
+        if segue.identifier == "ToReadStorySegue"{
+
+            let index = self.tableView.indexPathForSelectedRow
+
+            let vc = segue.destinationViewController as! ReadStoryViewController
+            vc.story = self.stories![index!.row]
+        }
 
     }
 
