@@ -943,10 +943,10 @@
                                         <state key="normal" title="Button" image="arrowLeft"/>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="sQh-wf-sLJ"/>
+                                                <exclude reference="0AR-hw-bjA"/>
                                                 <exclude reference="2aZ-Zv-toM"/>
                                                 <exclude reference="j68-qg-nUG"/>
-                                                <exclude reference="0AR-hw-bjA"/>
+                                                <exclude reference="sQh-wf-sLJ"/>
                                             </mask>
                                         </variation>
                                         <connections>
