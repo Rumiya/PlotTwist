@@ -37,6 +37,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             previousContentTextView.hidden = false
             titleTextField.hidden = true
             headerLabel.text = story?.storyTitle
+            headerLabel.sizeToFit()
         }
     }
 
