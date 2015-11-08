@@ -11,7 +11,7 @@ import Parse
 
 class HomeViewController: UIViewController, DecrementNotificationsCountDelegate {
 
-    var story: Story?
+    var story = Story()
     var cloudsStartPoint: CGPoint?
     var cloudsEndPoint: CGPoint?
 
@@ -69,11 +69,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
             }
 
         } else {
-
             userProfileButton.hidden = true
-
         }
-
     }
 
     func getNotificationCount(){
@@ -116,7 +113,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
 
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if objects != nil {
-                self.story = objects!.first as? Story
+                self.story = objects!.first as! Story
                 self.performSegueWithIdentifier("ToNewPageSegue", sender: sender)
             }
 

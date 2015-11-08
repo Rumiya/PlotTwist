@@ -19,7 +19,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     var selectedIndex: Int?
 
     @IBOutlet weak var headerLabel: UILabel!
-    
+
     var isNewStory: Bool?
 
     @IBOutlet weak var tableView: UITableView!
@@ -29,6 +29,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
+
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -148,8 +149,6 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                 })
             })
         })
-
-
     }
 
     func createNewPage(){
@@ -167,69 +166,70 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
         newPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             // Edit Story Properties
             invitedUser = self.users[self.selectedIndex!]
+            invitedUser.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                currentStory.incrementKey(Constants.Story.pageCount)
+                print(currentStory.pageCount)
+                currentStory.pages.append(newPage)
+                currentStory.currentAuthor = invitedUser
+                // Make sure this stuff only gets called once
+                currentStory.allAuthorIds.append(invitedUser.objectId!)
+                currentStory.allAuthors.addObject(invitedUser)
+                // work on local data storage later
+                // currentStory.pinInBackground()
+                currentStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    let relation: PFRelation = mainAuthor.coAuthoredStories
+                    let query = relation.query()
+                    query?.whereKey(Constants.Story.objectId, equalTo:currentStory.objectId!)
 
-            currentStory.incrementKey(Constants.Story.pageCount)
-            print(currentStory.pageCount)
-            currentStory.pages.append(newPage)
-            currentStory.currentAuthor = invitedUser
-            // Make sure this stuff only gets called once
-            currentStory.allAuthorIds.append(invitedUser.objectId!)
-            currentStory.allAuthors.addObject(invitedUser)
-            // work on local data storage later
-            // currentStory.pinInBackground()
-            currentStory.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                let relation: PFRelation = mainAuthor.coAuthoredStories
-                let query = relation.query()
-                query?.whereKey(Constants.Story.objectId, equalTo:currentStory.objectId!)
+                    query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
 
-                query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+                        // add story to author's library if not in there already
+                        if objects == nil {
+                            mainAuthor.coAuthoredStories.addObject(currentStory)
+                            mainAuthor.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
 
-                    // add story to author's library if not in there already
-                    if objects == nil {
-                        mainAuthor.coAuthoredStories.addObject(currentStory)
-                        mainAuthor.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-
-                        })
-                    } else {
-                        if (newPage.pageNum == 5) {
-                            print("publish story")
-                            self.publishStory(currentStory)
+                            })
                         } else {
+                            if (newPage.pageNum == 5) {
+                                print("publish story")
+                                self.publishStory(currentStory)
+                            } else {
 
-                            // Assign value to invited User based on user interaction with view
-                            let innerQuery = User.query()
-                            innerQuery!.whereKey(Constants.User.objectId, equalTo: invitedUser.objectId!)
+                                // Assign value to invited User based on user interaction with view
+                                let innerQuery = User.query()
+                                innerQuery!.whereKey(Constants.User.objectId, equalTo: invitedUser.objectId!)
 
-                            let query = PFInstallation.query()
-                            query?.whereKey("user", matchesQuery:innerQuery!)
+                                let query = PFInstallation.query()
+                                query?.whereKey("user", matchesQuery:innerQuery!)
 
-                            let data = [
-                                "alert" : "\(mainAuthor.username!) has added you to a story!",
-                                "badge" : "Increment",
-                                "s" : "\(currentStory.objectId!)", // Story's object id
-                            ]
+                                let data = [
+                                    "alert" : "\(mainAuthor.username!) has added you to a story!",
+                                    "badge" : "Increment",
+                                    "s" : "\(currentStory.objectId!)", // Story's object id
+                                ]
 
-                            let push = PFPush()
-                            push.setQuery(query)
-                            push.setData(data)
-                            push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                                if success {
-                                    print("successful push")
-                                    if currentStory.mainAuthor != mainAuthor{
-                                        //self.sendPushToMainAuthor()
+                                let push = PFPush()
+                                push.setQuery(query)
+                                push.setData(data)
+                                push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                    if success {
+                                        print("successful push")
+                                        if currentStory.mainAuthor != mainAuthor{
+                                            //self.sendPushToMainAuthor()
+                                        }
+                                        // TODO: delegation
+                                        self.delegate?.didAddNewPage()
+                                    } else {
+                                        print("push failed")
+
                                     }
-                                    // TODO: delegation
-                                    self.delegate?.didAddNewPage()
-                                } else {
-                                    print("push failed")
 
-                                }
+                                    self.goBackHome()
 
-                                self.goBackHome()
-
-                    })
+                                })
+                            }
                         }
-                    }
+                    })
                 })
             })
         })
@@ -246,32 +246,36 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
             let query = PFInstallation.query()
             query?.whereKey("user", matchesQuery:innerQuery!)
-
+            
             let data = [
                 "alert" : "A story you contibuted to has been published!",
                 "s" : "\(story.objectId!)", // Story's object id
             ]
-
+            
             let push = PFPush()
             push.setQuery(query)
             push.setData(data)
             push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 self.delegate?.didAddNewPage()
-
+                
                 self.goBackHome()
                 
             })
         }
     }
-
+    
     func goBackHome(){
+        
+        // not working
+        // performSegueWithIdentifier("unwindToHomeScreen", sender: self)
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         self.presentViewController(vc, animated: true, completion: nil)
-
+        
     }
-
- }
+    
+}
 
 
 
