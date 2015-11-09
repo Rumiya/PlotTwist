@@ -50,19 +50,16 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
 
         if User.currentUser() != nil {
             let userName = User.currentUser()!.username
-            let index = userName?.startIndex.advancedBy(1)
-            var firstChar = userName?.substringToIndex(index!)
 
-            firstChar = firstChar!.uppercaseString
-            print(firstChar)
+            let usernameImage = getUsernameFirstLetterImagename(userName!)
+            //print(usernameImage)
 
 
-            if ((UIImage(named:firstChar! + "_letterSM.png")) != nil){
+            if ((UIImage(named:usernameImage)) != nil){
                 
-                userProfileButton.setImage(UIImage(named:firstChar! + "_letterSM.png"), forState: .Normal)
+                userProfileButton.setImage(UIImage(named:usernameImage), forState: .Normal)
 
                 userProfileButton.hidden = false
-                print(firstChar! + "_letterSM.png")
 
                 // Called from App Delegate didBecomeActive
                // getNotificationCount()

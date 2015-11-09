@@ -69,6 +69,7 @@
 		E0E250A61BEEC3CA00E51659 /* ListOfStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */; };
 		E0E250A81BEEC45B00E51659 /* ReadStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */; };
 		E0E250AA1BF0309800E51659 /* ListOfStoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A91BF0309800E51659 /* ListOfStoriesTableViewCell.swift */; };
+		E0E250AC1BF05E6E00E51659 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250AB1BF05E6E00E51659 /* CustomImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,7 @@
 		E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfStoriesViewController.swift; sourceTree = "<group>"; };
 		E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadStoryViewController.swift; sourceTree = "<group>"; };
 		E0E250A91BF0309800E51659 /* ListOfStoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfStoriesTableViewCell.swift; sourceTree = "<group>"; };
+		E0E250AB1BF05E6E00E51659 /* CustomImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +285,7 @@
 		E0E2506D1BE7CA4C00E51659 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E0E250AB1BF05E6E00E51659 /* CustomImage.swift */,
 				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
 				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
 				E0E2505D1BE7C3D900E51659 /* Main.storyboard */,
@@ -435,6 +438,7 @@
 				3AF2457C1BE7E0FB00832B30 /* PTConstants.swift in Sources */,
 				E0E250A41BEEC23300E51659 /* CategoriesViewController.swift in Sources */,
 				E0E2508A1BE827E400E51659 /* SignUpViewController.swift in Sources */,
+				E0E250AC1BF05E6E00E51659 /* CustomImage.swift in Sources */,
 				E0E250961BEC4F4D00E51659 /* HomeViewController.swift in Sources */,
 				E0E2507C1BE804AC00E51659 /* ActivityViewController.swift in Sources */,
 				3ADE58B81BE9CF22003D6D74 /* NewPageDelegate.swift in Sources */,
