@@ -918,12 +918,21 @@
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LFr-zY-JlT">
+                                        <rect key="frame" x="20" y="20" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="hm0-A6-dg5"/>
+                                            <constraint firstAttribute="height" constant="50" id="juq-li-nyN"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Vch-gw-ZMi" secondAttribute="trailing" constant="20" id="5oN-3z-laW"/>
+                                    <constraint firstItem="LFr-zY-JlT" firstAttribute="leading" secondItem="4UA-cA-jDF" secondAttribute="leading" constant="20" id="6sl-zj-Nyg"/>
                                     <constraint firstItem="Vch-gw-ZMi" firstAttribute="leading" secondItem="4UA-cA-jDF" secondAttribute="leading" constant="20" id="UcX-dh-guP"/>
                                     <constraint firstItem="Vch-gw-ZMi" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="top" constant="20" id="l9f-Qg-RFo"/>
+                                    <constraint firstItem="LFr-zY-JlT" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="top" constant="20" id="n8x-zR-Alv"/>
                                     <constraint firstAttribute="bottom" secondItem="Vch-gw-ZMi" secondAttribute="bottom" constant="20" id="veb-cc-GOZ"/>
                                 </constraints>
                             </view>
@@ -998,6 +1007,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="authorImage" destination="LFr-zY-JlT" id="XAj-2a-2wk"/>
                         <outlet property="nextButton" destination="TUH-QK-nVc" id="moy-vV-qLR"/>
                         <outlet property="storyContentTextView" destination="Vch-gw-ZMi" id="KX3-wc-epj"/>
                         <outlet property="storyPageView" destination="4UA-cA-jDF" id="2kc-cU-lse"/>
