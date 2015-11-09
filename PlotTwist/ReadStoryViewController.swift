@@ -39,7 +39,7 @@ class ReadStoryViewController: UIViewController {
         let user = page.author 
         // Set a user image
         do {
-            try user.fetchIfNeededInBackground()
+            try user.fetchIfNeeded()
 
             let username = user.username
             let usernameImage = getUsernameFirstLetterImagename(username!)
