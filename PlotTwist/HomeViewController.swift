@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController, DecrementNotificationsCountDelegate {
+class HomeViewController: UIViewController, DecrementNotificationsCountDelegate, FriendListDelegate {
 
     var story = Story()
     var cloudsStartPoint: CGPoint?
@@ -94,10 +94,36 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
                 }
             })
         })
+
+        let friendIncomingQuery = Activity.query()
+        friendIncomingQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
+        friendIncomingQuery?.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.outgoing)
+        friendIncomingQuery?.whereKey(Constants.Activity.type, equalTo: Constants.Activity.Type.friend)
+        friendIncomingQuery?.includeKey(Constants.Activity.fromUser)
+        friendIncomingQuery?.includeKey(Constants.Activity.toUser)
+        friendIncomingQuery?.countObjectsInBackgroundWithBlock({ (counts: Int32, error: NSError?) -> Void in
+            // TODO: uncomment this after merge
+            /*
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+                if counts == 0 {
+                    self.friendButton.hidden = true
+                } else {
+                    self.friendButton.hidden = false
+                }
+            })
+            */
+        })
+
     }
 
     func didAddNewPage() {
         getNotificationCount()
+    }
+
+    func didAcceptFriend() {
+        getNotificationCount()
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func onNotificationButtonPressed(sender: UIButton) {
@@ -135,23 +161,26 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "ToNewPageSegue"{
-        let vc = segue.destinationViewController as! ComposeViewController
-        vc.story = story
-        vc.isNewStory = false
-        vc.homeVC = self
+        if segue.identifier == "ToNewPageSegue"{
+            let vc = segue.destinationViewController as! ComposeViewController
+            vc.story = story
+            vc.isNewStory = false
+            vc.homeVC = self
 
-    } else if segue.identifier == "ToNewStorySegue"{
-        let vc = segue.destinationViewController as! ComposeViewController
-        vc.story = Story()
-        vc.isNewStory = true
-        vc.homeVC = self
+        } else if segue.identifier == "ToNewStorySegue"{
+            let vc = segue.destinationViewController as! ComposeViewController
+            vc.story = Story()
+            vc.isNewStory = true
+            vc.homeVC = self
+
+        } else if segue.identifier == "ToFriendsSegue" {
+            let vc = segue.destinationViewController as! FriendsViewController
+            vc.delegate = self
         }
-        
     }
 
     @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
-
+        
     }
-
- }
+    
+}
