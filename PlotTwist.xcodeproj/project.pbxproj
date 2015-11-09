@@ -40,6 +40,7 @@
 		3AF2457C1BE7E0FB00832B30 /* PTConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF2457B1BE7E0FB00832B30 /* PTConstants.swift */; };
 		3AF2457F1BE8824600832B30 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF2457E1BE8824600832B30 /* libstdc++.6.0.9.tbd */; };
 		3AF245811BE8827A00832B30 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */; };
+		6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */; };
 		E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250591BE7C3D900E51659 /* AppDelegate.swift */; };
 		E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E2505D1BE7C3D900E51659 /* Main.storyboard */; };
 		E0E250611BE7C3D900E51659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E250601BE7C3D900E51659 /* Assets.xcassets */; };
@@ -105,6 +106,7 @@
 		3AF2457E1BE8824600832B30 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		3AF245841BE9317E00832B30 /* PlotTwist-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlotTwist-Bridging-Header.h"; sourceTree = "<group>"; };
+		6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Documents/FacebookSDKs-iOS-20151026/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		E0E250561BE7C3D900E51659 /* PlotTwist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlotTwist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E250591BE7C3D900E51659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0E2505E1BE7C3D900E51659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */,
 				3AF245811BE8827A00832B30 /* libsqlite3.0.tbd in Frameworks */,
 				3AF2457F1BE8824600832B30 /* libstdc++.6.0.9.tbd in Frameworks */,
 				3AF245721BE7DB5C00832B30 /* Social.framework in Frameworks */,
@@ -193,6 +196,7 @@
 				3AF2456F1BE7DB5700832B30 /* Accounts.framework */,
 				3AF2456D1BE7DB5100832B30 /* libsqlite3.tbd */,
 				3AF2456B1BE7DB2000832B30 /* libz.tbd */,
+				6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */,
 				3AF245691BE7DB1900832B30 /* SystemConfiguration.framework */,
 				3AF245671BE7DB1300832B30 /* StoreKit.framework */,
 				3AF245651BE7DB0200832B30 /* Security.framework */,
