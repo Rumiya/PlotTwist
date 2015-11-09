@@ -68,6 +68,7 @@
 		E0E250A41BEEC23300E51659 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A31BEEC23300E51659 /* CategoriesViewController.swift */; };
 		E0E250A61BEEC3CA00E51659 /* ListOfStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */; };
 		E0E250A81BEEC45B00E51659 /* ReadStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */; };
+		E0E250AA1BF0309800E51659 /* ListOfStoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A91BF0309800E51659 /* ListOfStoriesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +136,7 @@
 		E0E250A31BEEC23300E51659 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfStoriesViewController.swift; sourceTree = "<group>"; };
 		E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadStoryViewController.swift; sourceTree = "<group>"; };
+		E0E250A91BF0309800E51659 /* ListOfStoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfStoriesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 				E0E250991BED1E9F00E51659 /* SendToViewController.swift */,
 				E0E250A31BEEC23300E51659 /* CategoriesViewController.swift */,
 				E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */,
+				E0E250A91BF0309800E51659 /* ListOfStoriesTableViewCell.swift */,
 				E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */,
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
 				3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */,
@@ -443,6 +446,7 @@
 				E0E2507A1BE7F5A100E51659 /* LibraryViewController.swift in Sources */,
 				E0E250A01BED4DDA00E51659 /* UserStatisticsViewController.swift in Sources */,
 				E0E250781BE7F48100E51659 /* AddPageViewController.swift in Sources */,
+				E0E250AA1BF0309800E51659 /* ListOfStoriesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

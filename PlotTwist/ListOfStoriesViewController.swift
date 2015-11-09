@@ -10,13 +10,16 @@ import UIKit
 
 class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    //var stories: [Story] = []
-
     @IBOutlet weak var tableView: UITableView!
     var stories: Array<Story>?
+    //var isOdd: Bool
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        tableView.estimatedRowHeight = 80.0
+//        tableView.rowHeight = UITableViewAutomaticDimension
+
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,12 +28,36 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell:ListOfStoriesTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ListOfStoriesTableViewCell
 
+        // display a user name and a story title
         let user = stories![indexPath.row].mainAuthor as User
-        cell.textLabel!.text = user.username
-        cell.detailTextLabel?.text = stories![indexPath.row].storyTitle
-        print(stories![indexPath.row].storyTitle)
+
+        cell.authorLabel.text = user.username
+        cell.storyTitleLabel.text = stories![indexPath.row].storyTitle
+
+        // set a user image
+        let index = user.username!.startIndex.advancedBy(1)
+        var firstChar = user.username!.substringToIndex(index)
+
+        firstChar = firstChar.uppercaseString
+
+        if ((UIImage(named:firstChar + "_letterSM.png")) != nil){
+
+            cell.userImage.image = UIImage(named:firstChar + "_letterSM.png")
+        }
+
+        if (indexPath.row % 2) == 0 {
+            cell.backgroundColor = UIColor(red:0.76, green:0.91, blue:0.98, alpha:1.0)
+        } else {
+            cell.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.74, alpha:1.0)
+        }
+
+        // set selected cell background color the same as the cell background. Otherwise it will be gray
+        let cellBGView = UIView()
+        cellBGView.backgroundColor = cell.backgroundColor
+        cell.selectedBackgroundView = cellBGView
+
         return cell
     }
 
