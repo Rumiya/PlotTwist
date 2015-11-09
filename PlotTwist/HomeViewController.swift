@@ -12,7 +12,7 @@ import Parse
 class HomeViewController: UIViewController, DecrementNotificationsCountDelegate {
 
     var story = Story()
-    var cloudsStartPoint: CGPoint?
+    var friendStartPoint: CGPoint?
     var cloudsEndPoint: CGPoint?
 
     @IBOutlet weak var userProfileButton: UIButton!
@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
 
     @IBOutlet weak var cloudsImage: UIImageView!
 
+    @IBOutlet weak var friendButton: UIButton!
     
 
     override func viewDidLoad() {
@@ -38,22 +39,54 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate 
 
     }
 
+    func friendAppearingAnimation(){
+
+        let path = UIBezierPath()
+        path.moveToPoint(CGPoint(x: self.view.bounds.width,y: 239))
+        path.addCurveToPoint(CGPoint(x: 301, y: 239), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
+
+        path.moveToPoint(self.friendStartPoint!)
+        
+        let anim = CAKeyframeAnimation(keyPath: "position")
+
+        // set the animations path to our bezier curve
+        anim.path = path.CGPath
+
+        anim.repeatCount = 1
+        anim.duration = 5.0
+        anim.removedOnCompletion = false
+
+
+        // we add the animation to the squares 'layer' property
+        self.friendButton.layer.addAnimation(anim, forKey: "animate position along path")
+        //self.friendButton.layer.position = CGPoint(x: 136, y: 373)
+
+    }
+
+
     // update the home page for a curent visitor / user
     func updateUI() {
 
+        // set clouds position
         self.cloudsImage.layer.position = CGPoint(x:0 - self.view.bounds.width/2, y:view.bounds.height/3)
         self.cloudsImage.hidden = false
-        self.cloudsStartPoint = self.cloudsImage.layer.position
+      //  self.cloudsStartPoint = self.cloudsImage.layer.position
+
+        // set friend's air balloon position
+        self.friendButton.layer.position = CGPoint(x: self.view.bounds.width/3, y: self.view.bounds.height/2.5)
+        self.friendStartPoint = self.friendButton.layer.position
+
+        self.friendButton.hidden = false
+
 
 
         passCloudsByAnimation()
+        friendAppearingAnimation()
 
         if User.currentUser() != nil {
             let userName = User.currentUser()!.username
 
             let usernameImage = getUsernameFirstLetterImagename(userName!)
-            //print(usernameImage)
-
 
             if ((UIImage(named:usernameImage)) != nil){
                 
