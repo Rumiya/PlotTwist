@@ -128,7 +128,12 @@ class LoginViewController: UIViewController {
     func showMyStories()
     {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home")
+
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+            UIApplication.sharedApplication().keyWindow!.rootViewController = viewController;
+
+//            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home")
             self.presentViewController(viewController, animated: true, completion: nil)
         })
 

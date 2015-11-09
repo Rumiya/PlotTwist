@@ -51,11 +51,19 @@ class PTUtiltiy {
             return
         }
 
-        let activityQuery = Activity.query()
-        activityQuery?.whereKey(Constants.Activity.fromUser, equalTo: user)
-        activityQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
-        activityQuery?.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.outgoing)
-        activityQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
+        let activityOneQuery = Activity.query()
+        activityOneQuery?.whereKey(Constants.Activity.fromUser, equalTo: user)
+        activityOneQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
+
+        let activityTwoQuery = Activity.query()
+        activityTwoQuery?.whereKey(Constants.Activity.toUser, equalTo: user)
+        activityTwoQuery?.whereKey(Constants.Activity.fromUser, equalTo: User.currentUser()!)
+
+
+        let activityQuery = PFQuery.orQueryWithSubqueries([activityOneQuery!, activityTwoQuery!])
+        activityQuery.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.outgoing)
+        activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             let activity = objects?.first as! Activity
 
             activity.setObject(Constants.Activity.Requests.confirmed, forKey: Constants.Activity.requestType)
@@ -93,15 +101,23 @@ class PTUtiltiy {
         if user.objectId == User.currentUser()?.objectId {
             return
         }
-        let activityQuery = Activity.query()
-        activityQuery?.whereKey(Constants.Activity.fromUser, equalTo: user)
-        activityQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
-        activityQuery?.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.confirmed)
-        activityQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+        let activityOneQuery = Activity.query()
+        activityOneQuery?.whereKey(Constants.Activity.fromUser, equalTo: user)
+        activityOneQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
+
+        let activityTwoQuery = Activity.query()
+        activityTwoQuery?.whereKey(Constants.Activity.toUser, equalTo: user)
+        activityTwoQuery?.whereKey(Constants.Activity.fromUser, equalTo: User.currentUser()!)
+
+        let activityQuery = PFQuery.orQueryWithSubqueries([activityOneQuery!, activityTwoQuery!])
+        activityQuery.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.confirmed)
+        activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
             let activity = objects?.first as! Activity
+
             activity.deleteInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-                User.currentUser()!.friends.removeObject(user)
-                User.currentUser()?.saveInBackground()
+//                User.currentUser()!.friends.removeObject(user)
+//                User.currentUser()?.saveInBackground()
                 completion(result: success)
             }
 

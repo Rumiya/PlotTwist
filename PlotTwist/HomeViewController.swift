@@ -30,6 +30,10 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     }
 
     func passCloudsByAnimation(){
+        // set clouds position
+        self.cloudsImage.layer.position = CGPoint(x:0 - self.view.bounds.width/2, y:view.bounds.height/3)
+        self.cloudsImage.hidden = false
+        //  self.cloudsStartPoint = self.cloudsImage.layer.position
 
         UIView.animateWithDuration(6, delay: 0,
             options: UIViewAnimationOptions.CurveLinear, animations: {
@@ -40,6 +44,12 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     }
 
     func friendAppearingAnimation(){
+
+        // set friend's air balloon position
+        self.friendButton.layer.position = CGPoint(x: self.view.bounds.width/3, y: self.view.bounds.height/2.5)
+        self.friendStartPoint = self.friendButton.layer.position
+
+        self.friendButton.hidden = false
 
         let path = UIBezierPath()
         path.moveToPoint(CGPoint(x: self.view.bounds.width,y: 239))
@@ -67,21 +77,9 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     // update the home page for a curent visitor / user
     func updateUI() {
 
-        // set clouds position
-        self.cloudsImage.layer.position = CGPoint(x:0 - self.view.bounds.width/2, y:view.bounds.height/3)
-        self.cloudsImage.hidden = false
-      //  self.cloudsStartPoint = self.cloudsImage.layer.position
-
-        // set friend's air balloon position
-        self.friendButton.layer.position = CGPoint(x: self.view.bounds.width/3, y: self.view.bounds.height/2.5)
-        self.friendStartPoint = self.friendButton.layer.position
-
-        self.friendButton.hidden = false
-
-
-
         passCloudsByAnimation()
-        friendAppearingAnimation()
+        self.friendAppearingAnimation()
+
 
         if User.currentUser() != nil {
             let userName = User.currentUser()!.username
@@ -133,16 +131,16 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         friendIncomingQuery?.includeKey(Constants.Activity.toUser)
         friendIncomingQuery?.countObjectsInBackgroundWithBlock({ (counts: Int32, error: NSError?) -> Void in
             // TODO: uncomment this after merge
-            /*
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
-                if counts == 0 {
-                    self.friendButton.hidden = true
-                } else {
-                    self.friendButton.hidden = false
-                }
-            })
-            */
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                if counts == 0 {
+//                    self.friendButton.hidden = true
+//                } else {
+//                    self.friendButton.hidden = false
+//                    self.friendAppearingAnimation()
+//                }
+//            })
+
         })
 
     }
