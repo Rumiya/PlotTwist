@@ -32,7 +32,7 @@ class PTUtiltiy {
             let query = PFInstallation.query()
             query?.whereKey("user", matchesQuery:innerQuery!)
             let data = [
-                "alert" : "\(User.currentUser()!.username) has sent you a friend request!",
+                "alert" : "\(User.currentUser()!.username!) has sent you a friend request!",
                 "badge" : "Increment",
                 "a" : "\(User.currentUser()!.objectId)", // current user's object id
             ]
@@ -64,8 +64,24 @@ class PTUtiltiy {
                 // Not working well right now, not sure why. Also relation is not even being used right now.
 //                User.currentUser()!.friends.addObject(user)
 //                User.currentUser()!.saveInBackground()
+                // Send push notification to user
+                let innerQuery = User.query()
+                innerQuery!.whereKey(Constants.User.objectId, equalTo:user.objectId!)
 
-                completion(result: success)
+                let query = PFInstallation.query()
+                query?.whereKey("user", matchesQuery:innerQuery!)
+                let data = [
+                    "alert" : "\(User.currentUser()!.username!) has accepted your friend request!",
+                    "badge" : "Increment",
+                    "a" : "\(User.currentUser()!.objectId)", // current user's object id
+                ]
+
+                let push = PFPush()
+                push.setQuery(query)
+                push.setData(data)
+                push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    completion(result: success)
+                })
             }
 
         })

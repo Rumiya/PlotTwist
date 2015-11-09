@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A0FACCC1BEC23D4004A9DB9 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FACCB1BEC23D4004A9DB9 /* LandingPageViewController.swift */; };
-		3A0FAD0E1BEFB213004A9DB9 /* PhilTestStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0FAD0D1BEFB213004A9DB9 /* PhilTestStoryboard.storyboard */; };
+		3A0FAD0E1BEFB213004A9DB9 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0FAD0D1BEFB213004A9DB9 /* Friends.storyboard */; };
 		3A0FAD101BEFB2D0004A9DB9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD0F1BEFB2D0004A9DB9 /* FriendsViewController.swift */; };
 		3A0FAD121BEFB326004A9DB9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD111BEFB326004A9DB9 /* FriendTableViewCell.swift */; };
 		3A0FAD141BF0082F004A9DB9 /* FriendButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD131BF0082F004A9DB9 /* FriendButtonDelegate.swift */; };
@@ -82,7 +82,7 @@
 
 /* Begin PBXFileReference section */
 		3A0FACCB1BEC23D4004A9DB9 /* LandingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
-		3A0FAD0D1BEFB213004A9DB9 /* PhilTestStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhilTestStoryboard.storyboard; sourceTree = "<group>"; };
+		3A0FAD0D1BEFB213004A9DB9 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		3A0FAD0F1BEFB2D0004A9DB9 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		3A0FAD111BEFB326004A9DB9 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		3A0FAD131BF0082F004A9DB9 /* FriendButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendButtonDelegate.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
 				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
 				E0E2505D1BE7C3D900E51659 /* Main.storyboard */,
-				3A0FAD0D1BEFB213004A9DB9 /* PhilTestStoryboard.storyboard */,
+				3A0FAD0D1BEFB213004A9DB9 /* Friends.storyboard */,
 				E0E250601BE7C3D900E51659 /* Assets.xcassets */,
 				E0E250621BE7C3D900E51659 /* LaunchScreen.storyboard */,
 			);
@@ -398,7 +398,7 @@
 			files = (
 				E0E250641BE7C3D900E51659 /* LaunchScreen.storyboard in Resources */,
 				E0E250611BE7C3D900E51659 /* Assets.xcassets in Resources */,
-				3A0FAD0E1BEFB213004A9DB9 /* PhilTestStoryboard.storyboard in Resources */,
+				3A0FAD0E1BEFB213004A9DB9 /* Friends.storyboard in Resources */,
 				E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

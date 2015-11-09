@@ -95,7 +95,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                 userProfileButton.hidden = false
 
                 // Called from App Delegate didBecomeActive
-               // getNotificationCount()
+                getNotificationCount()
             }
 
         } else {
