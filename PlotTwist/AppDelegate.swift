@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Story.registerSubclass()
         Page.registerSubclass()
         User.registerSubclass()
-
+       //does this need to be set to uncomment 
         //return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         if application.respondsToSelector("registerUserNotificationSettings:") {
@@ -173,10 +173,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
 
         if let currentInstallation: PFInstallation = PFInstallation.currentInstallation() {
-        if currentInstallation.badge != 0 {
-            currentInstallation.badge = 0
-            currentInstallation.saveInBackground()
-        }
+            if currentInstallation.badge != 0 {
+                currentInstallation.badge = 0
+                currentInstallation.saveInBackground()
+            }
         }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -191,6 +191,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser() != nil {
             let homeVC = window?.rootViewController as! HomeViewController
             homeVC.getNotificationCount()
+        }
+
+        if let currentInstallation: PFInstallation = PFInstallation.currentInstallation() {
+            if currentInstallation.badge != 0 {
+                currentInstallation.badge = 0
+                currentInstallation.saveInBackground()
+            }
         }
 
         FBSDKAppEvents.activateApp()

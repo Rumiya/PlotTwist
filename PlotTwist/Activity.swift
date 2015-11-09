@@ -15,6 +15,7 @@ class Activity: PFObject, PFSubclassing {
     @NSManaged var toUser: User
     @NSManaged var toStory: Story
     @NSManaged var type: String
+    @NSManaged var requestType: String
 
     override class func initialize() {
         struct Static {

@@ -37,10 +37,18 @@ struct Constants {
         static let fromUser = "fromUser"
         static let toUser = "toUser"
         static let toStory = "toStory"
+        static let type = "type"
+        static let requestType = "requestType"
+        struct Requests {
+            static let incoming = "incoming"
+            static let outgoing = "outgoing"
+            static let confirmed = "confirmed"
+            
+        }
 
         struct Type {
             static let vote = "vote"
-            static let follow = "follow"
+            static let friend = "friend"
             static let comment = "comment"
         }
     }
@@ -55,5 +63,13 @@ struct Constants {
         static let authoredStories = "authoredStories"
         static let coAuthoredStories = "coAuthoredStories"
         static let invitedStories = "invitedStories"
+        static let buttonKey = "buttonKey"
+
+        struct ButtonType {
+            static let accepted = "AcceptedButton"
+            static let pending = "PendingButton"
+            static let sendRequest = "SendRequestButton"
+            static let incoming = "IncomingButton"
+        }
     }
 }
