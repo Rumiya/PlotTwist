@@ -12,15 +12,8 @@ import Parse
 class HomeViewController: UIViewController, DecrementNotificationsCountDelegate, FriendListDelegate {
 
     var story = Story()
-<<<<<<< HEAD
-//    var friendStartPoint: CGPoint?
-//    var cloudsEndPoint: CGPoint?
-=======
-    var friendStartPoint: CGPoint?
-    var cloudsEndPoint: CGPoint?
     var storyLastPage: [Page]=[]
 //    var storyLastPage = [Story]()
->>>>>>> abc83947e95da85451126936b16e394c7a4df92b
 
     @IBOutlet weak var userProfileButton: UIButton!
 
