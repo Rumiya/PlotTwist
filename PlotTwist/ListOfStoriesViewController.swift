@@ -70,7 +70,7 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
             let index = self.tableView.indexPathForSelectedRow
 
             let vc = segue.destinationViewController as! ReadStoryViewController
-            vc.story = self.stories![index!.row]
+            vc.selectedStory = self.stories![index!.row]
         }
 
     }
