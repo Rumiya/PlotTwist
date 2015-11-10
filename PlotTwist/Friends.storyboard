@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Csg-Ko-Rc0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Csg-Ko-Rc0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -37,14 +37,14 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WLl-xq-ZrA" id="uCn-bU-QGF">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfc-Ya-40p">
                                                     <rect key="frame" x="66" y="16" width="34" height="28"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pCE-ru-pPt">
@@ -109,14 +109,24 @@
                                     <outlet property="delegate" destination="Csg-Ko-Rc0" id="r0h-tr-BaK"/>
                                 </connections>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLZ-ni-xxm">
-                                <rect key="frame" x="16" y="51" width="37" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLZ-ni-xxm">
+                                <rect key="frame" x="20" y="46" width="40" height="40"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1Q9-86-GU3"/>
-                                    <constraint firstAttribute="width" constant="37" id="Lqo-Fd-NsC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="KbK-1X-nCp"/>
+                                    <constraint firstAttribute="width" constant="40" id="Lqo-Fd-NsC"/>
+                                    <constraint firstAttribute="height" constant="40" id="Qum-Up-vVx"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="vn8-48-hXC"/>
                                 </constraints>
-                                <state key="normal" title="Done"/>
+                                <state key="normal" title="Done" image="arrowLeft"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1Q9-86-GU3"/>
+                                        <exclude reference="KbK-1X-nCp"/>
+                                        <exclude reference="vn8-48-hXC"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="onDoneButtonPressed:" destination="Csg-Ko-Rc0" eventType="touchUpInside" id="YF3-Eg-qqP"/>
                                 </connections>
@@ -139,10 +149,15 @@
                             <constraint firstItem="oFe-Cd-abg" firstAttribute="leading" secondItem="gS2-dY-6T3" secondAttribute="leadingMargin" constant="-20" id="cF0-M7-xg5"/>
                             <constraint firstItem="Kru-bx-sGG" firstAttribute="top" secondItem="oFe-Cd-abg" secondAttribute="bottom" id="nqh-5h-Dk8"/>
                             <constraint firstItem="Kru-bx-sGG" firstAttribute="top" secondItem="cJk-f2-o0H" secondAttribute="bottom" id="oCp-av-gSW"/>
+                            <constraint firstItem="JLZ-ni-xxm" firstAttribute="leading" secondItem="gS2-dY-6T3" secondAttribute="leading" constant="20" id="pNh-Hu-YXM"/>
+                            <constraint firstItem="JLZ-ni-xxm" firstAttribute="top" secondItem="5Ma-mo-f3h" secondAttribute="bottom" constant="26" id="wOO-rm-OuK"/>
                             <constraint firstItem="oFe-Cd-abg" firstAttribute="top" secondItem="JLZ-ni-xxm" secondAttribute="bottom" constant="6" id="zmK-zY-nFZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="6G1-kh-YN6"/>
+                                <exclude reference="HBF-5x-Gv8"/>
+                                <exclude reference="zmK-zY-nFZ"/>
                                 <exclude reference="QP0-9Q-GWa"/>
                                 <exclude reference="oCp-av-gSW"/>
                             </mask>
@@ -160,5 +175,6 @@
     </scenes>
     <resources>
         <image name="SendRequestButton" width="78" height="50"/>
+        <image name="arrowLeft" width="100" height="100"/>
     </resources>
 </document>
