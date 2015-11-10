@@ -124,4 +124,20 @@ class PTUtiltiy {
         })
 
     }
+
+    class func getElapsedTimeFromDate(date: NSDate) -> String {
+        let elapsedTimeRaw = NSDate().timeIntervalSinceDate(date)
+        let elapsedTimeInt = Int(elapsedTimeRaw)
+
+        if elapsedTimeInt >= (60*60*24) {
+            return "Sent " + "\(Int(elapsedTimeInt/(60*60*24)))" + "d" + " ago"
+        } else if elapsedTimeInt >= (60 * 60) {
+            return "Sent " + "\(Int(elapsedTimeInt/(60*60)))" + "h" + " ago"
+        } else if elapsedTimeInt >= 60 {
+            return "Sent " + "\(Int(elapsedTimeInt/60))" + "m" + " ago"
+        } else {
+            return "Sent " + "\(Int(elapsedTimeInt))" + "s" + " ago"
+        }
+
+    }
 }
