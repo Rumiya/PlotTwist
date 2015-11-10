@@ -374,7 +374,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eah-h7-ZS1" id="jre-IX-3Qn">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pFh-RG-eOv">
@@ -455,8 +455,8 @@
                                 <state key="normal" title="Button" image="arrowLeft"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Z8e-nj-Wbi"/>
                                         <exclude reference="J73-wF-k2K"/>
+                                        <exclude reference="Z8e-nj-Wbi"/>
                                     </mask>
                                 </variation>
                                 <connections>
