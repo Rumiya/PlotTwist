@@ -101,33 +101,33 @@ class ReadStoryViewController: UIViewController {
     }
 
     @IBAction func onShareButtonPressed(sender: UIButton) {
+        var storyContent:String = ""
+        for page in pages! {
+            storyContent = storyContent + page.textContent + "\n"
+        }
+        print(storyContent)
+        
+        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(20), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
+        
+        let imageSize: CGRect = CGRectMake(0, 0, self.view.bounds.size.height-100, self.view.bounds.size.width/2)
+        let image  = self.imageFromString(storyContent, attributes: textAttributes, size: imageSize.size)
+        
+        let textToShare = image
+        let objectsToShare = [textToShare]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
+        self.presentViewController(activityVC, animated: true, completion: nil)
+        
+
     }
 
 
-    // Add after merge
-//    @IBAction func onShareButtonPressed(sender: UIButton) {
-//
-//        var storyContent:String = ""
-//
-//        for page in pages! {
-//            storyContent = storyContent + page.textContent + "\n"
-//        }
-//        print(storyContent)
-//        let textToShare = storyContent
-//        let objectsToShare = [textToShare]
-//        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-//        activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
-//        self.presentViewController(activityVC, animated: true, completion: nil)
-//
-//    }
-//
-//    func imageFromString(string: String, attributes: Dictionary, size: CGSize) -> UIImage {
-//    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
-//    [string drawInRect:CGRectMake(0, 0, size.width, size.height) withAttributes:attributes];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
+    func imageFromString(string: String, attributes: [String : AnyObject], size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        string.drawInRect(CGRectMake(0, 0, size.width, size.height), withAttributes: attributes)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 
-//    return image;
-//    }
-
-}
+   }
