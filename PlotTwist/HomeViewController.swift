@@ -59,6 +59,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         
         let anim = CAKeyframeAnimation(keyPath: "position")
 
+
         // set the animations path to our bezier curve
         anim.path = path.CGPath
 
@@ -71,6 +72,21 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         self.friendButton.layer.addAnimation(anim, forKey: "animate position along path")
         //self.friendButton.layer.position = CGPoint(x: 136, y: 373)
 
+       // fadeOutLayerAnimation(self.friendButton.layer, delay: 5.0)
+        
+    }
+
+    func fadeOutLayerAnimation(layer: CALayer!, delay: NSTimeInterval) {
+
+        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeAnimation.fromValue = 1.0
+        fadeAnimation.toValue = 0.0
+        fadeAnimation.duration = 1
+        fadeAnimation.repeatCount = Float(Int.max)
+
+        layer.opacity = 0.5
+        layer.addAnimation(fadeAnimation, forKey: "FadeAnimation")
+        
     }
 
 
@@ -174,6 +190,18 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         })
         
     }
+
+    @IBAction func onFriendButtonPressed(sender: UIButton) {
+        fadeInFriendBalloonAnimation()
+    }
+
+    func fadeInFriendBalloonAnimation() {
+        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.friendButton.layer.opacity = 1.0
+
+            }, completion: nil)
+    }
+
 
     @IBAction func checkUserProfile(sender: UIButton) {
     }

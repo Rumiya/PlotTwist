@@ -121,5 +121,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
     }
 
+    @IBAction func unwindToComposeScreen(segue:UIStoryboardSegue) {
+
+    }
 
 }

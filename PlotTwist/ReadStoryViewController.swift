@@ -16,6 +16,7 @@ class ReadStoryViewController: UIViewController {
     @IBOutlet weak var storyPageView: UIView!
     @IBOutlet weak var authorImage: UIImageView!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
 
     var story: Story?
     var pages: Array<Page>?
@@ -99,5 +100,6 @@ class ReadStoryViewController: UIViewController {
 
     }
 
+    @IBOutlet weak var onShareButtonPressed: UIButton!
 
 }

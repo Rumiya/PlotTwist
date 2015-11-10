@@ -20,6 +20,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var headerLabel: UILabel!
 
+    @IBOutlet weak var sendButton: UIButton!
+
     var isNewStory: Bool?
 
     @IBOutlet weak var tableView: UITableView!
