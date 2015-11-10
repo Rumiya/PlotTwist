@@ -29,23 +29,39 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        users.removeAll()
+        let activityOneQuery = Activity.query()
+        activityOneQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
+
+        let activityTwoQuery = Activity.query()
+        activityTwoQuery?.whereKey(Constants.Activity.fromUser, equalTo: User.currentUser()!)
 
 
-        let query = User.query()
-        query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
+        let activityQuery = PFQuery.orQueryWithSubqueries([activityOneQuery!, activityTwoQuery!])
+        activityQuery.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.confirmed)
+        activityQuery.includeKey(Constants.Activity.toUser)
+        activityQuery.includeKey(Constants.Activity.fromUser)
+        activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            let activities = objects as! [Activity]
 
-        query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.users = objects as! [User]
-                    print(" no error  ")
-                    self.tableView.reloadData()
-                })
+            for activity in activities {
+                if (activity.toUser.objectId != User.currentUser()?.objectId) {
+                    self.users.append(activity.toUser)
+                }
 
-            } else {
-                print("error retrieving")
+                if (activity.fromUser.objectId != User.currentUser()?.objectId) {
+                    self.users.append(activity.fromUser)
+                }
+
+                if (self.users.count == activities.count) {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+                        self.tableView.reloadData()
+                    })
+                }
+
             }
+            
         })
 
         if isNewStory == false {
@@ -97,6 +113,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     func createNewStory(){
         // TODO: Check if user hasn't been selected as well
         // Initialize first page of story
+
         var firstPage: Page!
         let mainAuthor = User.currentUser()!
         var invitedUser: User!

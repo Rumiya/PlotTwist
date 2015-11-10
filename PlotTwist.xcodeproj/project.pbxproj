@@ -194,6 +194,7 @@
 		3A1F8FF11BEB4956008E9671 /* Unused Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E0E250751BE7F37E00E51659 /* StoryDetailViewController.swift */,
 				3A0FACCB1BEC23D4004A9DB9 /* LandingPageViewController.swift */,
 				E0E2507B1BE804AC00E51659 /* ActivityViewController.swift */,
 				E0E250771BE7F48100E51659 /* AddPageViewController.swift */,
@@ -280,7 +281,6 @@
 				3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,
 				E0E250731BE7DE4900E51659 /* ExploreViewController.swift */,
-				E0E250751BE7F37E00E51659 /* StoryDetailViewController.swift */,
 				E0E250791BE7F5A100E51659 /* LibraryViewController.swift */,
 				3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */,
 				E0E250871BE8279D00E51659 /* LoginViewController.swift */,
