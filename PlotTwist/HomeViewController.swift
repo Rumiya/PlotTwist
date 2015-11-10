@@ -12,8 +12,8 @@ import Parse
 class HomeViewController: UIViewController, DecrementNotificationsCountDelegate, FriendListDelegate {
 
     var story = Story()
-    var friendStartPoint: CGPoint?
-    var cloudsEndPoint: CGPoint?
+//    var friendStartPoint: CGPoint?
+//    var cloudsEndPoint: CGPoint?
 
     @IBOutlet weak var userProfileButton: UIButton!
 
@@ -45,15 +45,12 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
     func friendAppearingAnimation(){
 
-        // set friend's air balloon position
-        self.friendButton.layer.position = CGPoint(x: self.view.bounds.width/3, y: self.view.bounds.height/2.5)
-        self.friendStartPoint = self.friendButton.layer.position
-
+        // set unhide friend's air balloon
         self.friendButton.hidden = false
 
         let path = UIBezierPath()
         path.moveToPoint(CGPoint(x: self.view.bounds.width,y: 239))
-        path.addCurveToPoint(CGPoint(x: 301, y: 239), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
+        path.addCurveToPoint(CGPoint(x: 368, y: 219), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
 
        // path.moveToPoint(self.friendStartPoint!)
         
@@ -62,12 +59,14 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         // set the animations path to our bezier curve
         anim.path = path.CGPath
 
-        anim.repeatCount = 1
+        //anim.repeatCount = 1
         anim.duration = 5.5
+        anim.fillMode = kCAFillModeForwards
         anim.removedOnCompletion = false
 
         // we add the animation to the squares 'layer' property
         self.friendButton.layer.addAnimation(anim, forKey: "animate position along path")
+        self.friendButton.layer.position = CGPointMake(368, 219)
 
 
        // fadeOutLayerAnimation(self.friendButton.layer, beginTime: 5.0)
@@ -93,7 +92,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     func updateUI() {
 
         passCloudsByAnimation()
-        self.friendAppearingAnimation()
+        //self.friendAppearingAnimation()
 
 
         if User.currentUser() != nil {
@@ -150,14 +149,14 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         friendIncomingQuery?.countObjectsInBackgroundWithBlock({ (counts: Int32, error: NSError?) -> Void in
             // TODO: uncomment this after merge
 
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                if counts == 0 {
-//                    self.friendButton.hidden = true
-//                } else {
-//                    self.friendButton.hidden = false
-//                    self.friendAppearingAnimation()
-//                }
-//            })
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if counts == 0 {
+                    self.friendButton.hidden = true
+                } else {
+                    self.friendButton.hidden = false
+                    self.friendAppearingAnimation()
+                }
+            })
 
         })
 

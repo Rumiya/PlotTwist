@@ -54,6 +54,7 @@
 		6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */; };
 		E0A4BA371BF26435001D5581 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA361BF26435001D5581 /* InboxViewController.swift */; };
 		E0A4BA391BF26450001D5581 /* InboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */; };
+		E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */; };
 		E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250591BE7C3D900E51659 /* AppDelegate.swift */; };
 		E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E2505D1BE7C3D900E51659 /* Main.storyboard */; };
 		E0E250611BE7C3D900E51659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E250601BE7C3D900E51659 /* Assets.xcassets */; };
@@ -136,6 +137,7 @@
 		6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Documents/FacebookSDKs-iOS-20151026/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		E0A4BA361BF26435001D5581 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewCell.swift; sourceTree = "<group>"; };
+		E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
 		E0E250561BE7C3D900E51659 /* PlotTwist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlotTwist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E250591BE7C3D900E51659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0E2505E1BE7C3D900E51659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
 				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
 				E0E2505D1BE7C3D900E51659 /* Main.storyboard */,
+				E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */,
 				3A0FAD0D1BEFB213004A9DB9 /* Friends.storyboard */,
 				3A0FAD191BF1A5B8004A9DB9 /* Outbox.storyboard */,
 				E0E250601BE7C3D900E51659 /* Assets.xcassets */,
@@ -420,6 +423,7 @@
 				E0E250641BE7C3D900E51659 /* LaunchScreen.storyboard in Resources */,
 				E0E250611BE7C3D900E51659 /* Assets.xcassets in Resources */,
 				3A0FAD0E1BEFB213004A9DB9 /* Friends.storyboard in Resources */,
+				E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */,
 				3A0FAD1A1BF1A5B8004A9DB9 /* Outbox.storyboard in Resources */,
 				E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */,
 			);

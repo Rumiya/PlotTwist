@@ -17,22 +17,26 @@ class ReadStoryViewController: UIViewController {
     @IBOutlet weak var authorImage: UIImageView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
 
     var story: Story?
     var pages: Array<Page>?
 
     var pageNum:Int = 0
+    var pagesCount:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.storyTitleLabel.text = story?.storyTitle
+        self.previousButton.enabled = false
 
         pages = story?.pages
+
+        pagesCount = (pages?.count)!
 
         let currentPage = pages![0]
 
         self.getTextViewContent(currentPage)
-        ++pageNum
 
     }
 
@@ -68,6 +72,9 @@ class ReadStoryViewController: UIViewController {
 
     @IBAction func onNextButtonPressed(sender: UIButton) {
 
+        // increment the value of a page index
+        ++self.pageNum
+
         if self.pageNum < pages?.count {
 
         let transitionOptions = UIViewAnimationOptions.TransitionCurlUp
@@ -88,15 +95,48 @@ class ReadStoryViewController: UIViewController {
 
                 // any code entered here will be applied once the animation has completed
 
-                // increment the value of a page index
-                ++self.pageNum
+                self.previousButton.enabled = true
         })
 
-        } else {
-
-            self.nextButton.enabled = false
-
         }
+
+        if self.pageNum == self.pagesCount || self.pageNum == self.pagesCount - 1{
+            self.nextButton.enabled = false
+        }
+
+    }
+
+    @IBAction func onPreviousButtonPressed(sender: UIButton) {
+
+        --self.pageNum
+        if self.pageNum >= 0 {
+
+            let transitionOptions = UIViewAnimationOptions.TransitionCurlDown
+            UIView.transitionWithView(self.storyPageView, duration: 1.0, options: transitionOptions, animations: {
+
+                // update the story page content
+                self.storyContentTextView.text = ""
+
+                let currentPage = self.pages![self.pageNum]
+                self.getTextViewContent(currentPage)
+
+                self.storyContentTextView.text = currentPage.textContent
+
+                }, completion: { finished in
+                    self.nextButton.enabled = true
+            })
+            
+        } else {
+            
+            self.previousButton.enabled = false
+            
+        }
+
+        if self.pageNum == 0 || self.pageNum == -1{
+            self.previousButton.enabled = false
+        }
+
+
 
     }
 
