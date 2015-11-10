@@ -448,21 +448,6 @@
                                     <segue destination="dji-ey-dkN" kind="show" id="lbH-1T-e4B"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vu-m7-dcg">
-                                <rect key="frame" x="255" y="372" width="90" height="38"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="ppM-WV-GjZ"/>
-                                    <constraint firstAttribute="width" constant="90" id="z17-6K-sbo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="25"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onNotificationButtonPressed:" destination="3Iz-Kd-wjI" eventType="touchUpInside" id="ysc-3S-bfy"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clouds" translatesAutoresizingMaskIntoConstraints="NO" id="WxA-eK-nwd">
                                 <rect key="frame" x="400" y="133" width="237" height="182"/>
                                 <animations/>
@@ -480,6 +465,20 @@
                                     <segue destination="c8i-gF-7vA" kind="presentation" identifier="ToFriendsSegue" id="oPi-DB-OxU"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vu-m7-dcg">
+                                <rect key="frame" x="275" y="373" width="60" height="40"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ppM-WV-GjZ"/>
+                                    <constraint firstAttribute="width" constant="60" id="z17-6K-sbo"/>
+                                </constraints>
+                                <state key="normal" image="envelope">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onNotificationButtonPressed:" destination="3Iz-Kd-wjI" eventType="touchUpInside" id="ysc-3S-bfy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.76078431369999999" green="0.91372549020000005" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -488,8 +487,8 @@
                             <constraint firstItem="IsI-qB-oMW" firstAttribute="leading" secondItem="mcR-4h-ite" secondAttribute="trailing" constant="-22" id="Zgj-16-545"/>
                             <constraint firstItem="mcR-4h-ite" firstAttribute="centerX" secondItem="tTK-iF-rbH" secondAttribute="centerX" id="aCJ-DP-vX2"/>
                             <constraint firstItem="HzG-iC-K8P" firstAttribute="centerX" secondItem="tTK-iF-rbH" secondAttribute="centerX" id="aaD-u9-FYw"/>
-                            <constraint firstItem="9vu-m7-dcg" firstAttribute="top" secondItem="HzG-iC-K8P" secondAttribute="bottom" constant="151" id="br0-5h-wtH"/>
-                            <constraint firstItem="9vu-m7-dcg" firstAttribute="centerX" secondItem="tTK-iF-rbH" secondAttribute="centerX" id="gL3-fH-aVy"/>
+                            <constraint firstItem="9vu-m7-dcg" firstAttribute="top" secondItem="HzG-iC-K8P" secondAttribute="bottom" constant="152" id="br0-5h-wtH"/>
+                            <constraint firstItem="9vu-m7-dcg" firstAttribute="centerX" secondItem="tTK-iF-rbH" secondAttribute="centerX" constant="5" id="gL3-fH-aVy"/>
                             <constraint firstItem="mcR-4h-ite" firstAttribute="top" secondItem="swO-XC-bY6" secondAttribute="bottom" constant="15" id="gMd-ne-qUv"/>
                             <constraint firstItem="LXH-1o-qFq" firstAttribute="top" secondItem="Cg6-pG-SIH" secondAttribute="bottom" constant="50" id="oCa-ZR-Ud3"/>
                             <constraint firstItem="Cg6-pG-SIH" firstAttribute="leading" secondItem="KR3-7h-FMC" secondAttribute="trailing" constant="70" id="ret-Sg-Rzt"/>
@@ -1164,13 +1163,6 @@
                                     <outlet property="delegate" destination="mLg-or-aKC" id="JDx-wf-oe9"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqv-jD-QcN">
-                                <rect key="frame" x="525" y="51" width="60" height="30"/>
-                                <state key="normal" title="Friends"/>
-                                <connections>
-                                    <segue destination="c8i-gF-7vA" kind="presentation" identifier="ToFriendsSegue" id="I5a-dk-jcy"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftk-ij-2HP">
                                 <rect key="frame" x="25" y="46" width="40" height="40"/>
                                 <constraints>
@@ -1198,6 +1190,19 @@
                                     <segue destination="xUH-YF-yaj" kind="unwind" unwindAction="unwindToComposeScreen:" id="EDe-O7-a2B"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqv-jD-QcN">
+                                <rect key="frame" x="535" y="46" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="02v-kG-sJF"/>
+                                    <constraint firstAttribute="height" constant="40" id="l03-bV-s5a"/>
+                                </constraints>
+                                <state key="normal" image="gear">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
+                                <connections>
+                                    <segue destination="c8i-gF-7vA" kind="presentation" identifier="ToFriendsSegue" id="I5a-dk-jcy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.86043043436285616" green="0.96674551862198388" blue="0.80779907541431462" alpha="1" colorSpace="calibratedRGB"/>
@@ -1210,9 +1215,11 @@
                             <constraint firstAttribute="trailing" secondItem="Lx8-mP-Ulj" secondAttribute="trailing" id="X3N-Pl-PBY"/>
                             <constraint firstItem="Ftk-ij-2HP" firstAttribute="top" secondItem="MCq-oS-0Dl" secondAttribute="bottom" constant="26" id="Y3K-uK-LkW"/>
                             <constraint firstItem="Rdn-aE-mAs" firstAttribute="top" secondItem="31s-qV-hl3" secondAttribute="bottom" constant="50" id="csl-Vf-fzQ"/>
+                            <constraint firstAttribute="trailing" secondItem="iqv-jD-QcN" secondAttribute="trailing" constant="25" id="f3N-Qi-bOy"/>
                             <constraint firstItem="Lx8-mP-Ulj" firstAttribute="leading" secondItem="Hf9-sb-r8c" secondAttribute="leading" id="lde-b1-yCb"/>
                             <constraint firstItem="ZIn-ea-nWC" firstAttribute="top" secondItem="Lx8-mP-Ulj" secondAttribute="bottom" id="pjt-7P-JJB"/>
                             <constraint firstItem="31s-qV-hl3" firstAttribute="centerX" secondItem="Hf9-sb-r8c" secondAttribute="centerX" id="rPM-4d-zCQ"/>
+                            <constraint firstItem="iqv-jD-QcN" firstAttribute="top" secondItem="MCq-oS-0Dl" secondAttribute="bottom" constant="26" id="zic-cQ-IUl"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2362,14 +2369,16 @@
         <image name="bar" width="300" height="20"/>
         <image name="close" width="64" height="64"/>
         <image name="clouds" width="600" height="461"/>
+        <image name="envelope" width="60" height="40"/>
         <image name="facebook" width="64" height="64"/>
+        <image name="gear" width="100" height="100"/>
         <image name="glasses" width="100" height="100"/>
         <image name="history" width="100" height="100"/>
         <image name="paperPlane" width="100" height="100"/>
         <image name="pencil" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="oPi-DB-OxU"/>
         <segue reference="ig7-xR-53y"/>
-        <segue reference="I5a-dk-jcy"/>
     </inferredMetricsTieBreakers>
 </document>

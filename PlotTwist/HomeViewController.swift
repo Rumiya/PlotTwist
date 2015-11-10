@@ -55,33 +55,32 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         path.moveToPoint(CGPoint(x: self.view.bounds.width,y: 239))
         path.addCurveToPoint(CGPoint(x: 301, y: 239), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
 
-        path.moveToPoint(self.friendStartPoint!)
+       // path.moveToPoint(self.friendStartPoint!)
         
         let anim = CAKeyframeAnimation(keyPath: "position")
-
 
         // set the animations path to our bezier curve
         anim.path = path.CGPath
 
         anim.repeatCount = 1
-        anim.duration = 5.0
+        anim.duration = 5.5
         anim.removedOnCompletion = false
-
 
         // we add the animation to the squares 'layer' property
         self.friendButton.layer.addAnimation(anim, forKey: "animate position along path")
-        //self.friendButton.layer.position = CGPoint(x: 136, y: 373)
 
-       // fadeOutLayerAnimation(self.friendButton.layer, delay: 5.0)
+
+       // fadeOutLayerAnimation(self.friendButton.layer, beginTime: 5.0)
         
     }
 
-    func fadeOutLayerAnimation(layer: CALayer!, delay: NSTimeInterval) {
+    func fadeOutLayerAnimation(layer: CALayer!, beginTime: NSTimeInterval) {
 
         let fadeAnimation = CABasicAnimation(keyPath: "opacity")
         fadeAnimation.fromValue = 1.0
         fadeAnimation.toValue = 0.0
-        fadeAnimation.duration = 1
+        fadeAnimation.duration = 2
+        fadeAnimation.beginTime = beginTime
         fadeAnimation.repeatCount = Float(Int.max)
 
         layer.opacity = 0.5
@@ -134,7 +133,10 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                     self.notificationButton.hidden = true
                 } else {
                     self.notificationButton.hidden = false
-                    self.notificationButton.setTitle("\(counts)", forState: .Normal)
+                    self.fadeOutLayerAnimation(self.notificationButton.layer, beginTime: 4.0)
+
+                    // Notification Counts are replaced with the envelope image
+                    //self.notificationButton.setTitle("\(counts)", forState: .Normal)
                 }
             })
         })
