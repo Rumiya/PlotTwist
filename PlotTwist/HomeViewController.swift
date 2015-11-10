@@ -151,7 +151,6 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
     func didAcceptFriend() {
         getNotificationCount()
-        dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func onNotificationButtonPressed(sender: UIButton) {

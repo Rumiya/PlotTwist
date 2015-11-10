@@ -165,6 +165,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBAction func onDoneButtonPressed(sender: UIButton) {
         self.delegate?.didAcceptFriend()
+        dismissViewControllerAnimated(true, completion: nil)
     }
     // MARK: Search Bar Helper and Delegate Methods
 

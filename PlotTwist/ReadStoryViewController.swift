@@ -100,4 +100,33 @@ class ReadStoryViewController: UIViewController {
     }
 
 
+
+
+
+    // Add after merge
+//    @IBAction func onShareButtonPressed(sender: UIButton) {
+//
+//        var storyContent:String = ""
+//
+//        for page in pages! {
+//            storyContent = storyContent + page.textContent + "\n"
+//        }
+//        print(storyContent)
+//        let textToShare = storyContent
+//        let objectsToShare = [textToShare]
+//        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+//        activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
+//        self.presentViewController(activityVC, animated: true, completion: nil)
+//
+//    }
+//
+//    func imageFromString(string: String, attributes: Dictionary, size: CGSize) -> UIImage {
+//    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+//    [string drawInRect:CGRectMake(0, 0, size.width, size.height) withAttributes:attributes];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+
+//    return image;
+//    }
+
 }
