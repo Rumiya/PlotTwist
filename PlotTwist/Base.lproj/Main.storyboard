@@ -899,6 +899,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-RC-r1f">
                                         <rect key="frame" x="529" y="6" width="46" height="30"/>
                                         <state key="normal" title="Share"/>
+                                        <connections>
+                                            <action selector="onShareButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="L9P-e6-yuU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>
@@ -944,7 +947,6 @@
                     <connections>
                         <outlet property="authorImage" destination="LFr-zY-JlT" id="XAj-2a-2wk"/>
                         <outlet property="nextButton" destination="TUH-QK-nVc" id="moy-vV-qLR"/>
-                        <outlet property="onShareButtonPressed" destination="Zo1-RC-r1f" id="WEQ-a9-EQv"/>
                         <outlet property="shareButton" destination="Zo1-RC-r1f" id="iHj-N5-M53"/>
                         <outlet property="storyContentTextView" destination="Vch-gw-ZMi" id="KX3-wc-epj"/>
                         <outlet property="storyPageView" destination="4UA-cA-jDF" id="2kc-cU-lse"/>

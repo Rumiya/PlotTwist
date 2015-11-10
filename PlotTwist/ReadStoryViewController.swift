@@ -100,9 +100,8 @@ class ReadStoryViewController: UIViewController {
 
     }
 
-    @IBOutlet weak var onShareButtonPressed: UIButton!
-
-
+    @IBAction func onShareButtonPressed(sender: UIButton) {
+    }
 
 
     // Add after merge
