@@ -66,18 +66,17 @@ class SignUpViewController: UIViewController {
 
                 } else {
                     let alert = UIAlertController(title: "Success", message: "Signed Up", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) -> Void in
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                            let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+                            UIApplication.sharedApplication().keyWindow!.rootViewController = viewController;
+                            self.presentViewController(viewController, animated: true, completion: nil)
+
+                        })
+                    }))
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
-
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
-                        UIApplication.sharedApplication().keyWindow!.rootViewController = viewController;
-                        self.presentViewController(viewController, animated: true, completion: nil)
-
-
-                       
-                    })
                 }
             })
         }

@@ -19,7 +19,7 @@ class ReadStoryViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
 
-    var story: Story?
+    var selectedStory: Story?
     var pages: Array<Page>?
 
     var pageNum:Int = 0
@@ -27,10 +27,10 @@ class ReadStoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.storyTitleLabel.text = story?.storyTitle
+        self.storyTitleLabel.text = selectedStory?.storyTitle
         self.previousButton.enabled = false
 
-        pages = story?.pages
+        pages = selectedStory?.pages
 
         pagesCount = (pages?.count)!
 
