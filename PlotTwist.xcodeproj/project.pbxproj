@@ -47,6 +47,8 @@
 		3AF2457F1BE8824600832B30 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF2457E1BE8824600832B30 /* libstdc++.6.0.9.tbd */; };
 		3AF245811BE8827A00832B30 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */; };
 		6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */; };
+		E0A4BA331BF25A2D001D5581 /* InboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA321BF25A2D001D5581 /* InboxTableViewCell.swift */; };
+		E0A4BA351BF25A4E001D5581 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA341BF25A4E001D5581 /* InboxViewController.swift */; };
 		E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250591BE7C3D900E51659 /* AppDelegate.swift */; };
 		E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E2505D1BE7C3D900E51659 /* Main.storyboard */; };
 		E0E250611BE7C3D900E51659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E250601BE7C3D900E51659 /* Assets.xcassets */; };
@@ -122,6 +124,8 @@
 		3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		3AF245841BE9317E00832B30 /* PlotTwist-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlotTwist-Bridging-Header.h"; sourceTree = "<group>"; };
 		6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Documents/FacebookSDKs-iOS-20151026/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		E0A4BA321BF25A2D001D5581 /* InboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InboxTableViewCell.swift; path = ../InboxTableViewCell.swift; sourceTree = "<group>"; };
+		E0A4BA341BF25A4E001D5581 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		E0E250561BE7C3D900E51659 /* PlotTwist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlotTwist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E250591BE7C3D900E51659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0E2505E1BE7C3D900E51659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 				E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */,
 				E0E250A91BF0309800E51659 /* ListOfStoriesTableViewCell.swift */,
 				E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */,
+				E0A4BA341BF25A4E001D5581 /* InboxViewController.swift */,
+				E0A4BA321BF25A2D001D5581 /* InboxTableViewCell.swift */,
 				E0E2506F1BE7CAC500E51659 /* MyStoriesViewController.swift */,
 				3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */,
 				E0E250711BE7CAE900E51659 /* AddStoryViewController.swift */,
@@ -442,6 +448,7 @@
 				E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */,
 				E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */,
 				3ADE58B61BE9BAE5003D6D74 /* TestCode.swift in Sources */,
+				E0A4BA351BF25A4E001D5581 /* InboxViewController.swift in Sources */,
 				3A1F8FF01BEB1398008E9671 /* CreateStoryViewController.swift in Sources */,
 				E0E250741BE7DE4900E51659 /* ExploreViewController.swift in Sources */,
 				3A0FAD141BF0082F004A9DB9 /* FriendButtonDelegate.swift in Sources */,
@@ -462,6 +469,7 @@
 				3A0FAD121BEFB326004A9DB9 /* FriendTableViewCell.swift in Sources */,
 				3A0FAD181BF1246A004A9DB9 /* FriendListDelegate.swift in Sources */,
 				3A1F8FEC1BEAC03F008E9671 /* LibraryCollectionViewCell.swift in Sources */,
+				E0A4BA331BF25A2D001D5581 /* InboxTableViewCell.swift in Sources */,
 				3AF2457A1BE7E09B00832B30 /* Activity.swift in Sources */,
 				3A1F8FEA1BEA63EC008E9671 /* DeleteStoryDelegate.swift in Sources */,
 				3AF245781BE7DFC900832B30 /* User.swift in Sources */,
