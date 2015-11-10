@@ -12,8 +12,15 @@ import Parse
 class HomeViewController: UIViewController, DecrementNotificationsCountDelegate, FriendListDelegate {
 
     var story = Story()
+<<<<<<< HEAD
 //    var friendStartPoint: CGPoint?
 //    var cloudsEndPoint: CGPoint?
+=======
+    var friendStartPoint: CGPoint?
+    var cloudsEndPoint: CGPoint?
+    var storyLastPage: [Page]=[]
+//    var storyLastPage = [Story]()
+>>>>>>> abc83947e95da85451126936b16e394c7a4df92b
 
     @IBOutlet weak var userProfileButton: UIButton!
 
@@ -180,14 +187,40 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
         storyQuery?.whereKey(Constants.Story.isPublished, equalTo: false)
         storyQuery?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
+        storyQuery?.includeKey(Constants.Story.pages)
 
+//        storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+//            if objects != nil {
+//                self.story = objects!.first as! Story
+//                self.performSegueWithIdentifier("ToNewPageSegue", sender: sender)
+//                
+//            }
+//
+//        })
+        
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if objects != nil {
-                self.story = objects!.first as! Story
+                
+                let stories = objects as! [Story]
+                for object in stories {
+                    
+                    
+                    self.storyLastPage.append(object.pages.last!)
+                    
+                }
+                
+                if self.storyLastPage.count == stories.count {
+                  
                 self.performSegueWithIdentifier("ToNewPageSegue", sender: sender)
+                   
+                }
+                
+ 
+                
             }
-
+            
         })
+        
         
     }
 
@@ -218,8 +251,9 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ToNewPageSegue"{
-            let vc = segue.destinationViewController as! ComposeViewController
-            vc.story = story
+            let vc = segue.destinationViewController as! InboxViewController
+          vc.incomingStoryPageArray = self.storyLastPage
+           
             vc.isNewStory = false
             vc.homeVC = self
 

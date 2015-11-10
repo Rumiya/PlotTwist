@@ -33,7 +33,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             titleTextField.hidden = false
 
         } else {
-            getPreviousPageContent()
+//            getPreviousPageContent()
+            
             previousContentTextView.hidden = false
             titleTextField.hidden = true
             headerLabel.text = story?.storyTitle
@@ -42,7 +43,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
 
     //Mark Query
-
+/*
     func getPreviousPageContent() {
         let query = Story.query()
         query?.includeKey(Constants.Story.pages)
@@ -56,7 +57,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.previousContentTextView.text = recentPage.textContent
         })
     }
-
+*/
 
     //MARK - Text First Responder
 

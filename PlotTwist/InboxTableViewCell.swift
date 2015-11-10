@@ -15,6 +15,8 @@ class InboxTableViewCell: UITableViewCell {
     @IBOutlet weak var previousContent: UILabel!
     @IBOutlet weak var dateCreatedLabel: UILabel!
 
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
