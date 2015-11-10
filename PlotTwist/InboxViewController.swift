@@ -8,8 +8,15 @@
 
 import UIKit
 
+
+
 class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
+    var story: Story?
+    var isNewStory: Bool?
+    var homeVC: HomeViewController!
+    
+     var incomingStoryPageArray: [Page] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +28,9 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        
+        return incomingStoryPageArray.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -43,20 +52,69 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cellBGView.backgroundColor = cell.backgroundColor
         cell.selectedBackgroundView = cellBGView
         
+        
+        //copied code
+        
+        let page: Page = self.incomingStoryPageArray[indexPath.row]
+   
+        do {
+            try page.author.fetchIfNeeded()
+            cell.authorLabel.text =  page.author.username
+            
+            let usernameImage = getUsernameFirstLetterImagename(page.author.username!)
+            
+            if ((UIImage(named:usernameImage)) != nil){
+                
+                cell.authorImage.image = UIImage(named:usernameImage)
+            }
+            
+        } catch _ {
+            print("There was an error")
+        }
+//        if (page.author.username != nil) {
+//             cell.authorLabel.text = page.author.username
+//        }
+//       
+        
+        cell.previousContent.text = page.textContent
+        
+     
+        
+  
         return cell
     }
     
 
+//add a tableView outlet
+    
+    @IBOutlet weak var tableView: UITableView!
     
 
-    /*
+   
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     
+        
+        if segue.identifier == "ToComposePageSegue" {
+            let vc = segue.destinationViewController as! ComposeViewController
+           
+            let indexPath = tableView.indexPathForSelectedRow
+            
+       let page: Page = incomingStoryPageArray[indexPath!.row]
+             vc.titleTextField.text = page.story.storyTitle
+           
+            vc.previousContentTextView.text = page.textContent
+            vc.isNewStory = isNewStory
+            vc.story = page.story
+            vc.homeVC = homeVC
+            
+ 
+        }
+        
+        
     }
-    */
+    
 
 }
