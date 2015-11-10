@@ -12,6 +12,9 @@ import UIKit
 
 class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
+    //add a tableView outlet
+    @IBOutlet weak var tableView: UITableView!
+    
     var story: Story?
     var isNewStory: Bool?
     var homeVC: HomeViewController!
@@ -85,10 +88,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
 
-//add a tableView outlet
-    
-    @IBOutlet weak var tableView: UITableView!
-    
+
 
    
     // MARK: - Navigation
