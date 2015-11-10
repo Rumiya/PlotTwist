@@ -42,6 +42,7 @@ class OutboxViewController: UIViewController, UITableViewDataSource, UITableView
 
                 if count == allStories.count {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.outgoingStories.sortInPlace({ $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedAscending })
                         self.tableView.reloadData()
                     })
                 }

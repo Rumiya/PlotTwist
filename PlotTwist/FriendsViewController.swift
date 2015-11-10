@@ -17,11 +17,10 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var delegate: FriendListDelegate?
 
     var users: [User] = []
-    var buttonKeys: [String] = []
     var filteredUsers: [User] = []
-    var filteredButtonKeys: [String] = []
     var activityItems: [Activity] = []
     var searchActive:Bool = false
+    var buttonTypeForUser = [User:String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +31,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func queryUsers() {
 
-        buttonKeys.removeAll()
+        buttonTypeForUser.removeAll()
         users.removeAll()
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
@@ -62,45 +61,34 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                             switch activity.requestType {
                             case Constants.Activity.Requests.confirmed:
-                                self.buttonKeys.append(Constants.User.ButtonType.accepted)
+                                self.buttonTypeForUser[user] = Constants.User.ButtonType.accepted
                             case Constants.Activity.Requests.outgoing:
                                 if activity.toUser == User.currentUser()!{
-                                    self.buttonKeys.append(Constants.User.ButtonType.incoming)
+                                    self.buttonTypeForUser[user] = Constants.User.ButtonType.incoming
                                 } else {
-                                    self.buttonKeys.append(Constants.User.ButtonType.pending)
+                                    self.buttonTypeForUser[user] = Constants.User.ButtonType.pending
                                 }
                             default:
-                                self.buttonKeys.append(Constants.User.ButtonType.sendRequest)
+                                self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
                             }
 
                         } else {
-                            self.buttonKeys.append(Constants.User.ButtonType.sendRequest)
+                            self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
                         }
 
                         self.users.append(user)
 
                         if (self.users.count == tempUsers.count) {
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-
                                 self.tableView.reloadData()
                             })
                         }
                     }
-
-
-
                 }
-
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    self.tableView.reloadData()
-//                })
-
-
             } else {
                 print("error retrieving")
             }
         })
-
     }
 
     // MARK: Friend Button Delegate Methods
@@ -118,11 +106,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
                     button.enabled = true
-                    self.buttonKeys[indexPath.row] = Constants.User.ButtonType.pending
+                    self.buttonTypeForUser[user] = Constants.User.ButtonType.pending
                     self.tableView.reloadData()
                 })
-
-
             }
         } else if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.accepted)) {
             let alertController = UIAlertController(title: "Remove Friend", message: "Are you sure?", preferredStyle: .Alert)
@@ -136,7 +122,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
                         button.enabled = true
-                        self.buttonKeys[indexPath.row] = Constants.User.ButtonType.sendRequest
+                        self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
                         self.tableView.reloadData()
                     })
                 }
@@ -154,13 +140,11 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
                     button.enabled = true
-                    self.buttonKeys[indexPath.row] = Constants.User.ButtonType.accepted
+                    self.buttonTypeForUser[user] = Constants.User.ButtonType.accepted
                     self.tableView.reloadData()
                 })
             })
         }
-
-
     }
 
     @IBAction func onDoneButtonPressed(sender: UIButton) {
@@ -207,19 +191,17 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.delegate = self
 
         if (searchActive) {
-
             cell.usernameLabel?.text = filteredUsers[indexPath.row].username
-            if filteredButtonKeys.count > 0 {
-                cell.friendButton.setBackgroundImage(UIImage(named: filteredButtonKeys[indexPath.row]), forState: .Normal)
+            if buttonTypeForUser.count > 0 {
+                cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[filteredUsers[indexPath.row]]!), forState: .Normal)
             }
 
         } else {
             cell.usernameLabel?.text = users[indexPath.row].username
-            if buttonKeys.count > 0 {
+            if buttonTypeForUser.count > 0 {
 
-            cell.friendButton.setBackgroundImage(UIImage(named: buttonKeys[indexPath.row]), forState: .Normal)
+                cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[users[indexPath.row]]!), forState: .Normal)
             }
-
         }
 
         return cell
