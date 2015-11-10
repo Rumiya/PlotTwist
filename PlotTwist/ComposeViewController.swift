@@ -67,6 +67,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+      
+        
+        
         titleTextField.resignFirstResponder()
         return true
     }
@@ -75,6 +78,45 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         contentTextView.text = ""
     }
 
+//first option
+/*
+    func textView(aTextView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let newTextLength: Int = aTextView.text.characters.count - range.length + text.characters.count
+        if newTextLength > 160 {
+            return false
+        }
+//        countLabel.text = "\(newTextLength)"
+        return true
+    }
+*/
+    
+    
+//second option
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if (range.length + range.location >  textField.text?.characters.count)
+        {
+           
+          
+            
+            return false;
+        }
+        
+        let newLength = (textField.text?.characters.count)! + string.characters.count - range.length
+        
+        if newLength == 25 {
+            let alertController = UIAlertController(title: "Max Character", message: "Title must be less than 25 characters", preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(defaultAction)
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        return newLength <= 25
+        
+    }
+    
+    
+    
     //MARK - segue
 
     func presentEmptyFieldAlertController() -> Void {
