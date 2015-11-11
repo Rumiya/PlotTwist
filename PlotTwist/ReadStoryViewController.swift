@@ -149,18 +149,30 @@ class ReadStoryViewController: UIViewController {
     }
     
     @IBAction func onShareButtonPressed(sender: UIButton) {
-        var storyContent:String = ""
+       
+        
+        
+        var storyContent:String =  "\n" + "      Title: " +  (pages?.first?.story.storyTitle)! + "\n"
+        
         for page in pages! {
-            storyContent = storyContent + "\n" + page.textContent + "\n"
+       
+            page.author.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error:NSError?) -> Void in
+       
+                
+                    let storyAuthour = page.author.username! + ":  "
+                
+                   storyContent = storyContent + "\n" + storyAuthour.capitalizedString + page.textContent + "\n"
+            })
+    
         }
         print(storyContent)
         
-        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(20), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: self.UIColorFromRGB(0x209624)]
+        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: self.UIColorFromRGB(0xb6ebe3)]
+//
+//   let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
         
-//       let imageSize: CGRect = CGRectMake(0, 0, self.storyContentTextView.frame.size.height, self.storyContentTextView.frame.size.height)
         
-        
-  let imageSize: CGRect = CGRectMake(0, 0, self.storyContentTextView.bounds.size.width, self.storyContentTextView.bounds.size.height+100)
+  let imageSize: CGRect = CGRectMake(0, 0, self.storyContentTextView.bounds.size.width, self.storyContentTextView.bounds.size.height+70)
         let image  = self.imageFromString(storyContent, attributes: textAttributes, size: imageSize.size)
         
         let textToShare = image
@@ -175,10 +187,11 @@ class ReadStoryViewController: UIViewController {
 
     func imageFromString(string: String, attributes: [String : AnyObject], size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        string.drawInRect(CGRectMake(0, 0, size.width, size.height), withAttributes: attributes)
+        string.drawInRect(CGRectMake(0, +35, size.width, size.height), withAttributes: attributes)
         
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         return image
     }
 
