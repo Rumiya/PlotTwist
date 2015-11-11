@@ -2123,6 +2123,14 @@
             </objects>
             <point key="canvasLocation" x="2097" y="1725"/>
         </scene>
+        <!--Login-->
+        <scene sceneID="Xlp-WS-94P">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="cDO-6C-J6E" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hse-4c-Wje" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1785" y="2086"/>
+        </scene>
         <!--Reset Password View Controller-->
         <scene sceneID="Sy0-bx-Fou">
             <objects>
@@ -2238,7 +2246,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IV6-4S-AmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HEb-DB-gsJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1569" y="-386"/>
+            <point key="canvasLocation" x="1409" y="-386"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="mCC-On-LcV">
@@ -2429,7 +2437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBA-Sm-hgo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2239" y="-436"/>
+            <point key="canvasLocation" x="2116" y="-386"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="lIa-ZT-Znv">
@@ -2565,7 +2573,7 @@
         <image name="share" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c9V-mP-vPx"/>
-        <segue reference="wFo-2p-kIR"/>
+        <segue reference="oPi-DB-OxU"/>
+        <segue reference="ig7-xR-53y"/>
     </inferredMetricsTieBreakers>
 </document>
