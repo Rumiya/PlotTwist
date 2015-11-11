@@ -74,5 +74,56 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
         }
 
     }
+    
+//added swipe to delete table cell
+    
+      func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            
+            let user = stories![indexPath.row].mainAuthor as User
+            
+            
+            
+            if user.objectId == User.currentUser()?.objectId {
+            
+            let objectToDel: PFObject = self.stories![indexPath.row]
+            
+            objectToDel.deleteInBackgroundWithBlock({ (succeeded: Bool, error:NSError?) -> Void in
+                
+                let alertController = UIAlertController(title: "Delete", message: "The story was deleted successfully", preferredStyle: .Alert)
+                 let action = UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction) -> Void in
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
+                    
+                })
+                
+                
+                alertController.addAction(action)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                
+            })
+            
+ 
+            
+        }
+}
+        
+     
+       
+        
+        
+        
+    }
+    
+    
+    
 
 }
+
+
+
+
