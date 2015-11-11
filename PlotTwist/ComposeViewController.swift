@@ -22,9 +22,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 
     @IBOutlet weak var previousContentTextView: UITextView!
 
+    var previousContentText: String?
+   
     //MARK - View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -36,10 +40,16 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 //            getPreviousPageContent()
             
             previousContentTextView.hidden = false
+            previousContentTextView.text = previousContentText
+            
             titleTextField.hidden = true
             headerLabel.text = story?.storyTitle
             headerLabel.sizeToFit()
+            
         }
+    }
+    @IBAction func onBackButtonPressed(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     //Mark Query

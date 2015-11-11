@@ -60,25 +60,24 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let page: Page = self.incomingStoryPageArray[indexPath.row]
    
-        do {
-            try page.author.fetchIfNeeded()
-            cell.authorLabel.text =  page.author.username
-            
-            let usernameImage = getUsernameFirstLetterImagename(page.author.username!)
-            
-            if ((UIImage(named:usernameImage)) != nil){
-                
-                cell.authorImage.image = UIImage(named:usernameImage)
-            }
-            
-        } catch _ {
-            print("There was an error")
-        }
+      
+        page.author.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error:NSError?) -> Void in
+    cell.authorLabel.text =  page.author.username
+    
+    let usernameImage = getUsernameFirstLetterImagename(page.author.username!)
+    
+    if ((UIImage(named:usernameImage)) != nil){
+        
+        cell.authorImage.image = UIImage(named:usernameImage)
+    }
+    
+})
+    
 //        if (page.author.username != nil) {
 //             cell.authorLabel.text = page.author.username
 //        }
-//       
-        
+      
+        cell.dateCreatedLabel.text =  PTUtiltiy.getElapsedTimeFromDate(page.createdAt!)
         cell.previousContent.text = page.textContent
         
      
@@ -103,16 +102,32 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let indexPath = tableView.indexPathForSelectedRow
             
        let page: Page = incomingStoryPageArray[indexPath!.row]
-             vc.titleTextField.text = page.story.storyTitle
-           
-            vc.previousContentTextView.text = page.textContent
+          
+         
+        //fetch page.story
+//            do {
+//                try page.story.fetchIfNeeded()
+//           
+//            
+//            vc.titleTextField.text = page.story.storyTitle
+//            
+//        } catch {
+//            print("There was an error")
+//        }
+        
+            //
+            vc.previousContentText = page.textContent
             vc.isNewStory = isNewStory
             vc.story = page.story
             vc.homeVC = homeVC
-            
+         
  
         }
         
+        
+    }
+    
+    @IBAction func unwindToInbox(segue:UIStoryboardSegue) {
         
     }
     

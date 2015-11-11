@@ -195,6 +195,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
             if objects != nil {
                 
                 let stories = objects as! [Story]
+                self.storyLastPage = []
                 for object in stories {
                     
                     
@@ -247,6 +248,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
             let vc = segue.destinationViewController as! InboxViewController
           vc.incomingStoryPageArray = self.storyLastPage
            
+            
+            
             vc.isNewStory = false
             vc.homeVC = self
 
