@@ -139,17 +139,28 @@ class ReadStoryViewController: UIViewController {
 
 
     }
-
+    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
     @IBAction func onShareButtonPressed(sender: UIButton) {
         var storyContent:String = ""
         for page in pages! {
-            storyContent = storyContent + page.textContent + "\n"
+            storyContent = storyContent + "\n" + page.textContent + "\n"
         }
         print(storyContent)
         
-        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(20), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
+        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(20), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: self.UIColorFromRGB(0x209624)]
         
-        let imageSize: CGRect = CGRectMake(0, 0, self.view.bounds.size.height-100, self.view.bounds.size.width/2)
+//       let imageSize: CGRect = CGRectMake(0, 0, self.storyContentTextView.frame.size.height, self.storyContentTextView.frame.size.height)
+        
+        
+  let imageSize: CGRect = CGRectMake(0, 0, self.storyContentTextView.bounds.size.width, self.storyContentTextView.bounds.size.height+100)
         let image  = self.imageFromString(storyContent, attributes: textAttributes, size: imageSize.size)
         
         let textToShare = image
@@ -165,6 +176,7 @@ class ReadStoryViewController: UIViewController {
     func imageFromString(string: String, attributes: [String : AnyObject], size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         string.drawInRect(CGRectMake(0, 0, size.width, size.height), withAttributes: attributes)
+        
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image

@@ -15,7 +15,7 @@ class InboxTableViewCell: UITableViewCell {
     @IBOutlet weak var previousContent: UILabel!
     @IBOutlet weak var dateCreatedLabel: UILabel!
 
-
+   var timeString: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
