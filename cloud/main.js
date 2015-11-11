@@ -1,34 +1,28 @@
-
-
 var Parse = require('parse-cloud-express').Parse;
+var Sendgrid = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD)
 
+function sendWelcome(email) {
+  var opts = {
+    to: email,
+    from: 'app.plottwist@gmail.com',
+    subject: 'Welcome to Plot Twist',
+    text: 'Welcome, and thanks for signing up! Check out our website at https://plottwistapp.wordpress.com.'
+  }
+  sendgrid.send(opts, function(err) {
+    if (err) {
+      console.error('Unable to send via sendgrid: ', err.message);
+      return;
+    }
 
-Parse.Cloud.define("hello", function(request, response) {
-  console.log('Ran cloud function.');
-  // As with Parse-hosted Cloud Code, the user is available at: request.user
-  // You can get the users session token with: request.user.getSessionToken()
-  // Use the session token to run other Parse Query methods as that user, because
-  //   the concept of a 'current' user does not fit in a Node environment.
-  //   i.e.  query.find({ sessionToken: request.user.getSessionToken() })...
-  response.success("Hello world! " + (request.params.a + request.params.b));
-});
+    console.info('Sent to sendgrid for delivery')
+  })
+}
 
-
-Parse.Cloud.beforeSave('TestObject', function(request, response) {
-  console.log('Ran beforeSave on objectId: ' + request.object.id);
+Parse.Cloud.beforeSave('_User', function(request, response) {
+  if (request.body.object.email) {
+    sendWelcome(request.body.object.email);
+  }
   response.success();
 });
 
-Parse.Cloud.afterSave('TestObject', function(request, response) {
-  console.log('Ran afterSave on objectId: ' + request.object.id);
-});
-
-Parse.Cloud.beforeDelete('TestObject', function(request, response) {
-  console.log('Ran beforeDelete on objectId: ' + request.object.id);
-  response.success();
-});
-
-Parse.Cloud.afterDelete('TestObject', function(request, response) {
-  console.log('Ran afterDelete on objectId: ' + request.object.id);
-});
 

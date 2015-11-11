@@ -8,13 +8,14 @@
     "postinstall": "NODE_PATH=$NODE_PATH:./lib node scripts/register-webhooks.js"
   },
   "dependencies": {
-    "express": "~4.9.x",
     "body-parser": "~1.12.4",
+    "express": "~4.9.x",
+    "jsonfile": "~2.2.3",
     "mongodb": "~2.0.33",
+    "multer": "~0.1.8",
     "parse": "~1.6",
     "parse-cloud-express": "~1.0",
-    "multer": "~0.1.8",
-    "jsonfile": "~2.2.3"
+    "sendgrid": "^1.9.2"
   },
   "engines": {
     "node": "0.12.2"
