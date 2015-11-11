@@ -135,9 +135,7 @@ class ReadStoryViewController: UIViewController {
         if self.pageNum == 0 || self.pageNum == -1{
             self.previousButton.enabled = false
         }
-
-
-
+ 
     }
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
@@ -149,12 +147,9 @@ class ReadStoryViewController: UIViewController {
     }
     
     @IBAction func onShareButtonPressed(sender: UIButton) {
-       
-        
         
         var storyContent:String =  "\n" + "      Title: " +  (pages?.first?.story.storyTitle)! + "\n"
-        
-        for page in pages! {
+         for page in pages! {
        
             page.author.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error:NSError?) -> Void in
        
@@ -167,9 +162,9 @@ class ReadStoryViewController: UIViewController {
         }
         print(storyContent)
         
-        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: self.UIColorFromRGB(0xb6ebe3)]
+//        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: self.UIColorFromRGB(0xb6ebe3)]
 //
-//   let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
+   let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
         
         
   let imageSize: CGRect = CGRectMake(0, 0, self.storyContentTextView.bounds.size.width, self.storyContentTextView.bounds.size.height+70)
