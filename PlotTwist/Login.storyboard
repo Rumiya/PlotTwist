@@ -1,7 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="b4m-Ky-SlJ">
+            <objects>
+                <viewController id="gSw-6N-rn4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J6G-Ct-kCJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="RDp-3m-4HZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OFV-rO-XJY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="door" translatesAutoresizingMaskIntoConstraints="NO" id="tei-eN-Agc">
+                                <rect key="frame" x="165" y="100" width="270" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="HMG-vn-LPv"/>
+                                    <constraint firstAttribute="width" constant="270" id="JcP-kz-R0F"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="270" id="dIJ-pj-KKb"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="ikQ-iZ-0ZK"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="dIJ-pj-KKb"/>
+                                        <exclude reference="ikQ-iZ-0ZK"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyB-dt-Or1">
+                                <rect key="frame" x="372" y="297" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.7725490196" green="0.93725490199999995" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="arrow"/>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqn-TP-9lS">
+                                <rect key="frame" x="195" y="246" width="165" height="30"/>
+                                <color key="backgroundColor" red="0.7725490196" green="0.93725490199999995" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2OK-6S-64O">
+                                <rect key="frame" x="195" y="297" width="165" height="30"/>
+                                <color key="backgroundColor" red="0.7725490196" green="0.93725490199999995" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="tei-eN-Agc" firstAttribute="centerX" secondItem="OFV-rO-XJY" secondAttribute="centerX" id="Zv4-2b-7EX"/>
+                            <constraint firstItem="tei-eN-Agc" firstAttribute="centerY" secondItem="OFV-rO-XJY" secondAttribute="centerY" id="tjx-HV-ONH"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NmB-9K-afL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="627" y="562"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow" width="100" height="100"/>
+        <image name="door" width="270" height="400"/>
+    </resources>
 </document>
