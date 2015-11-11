@@ -17,6 +17,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView.allowsSelection = true
+
         // Set up CollectionView
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSizeMake(self.collectionView.bounds.width/2 - 20, self.collectionView.bounds.height/3 - 20)
@@ -72,6 +74,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
+        collectionView.allowsSelection = false
 
         switch indexPath.row {
         case 0:
@@ -156,7 +160,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
                             })
                         }
-
                     }
                 }
             } else {
@@ -164,6 +167,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         })
     }
+
     func readNewbyStories() {
 
         let today = NSDate()
