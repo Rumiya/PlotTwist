@@ -114,6 +114,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
         // TODO: Check if user hasn't been selected as well
         // Initialize first page of story
 
+        sendButton.enabled = false
+
         var firstPage: Page!
         let mainAuthor = User.currentUser()!
         var invitedUser: User!
@@ -167,6 +169,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                         } else {
                             print("push failed")
                         }
+                        self.sendButton.enabled = true
+
                     })
                 })
             })
@@ -174,6 +178,10 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func createNewPage(){
+
+        sendButton.enabled = false
+
+
         // Initialize Page Object
         let newPage = Page()
         let mainAuthor = User.currentUser()!
@@ -261,6 +269,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                                     print("push failed")
 
                                 }
+                                self.sendButton.enabled = true
+
 
                                 self.goBackHome()
 
@@ -297,7 +307,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                     self.delegate?.didAddNewPage()
                     
                     self.goBackHome()
-                    
+                    self.sendButton.enabled = true
+
                 })
             }
         }
