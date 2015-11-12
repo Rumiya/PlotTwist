@@ -35,10 +35,10 @@ func pushViewControllerLeftToRight(fromVC:UIViewController, toDVC:UIViewControll
     let viewSize = fromView.frame
 
     fromView.superview?.addSubview(toView)
-    toView.frame = CGRectMake(viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height)
+    toView.frame = CGRectMake(-viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height)
 
     UIView .animateWithDuration(1, animations: ({
-        fromView.frame = CGRectMake( -viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height);
+        fromView.frame = CGRectMake(viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height);
         toView.frame = CGRectMake(0, viewSize.origin.y, viewSize.width, viewSize.size.height)
     }), completion: { finished in
         fromView.removeFromSuperview()

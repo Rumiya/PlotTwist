@@ -44,23 +44,7 @@ class DoorLoginViewController: UIViewController {
         let storyboard = self.storyboard
         let destinationViewController = storyboard?.instantiateViewControllerWithIdentifier("WindowSignUp") as! WindowSignUpViewController
 
-        let fromView:UIView = self.view
-        let toView:UIView = destinationViewController.view
-
-        let viewSize = fromView.frame
-
-        fromView.superview?.addSubview(toView)
-        toView.frame = CGRectMake(viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height)
-
-        UIView .animateWithDuration(1, animations: ({
-            fromView.frame = CGRectMake( -viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height);
-            toView.frame = CGRectMake(0, viewSize.origin.y, viewSize.width, viewSize.size.height)
-        }), completion: { finished in
-            fromView.removeFromSuperview()
-            UIApplication.sharedApplication().keyWindow!.rootViewController = destinationViewController;
-            self.presentViewController(destinationViewController, animated: false, completion: nil)
-        })
-        
+        pushViewControllerRightToLeft(self, toDVC: destinationViewController)
     }
 
 
@@ -69,22 +53,7 @@ class DoorLoginViewController: UIViewController {
         let storyboard = self.storyboard
         let destinationViewController = storyboard?.instantiateViewControllerWithIdentifier("MailPassword") as! MailPasswordViewController
 
-        let fromView:UIView = self.view
-        let toView:UIView = destinationViewController.view
-
-        let viewSize = fromView.frame
-
-        fromView.superview?.addSubview(toView)
-        toView.frame = CGRectMake(-viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height)
-
-        UIView .animateWithDuration(1, animations: ({
-            fromView.frame = CGRectMake( viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height);
-            toView.frame = CGRectMake(0, viewSize.origin.y, viewSize.width, viewSize.size.height)
-        }), completion: { finished in
-            fromView.removeFromSuperview()
-            UIApplication.sharedApplication().keyWindow!.rootViewController = destinationViewController;
-            self.presentViewController(destinationViewController, animated: false, completion: nil)
-        })
+        pushViewControllerLeftToRight(self, toDVC: destinationViewController)
 
     }
 

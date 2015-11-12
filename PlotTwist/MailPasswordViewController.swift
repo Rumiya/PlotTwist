@@ -30,24 +30,8 @@ class MailPasswordViewController: UIViewController {
         let storyboard = self.storyboard
         let destinationViewController = storyboard?.instantiateViewControllerWithIdentifier("DoorLogin") as! DoorLoginViewController
 
-        let fromView:UIView = self.view
-        let toView:UIView = destinationViewController.view
+        pushViewControllerRightToLeft(self, toDVC: destinationViewController)
 
-        let viewSize = fromView.frame
-
-        fromView.superview?.addSubview(toView)
-        toView.frame = CGRectMake(viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height)
-
-        UIView .animateWithDuration(1, animations: ({
-            fromView.frame = CGRectMake( -viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height);
-            toView.frame = CGRectMake(0, viewSize.origin.y, viewSize.width, viewSize.size.height)
-        }), completion: { finished in
-            fromView.removeFromSuperview()
-            UIApplication.sharedApplication().keyWindow!.rootViewController = destinationViewController;
-            self.presentViewController(destinationViewController, animated: false, completion: nil)
-
-        })
-        
     }
 
 }
