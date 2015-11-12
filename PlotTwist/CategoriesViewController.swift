@@ -17,6 +17,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView.allowsSelection = true
+
         // Set up CollectionView
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSizeMake(self.collectionView.bounds.width/2 - 20, self.collectionView.bounds.height/3 - 20)
@@ -73,6 +75,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
+        collectionView.allowsSelection = false
+
         switch indexPath.row {
         case 0:
             readAllStories()
@@ -99,11 +103,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         queryPublished?.whereKeyExists(Constants.Story.objectId)
         queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.includeKey(Constants.Story.mainAuthor)
+        queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-            if objects != nil {
                 self.storiesToSend = objects as! [Story]
                 self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
-            }
+
+            self.collectionView.allowsSelection = true
+
         })
     }
 
@@ -150,20 +156,24 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         if (count == tempUsers.count) {
                             let storyQuery = Story.query()
                             storyQuery?.whereKey(Constants.Story.allAuthors, containedIn: friends)
+                            storyQuery?.includeKey(Constants.Story.mainAuthor)
+                            storyQuery?.includeKey(Constants.Story.pages)
                             storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
                                 self.storiesToSend = objects as! [Story]
                                 self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
 
                             })
                         }
-
                     }
                 }
             } else {
                 print("error retrieving")
             }
+
+            self.collectionView.allowsSelection = true
         })
     }
+
     func readNewbyStories() {
 
         let today = NSDate()
@@ -179,9 +189,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
         let storyQuery = Story.query()
         storyQuery?.whereKey(Constants.Story.mainAuthor, matchesQuery: newbyAuthorQuery!)
+        storyQuery?.includeKey(Constants.Story.pages)
+
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
             self.storiesToSend = objects as! [Story]
             self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
+
+            self.collectionView.allowsSelection = true
         })
     }
 
@@ -193,10 +208,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
         queryPublished?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-            if objects != nil {
                 self.storiesToSend = objects as! [Story]
                 self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
-            }
+
+            self.collectionView.allowsSelection = true
         })
     }
 

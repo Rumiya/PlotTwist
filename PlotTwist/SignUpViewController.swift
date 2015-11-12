@@ -20,6 +20,21 @@ class SignUpViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        return true
+    }
+
+
     @IBAction func onSignupButtonPressed(sender: UIButton) {
         let username = usernameTextField.text
         let password = passwordTextField.text
@@ -75,7 +90,6 @@ class SignUpViewController: UIViewController {
 
                         })
                     }))
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
             })

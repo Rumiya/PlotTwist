@@ -157,9 +157,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                     self.friendAppearingAnimation()
                 }
             })
-
         })
-
     }
 
     func didAddNewPage() {
@@ -208,14 +206,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                 self.performSegueWithIdentifier("ToNewPageSegue", sender: sender)
                    
                 }
-                
- 
-                
             }
-            
         })
-        
-        
     }
 
     @IBAction func onFriendButtonPressed(sender: UIButton) {
@@ -247,9 +239,6 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         if segue.identifier == "ToNewPageSegue"{
             let vc = segue.destinationViewController as! InboxViewController
           vc.incomingStoryPageArray = self.storyLastPage
-           
-            
-            
             vc.isNewStory = false
             vc.homeVC = self
 

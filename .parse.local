@@ -1,0 +1,11 @@
+{
+  "applications": {
+    "PlotTwist": {
+      "parseAppId": "4oB2SxIWEp5ZpyN1J9CqG2K2fzCPHAHL434m5Fel",
+      "herokuAppId": "0f9cb044-fb2a-4e96-b02f-f1c63fb075a5"
+    },
+    "_default": {
+      "link": "PlotTwist"
+    }
+  }
+}

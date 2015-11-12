@@ -24,6 +24,18 @@ class LoginViewController: UIViewController {
        // loginWithFBbutton.delegate = self
         
     }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
+    }
+
     
     @IBAction func onFBloginButtonPressed(sender: UIButton) {
 
