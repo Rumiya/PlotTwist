@@ -6,11 +6,10 @@ function sendWelcome(email) {
     to: email,
     from: 'apps.plottwist@gmail.com',
     subject: 'Welcome to Plot Twist'
-    addFilter:('templates', 'enable', 1);
-    addFilter:('templates', 'template_id', '29f38bef-30f5-4d5e-bbdc-b127b69a3254');
   }
 
-
+  opts.addFilter('templates', 'enable', 1);
+  opts.addFilter('templates', 'template_id', '29f38bef-30f5-4d5e-bbdc-b127b69a3254');
 
   sendgrid.send(opts, function(err) {
     if (err) {
