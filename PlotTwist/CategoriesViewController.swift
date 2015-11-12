@@ -158,6 +158,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             storyQuery?.whereKey(Constants.Story.allAuthors, containedIn: friends)
                             storyQuery?.includeKey(Constants.Story.mainAuthor)
                             storyQuery?.includeKey(Constants.Story.pages)
+                            storyQuery?.whereKey(Constants.Story.isPublished, equalTo: true)
                             storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
                                 self.storiesToSend = objects as! [Story]
                                 self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
@@ -189,6 +190,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
         let storyQuery = Story.query()
         storyQuery?.whereKey(Constants.Story.mainAuthor, matchesQuery: newbyAuthorQuery!)
+        storyQuery?.whereKey(Constants.Story.isPublished, equalTo: true)
         storyQuery?.includeKey(Constants.Story.pages)
 
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in

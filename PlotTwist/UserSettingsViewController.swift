@@ -87,7 +87,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
         case 2:
             logout()
         default:
-            collectionView.allowsSelection = true
+            collectionView.allowsSelection =  true
         }
     }
 
