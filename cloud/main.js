@@ -5,10 +5,11 @@ function sendWelcome(email) {
   var opts = {
     to: email,
     from: 'apps.plottwist@gmail.com',
-    subject: 'Welcome to Plot Twist'
+    subject: 'Welcome to Plot Twist',
+    html: 'PlotTwist, 2015'
   }
-  opts.addFilter('templates', 'enable', 1);
-  opts.addFilter('templates', 'template_id', '29f38bef-30f5-4d5e-bbdc-b127b69a3254');
+
+  opts.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "29f38bef-30f5-4d5e-bbdc-b127b69a3254"}}});
 
   sendgrid.send(opts, function(err) {
     if (err) {
