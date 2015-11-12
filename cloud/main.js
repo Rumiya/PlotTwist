@@ -7,7 +7,6 @@ function sendWelcome(email) {
     from: 'apps.plottwist@gmail.com',
     subject: 'Welcome to Plot Twist'
   }
-
   opts.addFilter('templates', 'enable', 1);
   opts.addFilter('templates', 'template_id', '29f38bef-30f5-4d5e-bbdc-b127b69a3254');
 
