@@ -90,7 +90,6 @@ class SignUpViewController: UIViewController {
 
                         })
                     }))
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
             })
