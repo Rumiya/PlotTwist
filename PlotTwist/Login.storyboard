@@ -280,6 +280,8 @@
                         <outlet property="doorKnobLoginButton" destination="WyB-dt-Or1" id="Wbd-fb-3lB"/>
                         <outlet property="doorView" destination="hBe-EH-CVl" id="6p9-Dd-pvs"/>
                         <outlet property="keyHoleImage" destination="Paz-q2-P4b" id="hYP-H5-Hi4"/>
+                        <outlet property="passwordTextField" destination="2OK-6S-64O" id="Fe6-gN-RQT"/>
+                        <outlet property="usernameTextField" destination="uqn-TP-9lS" id="RAI-LI-rKC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmB-9K-afL" userLabel="First Responder" sceneMemberID="firstResponder"/>

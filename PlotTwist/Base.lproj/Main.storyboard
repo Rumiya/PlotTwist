@@ -525,7 +525,7 @@
                                 <rect key="frame" x="400" y="133" width="237" height="182"/>
                                 <animations/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei9-1Z-7Fv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei9-1Z-7Fv" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                 <rect key="frame" x="410" y="510" width="40" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -539,7 +539,7 @@
                                     <segue destination="dji-ey-dkN" kind="show" id="lbH-1T-e4B"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KR3-7h-FMC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KR3-7h-FMC" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                 <rect key="frame" x="150" y="510" width="40" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -547,13 +547,13 @@
                                     <constraint firstAttribute="height" constant="40" id="B8S-Qu-fJt"/>
                                     <constraint firstAttribute="width" constant="40" id="PrD-d2-SKv"/>
                                 </constraints>
-                                <state key="normal" image="history"/>
+                                <state key="normal" image="paperPlaneLeft"/>
                                 <connections>
                                     <action selector="checkHistory:" destination="3Iz-Kd-wjI" eventType="touchUpInside" id="D40-kt-ipN"/>
                                     <segue destination="EzX-B1-lLA" kind="show" id="Z07-RE-jRW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cg6-pG-SIH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cg6-pG-SIH" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                 <rect key="frame" x="260" y="470" width="80" height="80"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
@@ -652,12 +652,25 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go For It!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MsK-rF-PqJ">
-                                        <rect key="frame" x="70" y="0.0" width="500" height="40"/>
+                                        <rect key="frame" x="70" y="0.0" width="462" height="40"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.81176470590000005" green="0.83137254900000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="25"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0X-pN-QrT">
+                                        <rect key="frame" x="535" y="1" width="40" height="40"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.81176470590000005" green="0.83137254900000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="YkP-Vz-bJQ"/>
+                                            <constraint firstAttribute="height" constant="40" id="ccL-Ho-2H4"/>
+                                        </constraints>
+                                        <state key="normal" image="arrow"/>
+                                        <connections>
+                                            <action selector="onNextButtonPressed:" destination="Kdd-bo-dbi" eventType="touchUpInside" id="7wJ-DV-qyM"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.81176470590000005" green="0.83137254900000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -665,9 +678,12 @@
                                     <constraint firstItem="EPf-8j-2XL" firstAttribute="top" secondItem="Wv4-Gg-Kz7" secondAttribute="top" constant="1" id="HoL-d6-cIN"/>
                                     <constraint firstItem="EPf-8j-2XL" firstAttribute="leading" secondItem="Wv4-Gg-Kz7" secondAttribute="leading" constant="25" id="J1t-hJ-8bs"/>
                                     <constraint firstAttribute="height" constant="42" id="Nt4-vm-3k1"/>
+                                    <constraint firstItem="Q0X-pN-QrT" firstAttribute="top" secondItem="Wv4-Gg-Kz7" secondAttribute="top" constant="1" id="P06-Jw-oLu"/>
                                     <constraint firstItem="MsK-rF-PqJ" firstAttribute="leading" secondItem="EPf-8j-2XL" secondAttribute="trailing" constant="5" id="VZM-kr-9Li"/>
-                                    <constraint firstAttribute="trailing" secondItem="MsK-rF-PqJ" secondAttribute="trailing" constant="30" id="Wze-gR-Ki9"/>
+                                    <constraint firstAttribute="trailing" secondItem="MsK-rF-PqJ" secondAttribute="trailing" constant="68" id="Wze-gR-Ki9"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q0X-pN-QrT" secondAttribute="trailing" constant="25" id="h8m-bN-08P"/>
                                     <constraint firstItem="MsK-rF-PqJ" firstAttribute="top" secondItem="Wv4-Gg-Kz7" secondAttribute="top" id="xTe-Vu-8Jx"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q0X-pN-QrT" secondAttribute="bottom" constant="1" id="yaP-rR-9bA"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcR-iv-PdL">
@@ -683,19 +699,16 @@
                                     <outlet property="delegate" destination="Kdd-bo-dbi" id="RAj-g5-zdE"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0X-pN-QrT">
-                                <rect key="frame" x="260" y="470" width="80" height="80"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type your story here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fql-Ht-c90">
+                                <rect key="frame" x="25" y="225" width="550" height="350"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.81176470590000005" green="0.83137254900000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="YkP-Vz-bJQ"/>
-                                    <constraint firstAttribute="height" constant="80" id="ccL-Ho-2H4"/>
-                                </constraints>
-                                <state key="normal" image="arrow"/>
+                                <color key="backgroundColor" red="1" green="0.7624712521" blue="0.59145172680000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
-                                    <action selector="onNextButtonPressed:" destination="Kdd-bo-dbi" eventType="touchUpInside" id="7wJ-DV-qyM"/>
+                                    <outlet property="delegate" destination="Kdd-bo-dbi" id="cNh-dO-4rn"/>
                                 </connections>
-                            </button>
+                            </textView>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qna-WK-efK">
                                 <rect key="frame" x="25" y="107" width="550" height="86"/>
                                 <animations/>
@@ -703,20 +716,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="86" id="8pa-Tq-uMH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="Kdd-bo-dbi" id="Rdi-rS-rcd"/>
-                                </connections>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type your story here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fql-Ht-c90">
-                                <rect key="frame" x="25" y="225" width="550" height="213"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.7624712521" blue="0.59145172680000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Kdd-bo-dbi" id="cNh-dO-4rn"/>
                                 </connections>
                             </textView>
                         </subviews>
@@ -726,24 +729,20 @@
                             <constraint firstItem="Wv4-Gg-Kz7" firstAttribute="leading" secondItem="p8B-M1-sFT" secondAttribute="leading" id="5kf-Bd-mL4"/>
                             <constraint firstItem="fql-Ht-c90" firstAttribute="leading" secondItem="p8B-M1-sFT" secondAttribute="leading" constant="25" id="6yi-KW-Oq2"/>
                             <constraint firstItem="qna-WK-efK" firstAttribute="centerX" secondItem="p8B-M1-sFT" secondAttribute="centerX" id="79Q-ed-nCJ"/>
-                            <constraint firstItem="vel-cH-6C8" firstAttribute="top" secondItem="Q0X-pN-QrT" secondAttribute="bottom" constant="50" id="BRi-kw-kit"/>
-                            <constraint firstItem="Q0X-pN-QrT" firstAttribute="centerX" secondItem="p8B-M1-sFT" secondAttribute="centerX" id="Cmd-Ju-JP6"/>
                             <constraint firstItem="fql-Ht-c90" firstAttribute="top" secondItem="qna-WK-efK" secondAttribute="bottom" constant="32" id="Hpo-RU-8Xa"/>
-                            <constraint firstItem="Q0X-pN-QrT" firstAttribute="top" secondItem="fql-Ht-c90" secondAttribute="bottom" constant="32" id="IP3-3F-aKD"/>
                             <constraint firstItem="fql-Ht-c90" firstAttribute="top" secondItem="qna-WK-efK" secondAttribute="bottom" constant="32" id="LoK-pP-0Oq"/>
                             <constraint firstItem="qna-WK-efK" firstAttribute="top" secondItem="Wv4-Gg-Kz7" secondAttribute="bottom" constant="19" id="MLP-tc-2gc"/>
                             <constraint firstItem="rcR-iv-PdL" firstAttribute="top" secondItem="Wv4-Gg-Kz7" secondAttribute="bottom" constant="47" id="Nhf-7T-5I4"/>
                             <constraint firstItem="qna-WK-efK" firstAttribute="leading" secondItem="p8B-M1-sFT" secondAttribute="leading" constant="25" id="QJM-zH-ixU"/>
                             <constraint firstItem="rcR-iv-PdL" firstAttribute="leading" secondItem="p8B-M1-sFT" secondAttribute="leading" constant="25" id="SMn-fw-7pc"/>
-                            <constraint firstItem="Q0X-pN-QrT" firstAttribute="centerX" secondItem="p8B-M1-sFT" secondAttribute="centerX" id="SPy-wW-L9F"/>
                             <constraint firstAttribute="trailing" secondItem="Wv4-Gg-Kz7" secondAttribute="trailing" id="UDz-6x-ST3"/>
                             <constraint firstItem="qna-WK-efK" firstAttribute="top" secondItem="Wv4-Gg-Kz7" secondAttribute="bottom" constant="19" id="Uip-Zd-q6W"/>
                             <constraint firstAttribute="trailing" secondItem="qna-WK-efK" secondAttribute="trailing" constant="25" id="Vtb-DY-Tq4"/>
+                            <constraint firstItem="vel-cH-6C8" firstAttribute="top" secondItem="fql-Ht-c90" secondAttribute="bottom" constant="25" id="WaK-B5-e0T"/>
                             <constraint firstItem="Wv4-Gg-Kz7" firstAttribute="top" secondItem="Sd5-Bz-e7N" secondAttribute="bottom" constant="26" id="XOF-Ej-LBb"/>
                             <constraint firstAttribute="trailing" secondItem="fql-Ht-c90" secondAttribute="trailing" constant="25" id="cGa-fs-Gzi"/>
                             <constraint firstItem="fql-Ht-c90" firstAttribute="centerX" secondItem="p8B-M1-sFT" secondAttribute="centerX" id="kqL-Qe-188"/>
                             <constraint firstAttribute="trailing" secondItem="rcR-iv-PdL" secondAttribute="trailing" constant="25" id="nIL-zz-XBS"/>
-                            <constraint firstItem="Q0X-pN-QrT" firstAttribute="centerX" secondItem="p8B-M1-sFT" secondAttribute="centerX" id="o6v-5I-qxj"/>
                             <constraint firstItem="Wv4-Gg-Kz7" firstAttribute="centerX" secondItem="p8B-M1-sFT" secondAttribute="centerX" id="pZU-pi-8Ku"/>
                         </constraints>
                         <variation key="default">
@@ -753,8 +752,6 @@
                                 <exclude reference="MLP-tc-2gc"/>
                                 <exclude reference="LoK-pP-0Oq"/>
                                 <exclude reference="kqL-Qe-188"/>
-                                <exclude reference="Cmd-Ju-JP6"/>
-                                <exclude reference="SPy-wW-L9F"/>
                             </mask>
                         </variation>
                     </view>
@@ -1009,7 +1006,7 @@
                                     <constraint firstAttribute="height" constant="42" id="ojc-8L-zJv"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUH-QK-nVc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUH-QK-nVc" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                 <rect key="frame" x="280" y="535" width="40" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1022,7 +1019,7 @@
                                     <action selector="onNextButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="AOv-YY-08J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-RC-r1f">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-RC-r1f" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                 <rect key="frame" x="350" y="535" width="40" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1035,7 +1032,7 @@
                                     <action selector="onShareButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="L9P-e6-yuU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-kR-Zcx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-kR-Zcx" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                 <rect key="frame" x="210" y="535" width="40" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1242,10 +1239,10 @@
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="25"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31s-qV-hl3">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31s-qV-hl3" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                 <rect key="frame" x="260" y="470" width="80" height="80"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.81176470590000005" green="0.83137254900000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="7AH-E5-Yqo"/>
                                     <constraint firstAttribute="height" constant="80" id="FdR-Lx-F99"/>
@@ -1437,7 +1434,7 @@
                                     <rect key="frame" x="0.0" y="64" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Hjz-2I-CgE">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Hjz-2I-CgE">
                                             <rect key="frame" x="485" y="32" width="87" height="56"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StoryCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4g-dS-6Qc">
@@ -2526,13 +2523,13 @@
         <image name="facebook" width="64" height="64"/>
         <image name="gear" width="100" height="100"/>
         <image name="glasses" width="100" height="100"/>
-        <image name="history" width="100" height="100"/>
         <image name="paperPlane" width="100" height="100"/>
+        <image name="paperPlaneLeft" width="254" height="254"/>
         <image name="pencil" width="100" height="100"/>
         <image name="share" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ig7-xR-53y"/>
-        <segue reference="7js-iM-0by"/>
+        <segue reference="I5a-dk-jcy"/>
     </inferredMetricsTieBreakers>
 </document>

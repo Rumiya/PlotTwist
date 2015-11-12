@@ -124,7 +124,7 @@ class ChangeInvitedAuthorViewController: UIViewController, UITableViewDelegate, 
     }
     
     @IBAction func onCancelButtonPressed(sender: UIButton) {
-        self.delegate?.didCancel()
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     

@@ -113,8 +113,8 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.collectionView.allowsSelection = true
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("DoorLogin") as! DoorLoginViewController
                 self.presentViewController(vc, animated: true, completion: nil)
 
 

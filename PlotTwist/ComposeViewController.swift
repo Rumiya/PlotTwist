@@ -40,7 +40,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             previousContentTextView.text = previousContentText
 
             titleTextField.hidden = true
-            headerLabel.text = story?.storyTitle
+            headerLabel.text = "Page \(story!.pageCount + 1) out 5. \(story!.storyTitle)"
             headerLabel.sizeToFit()
         }
     }
