@@ -55,6 +55,8 @@
 		E0572BB01BF30C6500A25188 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0572BAF1BF30C6500A25188 /* Login.storyboard */; };
 		E084C10F1BF411D200FAFA91 /* DoorLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */; };
 		E084C1111BF431B500FAFA91 /* MailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */; };
+		E084C1131BF5167D00FAFA91 /* WindowSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1121BF5167D00FAFA91 /* WindowSignUpViewController.swift */; };
+		E084C1151BF51A5600FAFA91 /* CustomAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */; };
 		E0A4BA371BF26435001D5581 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA361BF26435001D5581 /* InboxViewController.swift */; };
 		E0A4BA391BF26450001D5581 /* InboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */; };
 		E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */; };
@@ -141,6 +143,8 @@
 		E0572BAF1BF30C6500A25188 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoorLoginViewController.swift; sourceTree = "<group>"; };
 		E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailPasswordViewController.swift; sourceTree = "<group>"; };
+		E084C1121BF5167D00FAFA91 /* WindowSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowSignUpViewController.swift; sourceTree = "<group>"; };
+		E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnimations.swift; sourceTree = "<group>"; };
 		E0A4BA361BF26435001D5581 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewCell.swift; sourceTree = "<group>"; };
 		E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 				3A0FAD1F1BF1D9C2004A9DB9 /* ChangeInvitedAuthorViewController.swift */,
 				E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */,
 				E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */,
+				E084C1121BF5167D00FAFA91 /* WindowSignUpViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 		E0E2506E1BE7CA7E00E51659 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */,
 				E0E250AB1BF05E6E00E51659 /* CustomUIElements.swift */,
 				E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */,
 				3A0FAD211BF1DB9E004A9DB9 /* ChangeInvitedAuthorsDelegate.swift */,
@@ -502,6 +508,7 @@
 				E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */,
 				3A0FAD121BEFB326004A9DB9 /* FriendTableViewCell.swift in Sources */,
 				3A0FAD181BF1246A004A9DB9 /* FriendListDelegate.swift in Sources */,
+				E084C1151BF51A5600FAFA91 /* CustomAnimations.swift in Sources */,
 				3A1F8FEC1BEAC03F008E9671 /* LibraryCollectionViewCell.swift in Sources */,
 				3A0FAD1E1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift in Sources */,
 				3AF2457A1BE7E09B00832B30 /* Activity.swift in Sources */,
@@ -524,6 +531,7 @@
 				E084C10F1BF411D200FAFA91 /* DoorLoginViewController.swift in Sources */,
 				E0E250A81BEEC45B00E51659 /* ReadStoryViewController.swift in Sources */,
 				E0E2507A1BE7F5A100E51659 /* LibraryViewController.swift in Sources */,
+				E084C1131BF5167D00FAFA91 /* WindowSignUpViewController.swift in Sources */,
 				E0E250A01BED4DDA00E51659 /* UserStatisticsViewController.swift in Sources */,
 				E0E250781BE7F48100E51659 /* AddPageViewController.swift in Sources */,
 				E0E250AA1BF0309800E51659 /* ListOfStoriesTableViewCell.swift in Sources */,

@@ -19,14 +19,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oRu-BC-FMc">
                                 <rect key="frame" x="165" y="100" width="270" height="400"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2U-8d-ddJ">
-                                        <rect key="frame" x="58" y="207" width="154" height="105"/>
-                                        <color key="backgroundColor" red="1" green="0.60146082010000002" blue="0.55409972689999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="154" id="5Ng-FW-Tj2"/>
-                                            <constraint firstAttribute="height" constant="105" id="aDP-ht-wIW"/>
-                                        </constraints>
-                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mailbox" translatesAutoresizingMaskIntoConstraints="NO" id="ecI-Dl-t70">
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="400"/>
                                         <constraints>
@@ -34,15 +26,18 @@
                                             <constraint firstAttribute="width" constant="270" id="IoG-sg-Ld5"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xux-nN-dbt">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xux-nN-dbt">
                                         <rect key="frame" x="36" y="152" width="198" height="30"/>
-                                        <color key="backgroundColor" red="0.83921575546264648" green="0.95294123888015747" blue="0.95686280727386475" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="198" id="L3G-ar-CZT"/>
                                             <constraint firstAttribute="height" constant="30" id="kJZ-as-KNd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="7iJ-An-aCg" id="prh-do-GZJ"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plot Twist Ln" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvy-Ly-G7Z">
                                         <rect key="frame" x="52" y="10" width="167" height="51"/>
@@ -53,18 +48,6 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Op-4V-Yx7" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
-                                        <rect key="frame" x="95" y="218" width="80" height="80"/>
-                                        <color key="backgroundColor" red="1" green="0.9873009104902557" blue="0.98162900584904433" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="1kN-e7-IZk"/>
-                                            <constraint firstAttribute="width" constant="80" id="qAx-vY-ryg"/>
-                                        </constraints>
-                                        <state key="normal" image="paperPlane"/>
-                                        <connections>
-                                            <action selector="onResetButtonPressed:" destination="7iJ-An-aCg" eventType="touchUpInside" id="5Fv-GS-cvX"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLZ-Wh-VPd" customClass="RoundButton" customModule="PlotTwist" customModuleProvider="target">
                                         <rect key="frame" x="232" y="8" width="30" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,16 +60,25 @@
                                             <action selector="onCloseButtonPressed:" destination="7iJ-An-aCg" eventType="touchUpInside" id="YwS-vx-G4f"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Op-4V-Yx7" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                        <rect key="frame" x="105" y="229" width="60" height="60"/>
+                                        <color key="backgroundColor" red="1" green="0.9873009104902557" blue="0.98162900584904433" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="1kN-e7-IZk"/>
+                                            <constraint firstAttribute="width" constant="60" id="qAx-vY-ryg"/>
+                                        </constraints>
+                                        <state key="normal" image="paperPlane"/>
+                                        <connections>
+                                            <action selector="onResetButtonPressed:" destination="7iJ-An-aCg" eventType="touchUpInside" id="5Fv-GS-cvX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="9Op-4V-Yx7" secondAttribute="bottom" constant="102" id="01j-6J-Wa8"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Op-4V-Yx7" secondAttribute="bottom" constant="111" id="01j-6J-Wa8"/>
                                     <constraint firstItem="9Op-4V-Yx7" firstAttribute="centerX" secondItem="oRu-BC-FMc" secondAttribute="centerX" id="1B3-gK-VqB"/>
-                                    <constraint firstItem="D2U-8d-ddJ" firstAttribute="centerX" secondItem="oRu-BC-FMc" secondAttribute="centerX" id="7pE-hR-Umw"/>
                                     <constraint firstAttribute="height" constant="400" id="GfQ-0G-eNz"/>
                                     <constraint firstAttribute="bottom" secondItem="Xux-nN-dbt" secondAttribute="bottom" constant="218" id="H2E-hw-QQI"/>
                                     <constraint firstAttribute="width" constant="270" id="H2b-Tb-Oz2"/>
-                                    <constraint firstItem="D2U-8d-ddJ" firstAttribute="top" secondItem="ecI-Dl-t70" secondAttribute="bottom" constant="-193" id="J7d-5w-TDU"/>
-                                    <constraint firstAttribute="bottom" secondItem="D2U-8d-ddJ" secondAttribute="bottom" constant="88" id="LFk-iN-4nG"/>
                                     <constraint firstItem="Xux-nN-dbt" firstAttribute="centerX" secondItem="oRu-BC-FMc" secondAttribute="centerX" id="OWi-P9-dpS"/>
                                     <constraint firstItem="ecI-Dl-t70" firstAttribute="centerX" secondItem="oRu-BC-FMc" secondAttribute="centerX" id="YCj-H6-9DX"/>
                                     <constraint firstItem="Xux-nN-dbt" firstAttribute="top" secondItem="fvy-Ly-G7Z" secondAttribute="bottom" constant="104" id="b7c-bY-bcH"/>
@@ -97,17 +89,12 @@
                                     <constraint firstItem="hLZ-Wh-VPd" firstAttribute="top" secondItem="oRu-BC-FMc" secondAttribute="top" constant="8" id="jmJ-Pm-anT"/>
                                     <constraint firstItem="ecI-Dl-t70" firstAttribute="centerY" secondItem="oRu-BC-FMc" secondAttribute="centerY" id="qfx-al-EBM"/>
                                     <constraint firstAttribute="bottom" secondItem="ecI-Dl-t70" secondAttribute="bottom" constant="77" id="vc9-oW-UF3"/>
-                                    <constraint firstItem="D2U-8d-ddJ" firstAttribute="centerY" secondItem="oRu-BC-FMc" secondAttribute="centerY" id="w5e-Tu-hSY"/>
-                                    <constraint firstItem="D2U-8d-ddJ" firstAttribute="centerX" secondItem="oRu-BC-FMc" secondAttribute="centerX" id="wO7-wB-L1V"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="ggc-S2-yMP"/>
                                         <exclude reference="vc9-oW-UF3"/>
                                         <exclude reference="b7c-bY-bcH"/>
-                                        <exclude reference="J7d-5w-TDU"/>
-                                        <exclude reference="w5e-Tu-hSY"/>
-                                        <exclude reference="wO7-wB-L1V"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -124,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgW-n8-cMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1061" y="604"/>
+            <point key="canvasLocation" x="1190" y="604"/>
         </scene>
         <!--Door Login View Controller-->
         <scene sceneID="b4m-Ky-SlJ">
@@ -162,29 +149,35 @@
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2OK-6S-64O">
                                         <rect key="frame" x="25" y="184" width="165" height="30"/>
-                                        <color key="backgroundColor" red="0.7725490196" green="0.93725490199999995" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="8z9-MZ-trL"/>
                                             <constraint firstAttribute="width" constant="165" id="DHP-0B-Pb7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="gSw-6N-rn4" id="cVh-2C-O7t"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqn-TP-9lS">
                                         <rect key="frame" x="25" y="133" width="165" height="30"/>
-                                        <color key="backgroundColor" red="0.7725490196" green="0.93725490199999995" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ayr-7p-ScI"/>
                                             <constraint firstAttribute="width" constant="165" id="zHZ-yG-Hdm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="gSw-6N-rn4" id="jri-R0-Vsi"/>
+                                        </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hd-F6-a7U">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hd-F6-a7U" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                         <rect key="frame" x="85" y="54" width="40" height="40"/>
-                                        <color key="backgroundColor" red="0.7725490196" green="0.93725490199999995" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="6L1-c5-kzp"/>
                                             <constraint firstAttribute="height" constant="40" id="gkR-sq-2v8"/>
@@ -293,6 +286,154 @@
             </objects>
             <point key="canvasLocation" x="1857" y="604"/>
         </scene>
+        <!--Window Sign Up View Controller-->
+        <scene sceneID="qva-9f-daO">
+            <objects>
+                <viewController storyboardIdentifier="WindowSignUp" id="iKJ-Eb-Vnp" customClass="WindowSignUpViewController" customModule="PlotTwist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KWZ-DF-sVB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wfb-DD-a23"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RDG-ec-HZe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPU-FR-FtR">
+                                <rect key="frame" x="165" y="100" width="270" height="400"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="window" translatesAutoresizingMaskIntoConstraints="NO" id="v8S-g7-0Xw">
+                                        <rect key="frame" x="0.0" y="0.0" width="270" height="400"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="270" id="dpH-Sf-6AT"/>
+                                            <constraint firstAttribute="height" constant="400" id="gjB-d0-9pE"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riZ-1r-P0U" customClass="RoundButton" customModule="PlotTwist" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="KbM-Ob-8GF"/>
+                                            <constraint firstAttribute="width" constant="30" id="dtK-5H-jgg"/>
+                                        </constraints>
+                                        <state key="normal" image="close"/>
+                                        <connections>
+                                            <action selector="onCloseButtonPressed:" destination="7iJ-An-aCg" eventType="touchUpInside" id="JHN-Rr-vsT"/>
+                                            <action selector="onCloseButtonPressed:" destination="iKJ-Eb-Vnp" eventType="touchUpInside" id="Kb9-XK-Osq"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cj9-7F-ldx">
+                                        <rect key="frame" x="53" y="202" width="165" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="8oV-YD-hwD"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="OSf-pC-N0b"/>
+                                            <constraint firstAttribute="height" constant="30" id="QMp-ga-cEM"/>
+                                            <constraint firstAttribute="width" constant="165" id="dmR-FH-7zi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="8oV-YD-hwD"/>
+                                                <exclude reference="OSf-pC-N0b"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="iKJ-Eb-Vnp" id="XKL-zs-HyX"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qGZ-hU-o1X">
+                                        <rect key="frame" x="53" y="254" width="165" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="165" id="0Lt-71-ZFq"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="Jvj-Ox-UVv"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="pCQ-pg-m7t"/>
+                                            <constraint firstAttribute="height" constant="30" id="s1c-hc-kgy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Jvj-Ox-UVv"/>
+                                                <exclude reference="pCQ-pg-m7t"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="iKJ-Eb-Vnp" id="uzX-bk-S2g"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvV-MB-nen" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                        <rect key="frame" x="105" y="340" width="60" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Yid-7B-nUL"/>
+                                            <constraint firstAttribute="width" constant="60" id="djx-wa-Dbv"/>
+                                        </constraints>
+                                        <state key="normal" image="pencil"/>
+                                        <connections>
+                                            <action selector="onSignUpButtonPressed:" destination="iKJ-Eb-Vnp" eventType="touchUpInside" id="hKl-pp-SEo"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5j5-nn-s2x">
+                                        <rect key="frame" x="53" y="151" width="165" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="1ro-o6-TTT"/>
+                                            <constraint firstAttribute="width" constant="165" id="7KA-nW-EL7"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="IXW-2b-Qha"/>
+                                            <constraint firstAttribute="height" constant="30" id="pdS-Jy-nHk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="1ro-o6-TTT"/>
+                                                <exclude reference="IXW-2b-Qha"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="iKJ-Eb-Vnp" id="jvG-nK-Ese"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jvV-MB-nen" secondAttribute="bottom" id="AnW-31-n2b"/>
+                                    <constraint firstItem="qGZ-hU-o1X" firstAttribute="centerX" secondItem="JPU-FR-FtR" secondAttribute="centerX" id="D0d-Bu-cVw"/>
+                                    <constraint firstItem="v8S-g7-0Xw" firstAttribute="centerX" secondItem="JPU-FR-FtR" secondAttribute="centerX" id="DTD-gw-C2d"/>
+                                    <constraint firstItem="v8S-g7-0Xw" firstAttribute="centerY" secondItem="JPU-FR-FtR" secondAttribute="centerY" id="EUf-VV-13W"/>
+                                    <constraint firstItem="cj9-7F-ldx" firstAttribute="top" secondItem="5j5-nn-s2x" secondAttribute="bottom" constant="21" id="OmR-5U-YR1"/>
+                                    <constraint firstItem="jvV-MB-nen" firstAttribute="centerX" secondItem="JPU-FR-FtR" secondAttribute="centerX" id="PHU-aV-Dpb"/>
+                                    <constraint firstItem="qGZ-hU-o1X" firstAttribute="top" secondItem="cj9-7F-ldx" secondAttribute="bottom" constant="22" id="SBh-TD-FOm"/>
+                                    <constraint firstItem="5j5-nn-s2x" firstAttribute="centerX" secondItem="JPU-FR-FtR" secondAttribute="centerX" id="V0w-oi-QLv"/>
+                                    <constraint firstItem="riZ-1r-P0U" firstAttribute="top" secondItem="JPU-FR-FtR" secondAttribute="top" constant="8" id="oUd-LW-T6G"/>
+                                    <constraint firstItem="cj9-7F-ldx" firstAttribute="centerX" secondItem="JPU-FR-FtR" secondAttribute="centerX" id="oVF-Sl-ig5"/>
+                                    <constraint firstAttribute="height" constant="400" id="rcY-tg-eBt"/>
+                                    <constraint firstAttribute="width" constant="270" id="sfP-BJ-LAP"/>
+                                    <constraint firstItem="riZ-1r-P0U" firstAttribute="leading" secondItem="JPU-FR-FtR" secondAttribute="leading" constant="8" id="y3V-qK-jOt"/>
+                                    <constraint firstItem="5j5-nn-s2x" firstAttribute="top" secondItem="JPU-FR-FtR" secondAttribute="top" constant="151" id="zik-3Z-xh8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.87873404517532827" blue="0.7867881900715431" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JPU-FR-FtR" firstAttribute="centerY" secondItem="RDG-ec-HZe" secondAttribute="centerY" id="DaV-Cy-Y63"/>
+                            <constraint firstItem="JPU-FR-FtR" firstAttribute="centerX" secondItem="RDG-ec-HZe" secondAttribute="centerX" id="IUw-ac-U9w"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="5j5-nn-s2x" id="I25-u7-HdE"/>
+                        <outlet property="passwordTextField" destination="qGZ-hU-o1X" id="3D7-17-D2g"/>
+                        <outlet property="usernameTextField" destination="cj9-7F-ldx" id="akR-Ly-Rfd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kbm-LK-y3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2533" y="604"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow" width="100" height="100"/>
@@ -303,5 +444,7 @@
         <image name="keyHole" width="61" height="115"/>
         <image name="mailbox" width="270" height="400"/>
         <image name="paperPlane" width="100" height="100"/>
+        <image name="pencil" width="100" height="100"/>
+        <image name="window" width="270" height="400"/>
     </resources>
 </document>
