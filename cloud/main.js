@@ -27,9 +27,12 @@ function sendWelcome(email) {
 }
 
 Parse.Cloud.beforeSave('_User', function(request, response) {
-  if (request.body.object.email) {
-    sendWelcome(request.body.object.email);
-  }
+  // for new users only
+  if(!request.object.existed()){
+    if (request.body.object.email) {
+      sendWelcome(request.body.object.email);
+    }
+}
 
   response.success();
 });
