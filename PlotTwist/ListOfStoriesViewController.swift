@@ -16,12 +16,10 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        tableView.estimatedRowHeight = 80.0
-//        tableView.rowHeight = UITableViewAutomaticDimension
+        //        tableView.estimatedRowHeight = 80.0
+        //        tableView.rowHeight = UITableViewAutomaticDimension
 
     }
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.stories!.count
     }
@@ -34,6 +32,8 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
         let user = stories![indexPath.row].mainAuthor as User
 
         cell.authorLabel.text = user.username
+
+
         cell.storyTitleLabel.text = stories![indexPath.row].storyTitle
 
         // Set a user image
@@ -66,62 +66,41 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         if segue.identifier == "ToReadStorySegue"{
-
             let index = self.tableView.indexPathForSelectedRow
-
             let vc = segue.destinationViewController as! ReadStoryViewController
             vc.selectedStory = self.stories![index!.row]
         }
 
     }
-    
-//added swipe to delete table cell
-    
-      func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+
+    //added swipe to delete table cell
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            
+
             let user = stories![indexPath.row].mainAuthor as User
-            
-            
-            
             if user.objectId == User.currentUser()?.objectId {
-            
-            let objectToDel: PFObject = self.stories![indexPath.row]
-            
-            objectToDel.deleteInBackgroundWithBlock({ (succeeded: Bool, error:NSError?) -> Void in
-                
-                let alertController = UIAlertController(title: "Delete", message: "The story was deleted successfully", preferredStyle: .Alert)
-                 let action = UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction) -> Void in
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.tableView.reloadData()
+
+                let objectToDel: PFObject = self.stories![indexPath.row]
+
+                objectToDel.deleteInBackgroundWithBlock({ (succeeded: Bool, error:NSError?) -> Void in
+
+                    let alertController = UIAlertController(title: "Delete", message: "The story was deleted successfully", preferredStyle: .Alert)
+                    let action = UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction) -> Void in
+
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.tableView.reloadData()
+                        })
+                        
                     })
                     
+                    alertController.addAction(action)
+                    self.presentViewController(alertController, animated: true, completion: nil)
                 })
-                
-                
-                alertController.addAction(action)
-                self.presentViewController(alertController, animated: true, completion: nil)
-                
-                
-            })
-            
- 
-            
+            }
         }
-}
-        
-     
-       
-        
-        
-        
     }
-    
-    
-    
-
 }
 
 

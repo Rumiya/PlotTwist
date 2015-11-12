@@ -17,6 +17,18 @@ class ResetPasswordViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        emailTextField.resignFirstResponder()
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        return true
+    }
+
+
+
     @IBAction func onResetPasswordButtonPressed(sender: UIButton) {
 
         let email = emailTextField.text

@@ -84,6 +84,9 @@ class UserStatisticsViewController: UIViewController, UITableViewDelegate, UITab
             return cell
     }
 
+    @IBAction func onBackButtonPressed(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBAction func onSettingsButtonPressed(sender: UIButton) {
     }
 

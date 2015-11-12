@@ -41,33 +41,25 @@ class ReadStoryViewController: UIViewController {
     }
 
     func getTextViewContent(page: Page){
-        let user = page.author 
-        // Set a user image
-        do {
-            try user.fetchIfNeeded()
+
+        page.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+
+            let user = page.author
+            // Set a user image
 
             let username = user.username
             let usernameImage = getUsernameFirstLetterImagename(username!)
 
-        if ((UIImage(named:usernameImage)) != nil){
-
-//        let image = UIImageView(image: UIImage(named: usernameImage))
-//        image.layer.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-//            image.tag = 100
-
-        self.authorImage.image = UIImage(named: usernameImage)
-        let path = UIBezierPath(rect: CGRectMake(0, 0, 60, 50))
-        self.storyContentTextView.textContainer.exclusionPaths = [path]
-       // self.storyContentTextView.addSubview(image)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if ((UIImage(named:usernameImage)) != nil){
+                    self.authorImage.image = UIImage(named: usernameImage)
+                    let path = UIBezierPath(rect: CGRectMake(0, 0, 60, 50))
+                    self.storyContentTextView.textContainer.exclusionPaths = [path]
+                }
+                self.storyContentTextView.text = page.textContent
+            })
 
         }
-        self.storyContentTextView.text = page.textContent
-
-        } catch _ {
-            print("There was an error")
-        }
-
-
     }
 
     @IBAction func onNextButtonPressed(sender: UIButton) {
@@ -77,26 +69,26 @@ class ReadStoryViewController: UIViewController {
 
         if self.pageNum < pages?.count {
 
-        let transitionOptions = UIViewAnimationOptions.TransitionCurlUp
-        UIView.transitionWithView(self.storyPageView, duration: 1.0, options: transitionOptions, animations: {
+            let transitionOptions = UIViewAnimationOptions.TransitionCurlUp
+            UIView.transitionWithView(self.storyPageView, duration: 1.0, options: transitionOptions, animations: {
 
-            // update the story page content
-            self.storyContentTextView.text = ""
+                // update the story page content
+                self.storyContentTextView.text = ""
 
-//            self.storyContentTextView.viewWithTag(100)?.removeFromSuperview()
+                //            self.storyContentTextView.viewWithTag(100)?.removeFromSuperview()
 
-            let currentPage = self.pages![self.pageNum]
-            self.getTextViewContent(currentPage)
+                let currentPage = self.pages![self.pageNum]
+                self.getTextViewContent(currentPage)
 
-            self.storyContentTextView.text = currentPage.textContent
+                self.storyContentTextView.text = currentPage.textContent
 
 
-            }, completion: { finished in
+                }, completion: { finished in
 
-                // any code entered here will be applied once the animation has completed
+                    // any code entered here will be applied once the animation has completed
 
-                self.previousButton.enabled = true
-        })
+                    self.previousButton.enabled = true
+            })
 
         }
 
@@ -125,17 +117,17 @@ class ReadStoryViewController: UIViewController {
                 }, completion: { finished in
                     self.nextButton.enabled = true
             })
-            
+
         } else {
-            
+
             self.previousButton.enabled = false
-            
+
         }
 
         if self.pageNum == 0 || self.pageNum == -1{
             self.previousButton.enabled = false
         }
- 
+
     }
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
@@ -145,41 +137,41 @@ class ReadStoryViewController: UIViewController {
             alpha: CGFloat(1.0)
         )
     }
-    
+
     @IBAction func onShareButtonPressed(sender: UIButton) {
-        
+
         var storyContent:String =  "\n" + "      Title: " +  (pages?.first?.story.storyTitle)! + "\n"
-         for page in pages! {
-       
+        for page in pages! {
+
             page.author.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error:NSError?) -> Void in
-       
-                
-                    let storyAuthour = page.author.username! + ":  "
-                
-                   storyContent = storyContent + "\n" + storyAuthour.capitalizedString + page.textContent + "\n"
+
+
+                // let storyAuthour = page.author.username! + ":  "
+
+                storyContent = storyContent + "\n" + page.textContent + "\n"
             })
-    
+
         }
         print(storyContent)
-        
-//        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: self.UIColorFromRGB(0xb6ebe3)]
-//
-   let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
-        
-        
-  let imageSize: CGRect = CGRectMake(0, 0, self.storyContentTextView.bounds.size.width, self.storyContentTextView.bounds.size.height+70)
+
+        //        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: self.UIColorFromRGB(0xb6ebe3)]
+        //
+        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16), NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
+
+
+        let imageSize: CGRect = CGRectMake(0, 0, self.storyContentTextView.bounds.size.width, self.storyContentTextView.bounds.size.height+70)
         let image  = self.imageFromString(storyContent, attributes: textAttributes, size: imageSize.size)
-        
+
         let textToShare = image
         let objectsToShare = [textToShare]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
         self.presentViewController(activityVC, animated: true, completion: nil)
         
-
+        
     }
-
-
+    
+    
     func imageFromString(string: String, attributes: [String : AnyObject], size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         string.drawInRect(CGRectMake(0, +35, size.width, size.height), withAttributes: attributes)
@@ -189,5 +181,5 @@ class ReadStoryViewController: UIViewController {
         
         return image
     }
-
-   }
+    
+}

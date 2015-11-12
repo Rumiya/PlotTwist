@@ -157,9 +157,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                     self.friendAppearingAnimation()
                 }
             })
-
         })
-
     }
 
     func didAddNewPage() {
