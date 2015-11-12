@@ -53,6 +53,9 @@
 		3AF245811BE8827A00832B30 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */; };
 		3AFF8B1C1BF50EEB00B10FF4 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1B1BF50EEB00B10FF4 /* UserSettingsViewController.swift */; };
 		3AFF8B1E1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1D1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift */; };
+		3AFF8B201BF541C900B10FF4 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */; };
+		3AFF8B221BF542F400B10FF4 /* OnboardContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF8B211BF542F400B10FF4 /* OnboardContentViewController.swift */; };
+		3AFF8B281BF54D8B00B10FF4 /* OnboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF8B271BF54D8B00B10FF4 /* OnboardPageViewController.swift */; };
 		6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */; };
 		E0572BB01BF30C6500A25188 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0572BAF1BF30C6500A25188 /* Login.storyboard */; };
 		E084C10F1BF411D200FAFA91 /* DoorLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */; };
@@ -141,6 +144,9 @@
 		3AF245841BE9317E00832B30 /* PlotTwist-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlotTwist-Bridging-Header.h"; sourceTree = "<group>"; };
 		3AFF8B1B1BF50EEB00B10FF4 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		3AFF8B1D1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		3AFF8B211BF542F400B10FF4 /* OnboardContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardContentViewController.swift; sourceTree = "<group>"; };
+		3AFF8B271BF54D8B00B10FF4 /* OnboardPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardPageViewController.swift; sourceTree = "<group>"; };
 		6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Documents/FacebookSDKs-iOS-20151026/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		E0572BAF1BF30C6500A25188 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoorLoginViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +332,8 @@
 				E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */,
 				E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */,
 				E084C1121BF5167D00FAFA91 /* WindowSignUpViewController.swift */,
+				3AFF8B271BF54D8B00B10FF4 /* OnboardPageViewController.swift */,
+				3AFF8B211BF542F400B10FF4 /* OnboardContentViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -346,6 +354,7 @@
 			children = (
 				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
 				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
+				3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */,
 				E0E2505D1BE7C3D900E51659 /* Main.storyboard */,
 				E0572BAF1BF30C6500A25188 /* Login.storyboard */,
 				E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */,
@@ -442,6 +451,7 @@
 				E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */,
 				3A0FAD1A1BF1A5B8004A9DB9 /* Outbox.storyboard in Resources */,
 				E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */,
+				3AFF8B201BF541C900B10FF4 /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +526,7 @@
 				3A1F8FEA1BEA63EC008E9671 /* DeleteStoryDelegate.swift in Sources */,
 				3AF245781BE7DFC900832B30 /* User.swift in Sources */,
 				3A0FAD101BEFB2D0004A9DB9 /* FriendsViewController.swift in Sources */,
+				3AFF8B221BF542F400B10FF4 /* OnboardContentViewController.swift in Sources */,
 				E0E250701BE7CAC500E51659 /* MyStoriesViewController.swift in Sources */,
 				3AF2457C1BE7E0FB00832B30 /* PTConstants.swift in Sources */,
 				E0E250A41BEEC23300E51659 /* CategoriesViewController.swift in Sources */,
@@ -529,11 +540,11 @@
 				3AF245741BE7DCF300832B30 /* Story.swift in Sources */,
 				E0E250941BE9678C00E51659 /* MyStoriesCell.swift in Sources */,
 				3AF245761BE7DEAC00832B30 /* Page.swift in Sources */,
+				3AFF8B281BF54D8B00B10FF4 /* OnboardPageViewController.swift in Sources */,
 				E084C10F1BF411D200FAFA91 /* DoorLoginViewController.swift in Sources */,
 				E0E250A81BEEC45B00E51659 /* ReadStoryViewController.swift in Sources */,
 				E0E2507A1BE7F5A100E51659 /* LibraryViewController.swift in Sources */,
 				E084C1131BF5167D00FAFA91 /* WindowSignUpViewController.swift in Sources */,
-				E0E250A01BED4DDA00E51659 /* UserStatisticsViewController.swift in Sources */,
 				E0E250781BE7F48100E51659 /* AddPageViewController.swift in Sources */,
 				E0E250AA1BF0309800E51659 /* ListOfStoriesTableViewCell.swift in Sources */,
 			);
