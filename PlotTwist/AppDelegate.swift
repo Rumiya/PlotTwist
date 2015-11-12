@@ -126,9 +126,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
 
-            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+//            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("DoorLogin") as! DoorLoginViewController
 
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
