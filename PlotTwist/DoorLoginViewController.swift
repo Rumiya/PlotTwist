@@ -31,14 +31,39 @@ class DoorLoginViewController: UIViewController {
     }
 
     @IBAction func onForgotPasswordPressed(sender: UIButton) {
+        presentMailboxView()
     }
 
     @IBAction func onSignUpButtonPressed(sender: UIButton) {
         
     }
 
+    func presentMailboxView(){
+
+        let storyboard = self.storyboard
+        let destinationViewController = storyboard?.instantiateViewControllerWithIdentifier("MailPassword") as! MailPasswordViewController
+
+        let fromView:UIView = self.view
+        let toView:UIView = destinationViewController.view
+
+        let viewSize = fromView.frame
+
+        fromView.superview?.addSubview(toView)
+        toView.frame = CGRectMake(-viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height)
+
+        UIView .animateWithDuration(1, animations: ({
+            fromView.frame = CGRectMake( viewSize.width, viewSize.origin.y, viewSize.width, viewSize.size.height);
+            toView.frame = CGRectMake(0, viewSize.origin.y, viewSize.width, viewSize.size.height)
+        }), completion: { finished in
+            fromView.removeFromSuperview()
+            UIApplication.sharedApplication().keyWindow!.rootViewController = destinationViewController;
+            self.presentViewController(destinationViewController, animated: false, completion: nil)
+        })
+
+    }
+
     func turnDoorKnob() {
-        UIView.animateWithDuration(2.0, animations: {
+        UIView.animateWithDuration(1.0, animations: {
             self.doorKnobLoginButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
 
             }, completion: { finished in
@@ -54,7 +79,7 @@ class DoorLoginViewController: UIViewController {
         UIView.animateWithDuration(2.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut,
             animations: ({
                 self.keyHoleImage.layer.position = CGPointMake(self.view.bounds.width/2, self.view.bounds.height/2)
-                self.keyHoleImage.transform = CGAffineTransformMakeScale(70.0, 50.0)
+                self.keyHoleImage.transform = CGAffineTransformMakeScale(50.0, 80.0)
 
                 //self.doorView.hidden = true
                 self.view.backgroundColor = UIColor(red:0.76, green:0.91, blue:0.98, alpha:1.0)

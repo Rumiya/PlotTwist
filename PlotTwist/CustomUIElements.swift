@@ -33,7 +33,8 @@ func getUsernameFirstLetterImagename(name:String) -> String{
     private func setup() {
         self.layer.borderColor = UIColor.blackColor().CGColor
         self.layer.borderWidth = 2.0
-        self.layer.cornerRadius = 15.0
+       // self.layer.cornerRadius = 15.0
+        self.layer.cornerRadius = self.bounds.width/2
         //self.tintColor = UIColor.blackColor()
 
         self.layer.shadowColor = UIColor.darkGrayColor().CGColor
@@ -44,4 +45,40 @@ func getUsernameFirstLetterImagename(name:String) -> String{
 
     }
 
+}
+
+@IBDesignable class RoundButton:UIButton {
+
+    override func awakeFromNib() {
+        self.setup()
+    }
+
+    override func prepareForInterfaceBuilder() {
+        self.setup()
+    }
+
+    private func setup() {
+        self.layer.borderColor = UIColor.blackColor().CGColor
+        self.layer.borderWidth = 2.0
+        self.layer.cornerRadius = self.bounds.width/2
+
+    }
+    
+}
+
+@IBDesignable class SquareButton:UIButton {
+
+    override func awakeFromNib() {
+        self.setup()
+    }
+
+    override func prepareForInterfaceBuilder() {
+        self.setup()
+    }
+
+    private func setup() {
+        self.layer.borderColor = UIColor.blackColor().CGColor
+        self.layer.borderWidth = 2.0
+    }
+    
 }

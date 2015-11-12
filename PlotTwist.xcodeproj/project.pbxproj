@@ -54,6 +54,7 @@
 		6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */; };
 		E0572BB01BF30C6500A25188 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0572BAF1BF30C6500A25188 /* Login.storyboard */; };
 		E084C10F1BF411D200FAFA91 /* DoorLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */; };
+		E084C1111BF431B500FAFA91 /* MailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */; };
 		E0A4BA371BF26435001D5581 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA361BF26435001D5581 /* InboxViewController.swift */; };
 		E0A4BA391BF26450001D5581 /* InboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */; };
 		E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */; };
@@ -139,6 +140,7 @@
 		6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Documents/FacebookSDKs-iOS-20151026/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		E0572BAF1BF30C6500A25188 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoorLoginViewController.swift; sourceTree = "<group>"; };
+		E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailPasswordViewController.swift; sourceTree = "<group>"; };
 		E0A4BA361BF26435001D5581 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewCell.swift; sourceTree = "<group>"; };
 		E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				3A0FAD1D1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift */,
 				3A0FAD1F1BF1D9C2004A9DB9 /* ChangeInvitedAuthorViewController.swift */,
 				E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */,
+				E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -336,7 +339,6 @@
 		E0E2506D1BE7CA4C00E51659 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E0E250AB1BF05E6E00E51659 /* CustomUIElements.swift */,
 				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
 				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
 				E0E2505D1BE7C3D900E51659 /* Main.storyboard */,
@@ -353,6 +355,7 @@
 		E0E2506E1BE7CA7E00E51659 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0E250AB1BF05E6E00E51659 /* CustomUIElements.swift */,
 				E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */,
 				3A0FAD211BF1DB9E004A9DB9 /* ChangeInvitedAuthorsDelegate.swift */,
 				3A0FAD131BF0082F004A9DB9 /* FriendButtonDelegate.swift */,
@@ -476,6 +479,7 @@
 				E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */,
 				3ADE58B61BE9BAE5003D6D74 /* TestCode.swift in Sources */,
 				3A1F8FF01BEB1398008E9671 /* CreateStoryViewController.swift in Sources */,
+				E084C1111BF431B500FAFA91 /* MailPasswordViewController.swift in Sources */,
 				E0E250741BE7DE4900E51659 /* ExploreViewController.swift in Sources */,
 				3A0FAD141BF0082F004A9DB9 /* FriendButtonDelegate.swift in Sources */,
 				3A0FAD1C1BF1A6C9004A9DB9 /* OutboxViewController.swift in Sources */,
