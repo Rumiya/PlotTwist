@@ -25,6 +25,8 @@ class ReadStoryViewController: UIViewController {
     var pageNum:Int = 0
     var pagesCount:Int = 0
 
+    var storyContent: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.storyTitleLabel.text = selectedStory?.storyTitle
@@ -37,6 +39,11 @@ class ReadStoryViewController: UIViewController {
         let currentPage = pages![0]
 
         self.getTextViewContent(currentPage)
+
+
+    }
+
+    override func viewWillAppear(animated: Bool) {
 
     }
 
@@ -58,7 +65,6 @@ class ReadStoryViewController: UIViewController {
                 }
                 self.storyContentTextView.text = page.textContent
             })
-
         }
     }
 
@@ -140,16 +146,12 @@ class ReadStoryViewController: UIViewController {
 
     @IBAction func onShareButtonPressed(sender: UIButton) {
 
-        var storyContent:String =  "\n" +  (pages?.first?.story.storyTitle)! + "\n"
+        var storyContent =  "\n" +  (pages?.first?.story.storyTitle)! + "\n"
         for page in pages! {
-            page.author.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error:NSError?) -> Void in
-                storyContent = storyContent + "\n" + page.textContent + "\n"
-            })
-
+            storyContent = storyContent + "\n" + page.textContent + "\n"
         }
-        //print(storyContent)
 
-        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont(name: "Noteworthy", size: 16.0)!, NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
+        let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont(name: "Noteworthy", size: 14.0)!, NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
 
         let image  = self.imageFromString(storyContent, inImage: UIImage(named: "blurBackground")!,  attributes: textAttributes)
 
@@ -158,13 +160,15 @@ class ReadStoryViewController: UIViewController {
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
         self.presentViewController(activityVC, animated: true, completion: nil)
+
     }
-    
-    
+
+
     func imageFromString(string: String, inImage:UIImage, attributes: [String : AnyObject]) -> UIImage {
         UIGraphicsBeginImageContext(inImage.size)
         inImage.drawInRect(CGRectMake(0, 0, inImage.size.width, inImage.size.height))
-        let rect: CGRect = CGRectMake(20, 20, inImage.size.width-40, inImage.size.height-20)
+        let rect: CGRect = CGRectMake(20, 10, inImage.size.width-40, inImage.size.height-80)
+        
         string.drawInRect(rect, withAttributes: attributes)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
