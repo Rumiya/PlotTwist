@@ -226,6 +226,9 @@
 		3A1F8FF11BEB4956008E9671 /* Unused Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E0E250871BE8279D00E51659 /* LoginViewController.swift */,
+				E0E250891BE827E400E51659 /* SignUpViewController.swift */,
+				E0E2508B1BE8281200E51659 /* ResetPasswordViewController.swift */,
 				3ADE58B51BE9BAE5003D6D74 /* TestCode.swift */,
 				3A1F8FE91BEA63EC008E9671 /* DeleteStoryDelegate.swift */,
 				3ADE58B71BE9CF22003D6D74 /* NewPageDelegate.swift */,
@@ -321,9 +324,6 @@
 				E0A4BA361BF26435001D5581 /* InboxViewController.swift */,
 				E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */,
 				3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */,
-				E0E250871BE8279D00E51659 /* LoginViewController.swift */,
-				E0E250891BE827E400E51659 /* SignUpViewController.swift */,
-				E0E2508B1BE8281200E51659 /* ResetPasswordViewController.swift */,
 				3A0FAD0F1BEFB2D0004A9DB9 /* FriendsViewController.swift */,
 				3A0FAD111BEFB326004A9DB9 /* FriendTableViewCell.swift */,
 				3A0FAD1B1BF1A6C9004A9DB9 /* OutboxViewController.swift */,
