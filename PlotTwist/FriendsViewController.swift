@@ -91,11 +91,20 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
     }
 
+    func currentArray() -> Array<User> {
+        if (searchActive) {
+            return self.filteredUsers
+        } else {
+            return self.users
+        }
+    }
+
     // MARK: Friend Button Delegate Methods
     func didPressFriendButton(button: UIButton) {
         let touchPoint: CGPoint = button.convertPoint(CGPointZero, toView: tableView)
         let indexPath: NSIndexPath = tableView.indexPathForRowAtPoint(touchPoint)!
-        let user = users[indexPath.row]
+
+        let user = currentArray()[indexPath.row]
 
         if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.sendRequest)) {
             button.enabled = false
@@ -172,7 +181,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
 
         filteredUsers = users.filter({ (user: User) -> Bool in
-            let stringMatch = user.username!.rangeOfString(searchText)
+            let stringMatch = user.username!.uppercaseString.rangeOfString(searchText.uppercaseString)
             return (stringMatch != nil)
         })
         if(filteredUsers.count == 0){
@@ -190,28 +199,30 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         cell.delegate = self
 
-        if (searchActive) {
-            cell.usernameLabel?.text = filteredUsers[indexPath.row].username
-            if buttonTypeForUser.count > 0 {
-                cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[filteredUsers[indexPath.row]]!), forState: .Normal)
-            }
-
-        } else {
-            cell.usernameLabel?.text = users[indexPath.row].username
-            if buttonTypeForUser.count > 0 {
-
-                cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[users[indexPath.row]]!), forState: .Normal)
-            }
+        cell.usernameLabel?.text = currentArray()[indexPath.row].username
+        if buttonTypeForUser.count > 0 {
+            cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[currentArray()[indexPath.row]]!), forState: .Normal)
         }
+
+//        if (searchActive) {
+//            cell.usernameLabel?.text = filteredUsers[indexPath.row].username
+//            if buttonTypeForUser.count > 0 {
+//                cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[filteredUsers[indexPath.row]]!), forState: .Normal)
+//            }
+//
+//        } else {
+//            cell.usernameLabel?.text = users[indexPath.row].username
+//            if buttonTypeForUser.count > 0 {
+//
+//                cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[users[indexPath.row]]!), forState: .Normal)
+//            }
+//        }
 
         return cell
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (searchActive) {
-            return filteredUsers.count
-        }
-        return users.count
+        return currentArray().count
     }
     
 }

@@ -129,6 +129,13 @@ class DoorLoginViewController: UIViewController {
             // Send a request to login
             PFUser.logInWithUsernameInBackground(username!, password: password!, block: { (user, error) -> Void in
 
+                if let currentInstallation: PFInstallation = PFInstallation.currentInstallation(){
+                    if currentInstallation.objectForKey("user") == nil {
+                        currentInstallation.setObject(user!, forKey: "user")
+                        currentInstallation.saveInBackground()
+                    }
+                }
+                
                 // Stop the spinner
                 spinner.stopAnimating()
 

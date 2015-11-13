@@ -238,7 +238,10 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ToNewPageSegue"{
             let vc = segue.destinationViewController as! InboxViewController
+            self.storyLastPage.sortInPlace({ $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending })
           vc.incomingStoryPageArray = self.storyLastPage
+
+
             vc.isNewStory = false
             vc.homeVC = self
 

@@ -67,7 +67,7 @@ class WindowSignUpViewController: UIViewController {
             let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
             spinner.startAnimating()
 
-            let newUser = PFUser()
+            let newUser = User()
 
             newUser.username = username
             newUser.password = password
@@ -75,6 +75,13 @@ class WindowSignUpViewController: UIViewController {
 
             // Sign up the user asynchronously
             newUser.signUpInBackgroundWithBlock({ (succeed, error) -> Void in
+
+                if let currentInstallation: PFInstallation = PFInstallation.currentInstallation(){
+                    if currentInstallation.objectForKey("user") == nil {
+                        currentInstallation.setObject(newUser, forKey: "user")
+                        currentInstallation.saveInBackground()
+                    }
+                }
 
                 // Stop the spinner
                 spinner.stopAnimating()

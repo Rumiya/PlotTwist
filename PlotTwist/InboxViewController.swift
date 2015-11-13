@@ -31,8 +31,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
+
         return incomingStoryPageArray.count
     }
 
@@ -54,8 +53,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cellBGView = UIView()
         cellBGView.backgroundColor = cell.backgroundColor
         cell.selectedBackgroundView = cellBGView
-        
-        
+
         //copied code
         
         let page: Page = self.incomingStoryPageArray[indexPath.row]
@@ -72,24 +70,12 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
 })
-    
-//        if (page.author.username != nil) {
-//             cell.authorLabel.text = page.author.username
-//        }
-      
         cell.dateCreatedLabel.text =  PTUtiltiy.getElapsedTimeFromDate(page.createdAt!)
         cell.previousContent.text = page.textContent
-        
-     
-        
-  
+
         return cell
     }
-    
 
-
-
-   
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -102,29 +88,12 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let indexPath = tableView.indexPathForSelectedRow
             
        let page: Page = incomingStoryPageArray[indexPath!.row]
-          
-         
-        //fetch page.story
-//            do {
-//                try page.story.fetchIfNeeded()
-//           
-//            
-//            vc.titleTextField.text = page.story.storyTitle
-//            
-//        } catch {
-//            print("There was an error")
-//        }
-        
-            //
+
             vc.previousContentText = page.textContent
             vc.isNewStory = isNewStory
             vc.story = page.story
             vc.homeVC = homeVC
-         
- 
         }
-        
-        
     }
     
     @IBAction func unwindToInbox(segue:UIStoryboardSegue) {

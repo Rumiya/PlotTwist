@@ -29,7 +29,7 @@ class MailPasswordViewController: UIViewController {
     @IBAction func onResetButtonPressed(sender: UIButton) {
         let email = emailTextField.text
         
-        let userQuery: PFQuery = PFUser.query()!
+        let userQuery: PFQuery = User.query()!
         userQuery.whereKey("email", equalTo: email!)
         
          userQuery.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
@@ -48,7 +48,7 @@ class MailPasswordViewController: UIViewController {
                 //if valid pop reset password request
                 
                 // Send a request to reset a password
-                PFUser.requestPasswordResetForEmailInBackground(finalEmail)
+                User.requestPasswordResetForEmailInBackground(finalEmail)
                 
                 let alert = UIAlertController (title: "Password Reset", message: "An email containing information on how to reset your password has been sent to " + finalEmail + ".", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) -> Void in

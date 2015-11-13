@@ -128,13 +128,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBAction func onNextButtonPressed(sender: AnyObject) {
 
         if isNewStory == true {
-            if (titleTextField.text == nil || contentTextView.text == nil) {
+            if (titleTextField.text == nil || contentTextView.text == "Type your story here" || contentTextView.text == nil) {
                 presentEmptyFieldAlertController()
             } else {
                 performSegueWithIdentifier("ToSendSegue", sender: sender)
             }
         } else {
-            if (contentTextView.text == nil) {
+            if (contentTextView.text == "Type your story here" || contentTextView.text == nil) {
                 presentEmptyFieldAlertController()
             } else {
                 performSegueWithIdentifier("ToSendSegue", sender: sender)
