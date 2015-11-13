@@ -85,6 +85,7 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
                 let objectToDel: PFObject = self.stories![indexPath.row]
 
                 objectToDel.deleteInBackgroundWithBlock({ (succeeded: Bool, error:NSError?) -> Void in
+                    self.stories?.removeAtIndex(indexPath.row)
 
                     let alertController = UIAlertController(title: "Delete", message: "The story was deleted successfully", preferredStyle: .Alert)
                     let action = UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction) -> Void in
