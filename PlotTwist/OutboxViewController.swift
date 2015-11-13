@@ -75,8 +75,6 @@ class OutboxViewController: UIViewController, UITableViewDataSource, UITableView
 
 
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ToChangeAuthorSegue" {
             let vc = segue.destinationViewController as! ChangeInvitedAuthorViewController

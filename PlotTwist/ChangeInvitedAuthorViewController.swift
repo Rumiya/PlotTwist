@@ -38,14 +38,25 @@ class ChangeInvitedAuthorViewController: UIViewController, UITableViewDelegate, 
         activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             let activities = objects as! [Activity]
 
+            var friendIndex = 0
             for activity in activities {
                 if (activity.toUser.objectId != User.currentUser()?.objectId) {
                     self.friends.append(activity.toUser)
+                    if(activity.toUser.username == self.story?.currentAuthor.username){
+                        self.selectedIndex = friendIndex
+                    }
+                    friendIndex++
                 }
 
                 if (activity.fromUser.objectId != User.currentUser()?.objectId) {
                     self.friends.append(activity.fromUser)
+                    if(activity.fromUser.username == self.story?.currentAuthor.username){
+                        self.selectedIndex = friendIndex
+                    }
+                    friendIndex++
                 }
+
+
 
                 if (self.friends.count == activities.count) {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in

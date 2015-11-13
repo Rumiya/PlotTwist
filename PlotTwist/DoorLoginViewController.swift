@@ -73,7 +73,7 @@ class DoorLoginViewController: UIViewController {
     }
 
     func showMyHomeScreen(){
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
             self.turnDoorKnob()
 
@@ -82,7 +82,7 @@ class DoorLoginViewController: UIViewController {
 //            UIApplication.sharedApplication().keyWindow!.rootViewController = viewController;
 //
 //            self.presentViewController(viewController, animated: true, completion: nil)
-        })
+        //})
     }
 
     func updatePFUserDetail() {
@@ -207,6 +207,7 @@ class DoorLoginViewController: UIViewController {
 
 
             }), completion: { finished in
+                
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
                 UIApplication.sharedApplication().keyWindow!.rootViewController = viewController;
