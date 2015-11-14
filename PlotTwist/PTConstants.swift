@@ -67,10 +67,12 @@ struct Constants {
         static let createdAt = "createdAt"
 
         struct ButtonType {
-            static let accepted = "AcceptedButton"
-            static let pending = "PendingButton"
-            static let sendRequest = "SendRequestButton"
-            static let incoming = "IncomingButton"
+            static let accepted = "friends_button"
+            static let pending = "undo_button"
+            static let sendRequest = "addFriend_button"
+            static let incoming = "accept_button"
+            static let acceptedText = "accepted_button"
+            static let rejectedText = "rejected_button"
         }
     }
 }

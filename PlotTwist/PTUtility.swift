@@ -46,6 +46,32 @@ class PTUtiltiy {
         })
     }
 
+    class func undoFriendUserInBackground(user: User, completion:(result: Bool) ->Void) {
+        if user.objectId == User.currentUser()?.objectId {
+            return
+        }
+        let activityOneQuery = Activity.query()
+        activityOneQuery?.whereKey(Constants.Activity.fromUser, equalTo: user)
+        activityOneQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
+
+        let activityTwoQuery = Activity.query()
+        activityTwoQuery?.whereKey(Constants.Activity.toUser, equalTo: user)
+        activityTwoQuery?.whereKey(Constants.Activity.fromUser, equalTo: User.currentUser()!)
+
+        let activityQuery = PFQuery.orQueryWithSubqueries([activityOneQuery!, activityTwoQuery!])
+        activityQuery.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.outgoing)
+        activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
+            let activity = objects?.first as! Activity
+
+            activity.deleteInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+                completion(result: success)
+            }
+            
+        })
+        
+    }
+
     class func acceptFriendInBackground(user: User, completion:(result: Bool) ->Void) {
         if user.objectId == User.currentUser()?.objectId {
             return
@@ -96,6 +122,35 @@ class PTUtiltiy {
 
 
     }
+
+    class func rejectFriendInBackground(user: User, completion:(result: Bool) ->Void) {
+        if user.objectId == User.currentUser()?.objectId {
+            return
+        }
+
+        let activityOneQuery = Activity.query()
+        activityOneQuery?.whereKey(Constants.Activity.fromUser, equalTo: user)
+        activityOneQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
+
+        let activityTwoQuery = Activity.query()
+        activityTwoQuery?.whereKey(Constants.Activity.toUser, equalTo: user)
+        activityTwoQuery?.whereKey(Constants.Activity.fromUser, equalTo: User.currentUser()!)
+
+
+        let activityQuery = PFQuery.orQueryWithSubqueries([activityOneQuery!, activityTwoQuery!])
+        activityQuery.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.outgoing)
+        activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            let activity = objects?.first as! Activity
+
+            activity.deleteInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+                completion(result: success)
+            }
+
+        })
+        
+        
+    }
+
 
     class func unFriendUserInBackground(user: User, completion:(result: Bool) ->Void) {
         if user.objectId == User.currentUser()?.objectId {
