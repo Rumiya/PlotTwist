@@ -13,20 +13,62 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
     var story = Story()
     var storyLastPage: [Page]=[]
+    var friendBalloonEndPoint: CGPoint = CGPointMake(0,0)
 //    var storyLastPage = [Story]()
 
     @IBOutlet weak var userProfileButton: UIButton!
-
     @IBOutlet weak var notificationButton: UIButton!
-
     @IBOutlet weak var cloudsImage: UIImageView!
-
     @IBOutlet weak var friendButton: UIButton!
-    
+
+    @IBOutlet weak var crayonBottomSpace: NSLayoutConstraint!
+    @IBOutlet weak var glassesBottomSpace: NSLayoutConstraint!
+    @IBOutlet weak var outboxBottomSpace: NSLayoutConstraint!
+    @IBOutlet weak var outboxLeadingSpace: NSLayoutConstraint!
+    @IBOutlet weak var glassesLeadingSpace: NSLayoutConstraint!
+    @IBOutlet weak var airBalloonTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var airBalloonHeight: NSLayoutConstraint!
+    @IBOutlet weak var inboxTopSpaceToUser: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+
+        // detect screen size
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        // let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+
+        if screenHeight == 480 {
+            crayonBottomSpace.constant = 25
+            glassesBottomSpace.constant = 25
+            outboxBottomSpace.constant = 25
+            outboxLeadingSpace.constant = 50
+            glassesLeadingSpace.constant = 50
+            airBalloonTopSpace.constant = 25
+            airBalloonHeight.constant = 310
+            inboxTopSpaceToUser.constant = 90
+            self.friendBalloonEndPoint = CGPointMake(270, 189)
+
+        } else if screenHeight == 568 {
+
+            self.friendBalloonEndPoint = CGPointMake(270, 189)
+
+        } else if screenHeight == 667 {
+
+            self.friendBalloonEndPoint = CGPointMake(310, 230)
+
+        } else if screenHeight == 736 {
+
+            self.friendBalloonEndPoint = CGPointMake(350, 250)
+
+        } else {
+            self.friendBalloonEndPoint = CGPointMake(368, 219)
+        }
+
     }
 
     func passCloudsByAnimation(){
@@ -50,7 +92,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
         let path = UIBezierPath()
         path.moveToPoint(CGPoint(x: self.view.bounds.width,y: 239))
-        path.addCurveToPoint(CGPoint(x: 368, y: 219), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
+        //path.addCurveToPoint(CGPoint(x: 270, y: 189), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
+        path.addCurveToPoint(self.friendBalloonEndPoint, controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
 
        // path.moveToPoint(self.friendStartPoint!)
         
@@ -66,7 +109,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
         // we add the animation to the squares 'layer' property
         self.friendButton.layer.addAnimation(anim, forKey: "animate position along path")
-        self.friendButton.layer.position = CGPointMake(368, 219)
+        //self.friendButton.layer.position = CGPointMake(270, 189)
+        self.friendButton.layer.position = self.friendBalloonEndPoint
 
 
        // fadeOutLayerAnimation(self.friendButton.layer, beginTime: 5.0)
