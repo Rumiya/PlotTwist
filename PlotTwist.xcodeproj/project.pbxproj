@@ -59,6 +59,8 @@
 		3AFA0D4B1BF7F06B0006CD22 /* IncomingFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFA0D4A1BF7F06B0006CD22 /* IncomingFriendTableViewCell.swift */; };
 		3AFA0D4D1BF7F0770006CD22 /* OutgoingFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFA0D4C1BF7F0770006CD22 /* OutgoingFriendTableViewCell.swift */; };
 		3AFA0D4F1BF7F0810006CD22 /* MyFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFA0D4E1BF7F0810006CD22 /* MyFriendsTableViewCell.swift */; };
+		3AFA0D511BF821140006CD22 /* ContactsButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFA0D501BF821140006CD22 /* ContactsButtonDelegate.swift */; };
+		3AFA0D531BF8214B0006CD22 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFA0D521BF8214B0006CD22 /* ContactsTableViewCell.swift */; };
 		3AFF8B1C1BF50EEB00B10FF4 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1B1BF50EEB00B10FF4 /* UserSettingsViewController.swift */; };
 		3AFF8B1E1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1D1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift */; };
 		3AFF8B201BF541C900B10FF4 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */; };
@@ -158,6 +160,8 @@
 		3AFA0D4A1BF7F06B0006CD22 /* IncomingFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingFriendTableViewCell.swift; sourceTree = "<group>"; };
 		3AFA0D4C1BF7F0770006CD22 /* OutgoingFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingFriendTableViewCell.swift; sourceTree = "<group>"; };
 		3AFA0D4E1BF7F0810006CD22 /* MyFriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFriendsTableViewCell.swift; sourceTree = "<group>"; };
+		3AFA0D501BF821140006CD22 /* ContactsButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsButtonDelegate.swift; sourceTree = "<group>"; };
+		3AFA0D521BF8214B0006CD22 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		3AFF8B1B1BF50EEB00B10FF4 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		3AFF8B1D1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsCollectionViewCell.swift; sourceTree = "<group>"; };
 		3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				3A0FAD111BEFB326004A9DB9 /* FriendTableViewCell.swift */,
 				3AFA0D4A1BF7F06B0006CD22 /* IncomingFriendTableViewCell.swift */,
 				3AFA0D4C1BF7F0770006CD22 /* OutgoingFriendTableViewCell.swift */,
+				3AFA0D521BF8214B0006CD22 /* ContactsTableViewCell.swift */,
 				3AFA0D4E1BF7F0810006CD22 /* MyFriendsTableViewCell.swift */,
 				3A0FAD1B1BF1A6C9004A9DB9 /* OutboxViewController.swift */,
 				3A0FAD1D1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift */,
@@ -398,6 +403,7 @@
 				3AFA0D441BF7EFCC0006CD22 /* IncomingFriendButtonDelegate.swift */,
 				3AFA0D461BF7EFF00006CD22 /* OutgoingFriendButtonDelegate.swift */,
 				3AFA0D481BF7F0050006CD22 /* MyFriendsButtonDelegate.swift */,
+				3AFA0D501BF821140006CD22 /* ContactsButtonDelegate.swift */,
 				3A0FAD171BF1246A004A9DB9 /* FriendListDelegate.swift */,
 				3AF2457B1BE7E0FB00832B30 /* PTConstants.swift */,
 				3A0FAD151BF00A01004A9DB9 /* PTUtility.swift */,
@@ -516,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */,
+				3AFA0D511BF821140006CD22 /* ContactsButtonDelegate.swift in Sources */,
 				E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */,
 				3ADE58B61BE9BAE5003D6D74 /* TestCode.swift in Sources */,
 				3A1F8FF01BEB1398008E9671 /* CreateStoryViewController.swift in Sources */,
@@ -558,6 +565,7 @@
 				E0E250701BE7CAC500E51659 /* MyStoriesViewController.swift in Sources */,
 				3AF2457C1BE7E0FB00832B30 /* PTConstants.swift in Sources */,
 				E0E250A41BEEC23300E51659 /* CategoriesViewController.swift in Sources */,
+				3AFA0D531BF8214B0006CD22 /* ContactsTableViewCell.swift in Sources */,
 				E0E2508A1BE827E400E51659 /* SignUpViewController.swift in Sources */,
 				3AFA0D491BF7F0050006CD22 /* MyFriendsButtonDelegate.swift in Sources */,
 				E0E250AC1BF05E6E00E51659 /* CustomUIElements.swift in Sources */,

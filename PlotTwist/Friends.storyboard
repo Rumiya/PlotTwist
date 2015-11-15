@@ -114,6 +114,96 @@
                                     <constraint firstItem="ofE-KK-O7d" firstAttribute="top" secondItem="g5V-Du-3Ca" secondAttribute="top" id="lwY-xQ-0xK"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqH-kO-9Z7" userLabel="Contacts View">
+                                <rect key="frame" x="0.0" y="127" width="600" height="473"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OKX-CP-G90">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="473"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="sectionIndexBackgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactsCell" rowHeight="60" id="B7Q-64-mKR" customClass="ContactsTableViewCell" customModule="PlotTwist" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B7Q-64-mKR" id="5MA-36-BQC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xb6-Ll-2Jp">
+                                                            <rect key="frame" x="66" y="16" width="34" height="28"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RZ7-yX-XsK">
+                                                            <rect key="frame" x="18" y="10" width="40" height="40"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="C7t-Jj-N5M"/>
+                                                                <constraint firstAttribute="width" constant="40" id="jOK-tK-hK3"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZz-ec-bRU">
+                                                            <rect key="frame" x="503" y="18" width="89" height="23"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="EDL-Sw-nOE"/>
+                                                                <constraint firstAttribute="height" constant="50" id="KQa-eZ-6bs"/>
+                                                                <constraint firstAttribute="width" constant="89" id="b53-M2-lki"/>
+                                                                <constraint firstAttribute="width" constant="79" id="ekw-uJ-ABi"/>
+                                                            </constraints>
+                                                            <state key="normal" backgroundImage="addFriend_button"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="KQa-eZ-6bs"/>
+                                                                    <exclude reference="ekw-uJ-ABi"/>
+                                                                </mask>
+                                                            </variation>
+                                                            <connections>
+                                                                <action selector="onFriendButtonPressed:" destination="B7Q-64-mKR" eventType="touchUpInside" id="I5y-zn-6wv"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="xb6-Ll-2Jp" firstAttribute="leading" secondItem="RZ7-yX-XsK" secondAttribute="trailing" constant="8" id="Br7-Be-Op3"/>
+                                                        <constraint firstItem="xb6-Ll-2Jp" firstAttribute="centerY" secondItem="5MA-36-BQC" secondAttribute="centerY" id="Q9v-uc-JJt"/>
+                                                        <constraint firstItem="DZz-ec-bRU" firstAttribute="centerY" secondItem="5MA-36-BQC" secondAttribute="centerY" id="hgQ-EO-T5i"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="DZz-ec-bRU" secondAttribute="trailing" id="jH2-au-ZhL"/>
+                                                        <constraint firstItem="RZ7-yX-XsK" firstAttribute="centerY" secondItem="5MA-36-BQC" secondAttribute="centerY" id="rP6-IP-mVw"/>
+                                                        <constraint firstItem="RZ7-yX-XsK" firstAttribute="leading" secondItem="5MA-36-BQC" secondAttribute="leadingMargin" constant="10" id="vgt-rJ-JBw"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <animations/>
+                                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <outlet property="friendButton" destination="DZz-ec-bRU" id="zGF-aM-Qbs"/>
+                                                    <outlet property="profilePicture" destination="RZ7-yX-XsK" id="S05-z1-oj8"/>
+                                                    <outlet property="usernameLabel" destination="xb6-Ll-2Jp" id="fTu-wI-DO9"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Csg-Ko-Rc0" id="6pS-Ee-5Wa"/>
+                                            <outlet property="delegate" destination="Csg-Ko-Rc0" id="5F9-Io-L4m"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="OKX-CP-G90" secondAttribute="bottom" id="16e-zV-z90"/>
+                                    <constraint firstItem="OKX-CP-G90" firstAttribute="leading" secondItem="wqH-kO-9Z7" secondAttribute="leading" id="3z0-xX-Eia"/>
+                                    <constraint firstAttribute="trailing" secondItem="OKX-CP-G90" secondAttribute="trailing" id="8Lu-3e-NdH"/>
+                                    <constraint firstAttribute="trailing" secondItem="OKX-CP-G90" secondAttribute="trailing" id="Hs2-Ur-tAy"/>
+                                    <constraint firstItem="OKX-CP-G90" firstAttribute="leading" secondItem="wqH-kO-9Z7" secondAttribute="leading" id="Oh0-3E-gHm"/>
+                                    <constraint firstAttribute="bottom" secondItem="OKX-CP-G90" secondAttribute="bottom" id="eYV-23-RHB"/>
+                                    <constraint firstItem="OKX-CP-G90" firstAttribute="top" secondItem="wqH-kO-9Z7" secondAttribute="top" id="o30-fG-OG0"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ndf-aq-2m5" userLabel="Outgoing View">
                                 <rect key="frame" x="0.0" y="127" width="600" height="473"/>
                                 <subviews>
@@ -157,8 +247,8 @@
                                                             <state key="normal" backgroundImage="undo_button"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
-                                                                    <exclude reference="l5g-M9-FGc"/>
                                                                     <exclude reference="h4h-j8-Rk8"/>
+                                                                    <exclude reference="l5g-M9-FGc"/>
                                                                 </mask>
                                                             </variation>
                                                             <connections>
@@ -244,8 +334,8 @@
                                                             <state key="normal" backgroundImage="accept_button"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
-                                                                    <exclude reference="ktk-mC-N9H"/>
                                                                     <exclude reference="MzK-D0-YEA"/>
+                                                                    <exclude reference="ktk-mC-N9H"/>
                                                                 </mask>
                                                             </variation>
                                                             <connections>
@@ -419,6 +509,8 @@
                             <constraint firstItem="g5V-Du-3Ca" firstAttribute="leading" secondItem="gS2-dY-6T3" secondAttribute="leadingMargin" constant="-20" id="3ox-KX-s55"/>
                             <constraint firstItem="uE5-Id-l8E" firstAttribute="top" secondItem="iy7-ZP-wpj" secondAttribute="bottom" id="4Qk-x6-CKD"/>
                             <constraint firstItem="JLZ-ni-xxm" firstAttribute="leading" secondItem="gS2-dY-6T3" secondAttribute="leadingMargin" constant="-4" id="6G1-kh-YN6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wqH-kO-9Z7" secondAttribute="trailing" constant="-20" id="AH3-34-lVY"/>
+                            <constraint firstItem="wqH-kO-9Z7" firstAttribute="top" secondItem="cJk-f2-o0H" secondAttribute="bottom" constant="40" id="ATB-hv-Jhc"/>
                             <constraint firstItem="cJk-f2-o0H" firstAttribute="leading" secondItem="gS2-dY-6T3" secondAttribute="leading" id="ER6-hO-h6y"/>
                             <constraint firstItem="uE5-Id-l8E" firstAttribute="top" secondItem="g5V-Du-3Ca" secondAttribute="bottom" id="GrL-QH-6WP"/>
                             <constraint firstItem="JLZ-ni-xxm" firstAttribute="top" secondItem="5Ma-mo-f3h" secondAttribute="bottom" constant="31" id="HBF-5x-Gv8"/>
@@ -436,7 +528,9 @@
                             <constraint firstItem="Ndf-aq-2m5" firstAttribute="top" secondItem="cJk-f2-o0H" secondAttribute="bottom" constant="40" id="fvd-Mf-dMa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g5V-Du-3Ca" secondAttribute="trailing" constant="-20" id="i5B-O4-FqB"/>
                             <constraint firstItem="ydK-l3-sd6" firstAttribute="leading" secondItem="gS2-dY-6T3" secondAttribute="leadingMargin" constant="-20" id="ljg-cM-dKq"/>
+                            <constraint firstItem="uE5-Id-l8E" firstAttribute="top" secondItem="wqH-kO-9Z7" secondAttribute="bottom" id="oR4-SI-dST"/>
                             <constraint firstItem="JLZ-ni-xxm" firstAttribute="leading" secondItem="gS2-dY-6T3" secondAttribute="leading" constant="20" id="pNh-Hu-YXM"/>
+                            <constraint firstItem="wqH-kO-9Z7" firstAttribute="leading" secondItem="gS2-dY-6T3" secondAttribute="leadingMargin" constant="-20" id="phR-Eh-vpQ"/>
                             <constraint firstItem="JLZ-ni-xxm" firstAttribute="top" secondItem="5Ma-mo-f3h" secondAttribute="bottom" constant="26" id="wOO-rm-OuK"/>
                         </constraints>
                         <variation key="default">
@@ -449,6 +543,8 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="contactsTableView" destination="OKX-CP-G90" id="CHT-0E-3oW"/>
+                        <outlet property="contactsView" destination="wqH-kO-9Z7" id="MO3-Zg-2Ur"/>
                         <outlet property="incomingTableView" destination="9qI-SB-vmZ" id="lkp-ia-jjo"/>
                         <outlet property="incomingView" destination="ydK-l3-sd6" id="Azd-RG-Fy6"/>
                         <outlet property="myFriendsTableView" destination="ofE-KK-O7d" id="eXf-Vd-OIF"/>

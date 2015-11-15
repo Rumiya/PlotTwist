@@ -56,6 +56,7 @@ struct Constants {
     struct User {
         static let objectId = "objectId"
         static let fullName = "fullName"
+        static let email = "email"
         static let profilePicture = "profilePicture"
         static let friends = "friends"
         static let viewedStories = "viewedStories"

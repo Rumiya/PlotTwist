@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import Contacts
+import ContactsUI
 
-class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FriendButtonDelegate, IncomingFriendButtonDelegate, OutgoingFriendButtonDelegate, MyFriendsButtonDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SMSegmentViewDelegate {
+class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FriendButtonDelegate, IncomingFriendButtonDelegate, OutgoingFriendButtonDelegate, MyFriendsButtonDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SMSegmentViewDelegate, CNContactPickerDelegate, ContactsButtonDelegate {
 
     var delegate: FriendListDelegate?
     var searchActive:Bool = false
     var buttonTypeForUser = [User:String]()
 
     var segmentView: SMSegmentView!
+
 
     // Data and Outlets for Table Views
 
@@ -36,6 +39,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var outgoingView: UIView!
 
     // 4) Contacts Table View
+    var contactMatch: [User] = []
+    @IBOutlet weak var contactsView: UIView!
+    @IBOutlet weak var contactsTableView: UITableView!
 
     // 5) My Friends Table View
     var myFriends: [User] = []
@@ -49,6 +55,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         incomingTableView.allowsSelection = false;
         outgoingTableView.allowsSelection = false;
         myFriendsTableView.allowsSelection = false;
+        contactsTableView.allowsSelection = false;
         initSegmentView()
         queryUsers()
     }
@@ -74,30 +81,38 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             searchView.hidden = false
             incomingView.hidden = true
             outgoingView.hidden = true
+            contactsView.hidden = true
             myFriendsView.hidden = true
         case 1:
             searchView.hidden = true
             incomingView.hidden = false
             outgoingView.hidden = true
+            contactsView.hidden = true
             myFriendsView.hidden = true
         case 2:
             searchView.hidden = true
             incomingView.hidden = true
             outgoingView.hidden = false
+            contactsView.hidden = true
             myFriendsView.hidden = true
         case 3:
             searchView.hidden = true
             incomingView.hidden = true
             outgoingView.hidden = true
+            contactsView.hidden = false
             myFriendsView.hidden = true
+
+
+
         case 4:
             searchView.hidden = true
             incomingView.hidden = true
             outgoingView.hidden = true
             myFriendsView.hidden = false
+            contactsView.hidden = true
 
         default:
-            break;
+            break
         }
     }
 
@@ -109,6 +124,28 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         incoming.removeAll()
         outgoing.removeAll()
         myFriends.removeAll()
+        contactMatch.removeAll()
+
+        // Fetch contacts from address book
+        let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
+        let containerId = CNContactStore().defaultContainerIdentifier()
+        let predicate: NSPredicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
+        let contacts: [CNContact]?
+        do {
+            contacts = try CNContactStore().unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)
+        } catch _ {
+            contacts = nil
+        }
+
+        var contactEmails = [String]()
+        for contact in contacts! {
+            for emailAddress in contact.emailAddresses{
+                contactEmails.append(emailAddress.value as! String)
+                //print(contactEmails.last)
+            }
+        }
+
+
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
@@ -118,6 +155,13 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                 var count = 0
                 for user in tempUsers {
+
+                    // Then compare with parse database to see if there are any matching emails
+
+                    if contactEmails.contains(user.email!){
+                        self.contactMatch.append(user)
+                        //print(self.contactMatch.last)
+                    }
 
                     let friendOutgoingQuery = Activity.query()
                     friendOutgoingQuery?.whereKey(Constants.Activity.fromUser, equalTo: User.currentUser()!)
@@ -165,6 +209,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 self.searchTableView.reloadData()
                                 self.incomingTableView.reloadData()
                                 self.outgoingTableView.reloadData()
+                                self.contactsTableView.reloadData()
                                 self.myFriendsTableView.reloadData()
                             })
                         }
@@ -220,7 +265,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     })
                 }
             }
-            
+
         case 1:
             let touchPoint: CGPoint = button.convertPoint(CGPointZero, toView: incomingTableView)
             let indexPath: NSIndexPath = incomingTableView.indexPathForRowAtPoint(touchPoint)!
@@ -250,7 +295,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 })
 
                 PTUtiltiy.rejectFriendInBackground(user) {(result: Bool) -> Void in
-                        self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
+                    self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
                 }
             }
 
@@ -298,22 +343,29 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
         case 3:
-            break;
-        case 4:
-            let touchPoint: CGPoint = button.convertPoint(CGPointZero, toView: myFriendsTableView)
-            let indexPath: NSIndexPath = myFriendsTableView.indexPathForRowAtPoint(touchPoint)!
-            let user = myFriends[indexPath.row]
+            let touchPoint: CGPoint = button.convertPoint(CGPointZero, toView: searchTableView)
+            let indexPath: NSIndexPath = searchTableView.indexPathForRowAtPoint(touchPoint)!
+            let user = contactMatch[indexPath.row]
 
-            if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.accepted)) {
+            if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.sendRequest)) {
+                button.enabled = false
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    button.setBackgroundImage(UIImage(named: Constants.User.ButtonType.pending), forState: .Normal)
+                })
+                PTUtiltiy.friendUserInBackground(user) {(result: Bool) -> Void in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
-            let alertController = UIAlertController(title: "Remove Friend", message: "Are you sure?", preferredStyle: .Alert)
-            let yesAction = UIAlertAction(title: "Yes", style: .Destructive) { (alert: UIAlertAction!) -> Void in
-
+                        button.enabled = true
+                        self.buttonTypeForUser[user] = Constants.User.ButtonType.pending
+                        self.searchTableView.reloadData()
+                    })
+                }
+            } else if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.pending)) {
                 button.enabled = false
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     button.setBackgroundImage(UIImage(named: Constants.User.ButtonType.sendRequest), forState: .Normal)
                 })
-                PTUtiltiy.unFriendUserInBackground(user) {(result: Bool) -> Void in
+                PTUtiltiy.undoFriendUserInBackground(user) {(result: Bool) -> Void in
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
                         button.enabled = true
@@ -321,19 +373,42 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                         self.searchTableView.reloadData()
                     })
                 }
-
-
-                PTUtiltiy.acceptFriendInBackground(user) {(result: Bool) -> Void in
-                    self.buttonTypeForUser[user] = Constants.User.ButtonType.accepted
-
-                }
             }
+        case 4:
+            let touchPoint: CGPoint = button.convertPoint(CGPointZero, toView: myFriendsTableView)
+            let indexPath: NSIndexPath = myFriendsTableView.indexPathForRowAtPoint(touchPoint)!
+            let user = myFriends[indexPath.row]
+
+            if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.accepted)) {
+
+                let alertController = UIAlertController(title: "Remove Friend", message: "Are you sure?", preferredStyle: .Alert)
+                let yesAction = UIAlertAction(title: "Yes", style: .Destructive) { (alert: UIAlertAction!) -> Void in
+
+                    button.enabled = false
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        button.setBackgroundImage(UIImage(named: Constants.User.ButtonType.sendRequest), forState: .Normal)
+                    })
+                    PTUtiltiy.unFriendUserInBackground(user) {(result: Bool) -> Void in
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+                            button.enabled = true
+                            self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
+                            self.searchTableView.reloadData()
+                        })
+                    }
 
 
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            alertController.addAction(yesAction)
-            alertController.addAction(cancelAction)
-            presentViewController(alertController, animated: true, completion: nil)
+                    PTUtiltiy.acceptFriendInBackground(user) {(result: Bool) -> Void in
+                        self.buttonTypeForUser[user] = Constants.User.ButtonType.accepted
+
+                    }
+                }
+
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertController.addAction(yesAction)
+                alertController.addAction(cancelAction)
+                presentViewController(alertController, animated: true, completion: nil)
             } else {
                 button.enabled = false
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -349,10 +424,10 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
 
         default:
-            break;
+            break
         }
 
-}
+    }
 
 
     // MARK - IBActions
@@ -430,12 +505,24 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             return cell
 
-        } else if tableView == myFriendsTableView {
+        } else if tableView == contactsTableView {
 
-            let cell = tableView.dequeueReusableCellWithIdentifier("MyFriendsCell") as! MyFriendsTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsCell") as! ContactsTableViewCell
 
             cell.delegate = self
 
+            cell.usernameLabel?.text = contactMatch[indexPath.row].username
+            if buttonTypeForUser.count > 0 {
+                cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[contactMatch[indexPath.row]]!), forState: .Normal)
+            }
+            return cell
+            
+        }else if tableView == myFriendsTableView {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("MyFriendsCell") as! MyFriendsTableViewCell
+            
+            cell.delegate = self
+            
             cell.usernameLabel?.text = myFriends[indexPath.row].username
             if buttonTypeForUser.count > 0 {
                 cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[myFriends[indexPath.row]]!), forState: .Normal)
@@ -463,9 +550,13 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             return outgoing.count
             
         } else if tableView == myFriendsTableView {
-
+            
             return myFriends.count
             
+        }else if tableView == contactsTableView {
+
+            return contactMatch.count
+
         } else {
             return 0
         }

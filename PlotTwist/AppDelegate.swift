@@ -11,11 +11,14 @@ import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
 import FBSDKCoreKit
+import Contacts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+
+    var contactStore = CNContactStore()
 
     func crash(){
         // Test Crash
@@ -61,39 +64,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.crash()
         });
         */
-
-        // Extract the notification data
-        if let notificationPayload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
-
-            // Create a pointer to the Photo object
-            let storyId = notificationPayload["s"] as? String
-            let targetStory = Story(withoutDataWithObjectId: storyId)
-
-            // Fetch photo object
-            targetStory.fetchIfNeededInBackgroundWithBlock {
-                (object: PFObject?, error:NSError?) -> Void in
-                if error == nil {
-
-                    let tabBarController = self.window?.rootViewController as! UITabBarController
-                    let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
-                    let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
-                    
-                    myStoryVC.getAllMyStories()
-                    myStoryNC.pushViewController(myStoryVC, animated: true)
-
-//                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //
-//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        // Extract the notification data
+//        if let notificationPayload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
 //
-//                    // TODO: Add Storyboard ID to AddPageViewController
-//                    let initialViewController = storyboard.instantiateViewControllerWithIdentifier("AddPageVC") as! AddPageViewController
+//            // Create a pointer to the Photo object
+//            let storyId = notificationPayload["s"] as? String
+//            let targetStory = Story(withoutDataWithObjectId: storyId)
 //
-//                    self.window?.rootViewController = initialViewController
-//                    self.window?.makeKeyAndVisible()
-
-                }
-            }
-        }
+//            // Fetch photo object
+//            targetStory.fetchIfNeededInBackgroundWithBlock {
+//                (object: PFObject?, error:NSError?) -> Void in
+//                if error == nil {
+//
+//                    let tabBarController = self.window?.rootViewController as! UITabBarController
+//                    let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
+//                    let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
+//                    
+//                    myStoryVC.getAllMyStories()
+//                    myStoryNC.pushViewController(myStoryVC, animated: true)
+//
+////                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+////
+////                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+////
+////                    // TODO: Add Storyboard ID to AddPageViewController
+////                    let initialViewController = storyboard.instantiateViewControllerWithIdentifier("AddPageVC") as! AddPageViewController
+////
+////                    self.window?.rootViewController = initialViewController
+////                    self.window?.makeKeyAndVisible()
+//
+//                }
+//            }
+//        }
 
         // Change navigation bar appearance
         UINavigationBar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
@@ -209,6 +212,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    // MARK: Custom functions
+
+    class func getAppDelegate() -> AppDelegate {
+        return UIApplication.sharedApplication().delegate as! AppDelegate
+    }
+
+
+    func showMessage(message: String) {
+        let alertController = UIAlertController(title: "PlotTwist", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+
+        let dismissAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
+        }
+
+        alertController.addAction(dismissAction)
+
+        let pushedViewControllers = (self.window?.rootViewController as! UINavigationController).viewControllers
+        let presentedViewController = pushedViewControllers[pushedViewControllers.count - 1]
+
+        presentedViewController.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+
+    func requestForAccess(completionHandler: (accessGranted: Bool) -> Void) {
+        let authorizationStatus = CNContactStore.authorizationStatusForEntityType(CNEntityType.Contacts)
+
+        switch authorizationStatus {
+        case .Authorized:
+            completionHandler(accessGranted: true)
+
+        case .Denied, .NotDetermined:
+            self.contactStore.requestAccessForEntityType(CNEntityType.Contacts, completionHandler: { (access, accessError) -> Void in
+                if access {
+                    completionHandler(accessGranted: access)
+                }
+                else {
+                    if authorizationStatus == CNAuthorizationStatus.Denied {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            let message = "\(accessError!.localizedDescription)\n\nPlease allow the app to access your contacts through the Settings."
+                            self.showMessage(message)
+                        })
+                    }
+                }
+            })
+
+        default:
+            completionHandler(accessGranted: false)
+        }
     }
 
 
