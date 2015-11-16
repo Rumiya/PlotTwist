@@ -40,9 +40,9 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         //self.performSegueWithIdentifier("ToHelpScreenStart", sender: self)
 
 
-
         updateUI()
     }
+    
 
     override func viewWillAppear(animated: Bool) {
 
@@ -254,6 +254,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
         storyQuery?.whereKey(Constants.Story.isPublished, equalTo: false)
         storyQuery?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
+
 
         storyQuery?.countObjectsInBackgroundWithBlock({ (counts: Int32, error: NSError?) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
