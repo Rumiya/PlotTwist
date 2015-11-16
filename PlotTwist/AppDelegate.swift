@@ -20,11 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var contactStore = CNContactStore()
 
-    func crash(){
-        // Test Crash
-        NSException(name: NSGenericException, reason: "Everything is ok. This is just a test crash.", userInfo: nil).raise()
 
-    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -48,55 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         User.registerSubclass()
        //does this need to be set to uncomment 
         //return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-
-        if application.respondsToSelector("registerUserNotificationSettings:") {
-            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        }
-
-        // Crash Testing
-        /*
-        dispatch_after(
-            dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC))),
-            dispatch_get_main_queue(),
-            { () -> Void in
-                self.crash()
-        });
-        */
-//
-//        // Extract the notification data
-//        if let notificationPayload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
-//
-//            // Create a pointer to the Photo object
-//            let storyId = notificationPayload["s"] as? String
-//            let targetStory = Story(withoutDataWithObjectId: storyId)
-//
-//            // Fetch photo object
-//            targetStory.fetchIfNeededInBackgroundWithBlock {
-//                (object: PFObject?, error:NSError?) -> Void in
-//                if error == nil {
-//
-//                    let tabBarController = self.window?.rootViewController as! UITabBarController
-//                    let myStoryNC = tabBarController.viewControllers![0] as! UINavigationController
-//                    let myStoryVC = myStoryNC.viewControllers[0] as! MyStoriesViewController
-//                    
-//                    myStoryVC.getAllMyStories()
-//                    myStoryNC.pushViewController(myStoryVC, animated: true)
-//
-////                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-////
-////                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-////
-////                    // TODO: Add Storyboard ID to AddPageViewController
-////                    let initialViewController = storyboard.instantiateViewControllerWithIdentifier("AddPageVC") as! AddPageViewController
-////
-////                    self.window?.rootViewController = initialViewController
-////                    self.window?.makeKeyAndVisible()
-//
-//                }
-//            }
-//        }
 
         // Change navigation bar appearance
         UINavigationBar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
@@ -138,7 +85,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         }
-
+        
+        // Crash Testing
+        /*
+        dispatch_after(
+        dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC))),
+        dispatch_get_main_queue(),
+        { () -> Void in
+        self.crash()
+        });
+        */
 
         return true
     }
@@ -261,6 +217,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         default:
             completionHandler(accessGranted: false)
         }
+    }
+
+    func crash(){
+        // Test Crash
+        NSException(name: NSGenericException, reason: "Everything is ok. This is just a test crash.", userInfo: nil).raise()
+
     }
 
 

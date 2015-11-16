@@ -55,21 +55,21 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.selectedBackgroundView = cellBGView
 
         //copied code
-        
+
         let page: Page = self.incomingStoryPageArray[indexPath.row]
-   
-      
+
+
         page.author.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error:NSError?) -> Void in
-    cell.authorLabel.text =  page.author.username
-    
-    let usernameImage = getUsernameFirstLetterImagename(page.author.username!)
-    
-    if ((UIImage(named:usernameImage)) != nil){
-        
-        cell.authorImage.image = UIImage(named:usernameImage)
-    }
-    
-})
+            cell.authorLabel.text =  page.author.username
+
+            let usernameImage = getUsernameFirstLetterImagename(page.author.username!)
+
+            if ((UIImage(named:usernameImage)) != nil){
+
+                cell.authorImage.image = UIImage(named:usernameImage)
+            }
+
+        })
         cell.dateCreatedLabel.text =  PTUtiltiy.getElapsedTimeFromDate(page.createdAt!)
         cell.previousContent.text = page.textContent
 
@@ -80,7 +80,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     
+        
         
         if segue.identifier == "ToComposePageSegue" {
             let vc = segue.destinationViewController as! ComposeViewController
@@ -94,6 +94,14 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
             vc.story = page.story
             vc.homeVC = homeVC
         }
+    }
+
+    // MARK: Error Controller
+    func presentError() {
+        let alertController = UIAlertController(title: "Can't Connect With Server", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func unwindToInbox(segue:UIStoryboardSegue) {

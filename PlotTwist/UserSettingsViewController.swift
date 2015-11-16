@@ -118,6 +118,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
     func logout() {
         User.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
 
+            if (error == nil) {
             // Ensures that multiple users logging in on the same device won't receive conflicting push notifications
             UIApplication.sharedApplication().unregisterForRemoteNotifications()
 
@@ -126,10 +127,27 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
                 let storyboard = UIStoryboard(name: "Login", bundle: nil)
                 let vc = storyboard.instantiateViewControllerWithIdentifier("DoorLogin") as! DoorLoginViewController
                 self.presentViewController(vc, animated: true, completion: nil)
-
-
             })
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
+            }
         }
+    }
+
+    func presentError() {
+        let alertController = UIAlertController(title: "Can't Connect With Server", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 
     @IBAction func onBackButtonPressed(sender: UIButton) {

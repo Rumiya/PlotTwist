@@ -76,11 +76,20 @@ class WindowSignUpViewController: UIViewController {
             // Sign up the user asynchronously
             newUser.signUpInBackgroundWithBlock({ (succeed, error) -> Void in
 
+                if (error == nil){
+
                 if let currentInstallation: PFInstallation = PFInstallation.currentInstallation(){
                     if currentInstallation.objectForKey("user") == nil {
                         currentInstallation.setObject(newUser, forKey: "user")
                         currentInstallation.saveInBackground()
                     }
+                }
+
+                let application = UIApplication.sharedApplication()
+                if application.respondsToSelector("registerUserNotificationSettings:") {
+                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    application.registerUserNotificationSettings(settings)
+                    application.registerForRemoteNotifications()
                 }
 
                 // Stop the spinner
@@ -103,8 +112,30 @@ class WindowSignUpViewController: UIViewController {
                     }))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
+                } else {
+                    if let error = error {
+                        if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                            print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                        } else {
+                            let errorString = error.userInfo["error"] as? NSString
+                            print("Error: \(errorString)")
+
+                        }
+                        self.presentError()
+                    }
+                }
             })
         }
         
     }
+
+    // MARK: Error Controller
+    func presentError() {
+        let alertController = UIAlertController(title: "Unable to sign up", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+
+
 }

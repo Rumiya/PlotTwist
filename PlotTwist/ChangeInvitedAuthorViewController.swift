@@ -36,6 +36,7 @@ class ChangeInvitedAuthorViewController: UIViewController, UITableViewDelegate, 
         activityQuery.includeKey(Constants.Activity.toUser)
         activityQuery.includeKey(Constants.Activity.fromUser)
         activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            if (error == nil) {
             let activities = objects as! [Activity]
 
             var friendIndex = 0
@@ -65,6 +66,18 @@ class ChangeInvitedAuthorViewController: UIViewController, UITableViewDelegate, 
                     })
                 }
 
+            }
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
             }
 
         })
@@ -132,6 +145,14 @@ class ChangeInvitedAuthorViewController: UIViewController, UITableViewDelegate, 
                 }
             })
         })
+    }
+
+    // MARK: Error Controller
+    func presentError() {
+        let alertController = UIAlertController(title: "Error retrieving data", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func onCancelButtonPressed(sender: UIButton) {

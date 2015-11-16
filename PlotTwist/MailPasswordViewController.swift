@@ -33,6 +33,7 @@ class MailPasswordViewController: UIViewController {
         userQuery.whereKey("email", equalTo: email!)
         
          userQuery.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            if (error == nil) {
             let finalEmail = email!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             if email?.characters.count == 0 {
                 let alert = UIAlertController (title: "Error", message: "The text field is blank.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -67,7 +68,18 @@ class MailPasswordViewController: UIViewController {
                 print("email not found")
             }
             
-       
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
+            }
         
         }
         
@@ -78,6 +90,14 @@ class MailPasswordViewController: UIViewController {
        
   
         
+    }
+
+    // MARK: Error Controller
+    func presentError() {
+        let alertController = UIAlertController(title: "Error retrieving data", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func onCloseButtonPressed(sender: UIButton) {
