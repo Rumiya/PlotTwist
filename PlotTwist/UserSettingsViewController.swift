@@ -104,7 +104,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
 
     func goToHelpPage() {
         performSegueWithIdentifier("ToQuickTips", sender: self)
-        //collectionView.allowsSelection = true
+        collectionView.allowsSelection = true
     }
 
     func inviteToPlotTwist() {

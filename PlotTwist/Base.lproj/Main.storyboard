@@ -226,8 +226,8 @@
                                 <state key="normal" title="Button" image="arrowLeft"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="nzE-C5-qJt"/>
                                         <exclude reference="Dpt-Vr-gGK"/>
+                                        <exclude reference="nzE-C5-qJt"/>
                                     </mask>
                                 </variation>
                                 <connections>
