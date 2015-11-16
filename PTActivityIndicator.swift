@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PTAcitivtyIndicator  {
+class PTActivityIndicator  {
     
  
     class func show() {

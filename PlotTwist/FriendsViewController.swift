@@ -60,7 +60,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         initSegmentView()
         queryUsers()
     }
-
     // MARK - UI Initialization Methods
     func initSegmentView() {
         segmentView = SMSegmentView(frame: CGRect(x: 0, y: friendsLabel.frame.size.height + 45, width: self.view.frame.size.width, height: 60.0), separatorColour: UIColor.blackColor(), separatorWidth: 1.0, segmentProperties: [keySegmentTitleFont: UIFont.systemFontOfSize(12.0), keySegmentOnSelectionColour: UIColor(red:0.86, green:0.97, blue:0.81, alpha:1.0), keySegmentOffSelectionColour: UIColor(red:0.86, green:0.97, blue:0.81, alpha:1.0), keyContentVerticalMargin: 5.0])
@@ -147,6 +146,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
 
 
+        PTActivityIndicator.show()
+
         let query = User.query()
         query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
@@ -207,6 +208,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                         if (count == tempUsers.count) {
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                PTActivityIndicator.dismiss()
                                 self.searchTableView.reloadData()
                                 self.incomingTableView.reloadData()
                                 self.outgoingTableView.reloadData()
@@ -407,19 +409,13 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.searchTableView.reloadData()
                         })
                     }
-
-
-                    PTUtiltiy.acceptFriendInBackground(user) {(result: Bool) -> Void in
-                        self.buttonTypeForUser[user] = Constants.User.ButtonType.accepted
-
-                    }
                 }
 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                 alertController.addAction(yesAction)
                 alertController.addAction(cancelAction)
                 presentViewController(alertController, animated: true, completion: nil)
-            } else {
+            } else if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.sendRequest)){
                 button.enabled = false
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     button.setBackgroundImage(UIImage(named: Constants.User.ButtonType.pending), forState: .Normal)
@@ -428,6 +424,18 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         button.enabled = true
                         self.buttonTypeForUser[user] = Constants.User.ButtonType.pending
+                        self.searchTableView.reloadData()
+                    })
+                }
+            } else if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.pending)){
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    button.setBackgroundImage(UIImage(named: Constants.User.ButtonType.sendRequest), forState: .Normal)
+                })
+                PTUtiltiy.undoFriendUserInBackground(user) {(result: Bool) -> Void in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+                        button.enabled = true
+                        self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
                         self.searchTableView.reloadData()
                     })
                 }
@@ -526,16 +534,20 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[contactMatch[indexPath.row]]!), forState: .Normal)
             }
             return cell
-            
+
         }else if tableView == myFriendsTableView {
-            
+
             let cell = tableView.dequeueReusableCellWithIdentifier("MyFriendsCell") as! MyFriendsTableViewCell
-            
+
             cell.delegate = self
-            
+
             cell.usernameLabel?.text = myFriends[indexPath.row].username
             if buttonTypeForUser.count > 0 {
-                cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[myFriends[indexPath.row]]!), forState: .Normal)
+                if buttonTypeForUser[myFriends[indexPath.row]]! == Constants.User.ButtonType.accepted{
+                    cell.friendButton.setBackgroundImage(UIImage(named: Constants.User.ButtonType.remove), forState: .Normal)
+                } else {
+                    cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[myFriends[indexPath.row]]!), forState: .Normal)
+                }
             }
             return cell
             
@@ -564,14 +576,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             return myFriends.count
             
         }else if tableView == contactsTableView {
-
+            
             return contactMatch.count
-
+            
         } else {
             return 0
         }
     }
-
+    
     // MARK: Error Controller
     func presentError() {
         let alertController = UIAlertController(title: "Error retrieving data", message: "Check internet connection and try again.", preferredStyle: .Alert)

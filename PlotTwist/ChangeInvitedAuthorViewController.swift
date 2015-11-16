@@ -113,6 +113,8 @@ class ChangeInvitedAuthorViewController: UIViewController, UITableViewDelegate, 
     // MARK: IBActions
     @IBAction func onSaveAndSendButtonPressed(sender: UIButton) {
 
+        PTActivityIndicator.show()
+
         let invitedUser = self.friends[selectedIndex!]
         story?.currentAuthor = invitedUser
         story?.allAuthorIds.removeLast()
@@ -132,6 +134,10 @@ class ChangeInvitedAuthorViewController: UIViewController, UITableViewDelegate, 
                 "badge" : "Increment",
                 "s" : "\(self.story!.objectId!)", // Story's object id
             ]
+
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                PTActivityIndicator.dismiss()
+            })
 
             let push = PFPush()
             push.setQuery(query)

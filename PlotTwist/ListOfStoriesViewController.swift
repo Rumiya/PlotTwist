@@ -33,7 +33,6 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
         cell.authorLabel.text = user.username
 
-
         cell.storyTitleLabel.text = stories![indexPath.row].storyTitle
 
         // Set a user image

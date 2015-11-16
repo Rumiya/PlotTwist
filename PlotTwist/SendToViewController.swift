@@ -29,6 +29,15 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getFriendsList()
+
+    }
+
+
+
+    func getFriendsList(){
+
+        PTActivityIndicator.show()
         users.removeAll()
         let activityOneQuery = Activity.query()
         activityOneQuery?.whereKey(Constants.Activity.toUser, equalTo: User.currentUser()!)
@@ -41,6 +50,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
         activityQuery.whereKey(Constants.Activity.requestType, equalTo: Constants.Activity.Requests.confirmed)
         activityQuery.includeKey(Constants.Activity.toUser)
         activityQuery.includeKey(Constants.Activity.fromUser)
+
         activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
 
             if (error == nil){
@@ -57,13 +67,16 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
                 if (self.users.count == activities.count) {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-
+                        PTActivityIndicator.dismiss()
                         self.tableView.reloadData()
                     })
                 }
 
             }
             } else {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    PTActivityIndicator.dismiss()
+                })
                 if let error = error {
                     if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
                         print("Uh oh, we couldn't even connect to the Parse Cloud!")
@@ -129,6 +142,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
         // TODO: Check if user hasn't been selected as well
         // Initialize first page of story
 
+        PTActivityIndicator.show()
+
         sendButton.enabled = false
 
         var firstPage: Page!
@@ -181,6 +196,9 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                     push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                         if success {
                             print("successful push")
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                PTActivityIndicator.dismiss()
+                            })
                             self.goBackHome()
                         } else {
                             print("push failed")
@@ -191,6 +209,9 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                 })
             })
             } else {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    PTActivityIndicator.dismiss()
+                })
                 if let error = error {
                     if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
                         print("Uh oh, we couldn't even connect to the Parse Cloud!")
@@ -207,6 +228,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func createNewPage(){
+
+        PTActivityIndicator.show()
 
         sendButton.enabled = false
 
@@ -239,6 +262,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
                             })
                         }
+
                         print("publish story")
                         self.publishStory(currentStory)
                     })
@@ -299,7 +323,9 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
                                 }
                                 self.sendButton.enabled = true
-
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    PTActivityIndicator.dismiss()
+                                })
 
                                 self.goBackHome()
 
@@ -309,6 +335,9 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                 })
             }
             } else {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    PTActivityIndicator.dismiss()
+                })
                 if let error = error {
                     if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
                         print("Uh oh, we couldn't even connect to the Parse Cloud!")
@@ -347,12 +376,17 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                 push.setData(data)
                 push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                     self.delegate?.didAddNewPage()
-                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        PTActivityIndicator.dismiss()
+                    })
                     self.goBackHome()
                     self.sendButton.enabled = true
 
                 })
                 } else {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        PTActivityIndicator.dismiss()
+                    })
                     if let error = error {
                         if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
                             print("Uh oh, we couldn't even connect to the Parse Cloud!")

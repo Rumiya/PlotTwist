@@ -22,6 +22,7 @@ class OutboxViewController: UIViewController, UITableViewDataSource, UITableView
 
     func queryOutgoingStories() {
 
+        PTActivityIndicator.show()
         let userQuery = User.query()
         userQuery?.whereKey(Constants.User.objectId, equalTo: (User.currentUser()?.objectId)!)
 
@@ -60,6 +61,10 @@ class OutboxViewController: UIViewController, UITableViewDataSource, UITableView
                     self.presentError()
                 }
             }
+
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                PTActivityIndicator.dismiss()
+            })
 
         })
     }

@@ -116,9 +116,11 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
     }
 
     func logout() {
+        PTActivityIndicator.show()
         User.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
 
             if (error == nil) {
+
             // Ensures that multiple users logging in on the same device won't receive conflicting push notifications
             UIApplication.sharedApplication().unregisterForRemoteNotifications()
 
@@ -126,6 +128,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
                 self.collectionView.allowsSelection = true
                 let storyboard = UIStoryboard(name: "Login", bundle: nil)
                 let vc = storyboard.instantiateViewControllerWithIdentifier("DoorLogin") as! DoorLoginViewController
+                PTActivityIndicator.dismiss()
                 self.presentViewController(vc, animated: true, completion: nil)
             })
             } else {

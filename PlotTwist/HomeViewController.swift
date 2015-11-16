@@ -338,6 +338,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
     @IBAction func onNotificationButtonPressed(sender: UIButton) {
 
+        PTActivityIndicator.show()
+
         let userQuery = User.query()
         userQuery?.whereKey(Constants.User.objectId, equalTo: (User.currentUser()?.objectId)!)
 
@@ -347,32 +349,20 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         storyQuery?.whereKey(Constants.Story.isPublished, equalTo: false)
         storyQuery?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
         storyQuery?.includeKey(Constants.Story.pages)
-
-//        storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-//            if objects != nil {
-//                self.story = objects!.first as! Story
-//                self.performSegueWithIdentifier("ToNewPageSegue", sender: sender)
-//                
-//            }
-//
-//        })
-        
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if objects != nil {
                 
                 let stories = objects as! [Story]
                 self.storyLastPage = []
                 for object in stories {
-                    
-                    
                     self.storyLastPage.append(object.pages.last!)
-                    
                 }
                 
                 if self.storyLastPage.count == stories.count {
-                  
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        PTActivityIndicator.dismiss()
+                    })
                 self.performSegueWithIdentifier("ToNewPageSegue", sender: sender)
-                   
                 }
             }
         })
@@ -408,8 +398,6 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
             let vc = segue.destinationViewController as! InboxViewController
             self.storyLastPage.sortInPlace({ $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending })
           vc.incomingStoryPageArray = self.storyLastPage
-
-
             vc.isNewStory = false
             vc.homeVC = self
 

@@ -538,8 +538,8 @@
                             <mask key="constraints">
                                 <exclude reference="6G1-kh-YN6"/>
                                 <exclude reference="HBF-5x-Gv8"/>
-                                <exclude reference="0x6-Kf-4P7"/>
                                 <exclude reference="HZL-jU-Cgc"/>
+                                <exclude reference="0x6-Kf-4P7"/>
                             </mask>
                         </variation>
                     </view>

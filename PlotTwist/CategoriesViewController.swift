@@ -77,6 +77,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
         collectionView.allowsSelection = false
 
+        PTActivityIndicator.show()
+
         switch indexPath.row {
         case 0:
             readAllStories()
@@ -204,7 +206,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let today = NSDate()
 
         let lastWeek = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day,
-            value: -2,
+            value: -7,
             toDate: today,
             options: NSCalendarOptions(rawValue: 0))
 
@@ -277,6 +279,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     //MARK: Navigtion Methods
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ToListOfStoriesSegue"{
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                PTActivityIndicator.dismiss()
+            })
             let vc = segue.destinationViewController as! ListOfStoriesViewController
             vc.stories = self.storiesToSend
         }
