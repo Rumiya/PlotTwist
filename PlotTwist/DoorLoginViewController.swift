@@ -212,15 +212,6 @@ class DoorLoginViewController: UIViewController {
                 let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
                 UIApplication.sharedApplication().keyWindow!.rootViewController = viewController;
                 self.presentViewController(viewController, animated: false, completion: nil)
-
-
-//                UIView.animateWithDuration(0.5, animations:{
-//                    self.view.backgroundColor = UIColor(red:0.76, green:0.91, blue:0.98, alpha:1.0)
-//                                        }, completion: { finished in
-//
-//
-//                })
-
                 
         })
     }

@@ -83,6 +83,11 @@ class OnboardPageViewController: UIPageViewController, UIPageViewControllerDataS
     }
 
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+
+        if let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("OnboardContentViewController") as? OnboardContentViewController {
+            return pageContentViewController.pageIndex!
+        }
+
         return 0
     }
 

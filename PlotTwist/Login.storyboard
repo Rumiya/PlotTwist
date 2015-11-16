@@ -175,14 +175,14 @@
                                             <outlet property="delegate" destination="gSw-6N-rn4" id="jri-R0-Vsi"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hd-F6-a7U" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hd-F6-a7U" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                         <rect key="frame" x="85" y="54" width="40" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="6L1-c5-kzp"/>
                                             <constraint firstAttribute="height" constant="40" id="gkR-sq-2v8"/>
                                         </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.035294117647058823" green="0.28235294117647058" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="facebook"/>
                                         <connections>
                                             <action selector="onFacebookButtonPressed:" destination="gSw-6N-rn4" eventType="touchUpInside" id="tms-O8-osb"/>

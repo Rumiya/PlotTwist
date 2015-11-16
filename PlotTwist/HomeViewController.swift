@@ -14,6 +14,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     var story = Story()
     var storyLastPage: [Page]=[]
     var friendBalloonEndPoint: CGPoint = CGPointMake(0,0)
+    var helpImageName:String = ""
+    let defaults = NSUserDefaults.standardUserDefaults()
 //    var storyLastPage = [Story]()
 
     @IBOutlet weak var userProfileButton: UIButton!
@@ -30,8 +32,15 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     @IBOutlet weak var airBalloonHeight: NSLayoutConstraint!
     @IBOutlet weak var inboxTopSpaceToUser: NSLayoutConstraint!
 
+    @IBOutlet weak var helpOverlayImage: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //self.performSegueWithIdentifier("ToHelpScreenStart", sender: self)
+
+
+
         updateUI()
     }
 
@@ -69,6 +78,27 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
             self.friendBalloonEndPoint = CGPointMake(368, 219)
         }
 
+        // check if user has viewed "Start Read" help overlay
+        let hasViewedStartRead = self.defaults.boolForKey("hasViewedStartRead")
+
+        // check if user has viewed "User Settings" help overlay
+        let hasViewedUserSettings = self.defaults.boolForKey("hasViewedUserSettings")
+
+        // display quick tips to start
+        if hasViewedStartRead == false {
+
+            self.helpOverlayImage.image = UIImage(named: "startRead")
+            self.helpOverlayImage.hidden = false
+            self.helpImageName = "startRead"
+
+        } else if hasViewedUserSettings == false {
+
+            self.helpOverlayImage.image = UIImage(named: "userSettings")
+            self.helpOverlayImage.hidden = false
+            self.helpImageName = "userSettings"
+
+        }
+
     }
 
     func passCloudsByAnimation(){
@@ -81,7 +111,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
             options: UIViewAnimationOptions.CurveLinear, animations: {
 
                 self.cloudsImage.layer.position.x = self.view.bounds.width
-        }, completion: nil)
+            }, completion: nil)
 
     }
 
@@ -91,7 +121,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         self.friendButton.hidden = false
 
         let path = UIBezierPath()
-        path.moveToPoint(CGPoint(x: self.view.bounds.width,y: 239))
+        path.moveToPoint(CGPoint(x: self.view.bounds.width,y: 219))
         //path.addCurveToPoint(CGPoint(x: 270, y: 189), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
         path.addCurveToPoint(self.friendBalloonEndPoint, controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
 
@@ -114,6 +144,19 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
 
        // fadeOutLayerAnimation(self.friendButton.layer, beginTime: 5.0)
+
+        // display help overlay if help image is hidden
+        if self.helpOverlayImage.hidden {
+            // check if user has viewed "a New Story" help overlay
+            let hasViewedFriendRequest = self.defaults.boolForKey("hasViewedFriendRequest")
+            // display quick tips to start
+            if hasViewedFriendRequest == false {
+                self.helpOverlayImage.image = UIImage(named: "friendRequest")
+                self.helpOverlayImage.hidden = false
+                self.helpImageName = "friendRequest"
+            }
+        }
+
         
     }
 
@@ -128,7 +171,20 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
         layer.opacity = 0.5
         layer.addAnimation(fadeAnimation, forKey: "FadeAnimation")
-        
+
+        // display help overlay if help image is hidden
+        if self.helpOverlayImage.hidden {
+            // check if user has viewed "a New Story" help overlay
+            let hasViewedNewStory = self.defaults.boolForKey("hasViewedNewStory")
+            // display quick tips to start
+            if hasViewedNewStory == false {
+                self.helpOverlayImage.image = UIImage(named: "aNewStory")
+                self.helpOverlayImage.hidden = false
+                self.helpImageName = "aNewStory"
+            }
+        }
+
+
     }
 
 
@@ -156,6 +212,35 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
         } else {
             userProfileButton.hidden = true
+        }
+    }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+
+        // dismiss help overlay
+        if !self.helpOverlayImage.hidden {
+
+            switch self.helpImageName {
+            case "startRead":
+                self.defaults.setBool(true, forKey: "hasViewedStartRead")
+
+            case "aNewStory":
+                self.defaults.setBool(true, forKey: "hasViewedNewStory")
+
+            case "friendRequest":
+                self.defaults.setBool(true, forKey: "hasViewedFriendRequest")
+
+            case "userSettings":
+                self.defaults.setBool(true, forKey: "hasViewedUserSettings")
+
+            case "sentStories":
+                self.defaults.setBool(true, forKey: "hasViewedSentStories")
+
+            default:
+                self.helpOverlayImage.hidden = true
+            }
+
+            self.helpOverlayImage.hidden = true
         }
     }
 
@@ -302,7 +387,27 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     }
 
     @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
+
+        NSTimer.scheduledTimerWithTimeInterval(0.7, target: self,
+            selector: "viewSentStoriesTip",
+            userInfo: nil, repeats: false)
         
     }
+
+    func viewSentStoriesTip(){
+
+        // check if user has viewed "Sent Stories" help overlay
+        let hasViewedSentStories = self.defaults.boolForKey("hasViewedSentStories")
+
+        // display a quick tip
+        if hasViewedSentStories == false {
+
+            self.helpOverlayImage.image = UIImage(named: "sentStories")
+            self.helpOverlayImage.hidden = false
+            self.helpImageName = "sentStories"
+
+        }
+    }
+
     
 }

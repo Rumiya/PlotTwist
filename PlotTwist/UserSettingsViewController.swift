@@ -49,7 +49,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -65,6 +65,9 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
             cell.textLabel.text = "Invite"
             cell.imageView.image = UIImage(named:"I_letterSM.png")
         case 2:
+            cell.textLabel.text = "Help"
+            cell.imageView.image = UIImage(named:"H_letterSM.png")
+        case 3:
             cell.textLabel.text = "Logout"
             cell.imageView.image = UIImage(named:"L_letterSM.png")
         default:
@@ -85,6 +88,8 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
         case 1:
             inviteToPlotTwist()
         case 2:
+            goToHelpPage()
+        case 3:
             logout()
         default:
             collectionView.allowsSelection =  true
@@ -95,6 +100,11 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
     func goToFriends() {
         performSegueWithIdentifier("ToFriendsSegue", sender: self)
         collectionView.allowsSelection = true
+    }
+
+    func goToHelpPage() {
+        performSegueWithIdentifier("ToQuickTips", sender: self)
+        //collectionView.allowsSelection = true
     }
 
     func inviteToPlotTwist() {

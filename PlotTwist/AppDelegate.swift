@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //UIApplication.sharedApplication().statusBarStyle = .LightContent
 
         //Remove status bar
-        UIApplication.sharedApplication().statusBarHidden = true
+        UIApplication.sharedApplication().statusBarHidden = false
 
         // Change toolbar style
         //    UIBarButtonItem.appearance().tintColor = UIColor(red: 235.0/255.0, green: 73.0/255.0, blue: 27.0/255.0, alpha: 1.0)

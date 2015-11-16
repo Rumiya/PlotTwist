@@ -75,6 +75,7 @@
 		E0A4BA371BF26435001D5581 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA361BF26435001D5581 /* InboxViewController.swift */; };
 		E0A4BA391BF26450001D5581 /* InboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */; };
 		E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */; };
+		E0BEEF9E1BF860210057E9F8 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BEEF9D1BF860200057E9F8 /* HelpViewController.swift */; };
 		E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250591BE7C3D900E51659 /* AppDelegate.swift */; };
 		E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E2505D1BE7C3D900E51659 /* Main.storyboard */; };
 		E0E250611BE7C3D900E51659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E250601BE7C3D900E51659 /* Assets.xcassets */; };
@@ -176,6 +177,7 @@
 		E0A4BA361BF26435001D5581 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewCell.swift; sourceTree = "<group>"; };
 		E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
+		E0BEEF9D1BF860200057E9F8 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		E0E250561BE7C3D900E51659 /* PlotTwist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlotTwist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E250591BE7C3D900E51659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0E2505E1BE7C3D900E51659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				E084C1121BF5167D00FAFA91 /* WindowSignUpViewController.swift */,
 				3AFF8B271BF54D8B00B10FF4 /* OnboardPageViewController.swift */,
 				3AFF8B211BF542F400B10FF4 /* OnboardContentViewController.swift */,
+				E0BEEF9D1BF860200057E9F8 /* HelpViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -447,7 +450,7 @@
 				TargetAttributes = {
 					E0E250551BE7C3D900E51659 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = G8M9P5X24R;
+						DevelopmentTeam = RYF7YHAMY5;
 					};
 				};
 			};
@@ -547,6 +550,7 @@
 				E0E250761BE7F37E00E51659 /* StoryDetailViewController.swift in Sources */,
 				3A0FAD201BF1D9C2004A9DB9 /* ChangeInvitedAuthorViewController.swift in Sources */,
 				E0A4BA371BF26435001D5581 /* InboxViewController.swift in Sources */,
+				E0BEEF9E1BF860210057E9F8 /* HelpViewController.swift in Sources */,
 				E0E250881BE8279D00E51659 /* LoginViewController.swift in Sources */,
 				E0E250721BE7CAE900E51659 /* AddStoryViewController.swift in Sources */,
 				E0E2509C1BED352300E51659 /* DecrementNotificationsCountDelegate.swift in Sources */,
@@ -711,7 +715,7 @@
 					"$(PROJECT_DIR)/PlotTwist",
 				);
 				INFOPLIST_FILE = PlotTwist/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MMFinalProject.PlotTwist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -731,7 +735,7 @@
 					"$(PROJECT_DIR)/PlotTwist",
 				);
 				INFOPLIST_FILE = PlotTwist/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MMFinalProject.PlotTwist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
