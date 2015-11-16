@@ -1134,6 +1134,20 @@
                                     <action selector="onPreviousButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="qdI-SO-D52"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tS-Cf-YwY" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                <rect key="frame" x="420" y="535" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="GVx-z8-KaB"/>
+                                    <constraint firstAttribute="width" constant="40" id="YQa-5i-hcJ"/>
+                                </constraints>
+                                <state key="normal" title="Speak" image="speak">
+                                    <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSpeakButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="CYr-8Z-Mlb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.76078431369999999" green="0.91372549020000005" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1144,8 +1158,10 @@
                             <constraint firstItem="Zo1-RC-r1f" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="bottom" constant="15" id="FnS-SP-enW"/>
                             <constraint firstItem="4d9-kR-Zcx" firstAttribute="top" secondItem="Vch-gw-ZMi" secondAttribute="bottom" constant="34" id="P3M-Qe-BNR"/>
                             <constraint firstItem="TUH-QK-nVc" firstAttribute="centerX" secondItem="FA2-aU-so8" secondAttribute="centerX" id="Rso-NT-Frs"/>
+                            <constraint firstItem="6tS-Cf-YwY" firstAttribute="leading" secondItem="Zo1-RC-r1f" secondAttribute="trailing" constant="30" id="SGW-fA-7SF"/>
                             <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="TUH-QK-nVc" secondAttribute="bottom" constant="25" id="Twm-Yx-s5b"/>
                             <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="bottom" constant="80" id="ZvN-Mr-GXU"/>
+                            <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="6tS-Cf-YwY" secondAttribute="bottom" constant="25" id="eQT-UY-bsH"/>
                             <constraint firstItem="ipc-Mp-P9S" firstAttribute="top" secondItem="n7k-zN-ckz" secondAttribute="bottom" constant="25" id="fRL-M6-pyw"/>
                             <constraint firstItem="TUH-QK-nVc" firstAttribute="leading" secondItem="4d9-kR-Zcx" secondAttribute="trailing" constant="30" id="gY2-ru-T9M"/>
                             <constraint firstItem="4UA-cA-jDF" firstAttribute="top" secondItem="ipc-Mp-P9S" secondAttribute="bottom" constant="35" id="hDw-Sf-Dsw"/>
@@ -2609,6 +2625,7 @@
         <image name="paperPlaneLeft" width="254" height="254"/>
         <image name="pencil" width="100" height="100"/>
         <image name="share" width="100" height="100"/>
+        <image name="speak" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ig7-xR-53y"/>
