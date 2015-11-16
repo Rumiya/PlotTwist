@@ -42,6 +42,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
         activityQuery.includeKey(Constants.Activity.toUser)
         activityQuery.includeKey(Constants.Activity.fromUser)
         activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+
+            if (error == nil){
             let activities = objects as! [Activity]
 
             for activity in activities {
@@ -58,6 +60,19 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
                         self.tableView.reloadData()
                     })
+                }
+
+            }
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
                 }
 
             }
@@ -127,6 +142,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
         firstPage.textContent = storyContent
         firstPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            if (error == nil) {
             newStory.pages.append(firstPage)
 
             // Initialize story
@@ -174,13 +190,25 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                     })
                 })
             })
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
+            }
         })
+            
     }
 
     func createNewPage(){
 
         sendButton.enabled = false
-
 
         // Initialize Page Object
         let newPage = Page()
@@ -194,6 +222,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
         newPage.textContent = storyContent
         newPage.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            if (error == nil) {
             // Edit Story Properties
             if (newPage.pageNum == 5){
                 currentStory.incrementKey(Constants.Story.pageCount)
@@ -279,6 +308,18 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                     })
                 })
             }
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
+            }
         })
 
     }
@@ -288,6 +329,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
             story.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
                 // TODO: delegation here to add story to main feed?
+                if (error == nil) {
 
                 let innerQuery = User.query()
                 innerQuery?.whereKey(Constants.User.objectId, containedIn: story.allAuthorIds)
@@ -310,9 +352,21 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                     self.sendButton.enabled = true
 
                 })
-            }
+                } else {
+                    if let error = error {
+                        if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                            print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                        } else {
+                            let errorString = error.userInfo["error"] as? NSString
+                            print("Error: \(errorString)")
+
+                        }
+                        self.presentError()
+                    }
+                }
         }
-        
+    }
+
         func goBackHome(){
             
             // not working
@@ -323,12 +377,13 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
             self.presentViewController(vc, animated: true, completion: nil)
             
         }
-        
+
+    // MARK: Error Handling
+    func presentError() {
+        let alertController = UIAlertController(title: "Can't Connect With Server", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+
 }
-
-
-
-
-
-
-

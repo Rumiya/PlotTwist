@@ -95,7 +95,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
 
-
     func readAllStories(){
 
         let queryPublished = Story.query()
@@ -105,13 +104,26 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         queryPublished?.includeKey(Constants.Story.mainAuthor)
         queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            if (error == nil) {
                 self.storiesToSend = objects as! [Story]
                 self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
 
             self.collectionView.allowsSelection = true
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
 
+                    }
+                    self.presentError()
+                }
+            }
         })
     }
+
 
     func readFriendsStories(){
 
@@ -169,11 +181,23 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 }
             } else {
                 print("error retrieving")
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
             }
 
             self.collectionView.allowsSelection = true
         })
     }
+
+
 
     func readNewbyStories() {
 
@@ -194,11 +218,23 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         storyQuery?.includeKey(Constants.Story.pages)
 
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-
+            if (error == nil) {
             self.storiesToSend = objects as! [Story]
             self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
 
             self.collectionView.allowsSelection = true
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
+            }
         })
     }
 
@@ -210,20 +246,43 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
         queryPublished?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            if (error ==  nil) {
                 self.storiesToSend = objects as! [Story]
                 self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
 
             self.collectionView.allowsSelection = true
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
+            }
         })
     }
 
+    // MARK: Error Controller
+    func presentError() {
+        let alertController = UIAlertController(title: "Can't Connect With Server", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    //MARK: Navigtion Methods
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ToListOfStoriesSegue"{
             let vc = segue.destinationViewController as! ListOfStoriesViewController
             vc.stories = self.storiesToSend
         }
     }
-    
+
+    // MARK: IBActions
     @IBAction func unwindToCategories(segue:UIStoryboardSegue) {
         
     }

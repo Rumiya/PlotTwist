@@ -31,6 +31,7 @@ class OutboxViewController: UIViewController, UITableViewDataSource, UITableView
         outgoingStoryQuery?.includeKey(Constants.Story.allAuthorIds)
         outgoingStoryQuery?.includeKey(Constants.Story.currentAuthor)
         outgoingStoryQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            if (error == nil) {
             let allStories = objects as! [Story]
             var count = 0
             for story in allStories {
@@ -45,6 +46,18 @@ class OutboxViewController: UIViewController, UITableViewDataSource, UITableView
                         self.outgoingStories.sortInPlace({ $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedAscending })
                         self.tableView.reloadData()
                     })
+                }
+            }
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
                 }
             }
 
@@ -82,6 +95,14 @@ class OutboxViewController: UIViewController, UITableViewDataSource, UITableView
             vc.story = self.outgoingStories[tableView.indexPathForSelectedRow!.row]
             vc.selectedIndex = tableView.indexPathForSelectedRow?.row
         }
+    }
+
+    // MARK: Error Controller
+    func presentError() {
+        let alertController = UIAlertController(title: "Error retrieving data", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     

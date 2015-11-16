@@ -74,6 +74,7 @@ struct Constants {
             static let incoming = "accept_button"
             static let acceptedText = "accepted_button"
             static let rejectedText = "rejected_button"
+            static let remove = "remove_button"
         }
     }
 }

@@ -256,6 +256,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         storyQuery?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
 
         storyQuery?.countObjectsInBackgroundWithBlock({ (counts: Int32, error: NSError?) -> Void in
+            if (error == nil) {
+
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if counts == 0 {
                     self.notificationButton.hidden = true
@@ -266,7 +268,21 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                     // Notification Counts are replaced with the envelope image
                     //self.notificationButton.setTitle("\(counts)", forState: .Normal)
                 }
-            })
+                })
+
+                } else {
+                    if let error = error {
+                        if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                            print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                        } else {
+                            let errorString = error.userInfo["error"] as? NSString
+                            print("Error: \(errorString)")
+
+                        }
+                        self.presentError()
+                    }
+                }
+
         })
 
         let friendIncomingQuery = Activity.query()
@@ -278,6 +294,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         friendIncomingQuery?.countObjectsInBackgroundWithBlock({ (counts: Int32, error: NSError?) -> Void in
             // TODO: uncomment this after merge
 
+            if (error == nil) {
+
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if counts == 0 {
                     self.friendButton.hidden = true
@@ -286,7 +304,27 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                     self.friendAppearingAnimation()
                 }
             })
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
+            }
+
         })
+    }
+
+    func presentError() {
+        let alertController = UIAlertController(title: "Can't Connect With Server", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 
     func didAddNewPage() {

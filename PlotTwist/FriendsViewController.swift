@@ -18,6 +18,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var segmentView: SMSegmentView!
 
+    @IBOutlet weak var friendsLabel: UILabel!
 
     // Data and Outlets for Table Views
 
@@ -62,7 +63,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     // MARK - UI Initialization Methods
     func initSegmentView() {
-        segmentView = SMSegmentView(frame: CGRect(x: 0, y: 67, width: self.view.frame.size.width, height: 40.0), separatorColour: UIColor.blackColor(), separatorWidth: 1.0, segmentProperties: [keySegmentTitleFont: UIFont.systemFontOfSize(12.0), keySegmentOnSelectionColour: UIColor.whiteColor(), keySegmentOffSelectionColour: UIColor.whiteColor(), keyContentVerticalMargin: 5.0])
+        segmentView = SMSegmentView(frame: CGRect(x: 0, y: friendsLabel.frame.size.height + 45, width: self.view.frame.size.width, height: 60.0), separatorColour: UIColor.blackColor(), separatorWidth: 1.0, segmentProperties: [keySegmentTitleFont: UIFont.systemFontOfSize(12.0), keySegmentOnSelectionColour: UIColor(red:0.86, green:0.97, blue:0.81, alpha:1.0), keySegmentOffSelectionColour: UIColor(red:0.86, green:0.97, blue:0.81, alpha:1.0), keyContentVerticalMargin: 5.0])
         segmentView.delegate = self
         segmentView.addSegmentWithTitle("", onSelectionImage: UIImage(named: "friends_search_light"), offSelectionImage: UIImage(named: "friends_search"))
         segmentView.addSegmentWithTitle("", onSelectionImage: UIImage(named: "friends_incoming_light"), offSelectionImage: UIImage(named: "friends_incoming"))
@@ -216,8 +217,18 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             } else {
-                print("error retrieving")
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
             }
+
         })
     }
 
@@ -379,7 +390,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let indexPath: NSIndexPath = myFriendsTableView.indexPathForRowAtPoint(touchPoint)!
             let user = myFriends[indexPath.row]
 
-            if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.accepted)) {
+            if (button.backgroundImageForState(.Normal) == UIImage(named:Constants.User.ButtonType.remove)) {
 
                 let alertController = UIAlertController(title: "Remove Friend", message: "Are you sure?", preferredStyle: .Alert)
                 let yesAction = UIAlertAction(title: "Yes", style: .Destructive) { (alert: UIAlertAction!) -> Void in
@@ -403,7 +414,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                     }
                 }
-
 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                 alertController.addAction(yesAction)
@@ -560,6 +570,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             return 0
         }
+    }
+
+    // MARK: Error Controller
+    func presentError() {
+        let alertController = UIAlertController(title: "Error retrieving data", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
 }

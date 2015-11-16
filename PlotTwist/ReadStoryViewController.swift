@@ -50,7 +50,7 @@ class ReadStoryViewController: UIViewController {
     func getTextViewContent(page: Page){
 
         page.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-
+            if (error == nil) {
             let user = page.author
             // Set a user image
 
@@ -65,7 +65,27 @@ class ReadStoryViewController: UIViewController {
                 }
                 self.storyContentTextView.text = page.textContent
             })
+            } else {
+                if let error = error {
+                    if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
+                        print("Uh oh, we couldn't even connect to the Parse Cloud!")
+                    } else {
+                        let errorString = error.userInfo["error"] as? NSString
+                        print("Error: \(errorString)")
+
+                    }
+                    self.presentError()
+                }
+            }
         }
+    }
+
+    // MARK: Error Controller
+    func presentError() {
+        let alertController = UIAlertController(title: "Error retrieving data", message: "Check internet connection and try again.", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 
     @IBAction func onNextButtonPressed(sender: UIButton) {

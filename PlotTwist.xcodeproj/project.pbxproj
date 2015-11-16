@@ -248,6 +248,8 @@
 		3A1F8FF11BEB4956008E9671 /* Unused Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3AFF8B271BF54D8B00B10FF4 /* OnboardPageViewController.swift */,
+				3AFF8B211BF542F400B10FF4 /* OnboardContentViewController.swift */,
 				E0E250871BE8279D00E51659 /* LoginViewController.swift */,
 				E0E250891BE827E400E51659 /* SignUpViewController.swift */,
 				E0E2508B1BE8281200E51659 /* ResetPasswordViewController.swift */,
@@ -355,11 +357,9 @@
 				3A0FAD1B1BF1A6C9004A9DB9 /* OutboxViewController.swift */,
 				3A0FAD1D1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift */,
 				3A0FAD1F1BF1D9C2004A9DB9 /* ChangeInvitedAuthorViewController.swift */,
-				E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */,
 				E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */,
+				E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */,
 				E084C1121BF5167D00FAFA91 /* WindowSignUpViewController.swift */,
-				3AFF8B271BF54D8B00B10FF4 /* OnboardPageViewController.swift */,
-				3AFF8B211BF542F400B10FF4 /* OnboardContentViewController.swift */,
 				E0BEEF9D1BF860200057E9F8 /* HelpViewController.swift */,
 			);
 			name = Controllers;
@@ -450,7 +450,7 @@
 				TargetAttributes = {
 					E0E250551BE7C3D900E51659 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = RYF7YHAMY5;
+						DevelopmentTeam = G8M9P5X24R;
 					};
 				};
 			};
@@ -657,7 +657,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "2593ef70-a273-48b0-a279-a1e98fac4a00";
+				PROVISIONING_PROFILE = "f7d64409-21c2-4706-a918-e02459118ed5";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -697,7 +697,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "2593ef70-a273-48b0-a279-a1e98fac4a00";
+				PROVISIONING_PROFILE = "f7d64409-21c2-4706-a918-e02459118ed5";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
