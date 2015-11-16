@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ReadStoryViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class ReadStoryViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
+
 
     var selectedStory: Story?
     var pages: Array<Page>?
@@ -60,6 +62,7 @@ class ReadStoryViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if ((UIImage(named:usernameImage)) != nil){
                     self.authorImage.image = UIImage(named: usernameImage)
+                    self.authorImage.hidden = false
                     let path = UIBezierPath(rect: CGRectMake(0, 0, 60, 50))
                     self.storyContentTextView.textContainer.exclusionPaths = [path]
                 }
@@ -68,6 +71,13 @@ class ReadStoryViewController: UIViewController {
         }
     }
 
+    @IBAction func onSpeakButtonPressed(sender: UIButton) {
+        let synthesizer = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: self.storyContentTextView.text)
+        utterance.rate = 0.5
+        synthesizer.speakUtterance(utterance)
+
+    }
     @IBAction func onNextButtonPressed(sender: UIButton) {
 
         // increment the value of a page index
@@ -80,6 +90,7 @@ class ReadStoryViewController: UIViewController {
 
                 // update the story page content
                 self.storyContentTextView.text = ""
+                self.authorImage.hidden = true
 
                 //            self.storyContentTextView.viewWithTag(100)?.removeFromSuperview()
 
@@ -114,6 +125,7 @@ class ReadStoryViewController: UIViewController {
 
                 // update the story page content
                 self.storyContentTextView.text = ""
+                self.authorImage.hidden = true
 
                 let currentPage = self.pages![self.pageNum]
                 self.getTextViewContent(currentPage)
