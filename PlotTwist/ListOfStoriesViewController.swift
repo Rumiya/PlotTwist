@@ -20,6 +20,7 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
         //        tableView.rowHeight = UITableViewAutomaticDimension
 
     }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.stories!.count
     }
@@ -29,7 +30,13 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
         let cell:ListOfStoriesTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ListOfStoriesTableViewCell
 
         // Display a user name and a story title
-        let user = stories![indexPath.row].mainAuthor as User
+        let user = stories![indexPath.row].mainAuthor
+
+        user.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+
+
+
+        }
 
         cell.authorLabel.text = user.username
 

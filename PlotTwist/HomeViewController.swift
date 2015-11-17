@@ -280,7 +280,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                             print("Error: \(errorString)")
 
                         }
-                        self.presentError()
+                        self.presentErrorWithMessage(error.userInfo["error"] as! String)
                     }
                 }
 
@@ -309,20 +309,22 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                 if let error = error {
                     if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {
                         print("Uh oh, we couldn't even connect to the Parse Cloud!")
-                    } else {
+                    }  else {
                         let errorString = error.userInfo["error"] as? NSString
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)
+
                 }
             }
 
         })
     }
 
-    func presentError() {
-        let alertController = UIAlertController(title: "Can't Connect With Server", message: "Check internet connection and try again.", preferredStyle: .Alert)
+    // MARK: Error Controller
+    func presentErrorWithMessage(message: String) {
+        let alertController = UIAlertController(title: "Error retrieving data", message: message, preferredStyle: .Alert)
         let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alertController.addAction(dismissAction)
         presentViewController(alertController, animated: true, completion: nil)
@@ -339,6 +341,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     @IBAction func onNotificationButtonPressed(sender: UIButton) {
 
         PTActivityIndicator.show()
+        sender.enabled = false
 
         let userQuery = User.query()
         userQuery?.whereKey(Constants.User.objectId, equalTo: (User.currentUser()?.objectId)!)
@@ -362,6 +365,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         PTActivityIndicator.dismiss()
                     })
+                    sender.enabled = true
                 self.performSegueWithIdentifier("ToNewPageSegue", sender: sender)
                 }
             }
@@ -384,7 +388,8 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     }
 
     @IBAction func addStory(sender: UIButton) {
-        self.performSegueWithIdentifier("ToNewStorySegue", sender: self)
+        sender.enabled = false
+        self.performSegueWithIdentifier("ToNewStorySegue", sender: sender)
     }
 
     @IBAction func readStories(sender: UIButton) {
@@ -400,16 +405,18 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
           vc.incomingStoryPageArray = self.storyLastPage
             vc.isNewStory = false
             vc.homeVC = self
-
+            (sender as! UIButton).enabled = true
         } else if segue.identifier == "ToNewStorySegue"{
             let vc = segue.destinationViewController as! ComposeViewController
             vc.story = Story()
             vc.isNewStory = true
             vc.homeVC = self
+            (sender as! UIButton).enabled = true
 
         } else if segue.identifier == "ToFriendsSegue" {
             let vc = segue.destinationViewController as! FriendsViewController
             vc.delegate = self
+            (sender as! UIButton).enabled = true
         }
     }
 

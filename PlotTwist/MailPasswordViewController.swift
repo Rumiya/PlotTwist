@@ -77,7 +77,7 @@ class MailPasswordViewController: UIViewController {
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)
                 }
             }
         
@@ -93,8 +93,8 @@ class MailPasswordViewController: UIViewController {
     }
 
     // MARK: Error Controller
-    func presentError() {
-        let alertController = UIAlertController(title: "Error retrieving data", message: "Check internet connection and try again.", preferredStyle: .Alert)
+    func presentErrorWithMessage(message: String) {
+        let alertController = UIAlertController(title: "Error retrieving data", message: message, preferredStyle: .Alert)
         let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alertController.addAction(dismissAction)
         presentViewController(alertController, animated: true, completion: nil)
