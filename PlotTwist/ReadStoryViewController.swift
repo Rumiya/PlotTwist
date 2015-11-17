@@ -21,6 +21,7 @@ class ReadStoryViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var accentPickerView: UIPickerView!
     @IBOutlet weak var accentButton: UIButton!
+    @IBOutlet weak var speakButton: UIButton!
 
 
     let languages = ["Arabic","British","Chinese","English USA","Finnish","French","German","Greek","Hebrew","Hindi","Italian","Japanese","Korean","Norwegian","Polish","Portuguese","Romanian","Russian","Spanish","Swedish","Thai","Turkish"]
@@ -35,7 +36,10 @@ class ReadStoryViewController: UIViewController {
 
     var storyContent: String?
 
+    let synthesizer = AVSpeechSynthesizer()
     var pickedLanguage: String?
+    let defaults = NSUserDefaults.standardUserDefaults()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +54,12 @@ class ReadStoryViewController: UIViewController {
         let currentPage = pages![0]
 
         self.getTextViewContent(currentPage)
-
+        self.speakButton.tintColor = UIColor.lightGrayColor()
 
     }
 
     override func viewWillAppear(animated: Bool) {
-        speakString((selectedStory?.storyTitle)!)
+        //speakString((selectedStory?.storyTitle)!)
     }
 
     //MARK: - Delegates and data sources
@@ -73,6 +77,9 @@ class ReadStoryViewController: UIViewController {
 
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickedLanguage = locales[row]
+        pickerView.hidden = true
+        let pickedLocales = self.defaults.stringForKey("pickedLocales")
+        self.defaults.setObject(pickedLanguage, forKey: "pickedLocales")
     }
 
     func getTextViewContent(page: Page){
@@ -116,22 +123,42 @@ class ReadStoryViewController: UIViewController {
     }
     @IBAction func onSpeakButtonPressed(sender: UIButton) {
 
-        speakString(self.storyContentTextView.text)
+        if self.speakButton.tintColor != UIColor.lightGrayColor() {
+            pauseSpeaking()
+        } else {
+            if self.pageNum == 0 {
+            speakString((selectedStory?.storyTitle)! + self.storyContentTextView.text)
+            } else {
+                speakString(self.storyContentTextView.text)
+            }
+        }
     }
 
     func speakString(string: String){
-        let synthesizer = AVSpeechSynthesizer()
+
         let utterance = AVSpeechUtterance(string: string)
 
-        if pickedLanguage == nil {
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
-        } else {
-            utterance.voice = AVSpeechSynthesisVoice(language: pickedLanguage)
-        }
+//        if pickedLanguage == nil {
+//            utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+//        } else {
+//            utterance.voice = AVSpeechSynthesisVoice(language: pickedLanguage)
+//        }
+        utterance.voice = AVSpeechSynthesisVoice(language: self.defaults.stringForKey("pickedLocales"))
         utterance.rate = 0.5
         synthesizer.speakUtterance(utterance)
+        self.speakButton.tintColor = UIColor.blackColor()
 
     }
+    func stopSpeaking() {
+        synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
+
+    }
+
+    func pauseSpeaking(){
+        synthesizer.pauseSpeakingAtBoundary(AVSpeechBoundary.Word)
+        self.speakButton.tintColor = UIColor.lightGrayColor()
+    }
+
     // MARK: Error Controller
     func presentError() {
         let alertController = UIAlertController(title: "Error retrieving data", message: "Check internet connection and try again.", preferredStyle: .Alert)
@@ -143,6 +170,7 @@ class ReadStoryViewController: UIViewController {
 
     @IBAction func onNextButtonPressed(sender: UIButton) {
 
+        stopSpeaking()
         // increment the value of a page index
         ++self.pageNum
 
@@ -162,12 +190,15 @@ class ReadStoryViewController: UIViewController {
 
                 self.storyContentTextView.text = currentPage.textContent
 
-
                 }, completion: { finished in
 
                     // any code entered here will be applied once the animation has completed
 
                     self.previousButton.enabled = true
+
+                    if self.speakButton.tintColor != UIColor.lightGrayColor() {
+                        self.speakString(self.storyContentTextView.text)
+                    }
             })
 
         }
@@ -179,7 +210,7 @@ class ReadStoryViewController: UIViewController {
     }
 
     @IBAction func onPreviousButtonPressed(sender: UIButton) {
-
+        stopSpeaking()
         --self.pageNum
         if self.pageNum >= 0 {
 
@@ -197,6 +228,10 @@ class ReadStoryViewController: UIViewController {
 
                 }, completion: { finished in
                     self.nextButton.enabled = true
+                    if self.speakButton.tintColor != UIColor.lightGrayColor() {
+                        self.speakString(self.storyContentTextView.text)
+                    }
+
             })
 
         } else {
@@ -250,4 +285,7 @@ class ReadStoryViewController: UIViewController {
         return image
     }
     
+    @IBAction func onBackButtonPressed(sender: UIButton) {
+        stopSpeaking()
+    }
 }
