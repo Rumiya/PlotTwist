@@ -122,7 +122,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
             if (error == nil) {
 
             // Ensures that multiple users logging in on the same device won't receive conflicting push notifications
-            UIApplication.sharedApplication().unregisterForRemoteNotifications()
+            //UIApplication.sharedApplication().unregisterForRemoteNotifications()
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.collectionView.allowsSelection = true

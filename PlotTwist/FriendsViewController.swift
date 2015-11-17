@@ -102,8 +102,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             contactsView.hidden = false
             myFriendsView.hidden = true
 
-
-
         case 4:
             searchView.hidden = true
             incomingView.hidden = true
@@ -158,12 +156,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 var count = 0
                 for user in tempUsers {
 
-                    // Then compare with parse database to see if there are any matching emails
 
-                    if contactEmails.contains(user.email!){
-                        self.contactMatch.append(user)
-                        //print(self.contactMatch.last)
-                    }
 
                     let friendOutgoingQuery = Activity.query()
                     friendOutgoingQuery?.whereKey(Constants.Activity.fromUser, equalTo: User.currentUser()!)
@@ -196,6 +189,11 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 }
                             default:
                                 self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
+                                // Then compare with parse database to see if there are any matching emails
+                                if contactEmails.contains(user.email!){
+                                    self.contactMatch.append(user)
+                                    //print(self.contactMatch.last)
+                                }
                                 self.users.append(user)
                             }
 
@@ -230,7 +228,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.presentErrorWithMessage(error.userInfo["error"] as! String)
                 }
             }
-
         })
     }
 

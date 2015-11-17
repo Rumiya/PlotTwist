@@ -97,7 +97,7 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
                 if MFMailComposeViewController.canSendMail() {
                     let mail = MFMailComposeViewController()
                     mail.mailComposeDelegate = self
-                    mail.setToRecipients(["apps.plottwist@gmail.com"])
+                    mail.setToRecipients(["app.plottwist@gmail.com"])
                     mail.setMessageBody("<p>Story ID: \(self.stories![indexPath.row].objectId!)</p>", isHTML: true)
                     mail.setSubject("PlotTwist User Reported Story")
                     self.presentViewController(mail, animated: true, completion: nil)
@@ -144,8 +144,21 @@ class ListOfStoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue:
+            print("Mail cancelled")
+        case MFMailComposeResultSaved.rawValue:
+            print("Mail saved")
+        case MFMailComposeResultSent.rawValue:
+            print("Mail sent")
+        case MFMailComposeResultFailed.rawValue:
+            print("Mail sent failure: \(error!.localizedDescription)")
+        default:
+            break
+        }
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
+
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 //        if (editingStyle == UITableViewCellEditingStyle.Delete) {

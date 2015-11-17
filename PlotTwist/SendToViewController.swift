@@ -183,6 +183,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                     innerQuery!.whereKey(Constants.User.objectId, equalTo:invitedUser.objectId!)
 
                     let query = PFInstallation.query()
+                    
                     query?.whereKey("user", matchesQuery:innerQuery!)
                     let data = [
                         "alert" : "\(mainAuthor.username!) has started a story named \"\(newStory.storyTitle)\" and invited to you contribute next!",
