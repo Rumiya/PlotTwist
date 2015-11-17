@@ -19,6 +19,12 @@ class ReadStoryViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var accentPickerView: UIPickerView!
+    @IBOutlet weak var accentButton: UIButton!
+
+
+    let languages = ["Arabic","British","Chinese","English USA","Finnish","French","German","Greek","Hebrew","Hindi","Italian","Japanese","Korean","Norwegian","Polish","Portuguese","Romanian","Russian","Spanish","Swedish","Thai","Turkish"]
+    let locales = ["ar-SA","en-GB","zh-CN","en-US","fi-FI","fr-FR","de-DE","el-GR","he-IL","hi-IN","it-IT","ja-JP","ko-KR","no-NO","pl-PL","pt-BR","ro-RO","ru-RU","es-ES","sv-SE","th-TH","tr-TR"]
 
 
     var selectedStory: Story?
@@ -29,9 +35,12 @@ class ReadStoryViewController: UIViewController {
 
     var storyContent: String?
 
+    var pickedLanguage: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.storyTitleLabel.text = selectedStory?.storyTitle
+
         self.previousButton.enabled = false
 
         pages = selectedStory?.pages
@@ -46,7 +55,24 @@ class ReadStoryViewController: UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        speakString((selectedStory?.storyTitle)!)
+    }
 
+    //MARK: - Delegates and data sources
+    //MARK: Data Sources
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return languages.count
+    }
+    //MARK: Delegates
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return languages[row]
+    }
+
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickedLanguage = locales[row]
     }
 
     func getTextViewContent(page: Page){
@@ -83,9 +109,25 @@ class ReadStoryViewController: UIViewController {
         }
     }
 
+    @IBAction func onAccentButtonPressed(sender: UIButton) {
+
+        accentPickerView.hidden = !accentPickerView.hidden
+
+    }
     @IBAction func onSpeakButtonPressed(sender: UIButton) {
+
+        speakString(self.storyContentTextView.text)
+    }
+
+    func speakString(string: String){
         let synthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: self.storyContentTextView.text)
+        let utterance = AVSpeechUtterance(string: string)
+
+        if pickedLanguage == nil {
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+        } else {
+            utterance.voice = AVSpeechSynthesisVoice(language: pickedLanguage)
+        }
         utterance.rate = 0.5
         synthesizer.speakUtterance(utterance)
 
@@ -97,6 +139,7 @@ class ReadStoryViewController: UIViewController {
         alertController.addAction(dismissAction)
         presentViewController(alertController, animated: true, completion: nil)
     }
+
 
     @IBAction func onNextButtonPressed(sender: UIButton) {
 
