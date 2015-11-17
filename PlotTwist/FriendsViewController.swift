@@ -494,6 +494,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             if buttonTypeForUser.count > 0 {
                 cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[currentArray()[indexPath.row]]!), forState: .Normal)
             }
+
+            let usernameImage = getUsernameFirstLetterImagename(currentArray()[indexPath.row].username!)
+
+            if ((UIImage(named:usernameImage)) != nil){
+
+                cell.profilePicture.image = UIImage(named:usernameImage)
+            }
+
             return cell
 
         } else if tableView == incomingTableView {
@@ -506,6 +514,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             if buttonTypeForUser.count > 0 {
                 cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[incoming[indexPath.row]]!), forState: .Normal)
             }
+
+            let usernameImage = getUsernameFirstLetterImagename(incoming[indexPath.row].username!)
+
+            if ((UIImage(named:usernameImage)) != nil){
+
+                cell.profilePicture.image = UIImage(named:usernameImage)
+            }
+
             return cell
 
         } else if tableView == outgoingTableView {
@@ -518,6 +534,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             if buttonTypeForUser.count > 0 {
                 cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[outgoing[indexPath.row]]!), forState: .Normal)
             }
+
+            let usernameImage = getUsernameFirstLetterImagename(outgoing[indexPath.row].username!)
+
+            if ((UIImage(named:usernameImage)) != nil){
+
+                cell.profilePicture.image = UIImage(named:usernameImage)
+            }
+
             return cell
 
         } else if tableView == contactsTableView {
@@ -530,6 +554,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             if buttonTypeForUser.count > 0 {
                 cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[contactMatch[indexPath.row]]!), forState: .Normal)
             }
+
+            let usernameImage = getUsernameFirstLetterImagename(contactMatch[indexPath.row].username!)
+
+            if ((UIImage(named:usernameImage)) != nil){
+
+                cell.profilePicture.image = UIImage(named:usernameImage)
+            }
+
             return cell
 
         }else if tableView == myFriendsTableView {
@@ -546,6 +578,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[myFriends[indexPath.row]]!), forState: .Normal)
                 }
             }
+
+            let usernameImage = getUsernameFirstLetterImagename(myFriends[indexPath.row].username!)
+
+            if ((UIImage(named:usernameImage)) != nil){
+
+                cell.profilePicture.image = UIImage(named:usernameImage)
+            }
+
             return cell
             
         } else {
