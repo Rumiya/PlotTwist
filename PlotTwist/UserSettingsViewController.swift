@@ -102,7 +102,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
             sendFeedback()
         case 4:
             shareAppOnFB()
-        case 4:
+        case 5:
             logout()
         default:
             collectionView.allowsSelection =  true
@@ -179,6 +179,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
             //UIApplication.sharedApplication().unregisterForRemoteNotifications()
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
                 self.collectionView.allowsSelection = true
                 let storyboard = UIStoryboard(name: "Login", bundle: nil)
                 let vc = storyboard.instantiateViewControllerWithIdentifier("DoorLogin") as! DoorLoginViewController
@@ -198,6 +199,8 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
                 }
             }
         }
+
+
     }
 
     // MARK: Error Controller
