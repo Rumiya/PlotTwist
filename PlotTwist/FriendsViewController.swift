@@ -119,6 +119,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         buttonTypeForUser.removeAll()
         users.removeAll()
+        filteredUsers.removeAll()
         incoming.removeAll()
         outgoing.removeAll()
         myFriends.removeAll()
@@ -150,8 +151,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                var tempUsers = [User]()
-                tempUsers = objects as! [User]
+                let tempUsers = objects as! [User]
                 //self.users = objects as! [User]
 
                 var count = 0
@@ -176,6 +176,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                         if objects?.count != 0 {
                             let activity = objects?.first as! Activity
 
+
                             switch activity.requestType {
                             case Constants.Activity.Requests.confirmed:
                                 self.buttonTypeForUser[user] = Constants.User.ButtonType.accepted
@@ -190,15 +191,16 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 }
                             default:
                                 self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
+                                self.users.append(user)
                                 // Then compare with parse database to see if there are any matching emails
                                 if contactEmails.contains(user.email!){
                                     self.contactMatch.append(user)
                                     //print(self.contactMatch.last)
                                 }
-                                self.users.append(user)
                             }
 
-                        } else {
+                        }
+                        else {
                             self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
                             self.users.append(user)
                         }

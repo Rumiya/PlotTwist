@@ -16,7 +16,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     var storyTitle: String?
     var storyContent: String!
 
-    var selectedIndex: Int?
+    var selectedIndex: Int = 0
 
     @IBOutlet weak var headerLabel: UILabel!
 
@@ -161,7 +161,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
             newStory.pages.append(firstPage)
 
             // Initialize story
-            invitedUser = self.users[self.selectedIndex!]
+            invitedUser = self.users[self.selectedIndex]
             newStory.storyTitle = self.storyTitle!
             newStory.mainAuthor = mainAuthor
             newStory.currentAuthor = invitedUser
@@ -271,7 +271,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
             } else {
 
-                invitedUser = self.users[self.selectedIndex!]
+                invitedUser = self.users[self.selectedIndex]
                 invitedUser.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                     currentStory.incrementKey(Constants.Story.pageCount)
                     currentStory.pages.append(newPage)
