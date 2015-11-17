@@ -104,6 +104,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         queryPublished?.whereKeyExists(Constants.Story.objectId)
         queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.includeKey(Constants.Story.mainAuthor)
+        queryPublished?.whereKey(Constants.Story.objectId, notContainedIn: (User.currentUser()?.reportedStories)!)
         queryPublished?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if (error == nil) {
                 self.storiesToSend = objects as! [Story]
@@ -172,6 +173,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             storyQuery?.includeKey(Constants.Story.mainAuthor)
                             storyQuery?.includeKey(Constants.Story.pages)
                             storyQuery?.whereKey(Constants.Story.isPublished, equalTo: true)
+                            storyQuery?.whereKey(Constants.Story.objectId, notContainedIn: (User.currentUser()?.reportedStories)!)
                             storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
                                 self.storiesToSend = objects as! [Story]
                                 self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
@@ -218,6 +220,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         storyQuery?.includeKey(Constants.Story.pages)
         storyQuery?.whereKeyExists(Constants.Story.objectId)
         storyQuery?.includeKey(Constants.Story.mainAuthor)
+        storyQuery?.whereKey(Constants.Story.objectId, notContainedIn: (User.currentUser()?.reportedStories)!)
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if (error == nil) {
             self.storiesToSend = objects as! [Story]
@@ -247,6 +250,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.includeKey(Constants.Story.mainAuthor)
         queryPublished?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
+        queryPublished?.whereKey(Constants.Story.objectId, notContainedIn: (User.currentUser()?.reportedStories)!)
+
         queryPublished?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if (error ==  nil) {
                 self.storiesToSend = objects as! [Story]

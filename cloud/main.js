@@ -4,7 +4,7 @@ var sendgrid = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SE
 function sendWelcome(email) {
   var opts = {
     to: email,
-    from: 'apps.plottwist@gmail.com',
+    from: 'app.plottwist@gmail.com',
     subject: 'Welcome to Plot Twist',
     text: 'Welcome, and thanks for signing up!'
   }

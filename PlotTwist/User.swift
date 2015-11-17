@@ -21,6 +21,7 @@ class User: PFUser {
     @NSManaged var coAuthoredStories: PFRelation
     @NSManaged var invitedStories: PFRelation
     @NSManaged var buttonKey: String
+    @NSManaged var reportedStories: Array<String>
 
     override class func initialize() {
         struct Static {

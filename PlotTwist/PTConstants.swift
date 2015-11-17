@@ -66,6 +66,7 @@ struct Constants {
         static let invitedStories = "invitedStories"
         static let buttonKey = "buttonKey"
         static let createdAt = "createdAt"
+        static let reportedStories = "reportedStories"
 
         struct ButtonType {
             static let accepted = "friends_button"
