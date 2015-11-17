@@ -37,7 +37,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return 4
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -50,24 +50,17 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             cell.categoryLabel.text = "All"
             cell.categoryImage.image = UIImage(named:"A_letterSM.png")
         case 1:
-            cell.categoryLabel.text = "Popular"
-            cell.categoryImage.image = UIImage(named:"P_letterSM.png")
-        case 2:
             cell.categoryLabel.text = "Friends"
             cell.categoryImage.image = UIImage(named:"F_letterSM.png")
-        case 3:
+        case 2:
             cell.categoryLabel.text = "iPublished"
             cell.categoryImage.image = UIImage(named:"I_letterSM.png")
-        case 4:
-            cell.categoryLabel.text = "Staff Picks"
-            cell.categoryImage.image = UIImage(named:"S_letterSM.png")
-        case 5:
+        case 3:
             cell.categoryLabel.text = "Newbies"
             cell.categoryImage.image = UIImage(named:"N_letterSM.png")
         default:
             cell.categoryLabel.text = "All"
             cell.categoryImage.image = UIImage(named:"A_letterSM.png")
-
         }
 
         return cell
@@ -83,14 +76,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         case 0:
             readAllStories()
         case 1:
-            readAllStories()
-        case 2:
             readFriendsStories()
-        case 3:
+        case 2:
             readMyPublishedStories()
-        case 4:
-            readAllStories()
-        case 5:
+        case 3:
             readNewbyStories()
         default:
             readAllStories()
