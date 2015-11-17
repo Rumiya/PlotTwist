@@ -104,7 +104,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         queryPublished?.whereKeyExists(Constants.Story.objectId)
         queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.includeKey(Constants.Story.mainAuthor)
-        queryPublished?.includeKey(Constants.Story.pages)
         queryPublished?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if (error == nil) {
                 self.storiesToSend = objects as! [Story]
@@ -120,7 +119,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)
                 }
             }
         })
@@ -191,8 +190,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
-                }
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)                }
             }
 
             self.collectionView.allowsSelection = true
@@ -218,7 +216,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         storyQuery?.whereKey(Constants.Story.mainAuthor, matchesQuery: newbyAuthorQuery!)
         storyQuery?.whereKey(Constants.Story.isPublished, equalTo: true)
         storyQuery?.includeKey(Constants.Story.pages)
-
+        storyQuery?.whereKeyExists(Constants.Story.objectId)
+        storyQuery?.includeKey(Constants.Story.mainAuthor)
         storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if (error == nil) {
             self.storiesToSend = objects as! [Story]
@@ -234,7 +233,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)
                 }
             }
         })
@@ -246,6 +245,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         queryPublished?.whereKey(Constants.Story.isPublished, equalTo: true)
         queryPublished?.whereKeyExists(Constants.Story.objectId)
         queryPublished?.includeKey(Constants.Story.pages)
+        queryPublished?.includeKey(Constants.Story.mainAuthor)
         queryPublished?.whereKey(Constants.Story.mainAuthor, equalTo: User.currentUser()!)
         queryPublished?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if (error ==  nil) {
@@ -262,15 +262,15 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)
                 }
             }
         })
     }
 
     // MARK: Error Controller
-    func presentError() {
-        let alertController = UIAlertController(title: "Can't Connect With Server", message: "Check internet connection and try again.", preferredStyle: .Alert)
+    func presentErrorWithMessage(message: String) {
+        let alertController = UIAlertController(title: "Error retrieving data", message: message, preferredStyle: .Alert)
         let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alertController.addAction(dismissAction)
         presentViewController(alertController, animated: true, completion: nil)

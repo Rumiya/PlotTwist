@@ -85,7 +85,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)
                 }
 
             }
@@ -220,7 +220,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)
                 }
             }
         })
@@ -346,7 +346,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                         print("Error: \(errorString)")
 
                     }
-                    self.presentError()
+                    self.presentErrorWithMessage(error.userInfo["error"] as! String)
                 }
             }
         })
@@ -395,7 +395,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                             print("Error: \(errorString)")
 
                         }
-                        self.presentError()
+                        self.presentErrorWithMessage(error.userInfo["error"] as! String)
                     }
                 }
         }
@@ -412,9 +412,9 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
 
-    // MARK: Error Handling
-    func presentError() {
-        let alertController = UIAlertController(title: "Can't Connect With Server", message: "Check internet connection and try again.", preferredStyle: .Alert)
+    // MARK: Error Controller
+    func presentErrorWithMessage(message: String) {
+        let alertController = UIAlertController(title: "Error retrieving data", message: message, preferredStyle: .Alert)
         let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alertController.addAction(dismissAction)
         presentViewController(alertController, animated: true, completion: nil)
