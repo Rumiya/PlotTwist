@@ -1087,6 +1087,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
+                                            <action selector="onBackButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="jQJ-NC-uOb"/>
                                             <segue destination="WE0-sb-L5z" kind="unwind" unwindAction="unwindToListOfStories:" id="VjQ-cB-qdt"/>
                                         </connections>
                                     </button>
@@ -1152,16 +1153,15 @@
                                             <action selector="onShareButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="L9P-e6-yuU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tS-Cf-YwY" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tS-Cf-YwY" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
                                         <rect key="frame" x="210" y="0.0" width="40" height="40"/>
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="GVx-z8-KaB"/>
                                             <constraint firstAttribute="width" constant="40" id="YQa-5i-hcJ"/>
                                         </constraints>
-                                        <state key="normal" title="Speak" image="speak">
-                                            <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Speak" image="speak"/>
                                         <connections>
                                             <action selector="onSpeakButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="CYr-8Z-Mlb"/>
                                         </connections>
@@ -1208,6 +1208,7 @@
                         <outlet property="nextButton" destination="TUH-QK-nVc" id="moy-vV-qLR"/>
                         <outlet property="previousButton" destination="4d9-kR-Zcx" id="cGH-6I-O1u"/>
                         <outlet property="shareButton" destination="Zo1-RC-r1f" id="iHj-N5-M53"/>
+                        <outlet property="speakButton" destination="6tS-Cf-YwY" id="nMW-wz-gv2"/>
                         <outlet property="storyContentTextView" destination="Vch-gw-ZMi" id="KX3-wc-epj"/>
                         <outlet property="storyPageView" destination="4UA-cA-jDF" id="2kc-cU-lse"/>
                         <outlet property="storyTitleLabel" destination="8QH-bf-J1d" id="Z40-Mf-Fup"/>
