@@ -1028,6 +1028,17 @@
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4h-qC-MAQ">
+                                        <rect key="frame" x="0.0" y="91" width="530" height="216"/>
+                                        <color key="backgroundColor" red="0.81176470590000005" green="0.83137254900000002" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="Phf-Ws-Mdb"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="DCe-Xc-xzL" id="ajK-r3-oZY"/>
+                                            <outlet property="delegate" destination="DCe-Xc-xzL" id="XDi-yE-aXj"/>
+                                        </connections>
+                                    </pickerView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LFr-zY-JlT">
                                         <rect key="frame" x="20" y="20" width="50" height="50"/>
                                         <animations/>
@@ -1042,7 +1053,11 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Vch-gw-ZMi" secondAttribute="trailing" constant="20" id="5oN-3z-laW"/>
                                     <constraint firstItem="LFr-zY-JlT" firstAttribute="leading" secondItem="4UA-cA-jDF" secondAttribute="leading" constant="20" id="6sl-zj-Nyg"/>
+                                    <constraint firstItem="H4h-qC-MAQ" firstAttribute="centerY" secondItem="4UA-cA-jDF" secondAttribute="centerY" id="IBR-gZ-40z"/>
+                                    <constraint firstAttribute="trailing" secondItem="H4h-qC-MAQ" secondAttribute="trailing" id="L06-jy-JmB"/>
                                     <constraint firstItem="Vch-gw-ZMi" firstAttribute="leading" secondItem="4UA-cA-jDF" secondAttribute="leading" constant="20" id="UcX-dh-guP"/>
+                                    <constraint firstItem="H4h-qC-MAQ" firstAttribute="top" secondItem="LFr-zY-JlT" secondAttribute="bottom" constant="21" id="YEH-dq-lg5"/>
+                                    <constraint firstItem="H4h-qC-MAQ" firstAttribute="leading" secondItem="4UA-cA-jDF" secondAttribute="leading" id="ZOn-Td-J9q"/>
                                     <constraint firstItem="Vch-gw-ZMi" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="top" constant="20" id="l9f-Qg-RFo"/>
                                     <constraint firstItem="LFr-zY-JlT" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="top" constant="20" id="n8x-zR-Alv"/>
                                     <constraint firstAttribute="bottom" secondItem="Vch-gw-ZMi" secondAttribute="bottom" constant="20" id="veb-cc-GOZ"/>
@@ -1095,90 +1110,100 @@
                                     <constraint firstAttribute="height" constant="42" id="ojc-8L-zJv"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUH-QK-nVc" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
-                                <rect key="frame" x="280" y="535" width="40" height="40"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="DuH-S0-wfr"/>
-                                    <constraint firstAttribute="width" constant="40" id="T4y-77-RXf"/>
-                                </constraints>
-                                <state key="normal" image="arrow"/>
-                                <connections>
-                                    <action selector="onNextButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="AOv-YY-08J"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-RC-r1f" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
-                                <rect key="frame" x="350" y="535" width="40" height="40"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="DA7-bA-QOS"/>
-                                    <constraint firstAttribute="width" constant="40" id="R1c-7i-CO9"/>
-                                </constraints>
-                                <state key="normal" image="share"/>
-                                <connections>
-                                    <action selector="onShareButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="L9P-e6-yuU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-kR-Zcx" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
-                                <rect key="frame" x="210" y="535" width="40" height="40"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="1kf-63-uW1"/>
-                                    <constraint firstAttribute="height" constant="40" id="V6D-sI-daC"/>
-                                </constraints>
-                                <state key="normal" image="arrowLeft"/>
-                                <connections>
-                                    <action selector="onPreviousButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="qdI-SO-D52"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tS-Cf-YwY" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
-                                <rect key="frame" x="420" y="535" width="40" height="40"/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="GVx-z8-KaB"/>
-                                    <constraint firstAttribute="width" constant="40" id="YQa-5i-hcJ"/>
-                                </constraints>
-                                <state key="normal" title="Speak" image="speak">
-                                    <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="onSpeakButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="CYr-8Z-Mlb"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="7lW-Av-rdK">
+                                <rect key="frame" x="140" y="535" width="320" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-kR-Zcx" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="1kf-63-uW1"/>
+                                            <constraint firstAttribute="height" constant="40" id="V6D-sI-daC"/>
+                                        </constraints>
+                                        <state key="normal" image="arrowLeft"/>
+                                        <connections>
+                                            <action selector="onPreviousButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="qdI-SO-D52"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUH-QK-nVc" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                        <rect key="frame" x="70" y="0.0" width="40" height="40"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="DuH-S0-wfr"/>
+                                            <constraint firstAttribute="width" constant="40" id="T4y-77-RXf"/>
+                                        </constraints>
+                                        <state key="normal" image="arrow"/>
+                                        <connections>
+                                            <action selector="onNextButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="AOv-YY-08J"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-RC-r1f" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                        <rect key="frame" x="140" y="0.0" width="40" height="40"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="DA7-bA-QOS"/>
+                                            <constraint firstAttribute="width" constant="40" id="R1c-7i-CO9"/>
+                                        </constraints>
+                                        <state key="normal" image="share"/>
+                                        <connections>
+                                            <action selector="onShareButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="L9P-e6-yuU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tS-Cf-YwY" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                        <rect key="frame" x="210" y="0.0" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="GVx-z8-KaB"/>
+                                            <constraint firstAttribute="width" constant="40" id="YQa-5i-hcJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Speak" image="speak">
+                                            <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onSpeakButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="CYr-8Z-Mlb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYt-QA-Ov8" customClass="SquareButton" customModule="PlotTwist" customModuleProvider="target">
+                                        <rect key="frame" x="280" y="0.0" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="eii-2D-qln"/>
+                                            <constraint firstAttribute="height" constant="40" id="oCw-if-Dfc"/>
+                                        </constraints>
+                                        <state key="normal" image="globe"/>
+                                        <connections>
+                                            <action selector="onAccentButtonPressed:" destination="DCe-Xc-xzL" eventType="touchUpInside" id="WsQ-pD-f13"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.76078431369999999" green="0.91372549020000005" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Zo1-RC-r1f" firstAttribute="leading" secondItem="TUH-QK-nVc" secondAttribute="trailing" constant="30" id="2Hm-Vd-Vbs"/>
-                            <constraint firstItem="TUH-QK-nVc" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="bottom" constant="15" id="46I-P5-aRg"/>
                             <constraint firstAttribute="trailing" secondItem="ipc-Mp-P9S" secondAttribute="trailing" id="77a-G2-cOL"/>
-                            <constraint firstItem="Zo1-RC-r1f" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="bottom" constant="15" id="FnS-SP-enW"/>
-                            <constraint firstItem="4d9-kR-Zcx" firstAttribute="top" secondItem="Vch-gw-ZMi" secondAttribute="bottom" constant="34" id="P3M-Qe-BNR"/>
-                            <constraint firstItem="TUH-QK-nVc" firstAttribute="centerX" secondItem="FA2-aU-so8" secondAttribute="centerX" id="Rso-NT-Frs"/>
-                            <constraint firstItem="6tS-Cf-YwY" firstAttribute="leading" secondItem="Zo1-RC-r1f" secondAttribute="trailing" constant="30" id="SGW-fA-7SF"/>
-                            <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="TUH-QK-nVc" secondAttribute="bottom" constant="25" id="Twm-Yx-s5b"/>
+                            <constraint firstItem="7lW-Av-rdK" firstAttribute="centerY" secondItem="FA2-aU-so8" secondAttribute="centerY" id="Gf9-uB-bvo"/>
                             <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="4UA-cA-jDF" secondAttribute="bottom" constant="80" id="ZvN-Mr-GXU"/>
-                            <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="6tS-Cf-YwY" secondAttribute="bottom" constant="25" id="eQT-UY-bsH"/>
+                            <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="7lW-Av-rdK" secondAttribute="bottom" constant="25" id="dBU-7e-fkq"/>
                             <constraint firstItem="ipc-Mp-P9S" firstAttribute="top" secondItem="n7k-zN-ckz" secondAttribute="bottom" constant="25" id="fRL-M6-pyw"/>
-                            <constraint firstItem="TUH-QK-nVc" firstAttribute="leading" secondItem="4d9-kR-Zcx" secondAttribute="trailing" constant="30" id="gY2-ru-T9M"/>
                             <constraint firstItem="4UA-cA-jDF" firstAttribute="top" secondItem="ipc-Mp-P9S" secondAttribute="bottom" constant="35" id="hDw-Sf-Dsw"/>
-                            <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="4d9-kR-Zcx" secondAttribute="bottom" constant="25" id="mup-by-NIH"/>
+                            <constraint firstItem="7lW-Av-rdK" firstAttribute="centerX" secondItem="FA2-aU-so8" secondAttribute="centerX" id="hG8-5p-sGJ"/>
                             <constraint firstItem="ipc-Mp-P9S" firstAttribute="leading" secondItem="FA2-aU-so8" secondAttribute="leading" id="shN-xZ-VaE"/>
-                            <constraint firstItem="E44-B9-vUE" firstAttribute="top" secondItem="Zo1-RC-r1f" secondAttribute="bottom" constant="25" id="tmk-x9-XYz"/>
                             <constraint firstItem="4UA-cA-jDF" firstAttribute="leading" secondItem="FA2-aU-so8" secondAttribute="leading" constant="35" id="wXp-Iv-sc2"/>
                             <constraint firstAttribute="trailing" secondItem="4UA-cA-jDF" secondAttribute="trailing" constant="35" id="wx1-Yz-Fag"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="P3M-Qe-BNR"/>
-                                <exclude reference="FnS-SP-enW"/>
+                                <exclude reference="Gf9-uB-bvo"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="accentButton" destination="TYt-QA-Ov8" id="e9J-bT-s3C"/>
+                        <outlet property="accentPickerView" destination="H4h-qC-MAQ" id="w0p-OV-ess"/>
                         <outlet property="authorImage" destination="LFr-zY-JlT" id="XAj-2a-2wk"/>
                         <outlet property="nextButton" destination="TUH-QK-nVc" id="moy-vV-qLR"/>
                         <outlet property="previousButton" destination="4d9-kR-Zcx" id="cGH-6I-O1u"/>
@@ -2620,6 +2645,7 @@
         <image name="facebook" width="64" height="64"/>
         <image name="gear" width="100" height="100"/>
         <image name="glasses" width="100" height="100"/>
+        <image name="globe" width="100" height="100"/>
         <image name="helpPage" width="621" height="1104"/>
         <image name="paperPlane" width="100" height="100"/>
         <image name="paperPlaneLeft" width="254" height="254"/>
