@@ -28,7 +28,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        sendButton.enabled = false
         getFriendsList()
 
     }
@@ -52,7 +52,8 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
         activityQuery.includeKey(Constants.Activity.fromUser)
 
         activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-
+            self.sendButton.enabled = true
+            
             if (error == nil){
 
                 if objects!.count == 0 {
