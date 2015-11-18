@@ -104,7 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
 
-
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 
         if let currentInstallation: PFInstallation = PFInstallation.currentInstallation(){
@@ -122,7 +121,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
 
-        let homeVC = window?.rootViewController as! HomeViewController
+        let homeVC = self.window?.rootViewController as! HomeViewController
+        homeVC.notificationButton.hidden = false
         homeVC.getNotificationCount()
 
         PFPush.handlePush(userInfo)

@@ -165,6 +165,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             storyQuery?.whereKey(Constants.Story.objectId, notContainedIn: (User.currentUser()?.reportedStories)!)
                             storyQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
                                 self.storiesToSend = objects as! [Story]
+
                                 self.performSegueWithIdentifier("ToListOfStoriesSegue", sender: self)
 
                             })
@@ -277,6 +278,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 PTActivityIndicator.dismiss()
             })
             let vc = segue.destinationViewController as! ListOfStoriesViewController
+            self.storiesToSend.sortInPlace({ $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending })
             vc.stories = self.storiesToSend
         }
     }

@@ -29,6 +29,7 @@ class OutboxViewController: UIViewController, UITableViewDataSource, UITableView
         let outgoingStoryQuery = Story.query()
         outgoingStoryQuery?.whereKey(Constants.Story.allAuthors, matchesQuery: userQuery!)
         outgoingStoryQuery?.whereKey(Constants.Story.isPublished, equalTo: false)
+        outgoingStoryQuery?.whereKeyExists(Constants.Story.objectId)
         outgoingStoryQuery?.includeKey(Constants.Story.allAuthorIds)
         outgoingStoryQuery?.includeKey(Constants.Story.currentAuthor)
         outgoingStoryQuery?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
