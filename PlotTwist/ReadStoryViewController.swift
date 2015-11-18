@@ -263,7 +263,11 @@ class ReadStoryViewController: UIViewController {
 
         let textAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont(name: "Noteworthy", size: 14.0)!, NSForegroundColorAttributeName: UIColor.blackColor(), NSBackgroundColorAttributeName: UIColor.clearColor()]
 
-        let image  = self.imageFromString(storyContent, inImage: UIImage(named: "blurBackground")!,  attributes: textAttributes)
+        let index = storyContent.startIndex.advancedBy(525)
+        var shortContent = storyContent.substringToIndex(index);
+        shortContent += "... To be continued..."
+
+        let image  = self.imageFromString(shortContent, inImage: UIImage(named: "blurBackground")!,  attributes: textAttributes)
 
         let textToShare = image
         let objectsToShare = [textToShare]
