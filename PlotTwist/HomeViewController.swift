@@ -128,11 +128,8 @@ class HomeViewController: UIViewController {
         self.friendButton.hidden = false
 
         let path = UIBezierPath()
-        path.moveToPoint(CGPoint(x: self.view.bounds.width,y: 219))
-        //path.addCurveToPoint(CGPoint(x: 270, y: 189), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
+        path.moveToPoint(self.friendBalloonEndPoint)
         path.addCurveToPoint(self.friendBalloonEndPoint, controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
-
-       // path.moveToPoint(self.friendStartPoint!)
         
         let anim = CAKeyframeAnimation(keyPath: "position")
 
