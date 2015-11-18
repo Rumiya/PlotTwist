@@ -121,11 +121,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
 
-        let homeVC = self.window?.rootViewController as! HomeViewController
-        homeVC.notificationButton.hidden = false
-        homeVC.getNotificationCount()
+        NSNotificationCenter.defaultCenter().postNotificationName("MyNotification", object: nil)
 
         PFPush.handlePush(userInfo)
+
+
     }
 
     func applicationWillResignActive(application: UIApplication) {

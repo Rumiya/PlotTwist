@@ -12,7 +12,6 @@
 		3A0FAD121BEFB326004A9DB9 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD111BEFB326004A9DB9 /* FriendTableViewCell.swift */; };
 		3A0FAD141BF0082F004A9DB9 /* FriendButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD131BF0082F004A9DB9 /* FriendButtonDelegate.swift */; };
 		3A0FAD161BF00A01004A9DB9 /* PTUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD151BF00A01004A9DB9 /* PTUtility.swift */; };
-		3A0FAD181BF1246A004A9DB9 /* FriendListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD171BF1246A004A9DB9 /* FriendListDelegate.swift */; };
 		3A0FAD1A1BF1A5B8004A9DB9 /* Outbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0FAD191BF1A5B8004A9DB9 /* Outbox.storyboard */; };
 		3A0FAD1C1BF1A6C9004A9DB9 /* OutboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD1B1BF1A6C9004A9DB9 /* OutboxViewController.swift */; };
 		3A0FAD1E1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD1D1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift */; };
@@ -80,7 +79,6 @@
 		E0E250961BEC4F4D00E51659 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250951BEC4F4D00E51659 /* HomeViewController.swift */; };
 		E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250971BED1B0300E51659 /* ComposeViewController.swift */; };
 		E0E2509A1BED1E9F00E51659 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250991BED1E9F00E51659 /* SendToViewController.swift */; };
-		E0E2509C1BED352300E51659 /* DecrementNotificationsCountDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */; };
 		E0E250A41BEEC23300E51659 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A31BEEC23300E51659 /* CategoriesViewController.swift */; };
 		E0E250A61BEEC3CA00E51659 /* ListOfStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */; };
 		E0E250A81BEEC45B00E51659 /* ReadStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */; };
@@ -95,7 +93,6 @@
 		3A0FAD111BEFB326004A9DB9 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		3A0FAD131BF0082F004A9DB9 /* FriendButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendButtonDelegate.swift; sourceTree = "<group>"; };
 		3A0FAD151BF00A01004A9DB9 /* PTUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTUtility.swift; sourceTree = "<group>"; };
-		3A0FAD171BF1246A004A9DB9 /* FriendListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListDelegate.swift; sourceTree = "<group>"; };
 		3A0FAD191BF1A5B8004A9DB9 /* Outbox.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outbox.storyboard; sourceTree = "<group>"; };
 		3A0FAD1B1BF1A6C9004A9DB9 /* OutboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutboxViewController.swift; sourceTree = "<group>"; };
 		3A0FAD1D1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutboxTableViewCell.swift; sourceTree = "<group>"; };
@@ -166,7 +163,6 @@
 		E0E250951BEC4F4D00E51659 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E0E250971BED1B0300E51659 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		E0E250991BED1E9F00E51659 /* SendToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
-		E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecrementNotificationsCountDelegate.swift; sourceTree = "<group>"; };
 		E0E250A31BEEC23300E51659 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		E0E250A51BEEC3CA00E51659 /* ListOfStoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfStoriesViewController.swift; sourceTree = "<group>"; };
 		E0E250A71BEEC45B00E51659 /* ReadStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadStoryViewController.swift; sourceTree = "<group>"; };
@@ -289,9 +285,9 @@
 				3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */,
 				3A0FAD0F1BEFB2D0004A9DB9 /* FriendsViewController.swift */,
 				3A0FAD111BEFB326004A9DB9 /* FriendTableViewCell.swift */,
-				3AFA0D4A1BF7F06B0006CD22 /* IncomingFriendTableViewCell.swift */,
 				3AFA0D4C1BF7F0770006CD22 /* OutgoingFriendTableViewCell.swift */,
 				3AFA0D521BF8214B0006CD22 /* ContactsTableViewCell.swift */,
+				3AFA0D4A1BF7F06B0006CD22 /* IncomingFriendTableViewCell.swift */,
 				3AFA0D4E1BF7F0810006CD22 /* MyFriendsTableViewCell.swift */,
 				3A0FAD1B1BF1A6C9004A9DB9 /* OutboxViewController.swift */,
 				3A0FAD1D1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift */,
@@ -337,14 +333,12 @@
 				3AFA0D411BF7B37E0006CD22 /* SMSegmentView.swift */,
 				E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */,
 				E0E250AB1BF05E6E00E51659 /* CustomUIElements.swift */,
-				E0E2509B1BED352300E51659 /* DecrementNotificationsCountDelegate.swift */,
 				3A0FAD211BF1DB9E004A9DB9 /* ChangeInvitedAuthorsDelegate.swift */,
 				3A0FAD131BF0082F004A9DB9 /* FriendButtonDelegate.swift */,
 				3AFA0D441BF7EFCC0006CD22 /* IncomingFriendButtonDelegate.swift */,
 				3AFA0D461BF7EFF00006CD22 /* OutgoingFriendButtonDelegate.swift */,
 				3AFA0D481BF7F0050006CD22 /* MyFriendsButtonDelegate.swift */,
 				3AFA0D501BF821140006CD22 /* ContactsButtonDelegate.swift */,
-				3A0FAD171BF1246A004A9DB9 /* FriendListDelegate.swift */,
 				3AF2457B1BE7E0FB00832B30 /* PTConstants.swift */,
 				3A0FAD151BF00A01004A9DB9 /* PTUtility.swift */,
 				6571A4A31BFA673C00F5641A /* PTActivityIndicator.swift */,
@@ -481,10 +475,8 @@
 				3A0FAD201BF1D9C2004A9DB9 /* ChangeInvitedAuthorViewController.swift in Sources */,
 				E0A4BA371BF26435001D5581 /* InboxViewController.swift in Sources */,
 				E0BEEF9E1BF860210057E9F8 /* HelpViewController.swift in Sources */,
-				E0E2509C1BED352300E51659 /* DecrementNotificationsCountDelegate.swift in Sources */,
 				E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */,
 				3A0FAD121BEFB326004A9DB9 /* FriendTableViewCell.swift in Sources */,
-				3A0FAD181BF1246A004A9DB9 /* FriendListDelegate.swift in Sources */,
 				E084C1151BF51A5600FAFA91 /* CustomAnimations.swift in Sources */,
 				3A1F8FEC1BEAC03F008E9671 /* LibraryCollectionViewCell.swift in Sources */,
 				3A0FAD1E1BF1A6DF004A9DB9 /* OutboxTableViewCell.swift in Sources */,

@@ -10,7 +10,6 @@ import UIKit
 
 class SendToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var delegate: DecrementNotificationsCountDelegate?
     var story: Story?
     var users: [User] = []
     var storyTitle: String?
@@ -334,8 +333,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                                     if currentStory.mainAuthor != mainAuthor{
                                         //self.sendPushToMainAuthor()
                                     }
-                                    // TODO: delegation
-                                    self.delegate?.didAddNewPage()
+                                    NSNotificationCenter.defaultCenter().postNotificationName("MyNotification", object: nil)
                                 } else {
                                     print("push failed")
 
@@ -393,7 +391,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                 push.setQuery(query)
                 push.setData(data)
                 push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                    self.delegate?.didAddNewPage()
+                    NSNotificationCenter.defaultCenter().postNotificationName("MyNotification", object: nil)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         PTActivityIndicator.dismiss()
                     })

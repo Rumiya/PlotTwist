@@ -13,8 +13,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var story: Story?
     var isNewStory: Bool?
 
-    var homeVC: HomeViewController!
-
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
 
@@ -148,7 +146,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             let vc = segue.destinationViewController as! SendToViewController
             vc.story = story
             vc.isNewStory = isNewStory
-            vc.delegate = homeVC
 
             if isNewStory == true {
                 vc.storyTitle = titleTextField.text

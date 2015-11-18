@@ -92,7 +92,6 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
             vc.previousContentText = page.textContent
             vc.isNewStory = isNewStory
             vc.story = page.story
-            vc.homeVC = homeVC
         }
     }
 
