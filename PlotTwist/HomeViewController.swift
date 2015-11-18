@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController, DecrementNotificationsCountDelegate, FriendListDelegate {
+class HomeViewController: UIViewController {
 
     var story = Story()
     var storyLastPage: [Page]=[]
@@ -37,10 +37,14 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleNotification:", name: "MyNotification", object: nil)
+
         //self.performSegueWithIdentifier("ToHelpScreenStart", sender: self)
-
-
         updateUI()
+    }
+
+    func handleNotification(notification: NSNotification) {
+        getNotificationCount()
     }
     
 
@@ -210,7 +214,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
                 userProfileButton.hidden = false
 
                 // Called from App Delegate didBecomeActive
-                getNotificationCount()
+                //getNotificationCount()
             }
 
         } else {
@@ -333,14 +337,6 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         presentViewController(alertController, animated: true, completion: nil)
     }
 
-    func didAddNewPage() {
-        getNotificationCount()
-    }
-
-    func didAcceptFriend() {
-        getNotificationCount()
-    }
-
     @IBAction func onNotificationButtonPressed(sender: UIButton) {
 
         PTActivityIndicator.show()
@@ -407,18 +403,14 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
             self.storyLastPage.sortInPlace({ $0.createdAt!.compare($1.createdAt!) == NSComparisonResult.OrderedDescending })
           vc.incomingStoryPageArray = self.storyLastPage
             vc.isNewStory = false
-            vc.homeVC = self
             (sender as! UIButton).enabled = true
         } else if segue.identifier == "ToNewStorySegue"{
             let vc = segue.destinationViewController as! ComposeViewController
             vc.story = Story()
             vc.isNewStory = true
-            vc.homeVC = self
             (sender as! UIButton).enabled = true
 
         } else if segue.identifier == "ToFriendsSegue" {
-            let vc = segue.destinationViewController as! FriendsViewController
-            vc.delegate = self
             (sender as! UIButton).enabled = true
         }
     }

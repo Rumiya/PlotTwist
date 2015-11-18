@@ -12,9 +12,8 @@ import ContactsUI
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FriendButtonDelegate, IncomingFriendButtonDelegate, OutgoingFriendButtonDelegate, MyFriendsButtonDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SMSegmentViewDelegate, CNContactPickerDelegate, ContactsButtonDelegate {
 
-    var delegate: FriendListDelegate?
     var searchActive:Bool = false
-    var buttonTypeForUser = [User:String]()
+    var buttonTypeForUser: [User:String] = [:]
 
     var segmentView: SMSegmentView!
 
@@ -101,7 +100,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             outgoingView.hidden = true
             contactsView.hidden = false
             myFriendsView.hidden = true
-
         case 4:
             searchView.hidden = true
             incomingView.hidden = true
@@ -143,7 +141,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //print(contactEmails.last)
             }
         }
-
 
         PTActivityIndicator.show()
 
@@ -248,6 +245,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     // MARK: Friend Button Delegate Methods
     func didPressFriendButton(button: UIButton) {
+        NSNotificationCenter.defaultCenter().postNotificationName("MyNotification", object: nil)
         switch (segmentView.indexOfSelectedSegment) {
         case 0:
             let touchPoint: CGPoint = button.convertPoint(CGPointZero, toView: searchTableView)
@@ -453,7 +451,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     // MARK - IBActions
     @IBAction func onDoneButtonPressed(sender: UIButton) {
-        self.delegate?.didAcceptFriend()
         dismissViewControllerAnimated(true, completion: nil)
     }
     // MARK: Search Bar Helper and Delegate Methods
