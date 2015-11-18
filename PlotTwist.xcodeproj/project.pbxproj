@@ -23,6 +23,7 @@
 		3A1F8FEA1BEA63EC008E9671 /* DeleteStoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F8FE91BEA63EC008E9671 /* DeleteStoryDelegate.swift */; };
 		3A1F8FEC1BEAC03F008E9671 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */; };
 		3A1F8FF01BEB1398008E9671 /* CreateStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */; };
+		3A9A3B2F1BFC5551003C2011 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9A3B2E1BFC5551003C2011 /* OnboardingManager.swift */; };
 		3ADE58B41BE9BA36003D6D74 /* NewStoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE58B31BE9BA36003D6D74 /* NewStoryProtocol.swift */; };
 		3ADE58B61BE9BAE5003D6D74 /* TestCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE58B51BE9BAE5003D6D74 /* TestCode.swift */; };
 		3ADE58B81BE9CF22003D6D74 /* NewPageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE58B71BE9CF22003D6D74 /* NewPageDelegate.swift */; };
@@ -125,6 +126,7 @@
 		3A1F8FE91BEA63EC008E9671 /* DeleteStoryDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteStoryDelegate.swift; sourceTree = "<group>"; };
 		3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		3A1F8FEF1BEB1398008E9671 /* CreateStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStoryViewController.swift; sourceTree = "<group>"; };
+		3A9A3B2E1BFC5551003C2011 /* OnboardingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
 		3ADE58B31BE9BA36003D6D74 /* NewStoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStoryProtocol.swift; sourceTree = "<group>"; };
 		3ADE58B51BE9BAE5003D6D74 /* TestCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCode.swift; sourceTree = "<group>"; };
 		3ADE58B71BE9CF22003D6D74 /* NewPageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageDelegate.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 		E0E2506E1BE7CA7E00E51659 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A9A3B2E1BFC5551003C2011 /* OnboardingManager.swift */,
 				3AFA0D401BF7B37E0006CD22 /* SMSegment.swift */,
 				3AFA0D411BF7B37E0006CD22 /* SMSegmentView.swift */,
 				E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */,
@@ -593,6 +596,7 @@
 				E0E2507A1BE7F5A100E51659 /* LibraryViewController.swift in Sources */,
 				E084C1131BF5167D00FAFA91 /* WindowSignUpViewController.swift in Sources */,
 				E0E250781BE7F48100E51659 /* AddPageViewController.swift in Sources */,
+				3A9A3B2F1BFC5551003C2011 /* OnboardingManager.swift in Sources */,
 				3AFA0D4D1BF7F0770006CD22 /* OutgoingFriendTableViewCell.swift in Sources */,
 				E0E250AA1BF0309800E51659 /* ListOfStoriesTableViewCell.swift in Sources */,
 			);

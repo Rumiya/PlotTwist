@@ -151,6 +151,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
+
+
                 let tempUsers = objects as! [User]
                 //self.users = objects as! [User]
 
@@ -219,6 +221,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                         }
                     }
                 }
+
             } else {
                 if let error = error {
                     if error.code == PFErrorCode.ErrorConnectionFailed.rawValue {

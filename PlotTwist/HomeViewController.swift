@@ -46,6 +46,9 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
 
     override func viewWillAppear(animated: Bool) {
 
+        // might have to move this eventually, just testing it here for now
+        getNotificationCount()
+
         // detect screen size
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         // let screenWidth = screenSize.width
@@ -87,13 +90,13 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         // display quick tips to start
         if hasViewedStartRead == false {
 
-            self.helpOverlayImage.image = UIImage(named: "startRead")
+            self.helpOverlayImage.image = OnboardingManager.getImageForDeviceWithName("startRead")
             self.helpOverlayImage.hidden = false
             self.helpImageName = "startRead"
 
         } else if hasViewedUserSettings == false {
 
-            self.helpOverlayImage.image = UIImage(named: "userSettings")
+            self.helpOverlayImage.image = OnboardingManager.getImageForDeviceWithName("userSent")
             self.helpOverlayImage.hidden = false
             self.helpImageName = "userSettings"
 
@@ -151,7 +154,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
             let hasViewedFriendRequest = self.defaults.boolForKey("hasViewedFriendRequest")
             // display quick tips to start
             if hasViewedFriendRequest == false {
-                self.helpOverlayImage.image = UIImage(named: "friendRequest")
+                self.helpOverlayImage.image = OnboardingManager.getImageForDeviceWithName("friendRequest")
                 self.helpOverlayImage.hidden = false
                 self.helpImageName = "friendRequest"
             }
@@ -178,7 +181,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
             let hasViewedNewStory = self.defaults.boolForKey("hasViewedNewStory")
             // display quick tips to start
             if hasViewedNewStory == false {
-                self.helpOverlayImage.image = UIImage(named: "aNewStory")
+                self.helpOverlayImage.image = OnboardingManager.getImageForDeviceWithName("aNewStory")
                 self.helpOverlayImage.hidden = false
                 self.helpImageName = "aNewStory"
             }
@@ -436,7 +439,7 @@ class HomeViewController: UIViewController, DecrementNotificationsCountDelegate,
         // display a quick tip
         if hasViewedSentStories == false {
 
-            self.helpOverlayImage.image = UIImage(named: "sentStories")
+            self.helpOverlayImage.image = OnboardingManager.getImageForDeviceWithName("userSent")
             self.helpOverlayImage.hidden = false
             self.helpImageName = "sentStories"
 

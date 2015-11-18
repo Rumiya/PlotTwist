@@ -54,6 +54,15 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
         activityQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
 
             if (error == nil){
+
+                if objects!.count == 0 {
+
+                    let alertController = UIAlertController(title: "No Friends Yet!", message: "Click the settings button on the top right to add some friends, then you will be able to send your story.", preferredStyle: .Alert)
+                    let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                    alertController.addAction(dismissAction)
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                } else {
+
             let activities = objects as! [Activity]
 
             for activity in activities {
@@ -71,7 +80,7 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
                         self.tableView.reloadData()
                     })
                 }
-
+                    }
             }
             } else {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -130,11 +139,18 @@ class SendToViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     @IBAction func onSaveAndSendButtonPressed(sender: UIButton) {
+        if users.count == 0 {
+            let alertController = UIAlertController(title: "No Friends Yet!", message: "Click the settings button on the top right to add some friends, then you will be able to send your story.", preferredStyle: .Alert)
+            let dismissAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+            alertController.addAction(dismissAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
 
-        if (isNewStory == true){
-            createNewStory()
         } else {
-            createNewPage()
+            if (isNewStory == true){
+                createNewStory()
+            } else {
+                createNewPage()
+            }
         }
     }
 
