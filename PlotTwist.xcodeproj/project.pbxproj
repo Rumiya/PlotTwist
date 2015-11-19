@@ -19,6 +19,8 @@
 		3A0FAD221BF1DB9E004A9DB9 /* ChangeInvitedAuthorsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0FAD211BF1DB9E004A9DB9 /* ChangeInvitedAuthorsDelegate.swift */; };
 		3A1F8FEC1BEAC03F008E9671 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */; };
 		3A9A3B2F1BFC5551003C2011 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9A3B2E1BFC5551003C2011 /* OnboardingManager.swift */; };
+		3ADB426A1BFD5911000B7945 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADB42691BFD5911000B7945 /* CoreData.framework */; };
+		3ADB426E1BFD5A7B000B7945 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ADB426D1BFD5A7B000B7945 /* GoogleService-Info.plist */; };
 		3AF245541BE7DACA00832B30 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF2454D1BE7DACA00832B30 /* Bolts.framework */; };
 		3AF245551BE7DACA00832B30 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF2454E1BE7DACA00832B30 /* Parse.framework */; };
 		3AF245561BE7DACA00832B30 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF2454F1BE7DACA00832B30 /* ParseCrashReporting.framework */; };
@@ -59,6 +61,7 @@
 		3AFF8B201BF541C900B10FF4 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */; };
 		6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */; };
 		6571A4A41BFA673C00F5641A /* PTActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571A4A31BFA673C00F5641A /* PTActivityIndicator.swift */; };
+		B0C4305EC50B351407527AE4 /* libPods-PlotTwist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B964F01F499E19A6F5D74CC /* libPods-PlotTwist.a */; };
 		E0572BB01BF30C6500A25188 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0572BAF1BF30C6500A25188 /* Login.storyboard */; };
 		E084C10F1BF411D200FAFA91 /* DoorLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */; };
 		E084C1111BF431B500FAFA91 /* MailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */; };
@@ -100,6 +103,8 @@
 		3A0FAD211BF1DB9E004A9DB9 /* ChangeInvitedAuthorsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeInvitedAuthorsDelegate.swift; sourceTree = "<group>"; };
 		3A1F8FEB1BEAC03F008E9671 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		3A9A3B2E1BFC5551003C2011 /* OnboardingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		3ADB42691BFD5911000B7945 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3ADB426D1BFD5A7B000B7945 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3AF2454D1BE7DACA00832B30 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		3AF2454E1BE7DACA00832B30 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		3AF2454F1BE7DACA00832B30 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -139,8 +144,11 @@
 		3AFF8B1B1BF50EEB00B10FF4 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		3AFF8B1D1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsCollectionViewCell.swift; sourceTree = "<group>"; };
 		3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		472439DF021FD5BA5A6A2EC9 /* Pods-PlotTwist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlotTwist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlotTwist/Pods-PlotTwist.debug.xcconfig"; sourceTree = "<group>"; };
+		610B9A031270A07B3EB998E2 /* Pods-PlotTwist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlotTwist.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlotTwist/Pods-PlotTwist.release.xcconfig"; sourceTree = "<group>"; };
 		6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Documents/FacebookSDKs-iOS-20151026/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		6571A4A31BFA673C00F5641A /* PTActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PTActivityIndicator.swift; path = ../PTActivityIndicator.swift; sourceTree = "<group>"; };
+		7B964F01F499E19A6F5D74CC /* libPods-PlotTwist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlotTwist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0572BAF1BF30C6500A25188 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoorLoginViewController.swift; sourceTree = "<group>"; };
 		E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailPasswordViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADB426A1BFD5911000B7945 /* CoreData.framework in Frameworks */,
 				6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */,
 				3AF245811BE8827A00832B30 /* libsqlite3.0.tbd in Frameworks */,
 				3AF2457F1BE8824600832B30 /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -199,6 +208,7 @@
 				3AF245541BE7DACA00832B30 /* Bolts.framework in Frameworks */,
 				3AF245591BE7DACA00832B30 /* ParseTwitterUtils.framework in Frameworks */,
 				3AF245581BE7DACA00832B30 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				B0C4305EC50B351407527AE4 /* libPods-PlotTwist.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +218,7 @@
 		3AF2454C1BE7DA9D00832B30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3ADB42691BFD5911000B7945 /* CoreData.framework */,
 				3AF245801BE8827A00832B30 /* libsqlite3.0.tbd */,
 				3AF2457E1BE8824600832B30 /* libstdc++.6.0.9.tbd */,
 				E0E250811BE81BF500E51659 /* FBSDKLoginKit.framework */,
@@ -235,11 +246,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9BF029C7BF0A6CCE10192610 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B964F01F499E19A6F5D74CC /* libPods-PlotTwist.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A45D15AFFA4E4ABB09109EB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				472439DF021FD5BA5A6A2EC9 /* Pods-PlotTwist.debug.xcconfig */,
+				610B9A031270A07B3EB998E2 /* Pods-PlotTwist.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E0E2504D1BE7C3D900E51659 = {
 			isa = PBXGroup;
 			children = (
 				E0E250581BE7C3D900E51659 /* PlotTwist */,
 				E0E250571BE7C3D900E51659 /* Products */,
+				A45D15AFFA4E4ABB09109EB7 /* Pods */,
+				9BF029C7BF0A6CCE10192610 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,6 +289,7 @@
 				E0E2506D1BE7CA4C00E51659 /* View */,
 				E0E2506E1BE7CA7E00E51659 /* Supporting Files */,
 				E0E250651BE7C3D900E51659 /* Info.plist */,
+				3ADB426D1BFD5A7B000B7945 /* GoogleService-Info.plist */,
 				3AF2454C1BE7DA9D00832B30 /* Frameworks */,
 			);
 			path = PlotTwist;
@@ -355,11 +386,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0E250681BE7C3D900E51659 /* Build configuration list for PBXNativeTarget "PlotTwist" */;
 			buildPhases = (
+				828C40DE3D1A9CC88443D27F /* Check Pods Manifest.lock */,
 				E0E250521BE7C3D900E51659 /* Sources */,
 				E0E250531BE7C3D900E51659 /* Frameworks */,
 				E0E250541BE7C3D900E51659 /* Resources */,
 				3AF2457D1BE8813800832B30 /* ShellScript */,
 				3AF245821BE8ACAB00832B30 /* ShellScript */,
+				4870607C92C96C6803AF801C /* Embed Pods Frameworks */,
+				59B72A1E17D9668913B68D65 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -411,6 +445,7 @@
 			files = (
 				E0E250641BE7C3D900E51659 /* LaunchScreen.storyboard in Resources */,
 				E0E250611BE7C3D900E51659 /* Assets.xcassets in Resources */,
+				3ADB426E1BFD5A7B000B7945 /* GoogleService-Info.plist in Resources */,
 				E0572BB01BF30C6500A25188 /* Login.storyboard in Resources */,
 				3A0FAD0E1BEFB213004A9DB9 /* Friends.storyboard in Resources */,
 				E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */,
@@ -448,6 +483,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+		4870607C92C96C6803AF801C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlotTwist/Pods-PlotTwist-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59B72A1E17D9668913B68D65 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlotTwist/Pods-PlotTwist-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		828C40DE3D1A9CC88443D27F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -617,11 +697,13 @@
 		};
 		E0E250691BE7C3D900E51659 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 472439DF021FD5BA5A6A2EC9 /* Pods-PlotTwist.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlotTwist",
@@ -638,10 +720,12 @@
 		};
 		E0E2506A1BE7C3D900E51659 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 610B9A031270A07B3EB998E2 /* Pods-PlotTwist.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Philip Henson (G8M9P5X24R)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Philip Henson (G8M9P5X24R)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlotTwist",

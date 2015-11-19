@@ -78,7 +78,7 @@ class ReadStoryViewController: UIViewController {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickedLanguage = locales[row]
         pickerView.hidden = true
-        let pickedLocales = self.defaults.stringForKey("pickedLocales")
+//        let pickedLocales = self.defaults.stringForKey("pickedLocales")
         self.defaults.setObject(pickedLanguage, forKey: "pickedLocales")
     }
 

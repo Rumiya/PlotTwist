@@ -10,5 +10,6 @@
 
 #import <Parse/Parse.h>
 #import <Bolts/Bolts.h>
+#import <Google/Analytics.h>
 
 #endif /* PlotTwist_Bridging_Header_h */

@@ -50,6 +50,13 @@ class HomeViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
 
+        //Google analytics
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "home")
+
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+
         // might have to move this eventually, just testing it here for now
         getNotificationCount()
 
