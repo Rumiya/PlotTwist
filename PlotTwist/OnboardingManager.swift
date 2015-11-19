@@ -103,7 +103,7 @@ class OnboardingManager {
             case .iPhone5, .iPhone5C, .iPhone5S: return UIImage(named: (name + "_568"))!
             case .iPhone6, .iPhone6S: return UIImage(named: (name + "_667"))!
             case .iPhone6plus, .iPhone6Splus: return UIImage(named: (name + "_736"))!
-        default: return UIImage(named: name)!
+        default: return UIImage(named: (name + "_667"))!
         }
 
     }

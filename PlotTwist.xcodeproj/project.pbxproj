@@ -58,7 +58,6 @@
 		3AFA0D531BF8214B0006CD22 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFA0D521BF8214B0006CD22 /* ContactsTableViewCell.swift */; };
 		3AFF8B1C1BF50EEB00B10FF4 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1B1BF50EEB00B10FF4 /* UserSettingsViewController.swift */; };
 		3AFF8B1E1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1D1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift */; };
-		3AFF8B201BF541C900B10FF4 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */; };
 		6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */; };
 		6571A4A41BFA673C00F5641A /* PTActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571A4A31BFA673C00F5641A /* PTActivityIndicator.swift */; };
 		B0C4305EC50B351407527AE4 /* libPods-PlotTwist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B964F01F499E19A6F5D74CC /* libPods-PlotTwist.a */; };
@@ -69,7 +68,6 @@
 		E084C1151BF51A5600FAFA91 /* CustomAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */; };
 		E0A4BA371BF26435001D5581 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA361BF26435001D5581 /* InboxViewController.swift */; };
 		E0A4BA391BF26450001D5581 /* InboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */; };
-		E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */; };
 		E0BEEF9E1BF860210057E9F8 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BEEF9D1BF860200057E9F8 /* HelpViewController.swift */; };
 		E0E2505A1BE7C3D900E51659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250591BE7C3D900E51659 /* AppDelegate.swift */; };
 		E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E2505D1BE7C3D900E51659 /* Main.storyboard */; };
@@ -143,7 +141,6 @@
 		3AFA0D521BF8214B0006CD22 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		3AFF8B1B1BF50EEB00B10FF4 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		3AFF8B1D1BF50F0500B10FF4 /* UserSettingsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsCollectionViewCell.swift; sourceTree = "<group>"; };
-		3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		472439DF021FD5BA5A6A2EC9 /* Pods-PlotTwist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlotTwist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlotTwist/Pods-PlotTwist.debug.xcconfig"; sourceTree = "<group>"; };
 		610B9A031270A07B3EB998E2 /* Pods-PlotTwist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlotTwist.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlotTwist/Pods-PlotTwist.release.xcconfig"; sourceTree = "<group>"; };
 		6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Documents/FacebookSDKs-iOS-20151026/FBSDKShareKit.framework"; sourceTree = "<group>"; };
@@ -156,7 +153,6 @@
 		E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnimations.swift; sourceTree = "<group>"; };
 		E0A4BA361BF26435001D5581 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewCell.swift; sourceTree = "<group>"; };
-		E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
 		E0BEEF9D1BF860200057E9F8 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		E0E250561BE7C3D900E51659 /* PlotTwist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlotTwist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E250591BE7C3D900E51659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -344,10 +340,8 @@
 			children = (
 				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
 				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
-				3AFF8B1F1BF541C900B10FF4 /* Onboarding.storyboard */,
 				E0E2505D1BE7C3D900E51659 /* Main.storyboard */,
 				E0572BAF1BF30C6500A25188 /* Login.storyboard */,
-				E0A4BA3A1BF26F39001D5581 /* Walkthrough.storyboard */,
 				3A0FAD0D1BEFB213004A9DB9 /* Friends.storyboard */,
 				3A0FAD191BF1A5B8004A9DB9 /* Outbox.storyboard */,
 				E0E250601BE7C3D900E51659 /* Assets.xcassets */,
@@ -448,10 +442,8 @@
 				3ADB426E1BFD5A7B000B7945 /* GoogleService-Info.plist in Resources */,
 				E0572BB01BF30C6500A25188 /* Login.storyboard in Resources */,
 				3A0FAD0E1BEFB213004A9DB9 /* Friends.storyboard in Resources */,
-				E0A4BA3B1BF26F39001D5581 /* Walkthrough.storyboard in Resources */,
 				3A0FAD1A1BF1A5B8004A9DB9 /* Outbox.storyboard in Resources */,
 				E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */,
-				3AFF8B201BF541C900B10FF4 /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
