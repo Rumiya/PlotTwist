@@ -124,21 +124,28 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         contactMatch.removeAll()
 
         // Fetch contacts from address book
-        let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
-        let containerId = CNContactStore().defaultContainerIdentifier()
-        let predicate: NSPredicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
-        let contacts: [CNContact]?
-        do {
-            contacts = try CNContactStore().unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)
-        } catch _ {
-            contacts = nil
-        }
-
         var contactEmails = [String]()
-        for contact in contacts! {
-            for emailAddress in contact.emailAddresses{
-                contactEmails.append(emailAddress.value as! String)
-                //print(contactEmails.last)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.requestForAccess { (accessGranted) -> Void in
+            if accessGranted {
+                let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
+                let containerId = CNContactStore().defaultContainerIdentifier()
+                let predicate: NSPredicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
+                let contacts: [CNContact]?
+                do {
+                    contacts = try CNContactStore().unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)
+                    for contact in contacts! {
+                        for emailAddress in contact.emailAddresses{
+                            contactEmails.append(emailAddress.value as! String)
+                            //print(contactEmails.last)
+                        }
+                    }
+                } catch _ {
+                    contacts = nil
+                }
+
+
+
             }
         }
 
@@ -192,9 +199,11 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 self.buttonTypeForUser[user] = Constants.User.ButtonType.sendRequest
                                 self.users.append(user)
                                 // Then compare with parse database to see if there are any matching emails
+                                if contactEmails.count > 0 {
                                 if contactEmails.contains(user.email!){
                                     self.contactMatch.append(user)
                                     //print(self.contactMatch.last)
+                                }
                                 }
                             }
 
