@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Iz-Kd-wjI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Iz-Kd-wjI">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -228,7 +228,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eah-h7-ZS1" id="jre-IX-3Qn">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="104"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pFh-RG-eOv">
@@ -506,13 +506,16 @@
                         <outlet property="airBalloonTopSpace" destination="gMd-ne-qUv" id="jLI-b2-Qe7"/>
                         <outlet property="cloudsImage" destination="WxA-eK-nwd" id="fhD-nK-1qJ"/>
                         <outlet property="crayonBottomSpace" destination="oCa-ZR-Ud3" id="C4d-dT-XUe"/>
+                        <outlet property="crayonButton" destination="Cg6-pG-SIH" id="GyJ-pO-bxg"/>
                         <outlet property="friendButton" destination="IsI-qB-oMW" id="W1j-Tv-q8I"/>
                         <outlet property="glassesBottomSpace" destination="wxI-0U-0pF" id="QwR-df-L2I"/>
+                        <outlet property="glassesButton" destination="Ei9-1Z-7Fv" id="Mpk-nf-9Li"/>
                         <outlet property="glassesLeadingSpace" destination="vrw-Ui-1ER" id="Jeh-L2-WqY"/>
                         <outlet property="helpOverlayImage" destination="Sjm-Xx-TE0" id="kpv-8U-JLu"/>
                         <outlet property="inboxTopSpaceToUser" destination="br0-5h-wtH" id="Yfb-Qo-BM7"/>
                         <outlet property="notificationButton" destination="9vu-m7-dcg" id="lBo-6l-2qE"/>
                         <outlet property="outboxBottomSpace" destination="ZHs-lE-zJw" id="n4O-T6-dnF"/>
+                        <outlet property="outboxButton" destination="KR3-7h-FMC" id="Ur0-Bw-Xnq"/>
                         <outlet property="outboxLeadingSpace" destination="ret-Sg-Rzt" id="g5A-XC-1hq"/>
                         <outlet property="userProfileButton" destination="HzG-iC-K8P" id="XP0-tK-tAS"/>
                         <segue destination="bd6-qL-hKu" kind="show" identifier="ToNewPageSegue" id="42e-rQ-Xx6"/>
@@ -1065,7 +1068,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Seu-hL-cXC" id="nL4-eW-bn9">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VPk-CK-II6">
@@ -1218,11 +1221,11 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A8h-uD-Bzw" id="49N-yB-ia7">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uyf-Sp-rU0">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1342,7 +1345,7 @@
         <image name="speak" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wFo-2p-kIR"/>
-        <segue reference="7js-iM-0by"/>
+        <segue reference="ig7-xR-53y"/>
+        <segue reference="oPi-DB-OxU"/>
     </inferredMetricsTieBreakers>
 </document>

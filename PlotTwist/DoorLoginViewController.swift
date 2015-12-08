@@ -16,16 +16,26 @@ class DoorLoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var doorView: UIView!
-    @IBOutlet weak var doorKnobLoginButton: UIButton!
+
     @IBOutlet weak var keyHoleImage: UIImageView!
+
+    @IBOutlet weak var doorKnobLoginButton: UIButton!
+    @IBOutlet weak var facebookButton: SquareButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.doorKnobLoginButton.layer.shadowColor = UIColor.blackColor().CGColor
-//        self.doorKnobLoginButton.layer.shadowOffset = CGSizeMake(0, 2.0);
-//        self.doorKnobLoginButton.layer.shadowOpacity = 1.0;
-//        self.doorKnobLoginButton.layer.shadowRadius = 0.0;
+        if !connectedToNetwork() {
+
+            self.facebookButton.enabled = false
+            self.forgotPasswordButton.enabled = false
+            self.signUpButton.enabled = false
+            self.doorKnobLoginButton.enabled = false
+
+        }
+
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
