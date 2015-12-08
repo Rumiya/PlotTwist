@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Story.registerSubclass()
         Page.registerSubclass()
         User.registerSubclass()
+        Activity.registerSubclass()
        //does this need to be set to uncomment 
         //return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
