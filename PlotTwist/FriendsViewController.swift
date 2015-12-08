@@ -115,16 +115,16 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK - Parse Query Methods
     func queryUsers() {
 
-        buttonTypeForUser.removeAll()
-        users.removeAll()
-        filteredUsers.removeAll()
-        incoming.removeAll()
-        outgoing.removeAll()
-        myFriends.removeAll()
-        contactMatch.removeAll()
+        //        buttonTypeForUser.removeAll()
+        //        users.removeAll()
+        //        filteredUsers.removeAll()
+        //        incoming.removeAll()
+        //        outgoing.removeAll()
+        //        myFriends.removeAll()
+        //        contactMatch.removeAll()
 
         // Fetch contacts from address book
-        var contactEmails = [String]()
+        var contactEmails: [String] = []
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.requestForAccess { (accessGranted) -> Void in
             if accessGranted {
@@ -137,15 +137,11 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     for contact in contacts! {
                         for emailAddress in contact.emailAddresses{
                             contactEmails.append(emailAddress.value as! String)
-                            //print(contactEmails.last)
                         }
                     }
                 } catch _ {
                     contacts = nil
                 }
-
-
-
             }
         }
 
@@ -155,15 +151,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         query?.whereKey(Constants.User.objectId, notEqualTo: (User.currentUser()?.objectId)!)
         query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-
-
                 let tempUsers = objects as! [User]
-                //self.users = objects as! [User]
-
                 var count = 0
                 for user in tempUsers {
-
-
 
                     let friendOutgoingQuery = Activity.query()
                     friendOutgoingQuery?.whereKey(Constants.Activity.fromUser, equalTo: User.currentUser()!)
@@ -182,7 +172,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                         if objects?.count != 0 {
                             let activity = objects?.first as! Activity
 
-
                             switch activity.requestType {
                             case Constants.Activity.Requests.confirmed:
                                 self.buttonTypeForUser[user] = Constants.User.ButtonType.accepted
@@ -200,10 +189,10 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 self.users.append(user)
                                 // Then compare with parse database to see if there are any matching emails
                                 if contactEmails.count > 0 {
-                                if contactEmails.contains(user.email!){
-                                    self.contactMatch.append(user)
-                                    //print(self.contactMatch.last)
-                                }
+                                    if contactEmails.contains(user.email!){
+                                        self.contactMatch.append(user)
+                                        //print(self.contactMatch.last)
+                                    }
                                 }
                             }
 
@@ -244,7 +233,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     // MARK - Table View Helper Methods
-    func currentArray() -> Array<User> {
+    func currentArray() -> [User] {
         if (searchActive) {
             return self.filteredUsers
         } else {
@@ -303,10 +292,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     button.setBackgroundImage(UIImage(named:Constants.User.ButtonType.acceptedText), forState: .Normal)
                 })
 
-
                 PTUtiltiy.acceptFriendInBackground(user) {(result: Bool) -> Void in
                     self.buttonTypeForUser[user] = Constants.User.ButtonType.accepted
-
                 }
             }
 
@@ -563,6 +550,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.delegate = self
 
             cell.usernameLabel?.text = contactMatch[indexPath.row].username
+
             if buttonTypeForUser.count > 0 {
                 cell.friendButton.setBackgroundImage(UIImage(named: buttonTypeForUser[contactMatch[indexPath.row]]!), forState: .Normal)
             }
@@ -594,10 +582,10 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let usernameImage = getUsernameFirstLetterImagename(myFriends[indexPath.row].username!)
 
             if ((UIImage(named:usernameImage)) != nil){
-
+                
                 cell.profilePicture.image = UIImage(named:usernameImage)
             }
-
+            
             return cell
             
         } else {

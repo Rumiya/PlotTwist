@@ -37,6 +37,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleNotification:", name: "MyNotification", object: nil)
 
         //self.performSegueWithIdentifier("ToHelpScreenStart", sender: self)
