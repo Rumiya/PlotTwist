@@ -20,8 +20,13 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var userProfileButton: UIButton!
     @IBOutlet weak var notificationButton: UIButton!
-    @IBOutlet weak var cloudsImage: UIImageView!
     @IBOutlet weak var friendButton: UIButton!
+    @IBOutlet weak var outboxButton: SquareButton!
+    @IBOutlet weak var crayonButton: SquareButton!
+    @IBOutlet weak var glassesButton: SquareButton!
+
+    @IBOutlet weak var cloudsImage: UIImageView!
+    
 
     @IBOutlet weak var crayonBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var glassesBottomSpace: NSLayoutConstraint!
@@ -226,6 +231,20 @@ class HomeViewController: UIViewController {
         } else {
             userProfileButton.hidden = true
         }
+
+
+        if !connectedToNetwork() {
+
+            // disable buttons
+
+            self.userProfileButton.enabled = false
+            self.notificationButton.enabled = false
+            self.friendButton.enabled = false
+            self.outboxButton.enabled = false
+            self.crayonButton.enabled = false
+            self.glassesButton.enabled = false
+        }
+
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

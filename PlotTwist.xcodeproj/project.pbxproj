@@ -61,6 +61,7 @@
 		6550549E1BF03BAD00793AB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */; };
 		6571A4A41BFA673C00F5641A /* PTActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571A4A31BFA673C00F5641A /* PTActivityIndicator.swift */; };
 		B0C4305EC50B351407527AE4 /* libPods-PlotTwist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B964F01F499E19A6F5D74CC /* libPods-PlotTwist.a */; };
+		E031C9581C1759ED00F8EDFD /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031C9571C1759ED00F8EDFD /* NetworkReachability.swift */; };
 		E0572BB01BF30C6500A25188 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0572BAF1BF30C6500A25188 /* Login.storyboard */; };
 		E084C10F1BF411D200FAFA91 /* DoorLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */; };
 		E084C1111BF431B500FAFA91 /* MailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */; };
@@ -146,6 +147,7 @@
 		6550549D1BF03BAD00793AB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Documents/FacebookSDKs-iOS-20151026/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		6571A4A31BFA673C00F5641A /* PTActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PTActivityIndicator.swift; path = ../PTActivityIndicator.swift; sourceTree = "<group>"; };
 		7B964F01F499E19A6F5D74CC /* libPods-PlotTwist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlotTwist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E031C9571C1759ED00F8EDFD /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		E0572BAF1BF30C6500A25188 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E084C10E1BF411D200FAFA91 /* DoorLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoorLoginViewController.swift; sourceTree = "<group>"; };
 		E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailPasswordViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 		E0E2506E1BE7CA7E00E51659 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E031C9571C1759ED00F8EDFD /* NetworkReachability.swift */,
 				3A9A3B2E1BFC5551003C2011 /* OnboardingManager.swift */,
 				3AFA0D401BF7B37E0006CD22 /* SMSegment.swift */,
 				3AFA0D411BF7B37E0006CD22 /* SMSegmentView.swift */,
@@ -575,6 +578,7 @@
 				3A9A3B2F1BFC5551003C2011 /* OnboardingManager.swift in Sources */,
 				3AFA0D4D1BF7F0770006CD22 /* OutgoingFriendTableViewCell.swift in Sources */,
 				E0E250AA1BF0309800E51659 /* ListOfStoriesTableViewCell.swift in Sources */,
+				E031C9581C1759ED00F8EDFD /* NetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var contactStore = CNContactStore()
 
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         // Configure tracker from GoogleService-Info.plist.
@@ -73,13 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarHidden = false
 
         // Change toolbar style
-        //    UIBarButtonItem.appearance().tintColor = UIColor(red: 235.0/255.0, green: 73.0/255.0, blue: 27.0/255.0, alpha: 1.0)
         UIToolbar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
 
         // Change tabbar style
         UITabBar.appearance().tintColor = UIColor.whiteColor()
-
-
         UITabBar.appearance().barTintColor = UIColor(red:0.39, green:0.67, blue:0.97, alpha:1.0)
 
         if User.currentUser() == nil {
@@ -94,6 +90,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
+        }
+
+        //display offline warning message
+        if !connectedToNetwork() {
+            self.window?.makeKeyAndVisible()
+            let alert = UIAlertController(title: "Network Connection Error", message: "You need to be connected to the internet to use this app.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.window?.rootViewController!.presentViewController(alert, animated: true,completion: nil)
         }
         
         // Crash Testing
@@ -235,7 +239,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSException(name: NSGenericException, reason: "Everything is ok. This is just a test crash.", userInfo: nil).raise()
 
     }
-
 
 }
 
