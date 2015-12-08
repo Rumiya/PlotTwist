@@ -37,10 +37,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleNotification:", name: "MyNotification", object: nil)
 
         //self.performSegueWithIdentifier("ToHelpScreenStart", sender: self)
+
         updateUI()
     }
 
@@ -65,6 +65,7 @@ class HomeViewController: UIViewController {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         // let screenWidth = screenSize.width
         let screenHeight = screenSize.height
+
 
         if screenHeight == 480 {
             crayonBottomSpace.constant = 25
@@ -258,15 +259,9 @@ class HomeViewController: UIViewController {
 
     func getNotificationCount(){
 
-        let userQuery = User.query()
-        userQuery?.whereKey(Constants.User.objectId, equalTo: (User.currentUser()?.objectId)!)
-
         let storyQuery = Story.query()
-        storyQuery?.whereKey(Constants.Story.allAuthors, matchesQuery: userQuery!)
-
         storyQuery?.whereKey(Constants.Story.isPublished, equalTo: false)
         storyQuery?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
-
 
         storyQuery?.countObjectsInBackgroundWithBlock({ (counts: Int32, error: NSError?) -> Void in
             if (error == nil) {
@@ -347,12 +342,7 @@ class HomeViewController: UIViewController {
         PTActivityIndicator.show()
         sender.enabled = false
 
-        let userQuery = User.query()
-        userQuery?.whereKey(Constants.User.objectId, equalTo: (User.currentUser()?.objectId)!)
-
         let storyQuery = Story.query()
-        storyQuery?.whereKey(Constants.Story.allAuthors, matchesQuery: userQuery!)
-
         storyQuery?.whereKey(Constants.Story.isPublished, equalTo: false)
         storyQuery?.whereKey(Constants.Story.currentAuthor, equalTo: User.currentUser()!)
         storyQuery?.includeKey(Constants.Story.pages)
