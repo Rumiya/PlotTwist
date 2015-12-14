@@ -10,8 +10,19 @@ import Foundation
 import UIKit
 import Parse
 
+func InitializeParse() {
+    // Initialize Parse
+    let plistPath = NSBundle.mainBundle().pathForResource("Configuration", ofType: "plist")
+    let configuration = NSDictionary.init(contentsOfFile: plistPath!)
+    let parseKey = configuration!.valueForKey("Parse")
+    let clientKey = String(parseKey!.valueForKey("Client Key") as! NSString)
+    let appId = String(parseKey!.valueForKey("Application ID") as! NSString)
+    print(appId)
+    Parse.setApplicationId(appId, clientKey: clientKey)
+}
+
 class PTUtiltiy {
-    
+
     class func friendUserInBackground(user: User, completion:(result: Bool) ->Void) {
         if user.objectId == User.currentUser()?.objectId {
             return

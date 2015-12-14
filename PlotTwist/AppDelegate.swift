@@ -40,7 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ParseCrashReporting.enable()
 
         // Initialize Parse
-        Parse.setApplicationId("4oB2SxIWEp5ZpyN1J9CqG2K2fzCPHAHL434m5Fel", clientKey: "PZBIaNyNTpEqYwWv8bmqjNi6Aev98qrRX0vwkpab")
+        InitializeParse()
+        
+
 
         // Track statistics
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)

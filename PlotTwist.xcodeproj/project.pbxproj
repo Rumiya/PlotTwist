@@ -67,6 +67,7 @@
 		E084C1111BF431B500FAFA91 /* MailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */; };
 		E084C1131BF5167D00FAFA91 /* WindowSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1121BF5167D00FAFA91 /* WindowSignUpViewController.swift */; };
 		E084C1151BF51A5600FAFA91 /* CustomAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */; };
+		E093EE8B1C1F43E300C1E979 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = E093EE8A1C1F43E300C1E979 /* Configuration.plist */; };
 		E0A4BA371BF26435001D5581 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA361BF26435001D5581 /* InboxViewController.swift */; };
 		E0A4BA391BF26450001D5581 /* InboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */; };
 		E0BEEF9E1BF860210057E9F8 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BEEF9D1BF860200057E9F8 /* HelpViewController.swift */; };
@@ -76,8 +77,6 @@
 		E0E250641BE7C3D900E51659 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E250621BE7C3D900E51659 /* LaunchScreen.storyboard */; };
 		E0E250801BE8177200E51659 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E2507F1BE8177200E51659 /* FBSDKCoreKit.framework */; };
 		E0E250821BE81BF500E51659 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E250811BE81BF500E51659 /* FBSDKLoginKit.framework */; };
-		E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */; };
-		E0E250941BE9678C00E51659 /* MyStoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250931BE9678C00E51659 /* MyStoriesCell.swift */; };
 		E0E250961BEC4F4D00E51659 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250951BEC4F4D00E51659 /* HomeViewController.swift */; };
 		E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250971BED1B0300E51659 /* ComposeViewController.swift */; };
 		E0E2509A1BED1E9F00E51659 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E250991BED1E9F00E51659 /* SendToViewController.swift */; };
@@ -153,6 +152,7 @@
 		E084C1101BF431B500FAFA91 /* MailPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailPasswordViewController.swift; sourceTree = "<group>"; };
 		E084C1121BF5167D00FAFA91 /* WindowSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowSignUpViewController.swift; sourceTree = "<group>"; };
 		E084C1141BF51A5600FAFA91 /* CustomAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnimations.swift; sourceTree = "<group>"; };
+		E093EE8A1C1F43E300C1E979 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 		E0A4BA361BF26435001D5581 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		E0A4BA381BF26450001D5581 /* InboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewCell.swift; sourceTree = "<group>"; };
 		E0BEEF9D1BF860200057E9F8 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -164,8 +164,6 @@
 		E0E250651BE7C3D900E51659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0E2507F1BE8177200E51659 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		E0E250811BE81BF500E51659 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesHeader.swift; sourceTree = "<group>"; };
-		E0E250931BE9678C00E51659 /* MyStoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStoriesCell.swift; sourceTree = "<group>"; };
 		E0E250951BEC4F4D00E51659 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E0E250971BED1B0300E51659 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		E0E250991BED1E9F00E51659 /* SendToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +259,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E093EE8C1C1F446600C1E979 /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				E0E250651BE7C3D900E51659 /* Info.plist */,
+				E093EE8A1C1F43E300C1E979 /* Configuration.plist */,
+				3ADB426D1BFD5A7B000B7945 /* GoogleService-Info.plist */,
+			);
+			name = Plists;
+			sourceTree = "<group>";
+		};
 		E0E2504D1BE7C3D900E51659 = {
 			isa = PBXGroup;
 			children = (
@@ -286,8 +294,7 @@
 				E0E2506B1BE7C9FD00E51659 /* Controllers */,
 				E0E2506D1BE7CA4C00E51659 /* View */,
 				E0E2506E1BE7CA7E00E51659 /* Supporting Files */,
-				E0E250651BE7C3D900E51659 /* Info.plist */,
-				3ADB426D1BFD5A7B000B7945 /* GoogleService-Info.plist */,
+				E093EE8C1C1F446600C1E979 /* Plists */,
 				3AF2454C1BE7DA9D00832B30 /* Frameworks */,
 			);
 			path = PlotTwist;
@@ -340,8 +347,6 @@
 		E0E2506D1BE7CA4C00E51659 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E0E250911BE9674B00E51659 /* MyStoriesHeader.swift */,
-				E0E250931BE9678C00E51659 /* MyStoriesCell.swift */,
 				E0E2505D1BE7C3D900E51659 /* Main.storyboard */,
 				E0572BAF1BF30C6500A25188 /* Login.storyboard */,
 				3A0FAD0D1BEFB213004A9DB9 /* Friends.storyboard */,
@@ -445,6 +450,7 @@
 				3ADB426E1BFD5A7B000B7945 /* GoogleService-Info.plist in Resources */,
 				E0572BB01BF30C6500A25188 /* Login.storyboard in Resources */,
 				3A0FAD0E1BEFB213004A9DB9 /* Friends.storyboard in Resources */,
+				E093EE8B1C1F43E300C1E979 /* Configuration.plist in Resources */,
 				3A0FAD1A1BF1A5B8004A9DB9 /* Outbox.storyboard in Resources */,
 				E0E2505F1BE7C3D900E51659 /* Main.storyboard in Resources */,
 			);
@@ -533,7 +539,6 @@
 			files = (
 				E0E250981BED1B0300E51659 /* ComposeViewController.swift in Sources */,
 				3AFA0D511BF821140006CD22 /* ContactsButtonDelegate.swift in Sources */,
-				E0E250921BE9674B00E51659 /* MyStoriesHeader.swift in Sources */,
 				3AFF8B1C1BF50EEB00B10FF4 /* UserSettingsViewController.swift in Sources */,
 				E084C1111BF431B500FAFA91 /* MailPasswordViewController.swift in Sources */,
 				3A0FAD141BF0082F004A9DB9 /* FriendButtonDelegate.swift in Sources */,
@@ -569,7 +574,6 @@
 				3A0FAD221BF1DB9E004A9DB9 /* ChangeInvitedAuthorsDelegate.swift in Sources */,
 				E0E250961BEC4F4D00E51659 /* HomeViewController.swift in Sources */,
 				3AF245741BE7DCF300832B30 /* Story.swift in Sources */,
-				E0E250941BE9678C00E51659 /* MyStoriesCell.swift in Sources */,
 				3AF245761BE7DEAC00832B30 /* Page.swift in Sources */,
 				E084C10F1BF411D200FAFA91 /* DoorLoginViewController.swift in Sources */,
 				3AFA0D431BF7B37E0006CD22 /* SMSegmentView.swift in Sources */,
