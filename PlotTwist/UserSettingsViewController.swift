@@ -35,7 +35,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDelegate, UI
         collectionView.collectionViewLayout = flowLayout
 
         let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
-        content.contentURL = NSURL(string:"https://plottwistapp.wordpress.com")
+        content.contentURL = NSURL(string:"https://itunes.apple.com/us/app/plot-twist/id1060684225?mt=8")
 
         shareButton.shareContent = content
         shareButton.setTitle("Share Your App", forState: .Normal)
